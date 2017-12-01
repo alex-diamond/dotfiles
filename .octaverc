@@ -1,0 +1,9 @@
+%% Clear command window
+clc;
+
+%% Set command prompt
+PS1('>> ');
+PS2('.. ');
+
+%% Set graphics toolkit
+graphics_toolkit('fltk');
