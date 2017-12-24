@@ -1,11 +1,9 @@
 # Enable smart completion
-# =======================
 if [ -f /etc/bash_completion ]; then
     . /etc/bash_completion
 fi
 
 # Aliases
-# =======
 alias v="vim"
 alias .="pwd"
 alias x="exit"
@@ -19,8 +17,6 @@ alias rm="rm -Iv"
 alias h="history"
 alias e="emacs -nw"
 
-# Toggle the values of settings controlling optional shell behavior
-# =================================================================
 # A command name that is the name of a directory
 # is executed as if it were the argument to the "cd" command
 shopt -s autocd
@@ -43,8 +39,6 @@ shopt -s histappend
 # updates the values of LINES and COLUMNS
 shopt -s checkwinsize
 
-# Environment Variables
-# =====================
 # 256 colors on the Linux terminal
 export TERM=xterm-256color
 # Bash history and prompt
@@ -57,3 +51,7 @@ export PROMPT_COMMAND="history -a; $PROMPT_COMMAND"
 # FLUKA
 export FLUFOR=gfortran
 export FLUPRO=$HOME/LSoft/FLUKA
+# SIMENS STAR-CCM+
+export CDLMD_LICENSE_FILE=$HOME/LSoft/STAR-CCM+/license.dat
+# TALYS
+alias talys="$HOME/LSoft/talys/bin/talys"
