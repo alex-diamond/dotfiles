@@ -51,7 +51,5 @@ export PROMPT_COMMAND="history -a; $PROMPT_COMMAND"
 # FLUKA
 export FLUFOR=gfortran
 export FLUPRO=$HOME/LSoft/FLUKA
-# SIMENS STAR-CCM+
-export CDLMD_LICENSE_FILE=$HOME/LSoft/STAR-CCM+/license.dat
 # TALYS
 alias talys="$HOME/LSoft/talys/bin/talys"
