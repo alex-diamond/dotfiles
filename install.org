@@ -587,6 +587,7 @@
 ** [[https://curl.haxx.se/][cURL]]
 #+BEGIN_SRC sh
   sudo apt-get -y install curl
+  sudo apt-get -y install curlftpfs
 #+END_SRC
 
 ** [[http://www.gnu.org/software/wget/][GNU Wget]]

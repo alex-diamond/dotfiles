@@ -284,6 +284,7 @@ sudo apt-get -y install nmap
 sudo apt-get -y install john
 
 sudo apt-get -y install curl
+sudo apt-get -y install curlftpfs
 
 sudo apt-get -y install wget
 
