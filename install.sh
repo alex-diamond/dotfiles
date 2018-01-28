@@ -260,6 +260,8 @@ sudo apt-get -y install soundconverter
 sudo apt-get -y install vlc
 sudo apt-get -y install vlc-nox
 
+sudo apt-get -y install brasero
+
 sudo apt-get -y install blender
 
 sudo apt-get -y install inkscape

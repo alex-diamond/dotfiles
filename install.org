@@ -526,6 +526,11 @@
   sudo apt-get -y install vlc-nox
 #+END_SRC
 
+** Brasero
+#+BEGIN_SRC sh
+  sudo apt-get -y install brasero
+#+END_SRC
+
 * Graphics
 ** [[https://www.blender.org/][Blender]]
 #+BEGIN_SRC sh
