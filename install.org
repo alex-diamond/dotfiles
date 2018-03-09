@@ -183,6 +183,11 @@
   sudo apt-get -y install cmake-curses-gui
 #+END_SRC
 
+*** [[http://ctags.sourceforge.net/][Exuberant Ctags]]
+#+BEGIN_SRC sh
+  sudo apt-get -y install exuberant-ctags
+#+END_SRC
+
 *** [[https://gcc.gnu.org/][GCC]]
 #+BEGIN_SRC sh
   sudo apt-get -y install gcc

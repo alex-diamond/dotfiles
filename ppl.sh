@@ -8,6 +8,7 @@ pip3 install --user pep8
 pip3 install --user cffi
 pip3 install --user jedi
 pip3 install --user nltk
+pip3 install --user rope
 pip3 install --user numpy
 pip3 install --user scipy
 pip3 install --user sympy
@@ -19,6 +20,7 @@ pip3 install --user sphinx
 pip3 install --user forthon
 pip3 install --user ipython
 pip3 install --user jupyter
+pip3 install --user pyflakes
 pip3 install --user networkx
 pip3 install --user psycopg2
 pip3 install --user pyopengl
