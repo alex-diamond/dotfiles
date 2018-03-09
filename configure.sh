@@ -15,3 +15,7 @@ cp dotfiles/.bashrc   "$HOME"/
 cp dotfiles/.octaverc "$HOME"/
 source dotfiles/ppl.sh
 rm -rf dotfiles
+
+# Install Vundle
+git clone https://github.com/VundleVim/Vundle.vim.git \
+    "$HOME"/.vim/bundle/Vundle.vim

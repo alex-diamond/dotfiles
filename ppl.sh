@@ -6,6 +6,7 @@ pip3 install --upgrade pip
 # Install Python modules
 pip3 install --user pep8
 pip3 install --user cffi
+pip3 install --user jedi
 pip3 install --user nltk
 pip3 install --user numpy
 pip3 install --user scipy

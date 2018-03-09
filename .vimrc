@@ -3,20 +3,29 @@
 " VIM CONFIGURATION FILE
 " E-MAIL: LISPGOD@GMAIL.COM
 
-" =============================================================================
 set nocompatible
 
-" =============================================================================
+" Plugins
+filetype off
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+Plugin 'VundleVim/Vundle.vim'
+Plugin 'davidhalter/jedi-vim'
+Plugin 'scrooloose/syntastic'
+Plugin 'scrooloose/nerdtree'
+call vundle#end()
+filetype on
+filetype plugin on
+filetype indent on
 filetype plugin indent on
+
 syntax enable
 
-" =============================================================================
 set nopaste
 set clipboard=unnamed
 set cryptmethod=blowfish
 runtime macros/matchit.vim
 
-" =============================================================================
 set smarttab
 set expandtab
 set tabstop=4
@@ -27,15 +36,12 @@ set autoindent
 set copyindent
 set smartindent
 
-" =============================================================================
 set nojoinspaces
 
-" =============================================================================
 set nobackup
 set noswapfile
 set virtualedit=block
 
-" =============================================================================
 set encoding=utf-8
 set termencoding=utf-8
 set fileencoding=utf-8
@@ -43,34 +49,28 @@ set fileencodings=utf-8,cp1251,koi8-r
 set fileformat=unix
 set fileformats=unix,dos,mac
 
-" =============================================================================
 set backspace=indent,eol,start
 set complete=.,b,d,i,k,s,t,U,u,w
 set omnifunc=syntaxcomplete#Complete
 set completeopt=longest,menu,menuone,preview
-set pumheight=7
+set pumheight=10
 set cinwords=class,def,do,elif,else,except
 set cinwords+=finally,for,if,switch,try,while,with
 set sessionoptions=blank,buffers,curdir,folds,help
 set sessionoptions+=options,slash,tabpages,unix,winsize
 
-" =============================================================================
 if (&filetype == "lisp")
     set lisp
 endif
 
-" =============================================================================
 set autoread
 set autowrite
 set autochdir
 
-" =============================================================================
 set cmdheight=1
-set cmdwinheight=7
+set cmdwinheight=10
 set textwidth=80
-set colorcolumn=81
 
-" =============================================================================
 set foldenable
 set foldclose=""
 set foldcolumn=1
@@ -79,7 +79,6 @@ set foldlevelstart=10
 set foldmethod=indent
 set foldopen=block,hor,mark,percent,quickfix,search,tag,undo
 
-" =============================================================================
 set hidden
 set hlsearch
 set incsearch
@@ -92,7 +91,6 @@ set helplang=en
 set langmenu=en
 language messages POSIX
 
-" =============================================================================
 set lazyredraw
 set list
 set listchars=tab:>~,trail:.
@@ -101,12 +99,10 @@ set matchpairs=<:>,(:),{:},[:]
 set modeline
 set modelines=1
 
-" =============================================================================
 set mouse=a
 set mousehide
 set mousemodel=extend
 
-" =============================================================================
 set noconfirm
 set nocursorline
 set nocursorcolumn
@@ -118,7 +114,6 @@ set spelllang=en_us
 set noerrorbells
 set novisualbell
 
-" =============================================================================
 set number
 set numberwidth=3
 set relativenumber
@@ -133,7 +128,6 @@ set splitbelow
 set splitright
 set equalalways
 
-" =============================================================================
 set laststatus=2
 set statusline=%F%r%h%w
 set statusline+=\ %m
@@ -144,7 +138,6 @@ set statusline+=\ Column:[%v]
 set statusline+=\ Line:%l/%L[%p%%]
 set statusline+=\ Mode:[%{ShowCurrentMode()}]
 
-" =============================================================================
 set switchbuf=newtab,split,useopen,usetab
 set tabline=""
 set showtabline=0
@@ -157,7 +150,6 @@ set history=1000
 set undolevels=5000
 set viewoptions=cursor,folds,options,slash,unix
 
-" =============================================================================
 set wildmenu
 set wildmode=longest:full,full
 set wildignore=*.bak,*.bin,*.class,*.exe,*.o,*.obj,*.pyc,*.pyo,*.swp
@@ -166,16 +158,15 @@ set wrapscan
 set nolinebreak
 set whichwrap=<,>,[,]
 
-" =============================================================================
 set t_Co=256
-colorscheme default
-set background=light
+set background=dark
 if has("gui_running")
     winsize 111 37
     set linespace=0
     silent! cd $HOME
     set guioptions=""
     set guitablabel=""
+    colorscheme desert
     try
         if has("mac")
             set antialias
@@ -188,14 +179,8 @@ if has("gui_running")
     catch /.*/
         echoerr "Font not listed in the system font list!"
     endtry
-    highlight ColorColumn guibg=NONE guifg=#FF0000 gui=BOLD
-    highlight FoldColumn guibg=NONE guifg=#000000 gui=NONE
-else
-    highlight ColorColumn ctermbg=NONE ctermfg=1* cterm=BOLD
-    highlight FoldColumn ctermbg=NONE ctermfg=0 cterm=NONE
 endif
 
-" =============================================================================
 function! FormatFile()
     silent! normal ml
     silent! normal gg=G
@@ -204,7 +189,6 @@ function! FormatFile()
     silent! delmarks l
 endfunction
 
-" =============================================================================
 function! ShowCurrentMode()
     let s:showMode = ""
     let s:currentMode = mode()
@@ -220,7 +204,6 @@ function! ShowCurrentMode()
     return s:showMode
 endfunction
 
-" =============================================================================
 function! UseTemplates(type)
     let s:scriptLine = "#!/usr/bin/env "
     let s:scriptEncoding = "# -*- coding: utf-8 -*-"
@@ -241,7 +224,6 @@ function! UseTemplates(type)
     silent! normal Go
 endfunction
 
-" =============================================================================
 function! Run()
     silent! write
     try
@@ -259,14 +241,12 @@ function! Run()
     endtry
 endfunction
 
-" =============================================================================
 function! MakeExecutable()
     if ((getline(1) =~ "#!") && (getline(1) =~ "bin/"))
         silent! execute "!chmod a+x <afile>"
     endif
 endfunction
 
-" =============================================================================
 if has("autocmd")
     augroup BeforeWritingFile
         autocmd!
@@ -288,7 +268,6 @@ if has("autocmd")
     augroup END
 endif
 
-" =============================================================================
 cnoreabbrev q q!
 cnoreabbrev Q q!
 cnoreabbrev w w!
