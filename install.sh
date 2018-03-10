@@ -295,3 +295,8 @@ sudo apt-get -y install wget
 sudo apt-get -y install transmission
 sudo apt-get -y install transmission-cli
 sudo apt-get -y install transmission-gtk
+
+sudo apt-get -y install openttd
+sudo apt-get -y install openttd-opengfx
+sudo apt-get -y install openttd-openmsx
+sudo apt-get -y install openttd-opensfx

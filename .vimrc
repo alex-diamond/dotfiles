@@ -5,14 +5,16 @@
 
 set nocompatible
 
-" Plugins
 filetype off
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
+Plugin 'morhetz/gruvbox'
+Plugin 'majutsushi/tagbar'
+Plugin 'scrooloose/nerdtree'
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'davidhalter/jedi-vim'
 Plugin 'scrooloose/syntastic'
-Plugin 'scrooloose/nerdtree'
+Plugin 'nanotech/jellybeans.vim'
 call vundle#end()
 filetype on
 filetype plugin on
@@ -32,8 +34,12 @@ set tabstop=4
 set shiftround
 set shiftwidth=4
 set softtabstop=4
+" Copy indent from current line when starting a new line
 set autoindent
+" Copy the structure of the existing lines indent
+" when autoindenting a new line
 set copyindent
+" Do smart autoindenting when starting a new line
 set smartindent
 
 set nojoinspaces
@@ -64,8 +70,8 @@ if (&filetype == "lisp")
 endif
 
 set autoread
-set autowrite
 set autochdir
+set autowriteall
 
 set cmdheight=1
 set cmdwinheight=10
@@ -104,7 +110,7 @@ set mousehide
 set mousemodel=extend
 
 set noconfirm
-set nocursorline
+set cursorline
 set nocursorcolumn
 set magic
 set nogdefault
@@ -161,24 +167,22 @@ set whichwrap=<,>,[,]
 set t_Co=256
 set background=dark
 if has("gui_running")
-    winsize 111 37
+    winsize 120 40
     set linespace=0
     silent! cd $HOME
     set guioptions=""
     set guitablabel=""
-    colorscheme desert
-    try
-        if has("mac")
-            set antialias
-            set guifont=Monaco:h12
-        elseif has("unix")
-            set guifont=Ubuntu\ Mono\ 12
-        elseif (has("win32") || has("win64"))
-            set guifont=Courier_New:h12
-        endif
-    catch /.*/
-        echoerr "Font not listed in the system font list!"
-    endtry
+    colorscheme gruvbox
+    if has("mac")
+        set antialias
+        set guifont=Monaco:h12
+    elseif has("unix")
+        set guifont=Ubuntu\ Mono\ 12
+    elseif (has("win32") || has("win64"))
+        set guifont=Courier_New:h12
+    endif
+else
+    colorscheme jellybeans
 endif
 
 function! FormatFile()
@@ -226,19 +230,15 @@ endfunction
 
 function! Run()
     silent! write
-    try
-        if (&filetype == "perl")
-            execute "!perl %"
-        elseif (&filetype == "python")
-            execute "!python %"
-        elseif ((&filetype == "sh") && (has("unix") || has("mac")))
-            execute "!sh %"
-        else
-            return
-        endif
-    catch /.*/
-        echoerr "Error while calling function: Run()"
-    endtry
+    if (&filetype == "perl")
+        execute "!perl %"
+    elseif (&filetype == "python")
+        execute "!python %"
+    elseif ((&filetype == "sh") && (has("unix") || has("mac")))
+        execute "!sh %"
+    else
+        return
+    endif
 endfunction
 
 function! MakeExecutable()
@@ -268,10 +268,6 @@ if has("autocmd")
     augroup END
 endif
 
-cnoreabbrev q q!
-cnoreabbrev Q q!
-cnoreabbrev w w!
-cnoreabbrev W w!
 let mapleader=","
 nnoremap j gj
 nnoremap k gk
@@ -284,9 +280,15 @@ nnoremap <silent>N Nzz
 nnoremap <silent>* *zz
 nnoremap <silent># #zz
 nnoremap // :nohlsearch<Return>
-nnoremap <leader>r :call Run()<Return>
+nnoremap <leader><leader> :call Run()<Return>
 vnoremap < <gv
 vnoremap > >gv
+cnoreabbrev q q!
+cnoreabbrev Q q!
+cnoreabbrev w w!
+cnoreabbrev W w!
+nmap <F3> :TagbarToggle<Return>
+nmap <F4> :NERDTreeToggle<Return>
 for prefix in ['i', 'n', 'v']
     for key in ['<Up>', '<Down>', '<Left>', '<Right>']
         execute prefix . "noremap " . key . " <Nop>"
