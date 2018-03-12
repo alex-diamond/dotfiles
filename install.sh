@@ -138,13 +138,6 @@ sudo apt-get -y install libglew-dev
 sudo apt-get -y install freeglut3-dev
 sudo apt-get -y install mesa-common-dev
 
-sudo apt-get -y install libsdl2-dev
-sudo apt-get -y install libsdl2-gfx-dev
-sudo apt-get -y install libsdl2-net-dev
-sudo apt-get -y install libsdl2-ttf-dev
-sudo apt-get -y install libsdl2-image-dev
-sudo apt-get -y install libsdl2-mixer-dev
-
 sudo apt-get -y install tk-dev
 sudo apt-get -y install tcl-dev
 
@@ -158,7 +151,6 @@ sudo apt-get -y install slime
 sudo apt-get -y install cl-asdf
 sudo apt-get -y install cl-cffi
 sudo apt-get -y install cl-swank
-sudo apt-get -y install cl-quicklisp
 
 sudo apt-get -y install vim
 sudo apt-get -y install vim-doc

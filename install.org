@@ -299,16 +299,6 @@
   sudo apt-get -y install mesa-common-dev
 #+END_SRC
 
-*** [[https://www.libsdl.org/index.php][SDL]]
-#+BEGIN_SRC sh
-  sudo apt-get -y install libsdl2-dev
-  sudo apt-get -y install libsdl2-gfx-dev
-  sudo apt-get -y install libsdl2-net-dev
-  sudo apt-get -y install libsdl2-ttf-dev
-  sudo apt-get -y install libsdl2-image-dev
-  sudo apt-get -y install libsdl2-mixer-dev
-#+END_SRC
-
 *** [[https://www.tcl.tk/][Tcl/Tk]]
 #+BEGIN_SRC sh
   sudo apt-get -y install tk-dev
@@ -334,7 +324,6 @@
   sudo apt-get -y install cl-asdf
   sudo apt-get -y install cl-cffi
   sudo apt-get -y install cl-swank
-  sudo apt-get -y install cl-quicklisp
 #+END_SRC
 
 *** [[http://www.vim.org/][Vim]]
