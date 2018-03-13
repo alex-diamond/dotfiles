@@ -601,6 +601,13 @@
   sudo apt-get -y install transmission-gtk
 #+END_SRC
 
+** [[https://telegram.org/][Telegram]]
+#+BEGIN_SRC sh
+  sudo add-apt-repository -y ppa:atareao/telegram
+  sudo apt-get update
+  sudo apt-get -y install telegram
+#+END_SRC
+
 * Games
 ** [[https://www.openttd.org/en/][OpenTTD]]
 #+BEGIN_SRC sh
