@@ -28,5 +28,6 @@ pip3 install --user requests
 pip3 install --user matplotlib
 pip3 install --user sqlalchemy
 pip3 install --user virtualenv
+pip3 install --user pep8-naming
 pip3 install --user scikit-image
 pip3 install --user scikit-learn
