@@ -9,6 +9,7 @@ pip3 install --user cffi
 pip3 install --user jedi
 pip3 install --user nltk
 pip3 install --user rope
+pip3 install --user pyqt5
 pip3 install --user numpy
 pip3 install --user scipy
 pip3 install --user sympy
