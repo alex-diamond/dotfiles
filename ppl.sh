@@ -19,6 +19,7 @@ pip3 install --user pylint
 pip3 install --user sphinx
 pip3 install --user ipython
 pip3 install --user jupyter
+pip3 install --user autopep8
 pip3 install --user pyflakes
 pip3 install --user networkx
 pip3 install --user psycopg2
