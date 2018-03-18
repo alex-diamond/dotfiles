@@ -17,7 +17,6 @@ pip3 install --user pandas
 pip3 install --user pygame
 pip3 install --user pylint
 pip3 install --user sphinx
-pip3 install --user forthon
 pip3 install --user ipython
 pip3 install --user jupyter
 pip3 install --user pyflakes
@@ -28,6 +27,5 @@ pip3 install --user requests
 pip3 install --user matplotlib
 pip3 install --user sqlalchemy
 pip3 install --user virtualenv
-pip3 install --user pep8-naming
 pip3 install --user scikit-image
 pip3 install --user scikit-learn
