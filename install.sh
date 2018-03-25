@@ -292,8 +292,7 @@ sudo apt-get -y install transmission-cli
 sudo apt-get -y install transmission-gtk
 
 sudo add-apt-repository -y ppa:atareao/telegram
-sudo apt-get update
-sudo apt-get -y install telegram
+sudo apt-get update && sudo apt-get -y install telegram
 
 sudo apt-get -y install openttd
 sudo apt-get -y install openttd-opengfx
