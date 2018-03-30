@@ -359,6 +359,11 @@
 #+END_SRC
 
 * Scientific packages
+** [[https://imagej.nih.gov/ij/][ImageJ]]
+#+BEGIN_SRC sh
+  sudo apt-get -y install imagej
+#+END_SRC
+
 ** [[http://gwyddion.net/][Gwyddion]]
 #+BEGIN_SRC sh
   sudo apt-get -y install gwyddion

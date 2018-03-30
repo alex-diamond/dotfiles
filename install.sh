@@ -172,6 +172,8 @@ sudo apt-get -y install lazarus
 sudo apt-get -y install geany
 sudo apt-get -y install geany-plugins
 
+sudo apt-get -y install imagej
+
 sudo apt-get -y install gwyddion
 sudo apt-get -y install gwyddion-plugins
 
