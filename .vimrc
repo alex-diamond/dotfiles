@@ -8,12 +8,15 @@ set nocompatible
 filetype off
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
-Plugin 'morhetz/gruvbox'
+Plugin 'VundleVim/Vundle.vim'
 Plugin 'majutsushi/tagbar'
 Plugin 'scrooloose/nerdtree'
-Plugin 'VundleVim/Vundle.vim'
+Plugin 'tell-k/vim-autopep8'
 Plugin 'davidhalter/jedi-vim'
 Plugin 'scrooloose/syntastic'
+Plugin 'scrooloose/nerdcommenter'
+" color-schemes
+Plugin 'morhetz/gruvbox'
 Plugin 'nanotech/jellybeans.vim'
 call vundle#end()
 filetype on
@@ -41,6 +44,9 @@ set autoindent
 set copyindent
 " Do smart autoindenting when starting a new line
 set smartindent
+if has("patch-7.4.354")
+    set breakindent
+endif
 
 set nojoinspaces
 
@@ -55,11 +61,11 @@ set fileencodings=utf-8,cp1251,koi8-r
 set fileformat=unix
 set fileformats=unix,dos,mac
 
+set pumheight=10
 set backspace=indent,eol,start
 set complete=.,b,d,i,k,s,t,U,u,w
 set omnifunc=syntaxcomplete#Complete
 set completeopt=longest,menu,menuone,preview
-set pumheight=10
 set cinwords=class,def,do,elif,else,except
 set cinwords+=finally,for,if,switch,try,while,with
 set sessionoptions=blank,buffers,curdir,folds,help
@@ -187,7 +193,9 @@ endif
 
 function! FormatFile()
     silent! normal ml
-    silent! normal gg=G
+    if (&filetype != "python")
+        silent! normal gg=G
+    endif
     silent! %s/\s\+$//e
     silent! normal 'lzz
     silent! delmarks l
@@ -230,10 +238,11 @@ endfunction
 
 function! Run()
     silent! write
+    silent! execute "!clear"
     if (&filetype == "perl")
         execute "!perl %"
     elseif (&filetype == "python")
-        execute "!python %"
+        execute "!python3 %"
     elseif ((&filetype == "sh") && (has("unix") || has("mac")))
         execute "!sh %"
     else
@@ -266,6 +275,7 @@ if has("autocmd")
         autocmd BufNewFile *.pl,*.pm call UseTemplates("perl")
         autocmd BufNewFile *.py,*.pyw call UseTemplates("python")
     augroup END
+    autocmd BufRead,BufNewFile *.py let python_highlight_all = 1
 endif
 
 let mapleader=","
