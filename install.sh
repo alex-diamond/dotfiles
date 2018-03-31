@@ -213,6 +213,7 @@ sudo apt-get -y install pnetcdf-bin
 sudo apt-get -y install libnetcdf-dev
 sudo apt-get -y install libnetcdff-dev
 sudo apt-get -y install libpnetcdf-dev
+sudo apt-get -y install libnetcdf-cxx-legacy-dev
 
 sudo apt-get -y install libhypre-dev
 

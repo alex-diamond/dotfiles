@@ -423,6 +423,7 @@
   sudo apt-get -y install libnetcdf-dev
   sudo apt-get -y install libnetcdff-dev
   sudo apt-get -y install libpnetcdf-dev
+  sudo apt-get -y install libnetcdf-cxx-legacy-dev
 #+END_SRC
 
 ** [[http://computation.llnl.gov/projects/hypre-scalable-linear-solvers-multigrid-methods][HYPRE]]
