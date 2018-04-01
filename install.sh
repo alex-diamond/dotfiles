@@ -222,8 +222,8 @@ sudo apt-get -y install r-cran-ggplot2
 
 sudo apt-get -y install ess
 
-sudo apt-get -y install lammps
-sudo apt-get -y install lammps-doc
+sudo apt-get -y install code-saturne
+sudo apt-get -y install code-saturne-doc
 
 sudo apt-get -y install ngspice
 

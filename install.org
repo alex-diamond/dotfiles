@@ -442,10 +442,10 @@
   sudo apt-get -y install ess
 #+END_SRC
 
-** [[http://lammps.sandia.gov/][LAMMPS]]
+** [[https://www.code-saturne.org/cms/][Code_Saturne]]
 #+BEGIN_SRC sh
-  sudo apt-get -y install lammps
-  sudo apt-get -y install lammps-doc
+  sudo apt-get -y install code-saturne
+  sudo apt-get -y install code-saturne-doc
 #+END_SRC
 
 ** [[http://ngspice.sourceforge.net/][Ngspice]]
