@@ -85,6 +85,7 @@
   sudo apt-get -y install fonts-dejavu
   sudo apt-get -y install fonts-liberation
   sudo apt-get -y install ttf-ubuntu-font-family
+  sudo apt-get -y install ttf-mscorefonts-installer
   sudo apt-get -y install fonts-ubuntu-font-family-console
 #+END_SRC
 
@@ -588,9 +589,11 @@
   sudo apt-get -y install zenmap
 #+END_SRC
 
-** [[http://www.openwall.com/john/][John the Ripper]]
+** [[https://www.remmina.org/wp/][Remmina]]
 #+BEGIN_SRC sh
-  sudo apt-get -y install john
+  sudo apt-get -y install remmina
+  sudo apt-get -y install remmina-plugin-rdp
+  sudo apt-get -y install remmina-plugin-vnc
 #+END_SRC
 
 ** [[https://curl.haxx.se/][cURL]]

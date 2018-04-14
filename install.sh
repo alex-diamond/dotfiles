@@ -38,6 +38,7 @@ sudo apt-get -y install fdupes
 sudo apt-get -y install fonts-dejavu
 sudo apt-get -y install fonts-liberation
 sudo apt-get -y install ttf-ubuntu-font-family
+sudo apt-get -y install ttf-mscorefonts-installer
 sudo apt-get -y install fonts-ubuntu-font-family-console
 
 sudo apt-get -y install git-core
@@ -284,7 +285,9 @@ sudo apt-get -y install gnutls-bin
 sudo apt-get -y install nmap
 sudo apt-get -y install zenmap
 
-sudo apt-get -y install john
+sudo apt-get -y install remmina
+sudo apt-get -y install remmina-plugin-rdp
+sudo apt-get -y install remmina-plugin-vnc
 
 sudo apt-get -y install curl
 sudo apt-get -y install curlftpfs
