@@ -586,7 +586,6 @@
 ** [[https://nmap.org/][Nmap]]
 #+BEGIN_SRC sh
   sudo apt-get -y install nmap
-  sudo apt-get -y install zenmap
 #+END_SRC
 
 ** [[https://www.remmina.org/wp/][Remmina]]

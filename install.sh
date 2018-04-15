@@ -283,7 +283,6 @@ sudo apt-get -y install openvpn
 sudo apt-get -y install gnutls-bin
 
 sudo apt-get -y install nmap
-sudo apt-get -y install zenmap
 
 sudo apt-get -y install remmina
 sudo apt-get -y install remmina-plugin-rdp
