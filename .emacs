@@ -3,11 +3,9 @@
 ;; GNU EMACS CONFIGURATION FILE
 ;; E-MAIL: LISPGOD@GMAIL.COM
 
-;; =============================================================================
 (require 'bs)
 (setq-default major-mode 'text-mode)
 
-;; =============================================================================
 (require 'org)
 (org-babel-do-load-languages
  'org-babel-load-languages
@@ -23,28 +21,23 @@
    (makefile . t)
    (emacs-lisp . t)))
 
-;; =============================================================================
 (setq-default user-full-name "karlkorp"
               user-mail-adress "lispgod@gmail.com"
               browse-url-browser-function 'browse-url-default-browser)
 
-;; =============================================================================
 (require 'dired)
 (setq-default dired-recursive-deletes 'top)
 
-;; =============================================================================
 (require 'imenu)
 (setq-default imenu-auto-rescan t
               imenu-use-popup-menu nil)
 
-;; =============================================================================
 (tooltip-mode -1)
 (tool-bar-mode -1)
 (scroll-bar-mode -1)
 (blink-cursor-mode -1)
 (global-hl-line-mode -1)
 
-;; =============================================================================
 (if (display-graphic-p)
     (progn
         (menu-bar-mode)
@@ -52,7 +45,7 @@
         (line-number-mode)
         (global-linum-mode)
         (fringe-mode '(8 . 0))
-        (load-theme 'dichromacy t)
+        (load-theme 'wombat t)
         (setq-default linum-format " %d ")
         (setq-default cursor-type 'hollow)
         (add-to-list 'default-frame-alist '(top . 37))
@@ -64,17 +57,14 @@
                             nil nil)))
     (menu-bar-mode -1))
 
-;; =============================================================================
 (show-paren-mode)
 (delete-selection-mode)
 (setq-default show-paren-delay 0
               show-paren-style 'parenthesis)
 
-;; =============================================================================
 (setq-default inhibit-startup-screen t
               initial-scratch-message "")
 
-;; =============================================================================
 (defalias 'yes-or-no-p 'y-or-n-p)
 (setq-default use-dialog-box nil
               redisplay-dont-pause t)
@@ -84,7 +74,6 @@
 (setq-default frame-title-format
               "GNU EMACS - NOSCE TE IPSUM")
 
-;; =============================================================================
 (auto-fill-mode)
 (display-time-mode)
 (setq-default
@@ -97,7 +86,6 @@
 (setq-default auto-save-default nil
               make-backup-files nil)
 
-;; =============================================================================
 (require 'ido)
 (ido-mode t)
 (ido-everywhere)
@@ -107,17 +95,14 @@
 (require 'ibuffer)
 (defalias 'list-buffers 'ibuffer)
 
-;; =============================================================================
 (require 'font-lock)
 (global-font-lock-mode)
 (setq-default
  font-lock-maximum-decoration t)
 
-;; =============================================================================
 (electric-pair-mode -1)
 (electric-indent-mode -1)
 
-;; =============================================================================
 (defalias 'perl-mode 'cperl-mode)
 (setq-default cperl-indent-level 4)
 (setq-default tab-width 4
@@ -142,7 +127,6 @@
               fortran-if-indent 4
               fortran-structuqre-indent 4)
 
-;; =============================================================================
 (setq-default scroll-step 1
               scroll-margin 10
               mouse-wheel-follow-mouse t
@@ -150,12 +134,10 @@
               mouse-wheel-progressive-speed nil
               mouse-wheel-scroll-amount '(1 ((shift) . 1)))
 
-;; =============================================================================
 (global-auto-revert-mode)
 (setq-default require-final-newline t
               next-line-add-newlines nil)
 
-;; =============================================================================
 (prefer-coding-system 'utf-8)
 (set-language-environment 'UTF-8)
 (set-terminal-coding-system 'utf-8)
@@ -165,7 +147,6 @@
               file-name-coding-system 'utf-8
               default-buffer-file-coding-system 'utf-8)
 
-;; =============================================================================
 (require 'cedet)
 (require 'cc-mode)
 (defvar *semantic-modes*
@@ -187,7 +168,6 @@
 (require 'ede/generic)
 (ede-enable-generic-projects)
 
-;; =============================================================================
 (require 'bookmark)
 (when (file-exists-p
        (concat user-emacs-directory "bookmarks"))
@@ -196,7 +176,6 @@
               bookmark-default-file
               (concat user-emacs-directory "bookmarks"))
 
-;; =============================================================================
 (when (string-equal system-type "gnu/linux")
     (require 'cl)
     (require 'slime)
@@ -207,7 +186,6 @@
     (setq-default inferior-lisp-program "sbcl"
                   slime-net-coding-system 'utf-8-unix))
 
-;; =============================================================================
 (defun format-buffer ()
     (interactive)
     (save-excursion
@@ -219,7 +197,6 @@
                  (equal major-mode 'makefile-gmake-mode))
          (indent-region (point-min) (point-max) nil))))
 
-;; =============================================================================
 (global-unset-key [up])
 (global-unset-key [down])
 (global-unset-key [left])

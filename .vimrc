@@ -11,11 +11,9 @@ call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'majutsushi/tagbar'
 Plugin 'scrooloose/nerdtree'
-Plugin 'tell-k/vim-autopep8'
 Plugin 'davidhalter/jedi-vim'
 Plugin 'scrooloose/syntastic'
 Plugin 'scrooloose/nerdcommenter'
-" color-schemes
 Plugin 'morhetz/gruvbox'
 Plugin 'nanotech/jellybeans.vim'
 call vundle#end()
@@ -37,12 +35,8 @@ set tabstop=4
 set shiftround
 set shiftwidth=4
 set softtabstop=4
-" Copy indent from current line when starting a new line
 set autoindent
-" Copy the structure of the existing lines indent
-" when autoindenting a new line
 set copyindent
-" Do smart autoindenting when starting a new line
 set smartindent
 if has("patch-7.4.354")
     set breakindent
