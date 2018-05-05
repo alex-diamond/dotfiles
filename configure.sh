@@ -3,7 +3,6 @@ git config --global user.name "karlkorp"
 git config --global user.email "lispgod@gmail.com"
 
 # Create frequently used folders
-mkdir -p "$HOME"/LSoft
 mkdir -p "$HOME"/Torrents
 mkdir -p "$HOME"/VirtualBox
 
@@ -13,7 +12,7 @@ cp dotfiles/.emacs    "$HOME"/
 cp dotfiles/.vimrc    "$HOME"/
 cp dotfiles/.bashrc   "$HOME"/
 cp dotfiles/.octaverc "$HOME"/
-source dotfiles/ppl.sh
+source dotfiles/python_packages.sh
 rm -rf dotfiles
 
 # Install Vundle
