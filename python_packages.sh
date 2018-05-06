@@ -1,32 +1,32 @@
 # Upgrade pip
-pip3 install --upgrade pip
+pip3 install --user --upgrade pip
 
 # Install Python modules
-pip3 install --user pep8
-pip3 install --user cffi
-pip3 install --user jedi
-pip3 install --user nltk
-pip3 install --user rope
-pip3 install --user pyqt5
-pip3 install --user numpy
-pip3 install --user scipy
-pip3 install --user sympy
-pip3 install --user flake8
-pip3 install --user pandas
-pip3 install --user pygame
-pip3 install --user pylint
-pip3 install --user sphinx
-pip3 install --user ipython
-pip3 install --user jupyter
-pip3 install --user autopep8
-pip3 install --user networkx
-pip3 install --user pyflakes
-pip3 install --user psycopg2
-pip3 install --user pyopengl
-pip3 install --user requests
-pip3 install --user matplotlib
-pip3 install --user sqlalchemy
-pip3 install --user virtualenv
-pip3 install --user pep8-naming
-pip3 install --user scikit-image
-pip3 install --user scikit-learn
+pip3 install --user --upgrade pep8
+pip3 install --user --upgrade cffi
+pip3 install --user --upgrade jedi
+pip3 install --user --upgrade nltk
+pip3 install --user --upgrade rope
+pip3 install --user --upgrade pyqt5
+pip3 install --user --upgrade numpy
+pip3 install --user --upgrade scipy
+pip3 install --user --upgrade sympy
+pip3 install --user --upgrade flake8
+pip3 install --user --upgrade pandas
+pip3 install --user --upgrade pygame
+pip3 install --user --upgrade pylint
+pip3 install --user --upgrade sphinx
+pip3 install --user --upgrade ipython
+pip3 install --user --upgrade jupyter
+pip3 install --user --upgrade autopep8
+pip3 install --user --upgrade networkx
+pip3 install --user --upgrade pyflakes
+pip3 install --user --upgrade psycopg2
+pip3 install --user --upgrade pyopengl
+pip3 install --user --upgrade requests
+pip3 install --user --upgrade matplotlib
+pip3 install --user --upgrade sqlalchemy
+pip3 install --user --upgrade virtualenv
+pip3 install --user --upgrade pep8-naming
+pip3 install --user --upgrade scikit-image
+pip3 install --user --upgrade scikit-learn
