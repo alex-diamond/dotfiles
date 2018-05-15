@@ -170,7 +170,6 @@ set background=dark
 if has("gui_running")
     winsize 120 40
     set linespace=0
-    silent! cd $HOME
     set guioptions=""
     set guitablabel=""
     colorscheme gruvbox
@@ -224,7 +223,7 @@ function! UseTemplates(type)
         execute setline(4, "use warnings;")
         execute setline(5, "")
     elseif (a:type == "python")
-        execute setline(1, s:scriptLine . "python")
+        execute setline(1, s:scriptLine . "python3")
         execute setline(2, s:scriptEncoding)
         execute setline(3, "")
     endif
