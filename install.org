@@ -562,6 +562,11 @@
   sudo apt-get -y install imagemagick
 #+END_SRC
 
+** [[http://rawtherapee.com/][RawTherapee]]
+#+BEGIN_SRC sh
+  sudo apt-get -y install rawtherapee
+#+END_SRC
+
 * Internet
 ** [[http://www.openssh.com/][OpenSSH]]
 #+BEGIN_SRC sh

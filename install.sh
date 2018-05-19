@@ -274,6 +274,8 @@ sudo apt-get -y install gimp-data-extras
 
 sudo apt-get -y install imagemagick
 
+sudo apt-get -y install rawtherapee
+
 sudo apt-get -y install ssh
 
 sudo apt-get -y install openssl
