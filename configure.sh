@@ -12,7 +12,7 @@ cp dotfiles/.emacs    "$HOME"/
 cp dotfiles/.vimrc    "$HOME"/
 cp dotfiles/.bashrc   "$HOME"/
 cp dotfiles/.octaverc "$HOME"/
-source dotfiles/python_packages.sh
+sudo -H sh dotfiles/python_packages.sh
 rm -rf dotfiles
 
 # Install Vundle

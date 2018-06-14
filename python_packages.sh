@@ -1,34 +1,30 @@
-# Upgrade pip
-pip3 install --user --upgrade pip
-
-# Install Python modules
-pip3 install --user --upgrade pep8
-pip3 install --user --upgrade cffi
-pip3 install --user --upgrade jedi
-pip3 install --user --upgrade nltk
-pip3 install --user --upgrade rope
-pip3 install --user --upgrade pyqt5
-pip3 install --user --upgrade numpy
-pip3 install --user --upgrade scipy
-pip3 install --user --upgrade sympy
-pip3 install --user --upgrade flake8
-pip3 install --user --upgrade pandas
-pip3 install --user --upgrade pygame
-pip3 install --user --upgrade pylint
-pip3 install --user --upgrade sphinx
-pip3 install --user --upgrade ipython
-pip3 install --user --upgrade jupyter
-pip3 install --user --upgrade autopep8
-pip3 install --user --upgrade networkx
-pip3 install --user --upgrade pyflakes
-pip3 install --user --upgrade psycopg2
-pip3 install --user --upgrade pyopengl
-pip3 install --user --upgrade requests
-pip3 install --user --upgrade cx_Freeze
-pip3 install --user --upgrade matplotlib
-pip3 install --user --upgrade sqlalchemy
-pip3 install --user --upgrade virtualenv
-pip3 install --user --upgrade pep8-naming
-pip3 install --user --upgrade pyinstaller
-pip3 install --user --upgrade scikit-image
-pip3 install --user --upgrade scikit-learn
+pip3 install --upgrade pep8
+pip3 install --upgrade cffi
+pip3 install --upgrade jedi
+pip3 install --upgrade nltk
+pip3 install --upgrade rope
+pip3 install --upgrade pyqt5
+pip3 install --upgrade numpy
+pip3 install --upgrade scipy
+pip3 install --upgrade sympy
+pip3 install --upgrade flake8
+pip3 install --upgrade pandas
+pip3 install --upgrade pygame
+pip3 install --upgrade pylint
+pip3 install --upgrade sphinx
+pip3 install --upgrade ipython
+pip3 install --upgrade jupyter
+pip3 install --upgrade autopep8
+pip3 install --upgrade networkx
+pip3 install --upgrade pyflakes
+pip3 install --upgrade psycopg2
+pip3 install --upgrade pyopengl
+pip3 install --upgrade requests
+pip3 install --upgrade cx_Freeze
+pip3 install --upgrade matplotlib
+pip3 install --upgrade sqlalchemy
+pip3 install --upgrade virtualenv
+pip3 install --upgrade pep8-naming
+pip3 install --upgrade pyinstaller
+pip3 install --upgrade scikit-image
+pip3 install --upgrade scikit-learn
