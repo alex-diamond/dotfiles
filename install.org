@@ -360,17 +360,6 @@
 #+END_SRC
 
 * Scientific packages
-** [[https://imagej.nih.gov/ij/][ImageJ]]
-#+BEGIN_SRC sh
-  sudo apt-get -y install imagej
-#+END_SRC
-
-** [[http://gwyddion.net/][Gwyddion]]
-#+BEGIN_SRC sh
-  sudo apt-get -y install gwyddion
-  sudo apt-get -y install gwyddion-plugins
-#+END_SRC
-
 ** [[http://www.gnuplot.info/][Gnuplot]]
 #+BEGIN_SRC sh
   sudo apt-get -y install gnuplot
@@ -521,7 +510,6 @@
 ** [[http://www.videolan.org/vlc/][VLC media player]]
 #+BEGIN_SRC sh
   sudo apt-get -y install vlc
-  sudo apt-get -y install vlc-nox
 #+END_SRC
 
 ** Brasero

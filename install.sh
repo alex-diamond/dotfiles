@@ -173,11 +173,6 @@ sudo apt-get -y install lazarus
 sudo apt-get -y install geany
 sudo apt-get -y install geany-plugins
 
-sudo apt-get -y install imagej
-
-sudo apt-get -y install gwyddion
-sudo apt-get -y install gwyddion-plugins
-
 sudo apt-get -y install gnuplot
 
 sudo apt-get -y install maxima
@@ -256,7 +251,6 @@ sudo apt-get -y install easytag
 sudo apt-get -y install soundconverter
 
 sudo apt-get -y install vlc
-sudo apt-get -y install vlc-nox
 
 sudo apt-get -y install brasero
 
