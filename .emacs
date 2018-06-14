@@ -118,14 +118,6 @@
               'common-lisp-indent-function)
 (setq-default python-indent 4
               python-indent-offset 4)
-(setq-default f90-do-indent 4
-              f90-if-indent 4
-              f90-type-indent 4
-              f90-program-indent 4
-              f90-continuation-indent 4)
-(setq-default fortran-do-indent 4
-              fortran-if-indent 4
-              fortran-structuqre-indent 4)
 
 (setq-default scroll-step 1
               scroll-margin 10

@@ -48,8 +48,3 @@ export HISTIGNORE=".:..:c:h:x:cd:la:ll:ls"
 export PS1="\[\e[1m\][\u]_[\h]_[\w]\n\\$ \[\e[0m\]"
 # Update history file after every command
 export PROMPT_COMMAND="history -a; $PROMPT_COMMAND"
-# FLUKA
-export FLUFOR=gfortran
-export FLUPRO=$HOME/LSoft/FLUKA
-# TALYS
-alias talys="$HOME/LSoft/talys/bin/talys"

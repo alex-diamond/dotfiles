@@ -38,8 +38,8 @@ sudo apt-get -y install fdupes
 sudo apt-get -y install fonts-dejavu
 sudo apt-get -y install fonts-liberation
 sudo apt-get -y install ttf-ubuntu-font-family
-sudo apt-get -y install ttf-mscorefonts-installer
 sudo apt-get -y install fonts-ubuntu-font-family-console
+sudo apt-get -y install --reinstall ttf-mscorefonts-installer
 
 sudo apt-get -y install git-core
 
@@ -145,8 +145,8 @@ sudo apt-get -y install mesa-common-dev
 sudo apt-get -y install tk-dev
 sudo apt-get -y install tcl-dev
 
-sudo apt-get -y install emacs24
-sudo apt-get -y install emacs24-el
+sudo apt-get -y install emacs25
+sudo apt-get -y install emacs25-el
 sudo apt-get -y install emacs-goodies-el
 
 sudo apt-get -y install org-mode
@@ -226,8 +226,6 @@ sudo apt-get -y install ess
 sudo apt-get -y install code-saturne
 sudo apt-get -y install code-saturne-doc
 
-sudo apt-get -y install ngspice
-
 sudo apt-get -y install libxmu-dev
 sudo apt-get -y install libexpat1-dev
 sudo apt-get -y install libxerces-c-dev
@@ -249,8 +247,7 @@ sudo apt-get -y install cherrytree
 
 sudo apt-get -y install ffmpeg
 
-sudo add-apt-repository -y ppa:obsproject/obs-studio
-sudo apt-get update && sudo apt-get -y install obs-studio
+sudo apt-get -y install obs-studio
 
 sudo apt-get -y install audacity
 
@@ -299,10 +296,12 @@ sudo apt-get -y install transmission
 sudo apt-get -y install transmission-cli
 sudo apt-get -y install transmission-gtk
 
-sudo add-apt-repository -y ppa:atareao/telegram
-sudo apt-get update && sudo apt-get -y install telegram
+sudo apt-get -y install telegram-desktop
 
 sudo apt-get -y install openttd
 sudo apt-get -y install openttd-opengfx
 sudo apt-get -y install openttd-openmsx
 sudo apt-get -y install openttd-opensfx
+
+sudo apt-get -y install wesnoth
+sudo apt-get -y install wesnoth-music

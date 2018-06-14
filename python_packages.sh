@@ -24,9 +24,11 @@ pip3 install --user --upgrade pyflakes
 pip3 install --user --upgrade psycopg2
 pip3 install --user --upgrade pyopengl
 pip3 install --user --upgrade requests
+pip3 install --user --upgrade cx_Freeze
 pip3 install --user --upgrade matplotlib
 pip3 install --user --upgrade sqlalchemy
 pip3 install --user --upgrade virtualenv
 pip3 install --user --upgrade pep8-naming
+pip3 install --user --upgrade pyinstaller
 pip3 install --user --upgrade scikit-image
 pip3 install --user --upgrade scikit-learn
