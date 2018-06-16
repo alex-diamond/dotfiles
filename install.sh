@@ -112,6 +112,7 @@ sudo apt-get -y install clang
 sudo apt-get -y install libgsl-dev
 
 sudo apt-get -y install libboost-all-dev
+sudo apt-get -y install libboost-doc
 
 sudo apt-get -y install mpi-default-dev
 

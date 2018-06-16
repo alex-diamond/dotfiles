@@ -235,6 +235,7 @@
 *** [[http://www.boost.org/][Boost]]
 #+BEGIN_SRC sh
   sudo apt-get -y install libboost-all-dev
+  sudo apt-get -y install libboost-doc
 #+END_SRC
 
 *** MPI
