@@ -3,23 +3,12 @@
 ;; GNU EMACS CONFIGURATION FILE
 ;; E-MAIL: LISPGOD@GMAIL.COM
 
+(package-initialize)
+
 (require 'bs)
 (setq-default major-mode 'text-mode)
 
 (require 'org)
-(org-babel-do-load-languages
- 'org-babel-load-languages
- '((C . t)
-   (sh . t)
-   (lisp . t)
-   (perl . t)
-   (latex . t)
-   (python . t)
-   (scheme . t)
-   (matlab . t)
-   (octave . t)
-   (makefile . t)
-   (emacs-lisp . t)))
 
 (setq-default user-full-name "karlkorp"
               user-mail-adress "lispgod@gmail.com"
@@ -52,10 +41,7 @@
         (add-to-list 'default-frame-alist '(left . 37))
         (add-to-list 'default-frame-alist '(width . 111))
         (add-to-list 'default-frame-alist '(height . 37))
-        (if (member "Ubuntu Mono" (font-family-list))
-            (set-frame-font "Ubuntu Mono-12:antialias=natural"
-                            nil nil)))
-    (menu-bar-mode -1))
+        (menu-bar-mode -1)))
 
 (show-paren-mode)
 (delete-selection-mode)
