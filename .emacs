@@ -40,8 +40,8 @@
         (add-to-list 'default-frame-alist '(top . 37))
         (add-to-list 'default-frame-alist '(left . 37))
         (add-to-list 'default-frame-alist '(width . 111))
-        (add-to-list 'default-frame-alist '(height . 37))
-        (menu-bar-mode -1)))
+        (add-to-list 'default-frame-alist '(height . 37)))
+    (menu-bar-mode -1))
 
 (show-paren-mode)
 (delete-selection-mode)
