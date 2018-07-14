@@ -173,14 +173,6 @@ if has("gui_running")
     set guioptions=""
     set guitablabel=""
     colorscheme gruvbox
-    if has("mac")
-        set antialias
-        set guifont=Monaco:h12
-    elseif has("unix")
-        set guifont=Ubuntu\ Mono\ 12
-    elseif (has("win32") || has("win64"))
-        set guifont=Courier_New:h12
-    endif
 else
     colorscheme jellybeans
 endif
