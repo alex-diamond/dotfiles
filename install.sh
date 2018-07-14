@@ -95,6 +95,8 @@ sudo apt-get -y install cmake-curses-gui
 
 sudo apt-get -y install exuberant-ctags
 
+sudo apt-get -y install global
+
 sudo apt-get -y install gcc
 
 sudo apt-get -y install gdb

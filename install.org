@@ -192,6 +192,11 @@
   sudo apt-get -y install exuberant-ctags
 #+END_SRC
 
+*** [[https://www.gnu.org/software/global/][GNU GLOBAL]]
+#+BEGIN_SRC sh
+  sudo apt-get -y install global
+#+END_SRC
+
 *** [[https://gcc.gnu.org/][GCC]]
 #+BEGIN_SRC sh
   sudo apt-get -y install gcc
