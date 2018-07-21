@@ -48,7 +48,6 @@
 ;; Company
 (require 'company)
 (global-company-mode)
-(require 'flycheck-rtags)
 (push 'company-rtags company-backends)
 
 ;; NeoTree
@@ -56,7 +55,8 @@
 (global-set-key (kbd "<f10>") 'neotree-toggle)
 
 ;; Flycheck
-(add-hook 'after-init-hook 'global-flycheck-mode)
+(global-flycheck-mode)
+(require 'flycheck-rtags)
 (when (require 'flycheck nil t)
     (setq-default elpy-modules (delq 'elpy-module-flymake elpy-modules))
     (add-hook 'elpy-mode-hook 'flycheck-mode))
