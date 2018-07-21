@@ -225,11 +225,13 @@
 *** [[http://llvm.org/][LLVM]]
 #+BEGIN_SRC sh
   sudo apt-get -y install llvm
+  sudo apt-get -y install llvm-dev
 #+END_SRC
 
 **** [[http://clang.llvm.org/][Clang]]
 #+BEGIN_SRC sh
   sudo apt-get -y install clang
+  sudo apt-get -y install libclang-dev
 #+END_SRC
 
 *** [[https://www.gnu.org/software/gsl/][GNU Scientific Library]]

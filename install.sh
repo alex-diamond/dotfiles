@@ -108,8 +108,10 @@ sudo apt-get -y install gfortran
 sudo apt-get -y install binutils
 
 sudo apt-get -y install llvm
+sudo apt-get -y install llvm-dev
 
 sudo apt-get -y install clang
+sudo apt-get -y install libclang-dev
 
 sudo apt-get -y install libgsl-dev
 

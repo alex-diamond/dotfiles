@@ -3,6 +3,8 @@ pip3 install --upgrade cffi
 pip3 install --upgrade jedi
 pip3 install --upgrade nltk
 pip3 install --upgrade rope
+pip3 install --upgrade yapf
+pip3 install --upgrade black
 pip3 install --upgrade pyqt5
 pip3 install --upgrade numpy
 pip3 install --upgrade scipy
