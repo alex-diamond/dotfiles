@@ -155,8 +155,6 @@ if has("gui_running")
     set guioptions=""
     set guitablabel=""
     colorscheme desert
-else
-    colorscheme default
 endif
 
 function! FormatFile()
