@@ -1,5 +1,3 @@
-#!/usr/bin/env bash
-
 mkdir tmp && cd tmp || exit
 git clone --recursive https://github.com/Andersbakken/rtags.git
 cd rtags || exit
