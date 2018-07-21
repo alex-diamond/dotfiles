@@ -1,9 +1,7 @@
-;; AUTHOR: KARLKORP
-;; COPYRIGHT (C) KARLKORP
-;; GNU EMACS CONFIGURATION FILE
-;; E-MAIL: LISPGOD@GMAIL.COM
-
 (package-initialize)
+
+(if (not (string-equal system-type "windows-nt"))
+    (load "$HOME/.emacs_packages.el"))
 
 (require 'bs)
 (setq-default major-mode 'text-mode)
@@ -34,13 +32,15 @@
         (line-number-mode)
         (global-linum-mode)
         (fringe-mode '(8 . 0))
-        (load-theme 'wombat t)
+        (if (string-equal system-type "windows-nt")
+            (load-theme 'wombat t)
+            (load-theme 'material t))
         (setq-default linum-format " %d ")
         (setq-default cursor-type 'hollow)
-        (add-to-list 'default-frame-alist '(top . 37))
-        (add-to-list 'default-frame-alist '(left . 37))
-        (add-to-list 'default-frame-alist '(width . 111))
-        (add-to-list 'default-frame-alist '(height . 37)))
+        (add-to-list 'default-frame-alist '(top . 40))
+        (add-to-list 'default-frame-alist '(left . 40))
+        (add-to-list 'default-frame-alist '(width . 120))
+        (add-to-list 'default-frame-alist '(height . 40)))
     (menu-bar-mode -1))
 
 (show-paren-mode)
@@ -62,29 +62,26 @@
 
 (auto-fill-mode)
 (display-time-mode)
-(setq-default
- display-time-24hr-format t)
+(setq-default display-time-24hr-format t)
 (column-number-mode)
 (size-indication-mode)
 (global-visual-line-mode)
 (setq-default word-wrap t
-              fill-column 81)
+              fill-column 80)
 (setq-default auto-save-default nil
               make-backup-files nil)
 
 (require 'ido)
 (ido-mode t)
 (ido-everywhere)
-(setq-default
- ido-enable-flex-matching t)
+(setq-default ido-enable-flex-matching t)
 (icomplete-mode)
 (require 'ibuffer)
 (defalias 'list-buffers 'ibuffer)
 
 (require 'font-lock)
 (global-font-lock-mode)
-(setq-default
- font-lock-maximum-decoration t)
+(setq-default font-lock-maximum-decoration t)
 
 (electric-pair-mode -1)
 (electric-indent-mode -1)
@@ -93,17 +90,17 @@
 (setq-default cperl-indent-level 4)
 (setq-default tab-width 4
               standard-indent 4
-              indent-tabs-mode nil)
+              indent-tabs-mode nil
+              tab-always-indent nil)
 (add-hook 'makefile-mode-hook
           (lambda ()
-              (setq indent-tabs-mode t)))
+              (setq-default indent-tabs-mode t)))
 (setq-default c-basic-offset 4
               c-default-style "k&r")
-(setq-default lisp-body-indent 4
-              lisp-indent-function
-              'common-lisp-indent-function)
 (setq-default python-indent 4
               python-indent-offset 4)
+(setq-default lisp-body-indent 4
+              lisp-indent-function 'common-lisp-indent-function)
 
 (setq-default scroll-step 1
               scroll-margin 10
@@ -123,10 +120,14 @@
 (set-keyboard-coding-system 'utf-8-unix)
 (setq-default coding-system-for-read 'utf-8
               file-name-coding-system 'utf-8
-              default-buffer-file-coding-system 'utf-8)
+              buffer-file-coding-system 'utf-8)
 
 (require 'cedet)
 (require 'cc-mode)
+(require 'semantic)
+(require 'semantic/ia)
+(require 'ede/generic)
+(require 'semantic/bovine/gcc)
 (defvar *semantic-modes*
   (list
    'global-semanticdb-minor-mode
@@ -140,29 +141,22 @@
     (dolist (mode *semantic-modes*)
         (add-to-list 'semantic-default-submodes mode)))
 (semantic-mode)
-(require 'semantic/ia)
-(require 'semantic/bovine/gcc)
 (global-ede-mode)
-(require 'ede/generic)
 (ede-enable-generic-projects)
+(setq-default semantic-new-buffer-setup-functions
+              (remove-if
+               (lambda (buffer-setup-function)
+                   (member (car buffer-setup-function)
+                           '(python-mode html-mode)))
+               semantic-new-buffer-setup-functions))
+(remove-hook 'python-mode-hook 'wisent-python-default-setup)
 
 (require 'bookmark)
 (when (file-exists-p
        (concat user-emacs-directory "bookmarks"))
     (bookmark-load bookmark-default-file t))
 (setq-default bookmark-save-flag t
-              bookmark-default-file
-              (concat user-emacs-directory "bookmarks"))
-
-(when (string-equal system-type "gnu/linux")
-    (require 'cl)
-    (require 'slime)
-    (require 'slime-autoloads)
-    (slime-setup '(slime-asdf
-                   slime-fancy
-                   slime-indentation))
-    (setq-default inferior-lisp-program "sbcl"
-                  slime-net-coding-system 'utf-8-unix))
+              bookmark-default-file (concat user-emacs-directory "bookmarks"))
 
 (defun format-buffer ()
     (interactive)
@@ -179,6 +173,8 @@
 (global-unset-key [down])
 (global-unset-key [left])
 (global-unset-key [right])
+(windmove-default-keybindings)
+(global-set-key (kbd "RET") 'newline-and-indent)
 (global-set-key (kbd "<f1>") 'format-buffer)
 (global-set-key (kbd "<f2>") 'imenu)
 (global-set-key (kbd "<f3>") 'bs-show)
@@ -188,8 +184,3 @@
 (global-set-key (kbd "<f7>") 'kmacro-start-macro)
 (global-set-key (kbd "<f8>") 'kmacro-end-macro)
 (global-set-key (kbd "<f9>") 'kmacro-call-macro)
-(global-set-key (kbd "\C-ca") 'org-agenda)
-(global-set-key (kbd "\C-cc") 'org-capture)
-(global-set-key (kbd "\C-cb") 'org-iswitchb)
-(global-set-key (kbd "\C-cl") 'org-store-link)
-(global-set-key (kbd "RET") 'newline-and-indent)

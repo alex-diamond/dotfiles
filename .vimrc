@@ -1,23 +1,5 @@
-" AUTHOR: KARLKORP
-" COPYRIGHT (C) KARLKORP
-" VIM CONFIGURATION FILE
-" E-MAIL: LISPGOD@GMAIL.COM
-
 set nocompatible
 
-filetype off
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-Plugin 'VundleVim/Vundle.vim'
-Plugin 'majutsushi/tagbar'
-Plugin 'scrooloose/nerdtree'
-Plugin 'davidhalter/jedi-vim'
-Plugin 'tell-k/vim-autopep8'
-Plugin 'scrooloose/syntastic'
-Plugin 'scrooloose/nerdcommenter'
-Plugin 'morhetz/gruvbox'
-Plugin 'nanotech/jellybeans.vim'
-call vundle#end()
 filetype on
 filetype plugin on
 filetype indent on
@@ -111,7 +93,7 @@ set mousehide
 set mousemodel=extend
 
 set noconfirm
-set cursorline
+set nocursorline
 set nocursorcolumn
 set magic
 set nogdefault
@@ -172,9 +154,9 @@ if has("gui_running")
     set linespace=0
     set guioptions=""
     set guitablabel=""
-    colorscheme gruvbox
+    colorscheme desert
 else
-    colorscheme jellybeans
+    colorscheme default
 endif
 
 function! FormatFile()
