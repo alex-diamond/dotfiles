@@ -6,11 +6,9 @@ git config --global user.email "lispgod@gmail.com"
 mkdir -p "$HOME"/Torrents
 mkdir -p "$HOME"/VirtualBox
 
-# Install RTags
-sh rtags_install.sh
-
 # Put configuration files to the $HOME folder
 git clone https://github.com/karlkorp/dotfiles.git
+sh dotfiles/rtags_install.sh
 cp dotfiles/.emacs             "$HOME"/
 cp dotfiles/.vimrc             "$HOME"/
 cp dotfiles/.bashrc            "$HOME"/
