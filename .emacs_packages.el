@@ -17,8 +17,8 @@
                        flycheck
                        py-autopep8
                        company-rtags
-                       flycheck-rtags
-                       material-theme))
+                       dracula-theme
+                       flycheck-rtags))
 
 ;; packages installation
 (package-refresh-contents)

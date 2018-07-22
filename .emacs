@@ -44,7 +44,7 @@
         (setq-default cursor-type 'hollow)
         (if (string-equal system-type "windows-nt")
             (load-theme 'wombat t)
-            (load-theme 'material t))
+            (load-theme 'dracula t))
         (add-to-list 'default-frame-alist '(top . 40))
         (add-to-list 'default-frame-alist '(left . 40))
         (add-to-list 'default-frame-alist '(width . 120))
