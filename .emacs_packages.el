@@ -1,7 +1,7 @@
 ;;; .emacs_packages.el --- Install packages
 
 ;;; Commentary:
-;;  runing only on non MS Windows systems
+;;  running only on non MS Windows systems
 
 ;;; Code:
 (defvar package-archives)
@@ -19,7 +19,7 @@
                        flycheck-rtags
                        material-theme))
 
-;; package installation
+;; packages installation
 (package-refresh-contents)
 (dolist (package package-list)
     (unless (package-installed-p package)

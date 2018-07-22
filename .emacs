@@ -1,7 +1,7 @@
 ;;; .emacs --- GNU Emacs configuration file
 
 ;;; Commentary:
-;;  GNU Emacs configuration
+;;  GNU Emacs general configuration
 
 ;;; Code:
 (require 'cl-lib)
@@ -39,12 +39,12 @@
         (require 'linum)
         (line-number-mode)
         (global-linum-mode)
-        (fringe-mode '(8 . 0))
+        (fringe-mode '(10 . 0))
+        (setq-default linum-format "%5d ")
+        (setq-default cursor-type 'hollow)
         (if (string-equal system-type "windows-nt")
             (load-theme 'wombat t)
             (load-theme 'material t))
-        (setq-default linum-format " %d ")
-        (setq-default cursor-type 'hollow)
         (add-to-list 'default-frame-alist '(top . 40))
         (add-to-list 'default-frame-alist '(left . 40))
         (add-to-list 'default-frame-alist '(width . 120))
@@ -69,7 +69,6 @@
 
 (auto-fill-mode)
 (display-time-mode)
-(setq-default display-time-24hr-format t)
 (column-number-mode)
 (size-indication-mode)
 (global-visual-line-mode)
@@ -77,6 +76,7 @@
               fill-column 80)
 (setq-default auto-save-default nil
               make-backup-files nil)
+(setq-default display-time-24hr-format t)
 
 (require 'ido)
 (ido-mode t)
@@ -160,7 +160,7 @@
               (concat user-emacs-directory "bookmarks"))
 
 (defun format-buffer ()
-    "Format bufer: DTW, tabify/untabify, indent bufer."
+    "Buffer formatting: DTW, tabify/untabify, indent."
     (interactive)
     (save-excursion
      (delete-trailing-whitespace)
