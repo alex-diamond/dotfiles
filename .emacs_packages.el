@@ -1,65 +1,58 @@
-(require 'cl)
-(require 'cl-lib)
-(require 'package)
+;;; .emacs_packages.el --- Install packages
+
+;;; Commentary:
+;;  runing only on non MS Windows systems
+
+;;; Code:
+(defvar package-archives)
 (add-to-list 'package-archives
              '("melpa" . "http://melpa.org/packages/") t)
 
 ;; list of packages
-(defvar required-packages '(elpy
-                            rtags
-                            company
-                            neotree
-                            flycheck
-                            py-autopep8
-                            company-rtags
-                            flycheck-rtags
-                            material-theme))
-
-;; checking the installation of packages
-(defun packages-installed-p ()
-    (loop for package in required-packages
-          unless (package-installed-p package)
-            do (return nil)
-          finally (return t)))
+(defvar package-list '(elpy
+                       magit
+                       rtags
+                       company
+                       flycheck
+                       py-autopep8
+                       company-rtags
+                       flycheck-rtags
+                       material-theme))
 
 ;; package installation
-(unless (packages-installed-p)
-    (package-refresh-contents)
-    (dolist (package required-packages)
-        (unless (package-installed-p package)
-            (package-install package))))
+(package-refresh-contents)
+(dolist (package package-list)
+    (unless (package-installed-p package)
+        (package-install package)))
 
 ;; Elpy
 (elpy-enable)
-(setq-default elpy-rpc-python-command "python3"
-              python-shell-interpreter "jupyter"
+(setq-default elpy-shell-echo-input nil
+              elpy-rpc-python-command "python3"
+              python-shell-interpreter "ipython3"
               python-shell-prompt-detect-failure-warning nil
-              python-shell-interpreter-args "console --simple-prompt")
-(add-to-list 'python-shell-completion-native-disabled-interpreters "jupyter")
+              python-shell-interpreter-args "-i --simple-prompt")
 
 ;; RTags
 (require 'rtags)
 (rtags-diagnostics)
+(rtags-enable-standard-keybindings)
 (setq-default rtags-completions-enabled t
               rtags-autostart-diagnostics t)
 (add-hook 'c-mode-hook 'rtags-start-process-unless-running)
 (add-hook 'c++-mode-hook 'rtags-start-process-unless-running)
 
 ;; Company
-(require 'company)
-(global-company-mode)
-(push 'company-rtags company-backends)
-
-;; NeoTree
-(require 'neotree)
-(global-set-key (kbd "<f10>") 'neotree-toggle)
+(add-to-list 'company-backends 'company-rtags)
+(setq-default company-jedi-python-bin "python3")
+(add-hook 'after-init-hook 'global-company-mode)
 
 ;; Flycheck
 (global-flycheck-mode)
 (require 'flycheck-rtags)
 (when (require 'flycheck nil t)
-    (setq-default elpy-modules (delq 'elpy-module-flymake elpy-modules))
-    (add-hook 'elpy-mode-hook 'flycheck-mode))
+    (add-hook 'elpy-mode-hook 'flycheck-mode)
+    (setq-default elpy-modules (delq 'elpy-module-flymake elpy-modules)))
 
 ;; py-autopep8
 (require 'py-autopep8)
@@ -71,5 +64,7 @@
 (slime-setup '(slime-asdf
                slime-fancy
                slime-indentation))
-(setq-default inferior-lisp-program   "sbcl"
+(setq-default inferior-lisp-program "sbcl"
               slime-net-coding-system 'utf-8-unix)
+
+;;; .emacs_packages.el ends here

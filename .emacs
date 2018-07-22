@@ -1,3 +1,11 @@
+;;; .emacs --- GNU Emacs configuration file
+
+;;; Commentary:
+;;  GNU Emacs configuration
+
+;;; Code:
+(require 'cl-lib)
+(require 'package)
 (package-initialize)
 
 (if (not (string-equal system-type "windows-nt"))
@@ -57,8 +65,7 @@
 (setq-default ring-bell-function 'ignore)
 (setq-default indicate-empty-lines t
               indicate-buffer-boundaries 'left)
-(setq-default frame-title-format
-              "GNU EMACS - NOSCE TE IPSUM")
+(setq-default frame-title-format "GNU EMACS - NOSCE TE IPSUM")
 
 (auto-fill-mode)
 (display-time-mode)
@@ -96,7 +103,9 @@
           (lambda ()
               (setq-default indent-tabs-mode t)))
 (setq-default c-basic-offset 4
-              c-default-style "k&r")
+              c-default-style "bsd")
+(add-hook 'c-mode-common-hook
+          '(lambda () (c-toggle-auto-state 1)))
 (setq-default python-indent 4
               python-indent-offset 4)
 (setq-default lisp-body-indent 4
@@ -129,17 +138,15 @@
 (require 'ede/generic)
 (require 'semantic/bovine/gcc)
 (defvar *semantic-modes*
-  (list
-   'global-semanticdb-minor-mode
-   'global-semantic-decoration-mode
-   'global-semantic-mru-bookmark-mode
-   'global-semantic-highlight-func-mode
-   'global-semantic-idle-scheduler-mode
-   'global-semantic-idle-completions-mode
-   'global-semantic-show-parser-state-mode))
-(let (mode)
-    (dolist (mode *semantic-modes*)
-        (add-to-list 'semantic-default-submodes mode)))
+  (list 'global-semanticdb-minor-mode
+        'global-semantic-decoration-mode
+        'global-semantic-mru-bookmark-mode
+        'global-semantic-highlight-func-mode
+        'global-semantic-idle-scheduler-mode
+        'global-semantic-idle-completions-mode
+        'global-semantic-show-parser-state-mode))
+(dolist (mode *semantic-modes*)
+    (add-to-list 'semantic-default-submodes mode))
 (semantic-mode)
 (global-ede-mode)
 (ede-enable-generic-projects)
@@ -149,9 +156,11 @@
        (concat user-emacs-directory "bookmarks"))
     (bookmark-load bookmark-default-file t))
 (setq-default bookmark-save-flag t
-              bookmark-default-file (concat user-emacs-directory "bookmarks"))
+              bookmark-default-file
+              (concat user-emacs-directory "bookmarks"))
 
 (defun format-buffer ()
+    "Format bufer: DTW, tabify/untabify, indent bufer."
     (interactive)
     (save-excursion
      (delete-trailing-whitespace)
@@ -177,3 +186,5 @@
 (global-set-key (kbd "<f7>") 'kmacro-start-macro)
 (global-set-key (kbd "<f8>") 'kmacro-end-macro)
 (global-set-key (kbd "<f9>") 'kmacro-call-macro)
+
+;;; .emacs ends here
