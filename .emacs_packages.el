@@ -12,6 +12,7 @@
 (defvar package-list '(elpy
                        magit
                        rtags
+                       ggtags
                        company
                        flycheck
                        py-autopep8
@@ -42,9 +43,13 @@
 (add-hook 'c-mode-hook 'rtags-start-process-unless-running)
 (add-hook 'c++-mode-hook 'rtags-start-process-unless-running)
 
+;; GNU Global
+(add-hook 'c-mode-common-hook
+          (lambda () (when (derived-mode-p 'c-mode 'c++-mode)
+                         (ggtags-mode))))
+
 ;; Company
 (add-to-list 'company-backends 'company-rtags)
-(setq-default company-jedi-python-bin "python3")
 (add-hook 'after-init-hook 'global-company-mode)
 
 ;; Flycheck
