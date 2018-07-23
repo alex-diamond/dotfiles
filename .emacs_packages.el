@@ -68,8 +68,7 @@
 (require 'flycheck-rtags)
 (when (require 'flycheck nil t)
     (add-hook 'elpy-mode-hook 'flycheck-mode)
-    (setq-default elpy-modules
-                  (delq 'elpy-module-flymake elpy-modules)))
+    (setq-default elpy-modules (delq 'elpy-module-flymake elpy-modules)))
 
 ;; Projectile
 (setq-default projectile-enable-caching t
@@ -84,11 +83,12 @@
 (require 'slime-autoloads)
 (slime-setup '(slime-asdf
                slime-fancy
+               slime-tramp
                slime-indentation))
 (setq-default inferior-lisp-program "sbcl"
               slime-net-coding-system 'utf-8-unix)
 
-;; Helm Projectile
+;; Helm-Projectile
 (require 'helm-projectile)
 (helm-projectile-on)
 
