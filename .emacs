@@ -2,6 +2,7 @@
 
 ;;; Commentary:
 ;;  GNU Emacs general configuration
+;;;
 
 ;;; Code:
 (require 'cl-lib)
@@ -42,9 +43,9 @@
         (fringe-mode '(10 . 0))
         (setq-default linum-format "%5d ")
         (setq-default cursor-type 'hollow)
-        (if (string-equal system-type "windows-nt")
-            (load-theme 'wombat t)
-            (load-theme 'dracula t))
+        (if (not (string-equal system-type "windows-nt"))
+            (load-theme 'dracula t)
+            (load-theme 'misterioso t))
         (add-to-list 'default-frame-alist '(top . 40))
         (add-to-list 'default-frame-alist '(left . 40))
         (add-to-list 'default-frame-alist '(width . 120))
@@ -149,6 +150,10 @@
 (semantic-mode)
 (global-ede-mode)
 (ede-enable-generic-projects)
+
+(setq-default abbrev-mode t
+              save-abbrevs 'silent
+              abbrev-file-name "$HOME/.emacs.d/abbrev_defs")
 
 (require 'bookmark)
 (when (file-exists-p

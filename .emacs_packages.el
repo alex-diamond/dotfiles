@@ -2,23 +2,27 @@
 
 ;;; Commentary:
 ;;  running only on non MS Windows systems
+;;;
 
 ;;; Code:
 (defvar package-archives)
 (add-to-list 'package-archives
-             '("melpa" . "http://melpa.org/packages/") t)
+             '("melpa-stable" . "https://stable.melpa.org/packages/") t)
 
 ;; list of packages
 (defvar package-list '(elpy
+                       helm
                        magit
                        rtags
                        ggtags
                        company
                        flycheck
+                       projectile
                        py-autopep8
                        company-rtags
                        dracula-theme
-                       flycheck-rtags))
+                       flycheck-rtags
+                       helm-projectile))
 
 ;; packages installation
 (package-refresh-contents)
@@ -34,6 +38,12 @@
               python-shell-prompt-detect-failure-warning nil
               python-shell-interpreter-args "-i --simple-prompt")
 
+;; Helm
+(require 'helm-config)
+(helm-mode)
+(global-set-key (kbd "M-x") 'helm-M-x)
+(global-set-key (kbd "C-x C-f") 'helm-find-files)
+
 ;; RTags
 (require 'rtags)
 (rtags-diagnostics)
@@ -45,8 +55,9 @@
 
 ;; GNU Global
 (add-hook 'c-mode-common-hook
-          (lambda () (when (derived-mode-p 'c-mode 'c++-mode)
-                         (ggtags-mode))))
+          (lambda ()
+              (when (derived-mode-p 'c-mode 'c++-mode)
+                  (ggtags-mode))))
 
 ;; Company
 (add-to-list 'company-backends 'company-rtags)
@@ -57,7 +68,12 @@
 (require 'flycheck-rtags)
 (when (require 'flycheck nil t)
     (add-hook 'elpy-mode-hook 'flycheck-mode)
-    (setq-default elpy-modules (delq 'elpy-module-flymake elpy-modules)))
+    (setq-default elpy-modules
+                  (delq 'elpy-module-flymake elpy-modules)))
+
+;; Projectile
+(setq-default projectile-enable-caching t
+              projectile-completion-system 'default)
 
 ;; py-autopep8
 (require 'py-autopep8)
@@ -71,5 +87,9 @@
                slime-indentation))
 (setq-default inferior-lisp-program "sbcl"
               slime-net-coding-system 'utf-8-unix)
+
+;; Helm Projectile
+(require 'helm-projectile)
+(helm-projectile-on)
 
 ;;; .emacs_packages.el ends here
