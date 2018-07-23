@@ -5,11 +5,6 @@
 ;;;
 
 ;;; Code:
-(defvar package-archives)
-(add-to-list 'package-archives
-             '("melpa-stable" . "https://stable.melpa.org/packages/") t)
-
-;; list of packages
 (defvar package-list '(elpy
                        helm
                        magit
@@ -17,6 +12,7 @@
                        ggtags
                        company
                        flycheck
+                       cmake-ide
                        projectile
                        py-autopep8
                        company-rtags
@@ -24,7 +20,6 @@
                        flycheck-rtags
                        helm-projectile))
 
-;; packages installation
 (package-refresh-contents)
 (dolist (package package-list)
     (unless (package-installed-p package)
@@ -43,6 +38,7 @@
 (helm-mode)
 (global-set-key (kbd "M-x") 'helm-M-x)
 (global-set-key (kbd "C-x C-f") 'helm-find-files)
+(global-set-key (kbd "C-x r b") 'helm-filtered-bookmarks)
 
 ;; RTags
 (require 'rtags)
@@ -68,7 +64,11 @@
 (require 'flycheck-rtags)
 (when (require 'flycheck nil t)
     (add-hook 'elpy-mode-hook 'flycheck-mode)
-    (setq-default elpy-modules (delq 'elpy-module-flymake elpy-modules)))
+    (setq-default elpy-modules
+                  (delq 'elpy-module-flymake elpy-modules)))
+
+;; CMake-IDE
+(cmake-ide-setup)
 
 ;; Projectile
 (setq-default projectile-enable-caching t

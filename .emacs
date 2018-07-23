@@ -7,19 +7,22 @@
 ;;; Code:
 (require 'cl-lib)
 (require 'package)
+(let* ((no-ssl (and (memq system-type '(windows-nt ms-dos))
+                    (not (gnutls-available-p))))
+       (proto (if no-ssl "http" "https")))
+    (add-to-list 'package-archives
+                 (cons "melpa" (concat proto "://melpa.org/packages/")) t)
+    (when (< emacs-major-version 24)
+        (add-to-list 'package-archives
+                     '("gnu" . (concat proto "://elpa.gnu.org/packages/")))))
 (package-initialize)
-
-(if (not (string-equal system-type "windows-nt"))
+(if (not (memq system-type '(windows-nt ms-dos)))
     (load "$HOME/.emacs_packages.el"))
 
 (require 'bs)
 (setq-default major-mode 'text-mode)
 
 (require 'org)
-
-(setq-default user-full-name "karlkorp"
-              user-mail-adress "lispgod@gmail.com"
-              browse-url-browser-function 'browse-url-default-browser)
 
 (require 'dired)
 (setq-default dired-recursive-deletes 'top)
@@ -43,7 +46,7 @@
         (fringe-mode '(10 . 0))
         (setq-default linum-format "%5d ")
         (setq-default cursor-type 'hollow)
-        (if (not (string-equal system-type "windows-nt"))
+        (if (not (memq system-type '(windows-nt ms-dos)))
             (load-theme 'dracula t)
             (load-theme 'misterioso t))
         (add-to-list 'default-frame-alist '(top . 40))
@@ -191,5 +194,7 @@
 (global-set-key (kbd "<f8>")  'kmacro-end-macro)
 (global-set-key (kbd "<f9>")  'kmacro-call-macro)
 (global-set-key (kbd "<f11>") 'toggle-frame-fullscreen)
+
+(setq-default browse-url-browser-function 'browse-url-default-browser)
 
 ;;; .emacs ends here
