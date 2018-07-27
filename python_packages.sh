@@ -30,3 +30,5 @@ pip3 install --upgrade pep8-naming
 pip3 install --upgrade pyinstaller
 pip3 install --upgrade scikit-image
 pip3 install --upgrade scikit-learn
+pip3 install --upgrade opencv-python
+pip3 install --upgrade opencv-contrib-python
