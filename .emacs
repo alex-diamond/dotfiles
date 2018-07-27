@@ -102,15 +102,15 @@
               standard-indent 4
               indent-tabs-mode nil
               tab-always-indent nil)
-(add-hook 'makefile-mode-hook
-          (lambda ()
-              (setq-default indent-tabs-mode t)))
 (setq-default c-basic-offset 4
               c-default-style "bsd")
 (add-hook 'c-mode-common-hook
           '(lambda () (c-toggle-auto-state 1)))
 (setq-default python-indent 4
-              python-indent-offset 4)
+              python-indent-offset 4
+              python-indent-guess-indent-offset nil)
+(add-hook 'makefile-mode-hook
+          (lambda () (setq-default indent-tabs-mode t)))
 (setq-default lisp-body-indent 4
               lisp-indent-function 'common-lisp-indent-function)
 

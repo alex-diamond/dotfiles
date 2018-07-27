@@ -446,9 +446,12 @@
   sudo apt-get -y install code-saturne-doc
 #+END_SRC
 
-** Requirements for [[http://geant4.cern.ch/][Geant4]]
+** Requirements for [[http://geant4.cern.ch/][Geant4]] and [[https://root.cern.ch/][ROOT]]
 #+BEGIN_SRC sh
+  sudo apt-get -y install libxft-dev
   sudo apt-get -y install libxmu-dev
+  sudo apt-get -y install libxpm-dev
+  sudo apt-get -y install libxext-dev
   sudo apt-get -y install libexpat1-dev
   sudo apt-get -y install libxerces-c-dev
 #+END_SRC
