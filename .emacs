@@ -17,7 +17,7 @@
                      '("gnu" . (concat proto "://elpa.gnu.org/packages/")))))
 (package-initialize)
 (if (not (memq system-type '(windows-nt ms-dos)))
-    (load "$HOME/.emacs_packages.el"))
+    (load "~/.emacs_packages.el"))
 
 (require 'bs)
 (setq-default major-mode 'text-mode)
@@ -62,14 +62,6 @@
 (setq-default inhibit-startup-screen t
               display-time-24hr-format t)
 
-(defalias 'yes-or-no-p 'y-or-n-p)
-(setq-default use-dialog-box nil
-              redisplay-dont-pause t)
-(setq-default ring-bell-function 'ignore)
-(setq-default indicate-empty-lines t
-              indicate-buffer-boundaries 'left)
-(setq-default frame-title-format "GNU EMACS - NOSCE TE IPSUM")
-
 (savehist-mode)
 (auto-fill-mode)
 (display-time-mode)
@@ -78,6 +70,14 @@
 (global-visual-line-mode)
 (setq-default word-wrap t
               fill-column 80)
+(defalias 'yes-or-no-p 'y-or-n-p)
+(setq-default use-dialog-box nil
+              redisplay-dont-pause t)
+(setq-default ring-bell-function 'ignore)
+(setq-default indicate-empty-lines t
+              indicate-buffer-boundaries 'left)
+(setq-default frame-title-format
+              "GNU EMACS - NOSCE TE IPSUM")
 (setq-default history-length 1000
               history-delete-duplicates t
               savehist-save-minibuffer-history t)
@@ -89,7 +89,7 @@
               backup-by-copying t
               delete-old-versions t
               vc-make-backup-files t
-              backup-directory-alist '(("." . "$HOME/.emacs.d/backups")))
+              backup-directory-alist '(("." . "~/.emacs.d/backups")))
 
 (require 'ido)
 (ido-mode t)
