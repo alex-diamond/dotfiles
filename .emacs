@@ -60,7 +60,7 @@
               show-paren-style 'parenthesis)
 
 (setq-default inhibit-startup-screen t
-              initial-scratch-message "")
+              display-time-24hr-format t)
 
 (defalias 'yes-or-no-p 'y-or-n-p)
 (setq-default use-dialog-box nil
@@ -70,6 +70,7 @@
               indicate-buffer-boundaries 'left)
 (setq-default frame-title-format "GNU EMACS - NOSCE TE IPSUM")
 
+(savehist-mode)
 (auto-fill-mode)
 (display-time-mode)
 (column-number-mode)
@@ -77,9 +78,18 @@
 (global-visual-line-mode)
 (setq-default word-wrap t
               fill-column 80)
-(setq-default auto-save-default nil
-              make-backup-files nil)
-(setq-default display-time-24hr-format t)
+(setq-default history-length 1000
+              history-delete-duplicates t
+              savehist-save-minibuffer-history t)
+(setq-default version-control t
+              auto-save-default t
+              make-backup-files t
+              kept-old-versions 1
+              kept-new-versions 3
+              backup-by-copying t
+              delete-old-versions t
+              vc-make-backup-files t
+              backup-directory-alist '(("." . "$HOME/.emacs.d/backups")))
 
 (require 'ido)
 (ido-mode t)
@@ -123,7 +133,8 @@
 
 (global-auto-revert-mode)
 (setq-default require-final-newline t
-              next-line-add-newlines nil)
+              next-line-add-newlines nil
+              sentence-end-double-space nil)
 
 (prefer-coding-system                   'utf-8)
 (set-language-environment               'UTF-8)
@@ -155,16 +166,12 @@
 (ede-enable-generic-projects)
 
 (setq-default abbrev-mode t
-              save-abbrevs 'silent
-              abbrev-file-name "$HOME/.emacs.d/abbrev_defs")
+              save-abbrevs 'silent)
 
 (require 'bookmark)
-(when (file-exists-p
-       (concat user-emacs-directory "bookmarks"))
+(setq-default bookmark-save-flag t)
+(when (file-exists-p (concat user-emacs-directory "bookmarks"))
     (bookmark-load bookmark-default-file t))
-(setq-default bookmark-save-flag t
-              bookmark-default-file
-              (concat user-emacs-directory "bookmarks"))
 
 (defun format-buffer ()
     "Buffer formatting: DTW, tabify/untabify, indent."
@@ -177,7 +184,6 @@
      (unless (or (equal major-mode 'python-mode)
                  (equal major-mode 'makefile-gmake-mode))
          (indent-region (point-min) (point-max) nil))))
-;; Buffer formatting before save
 (add-hook 'before-save-hook 'format-buffer)
 
 (global-unset-key [up])
@@ -194,7 +200,6 @@
 (global-set-key (kbd "<f8>")  'kmacro-end-macro)
 (global-set-key (kbd "<f9>")  'kmacro-call-macro)
 (global-set-key (kbd "<f11>") 'toggle-frame-fullscreen)
-
 (setq-default browse-url-browser-function 'browse-url-default-browser)
 
 ;;; .emacs ends here
