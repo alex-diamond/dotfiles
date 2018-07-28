@@ -18,7 +18,8 @@
                        company-rtags
                        dracula-theme
                        flycheck-rtags
-                       helm-projectile))
+                       helm-projectile
+                       modern-cpp-font-lock))
 
 (package-refresh-contents)
 (dolist (package package-list)
@@ -50,10 +51,11 @@
 (add-hook 'c++-mode-hook 'rtags-start-process-unless-running)
 
 ;; GNU Global
+(require 'ggtags)
 (add-hook 'c-mode-common-hook
-          (lambda ()
-              (when (derived-mode-p 'c-mode 'c++-mode)
-                  (ggtags-mode))))
+          '(lambda ()
+            (when (derived-mode-p 'c-mode 'c++-mode)
+                (ggtags-mode))))
 
 ;; Company
 (add-to-list 'company-backends 'company-rtags)
@@ -91,5 +93,8 @@
 ;; Helm-Projectile
 (require 'helm-projectile)
 (helm-projectile-on)
+
+;; Modern C++
+(modern-c++-font-lock-global-mode)
 
 ;;; .emacs_packages.el ends here

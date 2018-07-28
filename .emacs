@@ -38,49 +38,56 @@
 (blink-cursor-mode   -1)
 (global-hl-line-mode -1)
 
-(if (display-graphic-p)
-    (progn
-        (require 'linum)
-        (line-number-mode)
-        (global-linum-mode)
-        (fringe-mode '(10 . 0))
-        (setq-default linum-format "%5d ")
-        (setq-default cursor-type 'hollow)
-        (if (not (memq system-type '(windows-nt ms-dos)))
-            (load-theme 'dracula t)
-            (load-theme 'misterioso t))
-        (add-to-list 'default-frame-alist '(top . 40))
-        (add-to-list 'default-frame-alist '(left . 40))
-        (add-to-list 'default-frame-alist '(width . 120))
-        (add-to-list 'default-frame-alist '(height . 40))))
+(when (display-graphic-p)
+    (require 'linum)
+    (line-number-mode)
+    (global-linum-mode)
+    (fringe-mode '(10 . 0))
+    (setq-default linum-format "%5d ")
+    (setq-default cursor-type 'hollow)
+    (if (not (memq system-type '(windows-nt ms-dos)))
+        (load-theme 'dracula t)
+        (load-theme 'misterioso t))
+    (add-to-list 'default-frame-alist '(top . 40))
+    (add-to-list 'default-frame-alist '(left . 40))
+    (add-to-list 'default-frame-alist '(width . 120))
+    (add-to-list 'default-frame-alist '(height . 40)))
 
 (show-paren-mode)
 (delete-selection-mode)
 (setq-default show-paren-delay 0
               show-paren-style 'parenthesis)
 
-(setq-default inhibit-startup-screen t
-              display-time-24hr-format t)
-
-(savehist-mode)
 (auto-fill-mode)
-(display-time-mode)
 (column-number-mode)
 (size-indication-mode)
 (global-visual-line-mode)
+
 (setq-default word-wrap t
               fill-column 80)
+
 (defalias 'yes-or-no-p 'y-or-n-p)
-(setq-default use-dialog-box nil
-              redisplay-dont-pause t)
+(setq-default use-dialog-box nil)
+
+(setq-default inhibit-startup-screen t
+              initial-scratch-message "")
+
+(display-time-mode)
+(setq-default display-time-24hr-format t)
+
 (setq-default ring-bell-function 'ignore)
+
 (setq-default indicate-empty-lines t
               indicate-buffer-boundaries 'left)
-(setq-default frame-title-format
-              "GNU EMACS - NOSCE TE IPSUM")
+
+(savehist-mode)
+(save-place-mode)
 (setq-default history-length 1000
               history-delete-duplicates t
               savehist-save-minibuffer-history t)
+
+(setq-default frame-title-format "GNU EMACS - NOSCE TE IPSUM")
+
 (setq-default version-control t
               auto-save-default t
               make-backup-files t
@@ -92,12 +99,12 @@
               backup-directory-alist '(("." . "~/.emacs.d/backups")))
 
 (require 'ido)
+(require 'ibuffer)
 (ido-mode t)
 (ido-everywhere)
-(setq-default ido-enable-flex-matching t)
 (icomplete-mode)
-(require 'ibuffer)
 (defalias 'list-buffers 'ibuffer)
+(setq-default ido-enable-flex-matching t)
 
 (require 'font-lock)
 (global-font-lock-mode)
@@ -115,17 +122,18 @@
 (setq-default c-basic-offset 4
               c-default-style "bsd")
 (add-hook 'c-mode-common-hook
-          '(lambda () (c-toggle-auto-state 1)))
+          '(lambda () (c-toggle-auto-newline)))
 (setq-default python-indent 4
               python-indent-offset 4
               python-indent-guess-indent-offset nil)
 (add-hook 'makefile-mode-hook
-          (lambda () (setq-default indent-tabs-mode t)))
+          '(lambda () (setq-default indent-tabs-mode t)))
 (setq-default lisp-body-indent 4
               lisp-indent-function 'common-lisp-indent-function)
 
 (setq-default scroll-step 1
               scroll-margin 10
+              redisplay-dont-pause t
               mouse-wheel-follow-mouse t
               scroll-conservatively 10000
               mouse-wheel-progressive-speed nil
@@ -170,7 +178,8 @@
 
 (require 'bookmark)
 (setq-default bookmark-save-flag t)
-(when (file-exists-p (concat user-emacs-directory "bookmarks"))
+(if (file-exists-p
+     (concat user-emacs-directory "bookmarks"))
     (bookmark-load bookmark-default-file t))
 
 (defun format-buffer ()
@@ -200,6 +209,7 @@
 (global-set-key (kbd "<f8>")  'kmacro-end-macro)
 (global-set-key (kbd "<f9>")  'kmacro-call-macro)
 (global-set-key (kbd "<f11>") 'toggle-frame-fullscreen)
+
 (setq-default browse-url-browser-function 'browse-url-default-browser)
 
 ;;; .emacs ends here

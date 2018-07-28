@@ -231,6 +231,7 @@
 **** [[http://clang.llvm.org/][Clang]]
 #+BEGIN_SRC sh
   sudo apt-get -y install clang
+  sudo apt-get -y install clang-format
   sudo apt-get -y install libclang-dev
 #+END_SRC
 
