@@ -115,6 +115,7 @@ sudo apt-get -y install clang-format
 sudo apt-get -y install libclang-dev
 
 sudo apt-get -y install libgsl-dev
+sudo apt-get -y install libgmp-dev
 
 sudo apt-get -y install libboost-all-dev
 sudo apt-get -y install libboost-doc

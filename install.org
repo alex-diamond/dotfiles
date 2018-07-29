@@ -235,9 +235,10 @@
   sudo apt-get -y install libclang-dev
 #+END_SRC
 
-*** [[https://www.gnu.org/software/gsl/][GNU Scientific Library]]
+*** [[https://www.gnu.org/software/gsl/][GNU Scientific Library]] and [[https://gmplib.org/][GMP]]
 #+BEGIN_SRC sh
   sudo apt-get -y install libgsl-dev
+  sudo apt-get -y install libgmp-dev
 #+END_SRC
 
 *** [[http://www.boost.org/][Boost]]
