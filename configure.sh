@@ -2,10 +2,6 @@
 git config --global user.name "karlkorp"
 git config --global user.email "lispgod@gmail.com"
 
-# Create frequently used folders
-mkdir -p "$HOME"/Torrents
-mkdir -p "$HOME"/VirtualBox
-
 # Put configuration files to the $HOME folder
 git clone https://github.com/karlkorp/dotfiles.git
 sh dotfiles/rtags_install.sh
