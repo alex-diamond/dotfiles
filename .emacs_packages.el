@@ -21,7 +21,7 @@
                        helm-projectile
                        modern-cpp-font-lock))
 
-(package-refresh-contents 'async)
+(package-refresh-contents)
 (dolist (package package-list)
     (unless (package-installed-p package)
         (package-install package)))
