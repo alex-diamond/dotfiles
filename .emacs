@@ -32,6 +32,7 @@
               imenu-use-popup-menu nil)
 
 (tooltip-mode        -1)
+(auto-fill-mode      -1)
 (tool-bar-mode       -1)
 (menu-bar-mode       -1)
 (scroll-bar-mode     -1)
@@ -42,7 +43,7 @@
     (require 'linum)
     (line-number-mode)
     (global-linum-mode)
-    (fringe-mode '(10 . 0))
+    (fringe-mode '(10 . 10))
     (setq-default linum-format "%5d ")
     (setq-default cursor-type 'hollow)
     (if (not (memq system-type '(windows-nt ms-dos)))
@@ -58,13 +59,14 @@
 (setq-default show-paren-delay 0
               show-paren-style 'parenthesis)
 
-(auto-fill-mode)
 (column-number-mode)
 (size-indication-mode)
-(global-visual-line-mode)
+(setq-default truncate-lines t
+              global-visual-line-mode nil
+              truncate-partial-width-windows nil)
 
-(setq-default word-wrap t
-              fill-column 80)
+(setq-default search-highlight t
+              query-replace-highlight t)
 
 (defalias 'yes-or-no-p 'y-or-n-p)
 (setq-default use-dialog-box nil)
@@ -74,9 +76,7 @@
 
 (display-time-mode)
 (setq-default display-time-24hr-format t)
-
 (setq-default ring-bell-function 'ignore)
-
 (setq-default indicate-empty-lines t
               indicate-buffer-boundaries 'left)
 
@@ -85,8 +85,6 @@
 (setq-default history-length 1000
               history-delete-duplicates t
               savehist-save-minibuffer-history t)
-
-(setq-default frame-title-format "GNU EMACS - NOSCE TE IPSUM")
 
 (setq-default version-control t
               auto-save-default t
@@ -152,6 +150,8 @@
 (setq-default coding-system-for-read    'utf-8
               file-name-coding-system   'utf-8
               buffer-file-coding-system 'utf-8)
+
+(setq-default frame-title-format "GNU Emacs: %f")
 
 (require 'cedet)
 (require 'cc-mode)
