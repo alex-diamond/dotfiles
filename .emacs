@@ -80,6 +80,8 @@
 (setq-default indicate-empty-lines t
               indicate-buffer-boundaries 'left)
 
+(setq-default frame-title-format "%b")
+
 (savehist-mode)
 (save-place-mode)
 (setq-default history-length 1000
@@ -150,8 +152,6 @@
 (setq-default coding-system-for-read    'utf-8
               file-name-coding-system   'utf-8
               buffer-file-coding-system 'utf-8)
-
-(setq-default frame-title-format "GNU Emacs: %f")
 
 (require 'cedet)
 (require 'cc-mode)
