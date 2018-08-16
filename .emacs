@@ -5,16 +5,10 @@
 ;;;
 
 ;;; Code:
-(require 'cl-lib)
-(require 'package)
-(add-to-list 'package-archives
-             '("melpa-stable" . "https://stable.melpa.org/packages/") t)
-(package-initialize)
-(if (not (memq system-type '(windows-nt ms-dos)))
-    (load "~/.emacs_packages.el"))
-
 (require 'bs)
 (require 'org)
+(require 'cl-lib)
+(require 'package)
 
 (setq-default major-mode 'text-mode)
 
@@ -28,21 +22,6 @@
 (scroll-bar-mode     -1)
 (blink-cursor-mode   -1)
 (global-hl-line-mode -1)
-
-(when (display-graphic-p)
-    (require 'linum)
-    (line-number-mode)
-    (global-linum-mode)
-    (fringe-mode '(10 . 10))
-    (setq-default linum-format "%5d ")
-    (setq-default cursor-type 'hollow)
-    (if (not (memq system-type '(windows-nt ms-dos)))
-        (load-theme 'dracula t)
-        (load-theme 'misterioso t))
-    (add-to-list 'default-frame-alist '(top . 40))
-    (add-to-list 'default-frame-alist '(left . 40))
-    (add-to-list 'default-frame-alist '(width . 120))
-    (add-to-list 'default-frame-alist '(height . 40)))
 
 (show-paren-mode)
 (delete-selection-mode)
@@ -79,14 +58,14 @@
               history-delete-duplicates t
               savehist-save-minibuffer-history t)
 
-(setq-default version-control t
-              auto-save-default t
-              make-backup-files t
-              kept-old-versions 1
-              kept-new-versions 3
-              backup-by-copying t
-              delete-old-versions t
-              vc-make-backup-files t
+(setq-default version-control         t
+              auto-save-default       t
+              make-backup-files       t
+              backup-by-copying       t
+              kept-old-versions       1
+              kept-new-versions       3
+              delete-old-versions     t
+              vc-make-backup-files    t
               backup-directory-alist '(("." . "~/.emacs.d/backups")))
 
 (require 'ido)
@@ -140,9 +119,9 @@
 
 (prefer-coding-system                   'utf-8)
 (set-language-environment               'UTF-8)
+(set-keyboard-coding-system             'utf-8-unix)
 (set-terminal-coding-system             'utf-8)
 (set-selection-coding-system            'utf-8)
-(set-keyboard-coding-system             'utf-8-unix)
 (setq-default coding-system-for-read    'utf-8
               file-name-coding-system   'utf-8
               buffer-file-coding-system 'utf-8)
@@ -204,6 +183,27 @@
 (global-set-key (kbd "<f8>")  'kmacro-end-macro)
 (global-set-key (kbd "<f9>")  'kmacro-call-macro)
 (global-set-key (kbd "<f11>") 'toggle-frame-fullscreen)
+
+(add-to-list 'package-archives
+             '("melpa-stable" . "https://stable.melpa.org/packages/") t)
+(package-initialize)
+(if (not (memq system-type '(windows-nt ms-dos)))
+    (load "~/.emacs_packages.el"))
+
+(when (display-graphic-p)
+    (require 'linum)
+    (line-number-mode)
+    (global-linum-mode)
+    (fringe-mode '(10 . 10))
+    (setq-default linum-format "%5d ")
+    (setq-default cursor-type 'hollow)
+    (if (not (memq system-type '(windows-nt ms-dos)))
+        (load-theme 'dracula t)
+        (load-theme 'misterioso t))
+    (add-to-list 'default-frame-alist '(top . 40))
+    (add-to-list 'default-frame-alist '(left . 40))
+    (add-to-list 'default-frame-alist '(width . 120))
+    (add-to-list 'default-frame-alist '(height . 40)))
 
 (setq-default browse-url-browser-function 'browse-url-default-browser)
 
