@@ -5,24 +5,17 @@
 ;;;
 
 ;;; Code:
+(package-refresh-contents)
 (defvar package-list '(elpy
-                       helm
-                       magit
                        rtags
                        ggtags
                        company
                        flycheck
-                       cmake-ide
-                       projectile
-                       sr-speedbar
                        py-autopep8
                        company-rtags
                        dracula-theme
                        flycheck-rtags
-                       helm-projectile
                        modern-cpp-font-lock))
-
-(package-refresh-contents)
 (dolist (package package-list)
     (unless (package-installed-p package)
         (package-install package)))
@@ -34,13 +27,6 @@
               python-shell-interpreter "ipython3"
               python-shell-prompt-detect-failure-warning nil
               python-shell-interpreter-args "-i --simple-prompt")
-
-;; Helm
-(require 'helm-config)
-(helm-mode)
-(global-set-key (kbd "M-x") 'helm-M-x)
-(global-set-key (kbd "C-x C-f") 'helm-find-files)
-(global-set-key (kbd "C-x r b") 'helm-filtered-bookmarks)
 
 ;; RTags
 (require 'rtags)
@@ -68,19 +54,6 @@
     (add-hook 'elpy-mode-hook 'flycheck-mode)
     (setq-default elpy-modules (delq 'elpy-module-flymake elpy-modules)))
 
-;; CMake-IDE
-(cmake-ide-setup)
-
-;; Projectile
-(setq-default projectile-enable-caching t
-              projectile-completion-system 'default)
-
-;; Sr-Speedbar
-(require 'sr-speedbar)
-(setq-default speedbar-use-images t
-              sr-speedbar-auto-refresh t)
-(global-set-key (kbd "<f1>") 'sr-speedbar-toggle)
-
 ;; py-autopep8
 (require 'py-autopep8)
 (add-hook 'elpy-mode-hook 'py-autopep8-enable-on-save)
@@ -95,11 +68,8 @@
 (setq-default inferior-lisp-program "sbcl"
               slime-net-coding-system 'utf-8-unix)
 
-;; Helm-Projectile
-(require 'helm-projectile)
-(helm-projectile-on)
-
 ;; Modern C++
+(require 'modern-cpp-font-lock)
 (modern-c++-font-lock-global-mode)
 
 ;;; .emacs_packages.el ends here

@@ -7,32 +7,19 @@
 ;;; Code:
 (require 'cl-lib)
 (require 'package)
-(let* ((no-ssl (and (memq system-type '(windows-nt ms-dos))
-                    (not (gnutls-available-p))))
-       (proto (if no-ssl "http" "https")))
-    (add-to-list 'package-archives
-                 (cons "melpa" (concat proto "://melpa.org/packages/")) t)
-    (when (< emacs-major-version 24)
-        (add-to-list 'package-archives
-                     '("gnu" . (concat proto "://elpa.gnu.org/packages/")))))
+(add-to-list 'package-archives
+             '("melpa-stable" . "https://stable.melpa.org/packages/") t)
 (package-initialize)
-(defvar packages-is-loaded)
 (if (not (memq system-type '(windows-nt ms-dos)))
-    (progn (load "~/.emacs_packages.el")
-           (setq-default packages-is-loaded t))
-    (setq-default packages-is-loaded nil))
+    (load "~/.emacs_packages.el"))
 
 (require 'bs)
-(setq-default major-mode 'text-mode)
-
 (require 'org)
+
+(setq-default major-mode 'text-mode)
 
 (require 'dired)
 (setq-default dired-recursive-deletes 'top)
-
-(require 'imenu)
-(setq-default imenu-auto-rescan t
-              imenu-use-popup-menu nil)
 
 (tooltip-mode        -1)
 (auto-fill-mode      -1)
@@ -80,6 +67,7 @@
 (display-time-mode)
 (setq-default display-time-24hr-format t)
 (setq-default ring-bell-function 'ignore)
+
 (setq-default indicate-empty-lines t
               indicate-buffer-boundaries 'left)
 
@@ -102,11 +90,14 @@
               backup-directory-alist '(("." . "~/.emacs.d/backups")))
 
 (require 'ido)
+(require 'imenu)
 (require 'ibuffer)
 (ido-mode t)
 (ido-everywhere)
 (icomplete-mode)
 (defalias 'list-buffers 'ibuffer)
+(setq-default imenu-auto-rescan t
+              imenu-use-popup-menu nil)
 (setq-default ido-enable-flex-matching t)
 
 (require 'font-lock)
@@ -196,7 +187,6 @@
      (unless (or (equal major-mode 'python-mode)
                  (equal major-mode 'makefile-gmake-mode))
          (indent-region (point-min) (point-max) nil))))
-
 (add-hook 'before-save-hook 'format-buffer)
 
 (global-unset-key [up])
@@ -204,6 +194,7 @@
 (global-unset-key [left])
 (global-unset-key [right])
 (windmove-default-keybindings)
+(global-set-key (kbd "<f1>")  'speedbar)
 (global-set-key (kbd "<f2>")  'ibuffer)
 (global-set-key (kbd "<f3>")  'comment-line)
 (global-set-key (kbd "<f4>")  'bookmark-set)
@@ -213,7 +204,6 @@
 (global-set-key (kbd "<f8>")  'kmacro-end-macro)
 (global-set-key (kbd "<f9>")  'kmacro-call-macro)
 (global-set-key (kbd "<f11>") 'toggle-frame-fullscreen)
-(unless packages-is-loaded (global-set-key (kbd "<f1>") 'speedbar))
 
 (setq-default browse-url-browser-function 'browse-url-default-browser)
 
