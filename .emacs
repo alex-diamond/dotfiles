@@ -60,8 +60,8 @@
 
 (setq-default version-control         t
               auto-save-default       t
-              make-backup-files       t
               backup-by-copying       t
+              make-backup-files       t
               kept-old-versions       1
               kept-new-versions       3
               delete-old-versions     t
