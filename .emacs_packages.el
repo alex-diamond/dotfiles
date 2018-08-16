@@ -14,6 +14,7 @@
                        flycheck
                        cmake-ide
                        projectile
+                       sr-speedbar
                        py-autopep8
                        company-rtags
                        dracula-theme
@@ -53,9 +54,8 @@
 ;; GNU Global
 (require 'ggtags)
 (add-hook 'c-mode-common-hook
-          '(lambda ()
-            (when (derived-mode-p 'c-mode 'c++-mode)
-                (ggtags-mode))))
+          '(lambda () (when (derived-mode-p 'c-mode 'c++-mode)
+                          (ggtags-mode))))
 
 ;; Company
 (add-to-list 'company-backends 'company-rtags)
@@ -66,8 +66,7 @@
 (require 'flycheck-rtags)
 (when (require 'flycheck nil t)
     (add-hook 'elpy-mode-hook 'flycheck-mode)
-    (setq-default elpy-modules
-                  (delq 'elpy-module-flymake elpy-modules)))
+    (setq-default elpy-modules (delq 'elpy-module-flymake elpy-modules)))
 
 ;; CMake-IDE
 (cmake-ide-setup)
@@ -75,6 +74,12 @@
 ;; Projectile
 (setq-default projectile-enable-caching t
               projectile-completion-system 'default)
+
+;; Sr-Speedbar
+(require 'sr-speedbar)
+(setq-default speedbar-use-images t
+              sr-speedbar-auto-refresh t)
+(global-set-key (kbd "<f1>") 'sr-speedbar-toggle)
 
 ;; py-autopep8
 (require 'py-autopep8)

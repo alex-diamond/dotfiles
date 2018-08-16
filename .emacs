@@ -16,8 +16,11 @@
         (add-to-list 'package-archives
                      '("gnu" . (concat proto "://elpa.gnu.org/packages/")))))
 (package-initialize)
+(defvar packages-is-loaded)
 (if (not (memq system-type '(windows-nt ms-dos)))
-    (load "~/.emacs_packages.el"))
+    (progn (load "~/.emacs_packages.el")
+           (setq-default packages-is-loaded t))
+    (setq-default packages-is-loaded nil))
 
 (require 'bs)
 (setq-default major-mode 'text-mode)
@@ -193,6 +196,7 @@
      (unless (or (equal major-mode 'python-mode)
                  (equal major-mode 'makefile-gmake-mode))
          (indent-region (point-min) (point-max) nil))))
+
 (add-hook 'before-save-hook 'format-buffer)
 
 (global-unset-key [up])
@@ -209,6 +213,7 @@
 (global-set-key (kbd "<f8>")  'kmacro-end-macro)
 (global-set-key (kbd "<f9>")  'kmacro-call-macro)
 (global-set-key (kbd "<f11>") 'toggle-frame-fullscreen)
+(unless packages-is-loaded (global-set-key (kbd "<f1>") 'speedbar))
 
 (setq-default browse-url-browser-function 'browse-url-default-browser)
 
