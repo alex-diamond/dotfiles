@@ -184,6 +184,8 @@
 (global-set-key (kbd "<f9>")  'kmacro-call-macro)
 (global-set-key (kbd "<f11>") 'toggle-frame-fullscreen)
 
+(setq-default browse-url-browser-function 'browse-url-default-browser)
+
 (add-to-list 'package-archives
              '("melpa-stable" . "https://stable.melpa.org/packages/") t)
 (package-initialize)
@@ -204,7 +206,5 @@
     (add-to-list 'default-frame-alist '(left . 40))
     (add-to-list 'default-frame-alist '(width . 120))
     (add-to-list 'default-frame-alist '(height . 40)))
-
-(setq-default browse-url-browser-function 'browse-url-default-browser)
 
 ;;; .emacs ends here
