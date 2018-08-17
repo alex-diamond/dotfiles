@@ -16,9 +16,9 @@
 (setq-default dired-recursive-deletes 'top)
 
 (tooltip-mode        -1)
-(auto-fill-mode      -1)
-(tool-bar-mode       -1)
 (menu-bar-mode       -1)
+(tool-bar-mode       -1)
+(auto-fill-mode      -1)
 (scroll-bar-mode     -1)
 (blink-cursor-mode   -1)
 (global-hl-line-mode -1)
@@ -58,14 +58,14 @@
               history-delete-duplicates t
               savehist-save-minibuffer-history t)
 
-(setq-default version-control         t
-              auto-save-default       t
-              backup-by-copying       t
-              make-backup-files       t
-              kept-old-versions       1
-              kept-new-versions       3
-              delete-old-versions     t
-              vc-make-backup-files    t
+(setq-default version-control        t
+              auto-save-default      t
+              backup-by-copying      t
+              kept-new-versions      3
+              kept-old-versions      1
+              make-backup-files      t
+              delete-old-versions    t
+              vc-make-backup-files   t
               backup-directory-alist '(("." . "~/.emacs.d/backups")))
 
 (require 'ido)
@@ -129,8 +129,8 @@
 (require 'cedet)
 (require 'cc-mode)
 (require 'semantic)
-(require 'semantic/ia)
 (require 'ede/generic)
+(require 'semantic/ia)
 (require 'semantic/bovine/gcc)
 (defvar *semantic-modes*
   (list 'global-semanticdb-minor-mode
@@ -151,14 +151,13 @@
 
 (require 'bookmark)
 (setq-default bookmark-save-flag t)
-(if (file-exists-p
-     (concat user-emacs-directory "bookmarks"))
+(if (file-exists-p (concat user-emacs-directory "bookmarks"))
     (bookmark-load bookmark-default-file t))
 
 (defun format-buffer ()
     "Buffer formatting: DTW, tabify/untabify, indent."
-    (interactive)
     (save-excursion
+     (recenter)
      (delete-trailing-whitespace)
      (if (equal major-mode 'makefile-gmake-mode)
          (tabify (point-min) (point-max))
@@ -189,6 +188,7 @@
 (add-to-list 'package-archives
              '("melpa-stable" . "https://stable.melpa.org/packages/") t)
 (package-initialize)
+(setq-default package-check-signature nil)
 (if (not (memq system-type '(windows-nt ms-dos)))
     (load "~/.emacs_packages.el"))
 
