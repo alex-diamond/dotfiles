@@ -1,4 +1,4 @@
-;;; .emacs_packages.el --- Install packages
+;;; .emacs_packages.el --- Packages installation and configuration
 
 ;;; Commentary:
 ;;  running only on non Microsoft Windows systems
