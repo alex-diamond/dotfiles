@@ -1,21 +1,22 @@
 ;;; .emacs_packages.el --- Install packages
 
 ;;; Commentary:
-;;  running only on non MS Windows systems
+;;  running only on non Microsoft Windows systems
 ;;;
 
 ;;; Code:
-(package-refresh-contents)
+(unless package-archive-contents
+    (package-refresh-contents))
+
 (defvar package-list '(elpy
                        rtags
                        ggtags
                        company
-                       flycheck
                        py-autopep8
                        company-rtags
                        dracula-theme
-                       flycheck-rtags
                        modern-cpp-font-lock))
+
 (dolist (package package-list)
     (unless (package-installed-p package)
         (package-install package)))
@@ -40,19 +41,13 @@
 ;; GNU Global
 (require 'ggtags)
 (add-hook 'c-mode-common-hook
-          '(lambda () (when (derived-mode-p 'c-mode 'c++-mode)
-                          (ggtags-mode))))
+          '(lambda ()
+            (when (derived-mode-p 'c-mode 'c++-mode)
+                (ggtags-mode))))
 
 ;; Company
 (add-to-list 'company-backends 'company-rtags)
 (add-hook 'after-init-hook 'global-company-mode)
-
-;; Flycheck
-(global-flycheck-mode)
-(require 'flycheck-rtags)
-(when (require 'flycheck nil t)
-    (add-hook 'elpy-mode-hook 'flycheck-mode)
-    (setq-default elpy-modules (delq 'elpy-module-flymake elpy-modules)))
 
 ;; py-autopep8
 (require 'py-autopep8)

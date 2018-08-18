@@ -20,14 +20,13 @@
 (tool-bar-mode       -1)
 (auto-fill-mode      -1)
 (scroll-bar-mode     -1)
-(blink-cursor-mode   -1)
 (global-hl-line-mode -1)
 
-(show-paren-mode)
 (delete-selection-mode)
 (setq-default show-paren-delay 0
               show-paren-style 'parenthesis)
 
+(show-paren-mode)
 (column-number-mode)
 (size-indication-mode)
 (setq-default truncate-lines t
@@ -91,7 +90,7 @@
 (setq-default tab-width 4
               standard-indent 4
               indent-tabs-mode nil
-              tab-always-indent nil)
+              tab-always-indent 'complete)
 (setq-default c-basic-offset 4
               c-default-style "bsd")
 (add-hook 'c-mode-common-hook
@@ -185,20 +184,21 @@
 
 (setq-default browse-url-browser-function 'browse-url-default-browser)
 
-(add-to-list 'package-archives
-             '("melpa-stable" . "https://stable.melpa.org/packages/") t)
-(package-initialize)
-(setq-default package-check-signature nil)
-(if (not (memq system-type '(windows-nt ms-dos)))
+(when (not (memq system-type '(windows-nt ms-dos)))
+    (add-to-list 'package-archives
+                 '("melpa-stable" . "https://stable.melpa.org/packages/") t)
+    (package-initialize)
+    (setq-default package-check-signature nil)
     (load "~/.emacs_packages.el"))
 
 (when (display-graphic-p)
     (require 'linum)
     (line-number-mode)
+    (blink-cursor-mode)
     (global-linum-mode)
     (fringe-mode '(10 . 10))
-    (setq-default linum-format "%5d ")
     (setq-default cursor-type 'hollow)
+    (setq-default linum-format "%5d ")
     (if (not (memq system-type '(windows-nt ms-dos)))
         (load-theme 'dracula t)
         (load-theme 'misterioso t))
