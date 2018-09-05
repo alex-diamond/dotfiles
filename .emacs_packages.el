@@ -7,22 +7,26 @@
 ;;; Code:
 (unless package-archive-contents
     (package-refresh-contents))
-
 (defvar package-list '(rtags
                        ggtags
                        company
                        company-rtags
                        dracula-theme
                        modern-cpp-font-lock))
-
 (dolist (package package-list)
     (unless (package-installed-p package)
         (package-install package)))
+
+;; Company
+(require 'company)
+(global-company-mode)
+(add-hook 'after-init-hook 'global-company-mode)
 
 ;; RTags
 (require 'rtags)
 (rtags-diagnostics)
 (rtags-enable-standard-keybindings)
+(push 'company-rtags company-backends)
 (setq-default rtags-completions-enabled t
               rtags-autostart-diagnostics t)
 (add-hook 'c-mode-hook 'rtags-start-process-unless-running)
@@ -33,10 +37,6 @@
 (add-hook 'c-mode-common-hook
           '(lambda () (when (derived-mode-p 'c-mode 'c++-mode)
                           (ggtags-mode))))
-
-;; Company
-(add-to-list 'company-backends 'company-rtags)
-(add-hook 'after-init-hook 'global-company-mode)
 
 ;; SLIME
 (require 'slime)
