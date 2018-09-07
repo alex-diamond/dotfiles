@@ -7,11 +7,13 @@
 ;;; Code:
 (unless package-archive-contents
     (package-refresh-contents))
+
 (defvar package-list '(rtags
                        ggtags
                        company
                        dracula-theme
                        modern-cpp-font-lock))
+
 (dolist (package package-list)
     (unless (package-installed-p package)
         (package-install package)))
