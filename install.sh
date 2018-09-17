@@ -180,6 +180,10 @@ sudo apt-get -y install lazarus
 sudo apt-get -y install geany
 sudo apt-get -y install geany-plugins
 
+sudo apt-get -y install xcas
+sudo apt-get -y install giac-doc
+sudo apt-get -y install libgiac-dev
+
 sudo apt-get -y install gnuplot
 
 sudo apt-get -y install maxima
