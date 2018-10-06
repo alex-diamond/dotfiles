@@ -370,13 +370,6 @@
 #+END_SRC
 
 * Scientific packages
-** [[https://www-fourier.ujf-grenoble.fr/~parisse/giac.html][Xcas]]
-#+BEGIN_SRC sh
-  sudo apt-get -y install xcas
-  sudo apt-get -y install giac-doc
-  sudo apt-get -y install libgiac-dev
-#+END_SRC
-
 ** [[http://www.gnuplot.info/][Gnuplot]]
 #+BEGIN_SRC sh
   sudo apt-get -y install gnuplot
