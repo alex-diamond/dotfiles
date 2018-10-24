@@ -494,11 +494,6 @@
   sudo apt-get -y install cherrytree
 #+END_SRC
 
-** [[http://shutter-project.org/][Shutter]]
-#+BEGIN_SRC sh
-  sudo apt-get -y install shutter
-#+END_SRC
-
 * Audio and Video
 ** [[https://ffmpeg.org/][FFmpeg]]
 #+BEGIN_SRC sh

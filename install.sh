@@ -250,8 +250,6 @@ sudo apt-get -y install pdfgrep
 
 sudo apt-get -y install cherrytree
 
-sudo apt-get -y install shutter
-
 sudo apt-get -y install ffmpeg
 
 sudo apt-get -y install obs-studio
