@@ -442,12 +442,6 @@
   sudo apt-get -y install ess
 #+END_SRC
 
-** [[https://www.code-saturne.org/cms/][Code_Saturne]]
-#+BEGIN_SRC sh
-  sudo apt-get -y install code-saturne
-  sudo apt-get -y install code-saturne-doc
-#+END_SRC
-
 ** Requirements for [[http://geant4.cern.ch/][Geant4]] and [[https://root.cern.ch/][ROOT]]
 #+BEGIN_SRC sh
   sudo apt-get -y install libxft-dev
