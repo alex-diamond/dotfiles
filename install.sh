@@ -303,11 +303,3 @@ sudo apt-get -y install transmission-gtk
 sudo apt-get -y install telegram-desktop
 
 sudo apt-get -y install jigdo-file
-
-sudo apt-get -y install openttd
-sudo apt-get -y install openttd-opengfx
-sudo apt-get -y install openttd-openmsx
-sudo apt-get -y install openttd-opensfx
-
-sudo apt-get -y install wesnoth
-sudo apt-get -y install wesnoth-music
