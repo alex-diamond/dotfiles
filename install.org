@@ -369,6 +369,13 @@
   sudo apt-get -y install geany-plugins
 #+END_SRC
 
+*** [[https://www.adacore.com/][GNAT Programming Studio]]
+#+BEGIN_SRC sh
+  sudo apt-get -y install gnat
+  sudo apt-get -y install gnat-gps
+  sudo apt-get -y install gnat-gps-doc
+#+END_SRC
+
 * Scientific packages
 ** [[http://www.gnuplot.info/][Gnuplot]]
 #+BEGIN_SRC sh
