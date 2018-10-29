@@ -17,8 +17,9 @@
   sudo apt-get -y install htop
 #+END_SRC
 
-** tasksel, aptitude and synaptic
+** gdebi, tasksel, aptitude and synaptic
 #+BEGIN_SRC sh
+  sudo apt-get -y install gdebi
   sudo apt-get -y install tasksel
   sudo apt-get -y install aptitude
   sudo apt-get -y install synaptic

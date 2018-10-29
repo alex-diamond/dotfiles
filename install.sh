@@ -2,6 +2,7 @@ sudo apt-get -y install mc
 
 sudo apt-get -y install htop
 
+sudo apt-get -y install gdebi
 sudo apt-get -y install tasksel
 sudo apt-get -y install aptitude
 sudo apt-get -y install synaptic
