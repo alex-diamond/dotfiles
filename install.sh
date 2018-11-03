@@ -216,10 +216,6 @@ sudo apt-get -y install libhdf5-dev
 sudo apt-get -y install libhdf5-mpi-dev
 sudo apt-get -y install libhdf5-serial-dev
 
-sudo apt-get -y install gmsh
-sudo apt-get -y install getdp
-sudo apt-get -y install gmsh-doc
-
 sudo apt-get -y install pnetcdf-bin
 sudo apt-get -y install libnetcdf-dev
 sudo apt-get -y install libnetcdff-dev

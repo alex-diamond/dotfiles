@@ -424,13 +424,6 @@
   sudo apt-get -y install libhdf5-serial-dev
 #+END_SRC
 
-** [[http://onelab.info/][ONELAB]]
-#+BEGIN_SRC sh
-  sudo apt-get -y install gmsh
-  sudo apt-get -y install getdp
-  sudo apt-get -y install gmsh-doc
-#+END_SRC
-
 ** [[https://www.unidata.ucar.edu/software/netcdf/][NetCDF]]
 #+BEGIN_SRC sh
   sudo apt-get -y install pnetcdf-bin
