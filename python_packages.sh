@@ -25,6 +25,7 @@ pip3 install --upgrade requests
 pip3 install --upgrade cx_Freeze
 pip3 install --upgrade matplotlib
 pip3 install --upgrade sqlalchemy
+pip3 install --upgrade tensorflow
 pip3 install --upgrade virtualenv
 pip3 install --upgrade pep8-naming
 pip3 install --upgrade pyinstaller
