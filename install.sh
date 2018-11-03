@@ -60,10 +60,8 @@ sudo apt-get -y install python3-tk
 sudo apt-get -y install python3-dev
 sudo apt-get -y install python3-doc
 sudo apt-get -y install python3-pip
+sudo apt-get -y install python3-venv
 sudo apt-get -y install python3-setuptools
-# PyQt5
-sudo apt-get -y install pyqt5-dev
-sudo apt-get -y install pyqt5-dev-tools
 
 sudo apt-get -y install perl
 sudo apt-get -y install perl-doc
