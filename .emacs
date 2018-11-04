@@ -5,6 +5,8 @@
 ;;;
 
 ;;; Code:
+(package-initialize)
+
 (require 'bs)
 (require 'org)
 (require 'cl-lib)
@@ -153,6 +155,20 @@
 (if (file-exists-p (concat user-emacs-directory "bookmarks"))
     (bookmark-load bookmark-default-file t))
 
+(when (display-graphic-p)
+    (require 'linum)
+    (line-number-mode)
+    (blink-cursor-mode)
+    (global-linum-mode)
+    (fringe-mode '(10 . 10))
+    (load-theme 'misterioso t)
+    (setq-default cursor-type 'hollow)
+    (setq-default linum-format "%5d ")
+    (add-to-list 'default-frame-alist '(top . 40))
+    (add-to-list 'default-frame-alist '(left . 40))
+    (add-to-list 'default-frame-alist '(width . 120))
+    (add-to-list 'default-frame-alist '(height . 40)))
+
 (defun format-buffer ()
     "Buffer formatting: DTW, tabify/untabify, indent."
     (save-excursion
@@ -164,7 +180,19 @@
      (unless (or (equal major-mode 'python-mode)
                  (equal major-mode 'makefile-gmake-mode))
          (indent-region (point-min) (point-max) nil))))
+
 (add-hook 'before-save-hook 'format-buffer)
+
+;; SLIME
+(when (not (memq system-type '(windows-nt ms-dos)))
+    (require 'slime)
+    (require 'slime-autoloads)
+    (slime-setup '(slime-asdf
+                   slime-fancy
+                   slime-tramp
+                   slime-indentation))
+    (setq-default inferior-lisp-program "sbcl"
+                  slime-net-coding-system 'utf-8-unix))
 
 (global-unset-key [up])
 (global-unset-key [down])
@@ -183,28 +211,5 @@
 (global-set-key (kbd "<f11>") 'toggle-frame-fullscreen)
 
 (setq-default browse-url-browser-function 'browse-url-default-browser)
-
-(when (not (memq system-type '(windows-nt ms-dos)))
-    (add-to-list 'package-archives
-                 '("melpa-stable" . "https://stable.melpa.org/packages/") t)
-    (package-initialize)
-    (setq-default package-check-signature nil)
-    (load "~/.emacs_packages.el"))
-
-(when (display-graphic-p)
-    (require 'linum)
-    (line-number-mode)
-    (blink-cursor-mode)
-    (global-linum-mode)
-    (fringe-mode '(10 . 10))
-    (setq-default cursor-type 'hollow)
-    (setq-default linum-format "%5d ")
-    (if (not (memq system-type '(windows-nt ms-dos)))
-        (load-theme 'dracula t)
-        (load-theme 'misterioso t))
-    (add-to-list 'default-frame-alist '(top . 40))
-    (add-to-list 'default-frame-alist '(left . 40))
-    (add-to-list 'default-frame-alist '(width . 120))
-    (add-to-list 'default-frame-alist '(height . 40)))
 
 ;;; .emacs ends here
