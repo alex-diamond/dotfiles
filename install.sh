@@ -15,6 +15,8 @@ sudo apt-get -y install lsb
 
 sudo apt-get -y install gparted
 
+sudo apt-get -y install testdisk
+
 sudo apt-get -y install gnupg
 
 sudo apt-get -y install bleachbit

@@ -45,6 +45,11 @@
   sudo apt-get -y install gparted
 #+END_SRC
 
+** [[https://www.cgsecurity.org/wiki/TestDisk][TestDisk]]
+#+BEGIN_SRC sh
+  sudo apt-get -y install testdisk
+#+END_SRC
+
 ** [[https://www.gnupg.org/][GnuPG]]
 #+BEGIN_SRC sh
   sudo apt-get -y install gnupg
