@@ -5,13 +5,10 @@
 ;;;
 
 ;;; Code:
-(package-initialize)
-
 (require 'bs)
 (require 'org)
 (require 'cl-lib)
-(require 'package)
-
+(package-initialize)
 (setq-default major-mode 'text-mode)
 
 (require 'dired)
@@ -180,7 +177,6 @@
      (unless (or (equal major-mode 'python-mode)
                  (equal major-mode 'makefile-gmake-mode))
          (indent-region (point-min) (point-max) nil))))
-
 (add-hook 'before-save-hook 'format-buffer)
 
 ;; SLIME
@@ -209,7 +205,6 @@
 (global-set-key (kbd "<f8>")  'kmacro-end-macro)
 (global-set-key (kbd "<f9>")  'kmacro-call-macro)
 (global-set-key (kbd "<f11>") 'toggle-frame-fullscreen)
-
 (setq-default browse-url-browser-function 'browse-url-default-browser)
 
 ;;; .emacs ends here
