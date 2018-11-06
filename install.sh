@@ -66,6 +66,7 @@ sudo apt-get -y install python3-venv
 sudo apt-get -y install python3-setuptools
 
 sudo apt-get -y install perl
+sudo apt-get -y install perl6
 sudo apt-get -y install perl-doc
 
 sudo apt-get -y install default-jdk

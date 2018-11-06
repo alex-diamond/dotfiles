@@ -130,6 +130,7 @@
 ** [[https://www.perl.org/][Perl]]
 #+BEGIN_SRC sh
   sudo apt-get -y install perl
+  sudo apt-get -y install perl6
   sudo apt-get -y install perl-doc
 #+END_SRC
 
