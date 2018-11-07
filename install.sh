@@ -211,9 +211,9 @@ sudo apt-get -y install octave-parallel
 sudo apt-get -y install octave-symbolic
 sudo apt-get -y install octave-statistics
 
+sudo apt-get -y --install-recommends install pari-gp
 sudo apt-get -y install pari-gp2c
 sudo apt-get -y install pari-galpol
-sudo apt-get -y --install-recommends install pari-gp
 
 sudo apt-get -y install h5utils
 sudo apt-get -y install hdf5-tools
