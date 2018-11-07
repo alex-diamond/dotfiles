@@ -419,6 +419,13 @@
   sudo apt-get -y install octave-statistics
 #+END_SRC
 
+** [[https://pari.math.u-bordeaux.fr/][PARI/GP]]
+#+BEGIN_SRC sh
+  sudo apt-get -y install pari-gp2c
+  sudo apt-get -y install pari-galpol
+  sudo apt-get -y --install-recommends install pari-gp
+#+END_SRC
+
 ** [[https://www.hdfgroup.org/][Hierarchical Data Format]]
 #+BEGIN_SRC sh
   sudo apt-get -y install h5utils
