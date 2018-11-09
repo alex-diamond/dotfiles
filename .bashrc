@@ -3,10 +3,14 @@ if [ -f /etc/bash_completion ]; then
     . /etc/bash_completion
 fi
 
+# functions
+gvim_alias() { gvim "$@" & }
+emacs_alias() { emacs "$@" & }
+
 # Aliases
-alias v="vim"
 alias .="pwd"
 alias x="exit"
+alias vi="vim"
 alias c="clear"
 alias ..="cd .."
 alias ll="ls -l"
@@ -15,7 +19,8 @@ alias mv="mv -v"
 alias la="ls -la"
 alias rm="rm -Iv"
 alias h="history"
-alias e="emacs -nw"
+alias v="gvim_alias"
+alias e="emacs_alias"
 
 # A command name that is the name of a directory
 # is executed as if it were the argument to the "cd" command
