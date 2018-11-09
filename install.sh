@@ -179,9 +179,6 @@ sudo apt-get -y install fpc-source
 sudo apt-get -y install lcl
 sudo apt-get -y install lazarus
 
-sudo apt-get -y install geany
-sudo apt-get -y install geany-plugins
-
 sudo apt-get -y install gnat
 sudo apt-get -y --install-recommends install gnat-gps
 

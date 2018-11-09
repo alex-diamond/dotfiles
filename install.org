@@ -368,12 +368,6 @@
   sudo apt-get -y install lazarus
 #+END_SRC
 
-*** [[https://www.geany.org/][Geany]]
-#+BEGIN_SRC sh
-  sudo apt-get -y install geany
-  sudo apt-get -y install geany-plugins
-#+END_SRC
-
 *** [[https://www.adacore.com/][GNAT Programming Studio]]
 #+BEGIN_SRC sh
   sudo apt-get -y install gnat

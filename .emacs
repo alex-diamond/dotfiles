@@ -191,7 +191,6 @@
      (unless (or (equal major-mode 'python-mode)
                  (equal major-mode 'makefile-gmake-mode))
          (indent-region (point-min) (point-max) nil))))
-
 (add-hook 'before-save-hook 'format-buffer)
 
 ;; SLIME
@@ -220,6 +219,7 @@
 (global-set-key (kbd "<f7>")  'kmacro-start-macro)
 (global-set-key (kbd "<f8>")  'kmacro-end-macro)
 (global-set-key (kbd "<f9>")  'kmacro-call-macro)
+(global-set-key (kbd "<f10>") 'toggle-menu-bar-mode-from-frame)
 (global-set-key (kbd "<f11>") 'toggle-frame-fullscreen)
 
 ;;; .emacs ends here
