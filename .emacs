@@ -10,7 +10,8 @@
 (require 'cl-lib)
 (require 'package)
 (package-initialize)
-(setq-default major-mode 'text-mode)
+(setq-default major-mode 'text-mode
+              package-enable-at-startup nil)
 
 (require 'dired)
 (setq-default dired-recursive-deletes 'top)
@@ -193,7 +194,6 @@
          (indent-region (point-min) (point-max) nil))))
 (add-hook 'before-save-hook 'format-buffer)
 
-;; SLIME
 (when (and (executable-find "sbcl")
            (not (memq system-type '(windows-nt ms-dos))))
     (require 'slime)
