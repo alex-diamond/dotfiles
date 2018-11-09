@@ -8,6 +8,7 @@
 (require 'bs)
 (require 'org)
 (require 'cl-lib)
+(require 'package)
 (package-initialize)
 (setq-default major-mode 'text-mode)
 
@@ -21,6 +22,8 @@
 (scroll-bar-mode     -1)
 (global-hl-line-mode -1)
 
+(global-subword-mode)
+(transient-mark-mode)
 (delete-selection-mode)
 (setq-default show-paren-delay 0
               show-paren-style 'parenthesis)
@@ -38,6 +41,8 @@
 (defalias 'yes-or-no-p 'y-or-n-p)
 (setq-default use-dialog-box nil)
 
+(setq-default frame-title-format "%b")
+
 (setq-default inhibit-startup-screen t
               initial-scratch-message "")
 
@@ -47,8 +52,6 @@
 
 (setq-default indicate-empty-lines t
               indicate-buffer-boundaries 'left)
-
-(setq-default frame-title-format "%b")
 
 (savehist-mode)
 (save-place-mode)
@@ -85,6 +88,7 @@
 (electric-pair-mode -1)
 
 (defalias 'perl-mode 'cperl-mode)
+
 (setq-default cperl-indent-level 4)
 (setq-default tab-width 4
               standard-indent 4
@@ -102,18 +106,28 @@
 (setq-default lisp-body-indent 4
               lisp-indent-function 'common-lisp-indent-function)
 
+(when (executable-find "ipython")
+    (setq-default python-shell-interpreter "ipython"
+                  python-shell-interpreter-args "--simple-prompt -i"))
+
 (setq-default scroll-step 1
               scroll-margin 10
               redisplay-dont-pause t
               mouse-wheel-follow-mouse t
               scroll-conservatively 10000
               mouse-wheel-progressive-speed nil
+              recenter-position '(top middle bottom)
               mouse-wheel-scroll-amount '(1 ((shift) . 1)))
 
 (global-auto-revert-mode)
 (setq-default require-final-newline t
               next-line-add-newlines nil
               sentence-end-double-space nil)
+
+(require 'whitespace)
+(setq-default whitespace-line-column 80
+              whitespace-style '(face empty tabs lines-tail trailing))
+(global-whitespace-mode)
 
 (prefer-coding-system                   'utf-8)
 (set-language-environment               'UTF-8)
@@ -158,7 +172,7 @@
     (blink-cursor-mode)
     (global-linum-mode)
     (fringe-mode '(10 . 10))
-    (load-theme 'misterioso t)
+    (load-theme 'wheatgrass t)
     (setq-default cursor-type 'hollow)
     (setq-default linum-format "%5d ")
     (add-to-list 'default-frame-alist '(top . 40))
@@ -177,10 +191,12 @@
      (unless (or (equal major-mode 'python-mode)
                  (equal major-mode 'makefile-gmake-mode))
          (indent-region (point-min) (point-max) nil))))
+
 (add-hook 'before-save-hook 'format-buffer)
 
 ;; SLIME
-(when (not (memq system-type '(windows-nt ms-dos)))
+(when (and (executable-find "sbcl")
+           (not (memq system-type '(windows-nt ms-dos))))
     (require 'slime)
     (require 'slime-autoloads)
     (slime-setup '(slime-asdf
@@ -205,6 +221,5 @@
 (global-set-key (kbd "<f8>")  'kmacro-end-macro)
 (global-set-key (kbd "<f9>")  'kmacro-call-macro)
 (global-set-key (kbd "<f11>") 'toggle-frame-fullscreen)
-(setq-default browse-url-browser-function 'browse-url-default-browser)
 
 ;;; .emacs ends here
