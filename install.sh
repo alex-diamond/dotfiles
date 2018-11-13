@@ -1,3 +1,6 @@
+sudo apt-get -y install fortune-mod
+sudo apt-get -y install fortunes-ru
+
 sudo apt-get -y install mc
 
 sudo apt-get -y install htop

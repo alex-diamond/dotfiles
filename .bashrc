@@ -1,9 +1,12 @@
+# Fortune
+fortune
+
 # Enable smart completion
 if [ -f /etc/bash_completion ]; then
     . /etc/bash_completion
 fi
 
-# Functions
+# functions
 gvim_alias() { gvim "$@" & }
 emacs_alias() { emacs "$@" & }
 

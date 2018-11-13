@@ -7,6 +7,12 @@
 #+PROPERTY: header-args :exports code :tangle install.sh
 
 * System
+** Fortune
+#+BEGIN_SRC sh
+  sudo apt-get -y install fortune-mod
+  sudo apt-get -y install fortunes-ru
+#+END_SRC
+
 ** [[https://www.midnight-commander.org/][Midnight Commander]]
 #+BEGIN_SRC sh
   sudo apt-get -y install mc
