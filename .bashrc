@@ -6,7 +6,7 @@ if [ -f /etc/bash_completion ]; then
     . /etc/bash_completion
 fi
 
-# functions
+# Functions
 gvim_alias() { gvim "$@" & }
 emacs_alias() { emacs "$@" & }
 
