@@ -89,7 +89,6 @@
 (electric-pair-mode -1)
 
 (defalias 'perl-mode 'cperl-mode)
-
 (setq-default cperl-indent-level 4)
 (setq-default tab-width 4
               standard-indent 4
@@ -121,7 +120,8 @@
               mouse-wheel-scroll-amount '(1 ((shift) . 1)))
 
 (global-auto-revert-mode)
-(setq-default require-final-newline t
+(setq-default delete-trailing-lines t
+              require-final-newline t
               next-line-add-newlines nil
               sentence-end-double-space nil)
 
