@@ -215,6 +215,11 @@ sudo apt-get -y --install-recommends install pari-gp
 sudo apt-get -y install pari-gp2c
 sudo apt-get -y install pari-galpol
 
+sudo apt-get -y --install-suggests install gap
+
+sudo apt-get -y --install-suggests singular
+sudo apt-get -y install singular-ui-emacs
+
 sudo apt-get -y install h5utils
 sudo apt-get -y install hdf5-tools
 sudo apt-get -y install libhdf5-dev

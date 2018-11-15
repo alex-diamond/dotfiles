@@ -426,6 +426,17 @@
   sudo apt-get -y install pari-galpol
 #+END_SRC
 
+** [[https://www.gap-system.org/][GAP]]
+#+BEGIN_SRC sh
+  sudo apt-get -y --install-suggests install gap
+#+END_SRC
+
+** [[https://www.singular.uni-kl.de/][Singular]]
+#+BEGIN_SRC sh
+  sudo apt-get -y --install-suggests singular
+  sudo apt-get -y install singular-ui-emacs
+#+END_SRC
+
 ** [[https://www.hdfgroup.org/][Hierarchical Data Format]]
 #+BEGIN_SRC sh
   sudo apt-get -y install h5utils
