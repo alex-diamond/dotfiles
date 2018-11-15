@@ -217,7 +217,7 @@ sudo apt-get -y install pari-galpol
 
 sudo apt-get -y --install-suggests install gap
 
-sudo apt-get -y --install-suggests singular
+sudo apt-get -y --install-suggests install singular
 sudo apt-get -y install singular-ui-emacs
 
 sudo apt-get -y install h5utils
