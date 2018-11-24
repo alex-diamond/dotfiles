@@ -150,6 +150,7 @@
 #+BEGIN_SRC sh
   sudo apt-get -y install racket
   sudo apt-get -y install racket-doc
+  sudo apt-get -y install elpa-racket-mode
 #+END_SRC
 
 ** [[http://www.sbcl.org/][SBCL]]

@@ -77,6 +77,7 @@ sudo apt-get -y install default-jre
 
 sudo apt-get -y install racket
 sudo apt-get -y install racket-doc
+sudo apt-get -y install elpa-racket-mode
 
 sudo apt-get -y install sbcl
 sudo apt-get -y install sbcl-doc
