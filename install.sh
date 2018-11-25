@@ -77,9 +77,10 @@ sudo apt-get -y install default-jre
 
 sudo apt-get -y install racket
 sudo apt-get -y install racket-doc
-sudo apt-get -y install elpa-racket-mode
 
 sudo apt-get -y install sbcl
+sudo apt-get -y install cl-asdf
+sudo apt-get -y install cl-cffi
 sudo apt-get -y install sbcl-doc
 sudo apt-get -y install sbcl-source
 
@@ -158,16 +159,21 @@ sudo apt-get -y install mesa-common-dev
 sudo apt-get -y install tk-dev
 sudo apt-get -y install tcl-dev
 
+# GNU/Emacs
 sudo apt-get -y install emacs25
 sudo apt-get -y install emacs25-el
 sudo apt-get -y install emacs-goodies-el
-
+# Org-mode
 sudo apt-get -y install org-mode
-
+# AUCTeX
+sudo apt-get -y install auctex
+# ESS
+sudo apt-get -y install ess
+# SLIME
 sudo apt-get -y install slime
-sudo apt-get -y install cl-asdf
-sudo apt-get -y install cl-cffi
 sudo apt-get -y install cl-swank
+# Racket
+sudo apt-get -y install elpa-racket-mode
 
 sudo apt-get -y install vim
 sudo apt-get -y install vim-doc
@@ -219,7 +225,6 @@ sudo apt-get -y install pari-galpol
 sudo apt-get -y --install-suggests install gap
 
 sudo apt-get -y --install-suggests install singular
-sudo apt-get -y install singular-ui-emacs
 
 sudo apt-get -y install h5utils
 sudo apt-get -y install hdf5-tools
@@ -238,8 +243,6 @@ sudo apt-get -y install libhypre-dev
 sudo apt-get -y install r-base
 sudo apt-get -y install r-cran-ggplot2
 
-sudo apt-get -y install ess
-
 sudo apt-get -y install libxft-dev
 sudo apt-get -y install libxmu-dev
 sudo apt-get -y install libxpm-dev
@@ -255,8 +258,6 @@ sudo apt-get -y install libreoffice-style-sifr
 sudo apt-get -y install texlive
 sudo apt-get -y install texlive-lang-english
 sudo apt-get -y install texlive-lang-cyrillic
-
-sudo apt-get -y install auctex
 
 sudo apt-get -y install pdfgrep
 

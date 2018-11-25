@@ -150,12 +150,13 @@
 #+BEGIN_SRC sh
   sudo apt-get -y install racket
   sudo apt-get -y install racket-doc
-  sudo apt-get -y install elpa-racket-mode
 #+END_SRC
 
 ** [[http://www.sbcl.org/][SBCL]]
 #+BEGIN_SRC sh
   sudo apt-get -y install sbcl
+  sudo apt-get -y install cl-asdf
+  sudo apt-get -y install cl-cffi
   sudo apt-get -y install sbcl-doc
   sudo apt-get -y install sbcl-source
 #+END_SRC
@@ -334,22 +335,21 @@
 ** IDE's and Text editors
 *** [[https://www.gnu.org/software/emacs/][GNU Emacs]]
 #+BEGIN_SRC sh
+  # GNU/Emacs
   sudo apt-get -y install emacs25
   sudo apt-get -y install emacs25-el
   sudo apt-get -y install emacs-goodies-el
-#+END_SRC
-
-**** [[http://orgmode.org/][Org-mode]]
-#+BEGIN_SRC sh
+  # Org-mode
   sudo apt-get -y install org-mode
-#+END_SRC
-
-*** [[https://common-lisp.net/project/slime/][SLIME]]
-#+BEGIN_SRC sh
+  # AUCTeX
+  sudo apt-get -y install auctex
+  # ESS
+  sudo apt-get -y install ess
+  # SLIME
   sudo apt-get -y install slime
-  sudo apt-get -y install cl-asdf
-  sudo apt-get -y install cl-cffi
   sudo apt-get -y install cl-swank
+  # Racket
+  sudo apt-get -y install elpa-racket-mode
 #+END_SRC
 
 *** [[http://www.vim.org/][Vim]]
@@ -435,7 +435,6 @@
 ** [[https://www.singular.uni-kl.de/][Singular]]
 #+BEGIN_SRC sh
   sudo apt-get -y --install-suggests install singular
-  sudo apt-get -y install singular-ui-emacs
 #+END_SRC
 
 ** [[https://www.hdfgroup.org/][Hierarchical Data Format]]
@@ -467,11 +466,6 @@
   sudo apt-get -y install r-cran-ggplot2
 #+END_SRC
 
-*** [[https://ess.r-project.org/][ESS]]
-#+BEGIN_SRC sh
-  sudo apt-get -y install ess
-#+END_SRC
-
 ** Requirements for [[http://geant4.cern.ch/][Geant4]] and [[https://root.cern.ch/][ROOT]]
 #+BEGIN_SRC sh
   sudo apt-get -y install libxft-dev
@@ -501,11 +495,6 @@
   sudo apt-get -y install texlive
   sudo apt-get -y install texlive-lang-english
   sudo apt-get -y install texlive-lang-cyrillic
-#+END_SRC
-
-*** [[https://www.gnu.org/software/auctex/][AUCTeX]]
-#+BEGIN_SRC sh
-  sudo apt-get -y install auctex
 #+END_SRC
 
 ** [[https://pdfgrep.org/][pdfgrep]]
