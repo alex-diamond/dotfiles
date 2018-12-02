@@ -146,6 +146,12 @@
   sudo apt-get -y install default-jre
 #+END_SRC
 
+** [[https://www.gnu.org/software/guile/][Guile]]
+#+BEGIN_SRC sh
+  sudo apt-get -y install guile-2.2
+  sudo apt-get -y install guile-2.2-doc
+#+END_SRC
+
 ** [[https://racket-lang.org/][Racket]]
 #+BEGIN_SRC sh
   sudo apt-get -y install racket

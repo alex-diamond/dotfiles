@@ -194,8 +194,8 @@
          (indent-region (point-min) (point-max) nil))))
 (add-hook 'before-save-hook 'format-buffer)
 
-(when (and (executable-find "sbcl")
-           (not (memq system-type '(windows-nt ms-dos))))
+;; Common Lisp
+(when (require 'slime nil :noerror)
     (require 'slime)
     (require 'slime-autoloads)
     (slime-setup '(slime-asdf
@@ -204,6 +204,11 @@
                    slime-indentation))
     (setq-default inferior-lisp-program "sbcl"
                   slime-net-coding-system 'utf-8-unix))
+
+;; Racket
+(when (require 'racket-mode nil :noerror)
+    (add-hook 'racket-mode-hook      #'racket-unicode-input-method-enable)
+    (add-hook 'racket-repl-mode-hook #'racket-unicode-input-method-enable))
 
 (global-unset-key [up])
 (global-unset-key [down])

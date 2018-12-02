@@ -75,6 +75,9 @@ sudo apt-get -y install perl-doc
 sudo apt-get -y install default-jdk
 sudo apt-get -y install default-jre
 
+sudo apt-get -y install guile-2.2
+sudo apt-get -y install guile-2.2-doc
+
 sudo apt-get -y install racket
 sudo apt-get -y install racket-doc
 
