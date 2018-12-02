@@ -341,7 +341,6 @@
 ** IDE's and Text editors
 *** [[https://www.gnu.org/software/emacs/][GNU Emacs]]
 #+BEGIN_SRC sh
-  # GNU/Emacs
   sudo apt-get -y install emacs25
   sudo apt-get -y install emacs25-el
   sudo apt-get -y install emacs-goodies-el

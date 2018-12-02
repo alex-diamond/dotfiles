@@ -162,7 +162,6 @@ sudo apt-get -y install mesa-common-dev
 sudo apt-get -y install tk-dev
 sudo apt-get -y install tcl-dev
 
-# GNU/Emacs
 sudo apt-get -y install emacs25
 sudo apt-get -y install emacs25-el
 sudo apt-get -y install emacs-goodies-el
