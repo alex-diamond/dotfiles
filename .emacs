@@ -10,6 +10,7 @@
 (require 'cl-lib)
 (require 'package)
 (package-initialize)
+
 (setq-default major-mode 'text-mode
               package-enable-at-startup nil)
 
@@ -196,7 +197,6 @@
 
 ;; Common Lisp
 (when (require 'slime nil :noerror)
-    (require 'slime)
     (require 'slime-autoloads)
     (slime-setup '(slime-asdf
                    slime-fancy
