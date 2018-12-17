@@ -494,8 +494,7 @@
   sudo apt-get -y install libreoffice-style-sifr
 #+END_SRC
 
-** [[http://www.latex-project.org/][LaTeX]]
-*** [[https://www.tug.org/texlive/][TeX Live]]
+** [[https://www.tug.org/texlive/][TeX Live]]
 #+BEGIN_SRC sh
   sudo apt-get -y install texlive
   sudo apt-get -y install texlive-lang-english
@@ -510,6 +509,11 @@
 ** [[http://www.giuspen.com/cherrytree/][CherryTree]]
 #+BEGIN_SRC sh
   sudo apt-get -y install cherrytree
+#+END_SRC
+
+** [[https://wiki.gnome.org/Apps/Evolution][Evolution]]
+#+BEGIN_SRC sh
+  sudo apt-get -y install evolution
 #+END_SRC
 
 * Audio and Video
