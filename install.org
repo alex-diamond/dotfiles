@@ -98,7 +98,13 @@
   sudo apt-get -y install fonts-liberation
   sudo apt-get -y install ttf-ubuntu-font-family
   sudo apt-get -y install fonts-ubuntu-font-family-console
-  sudo apt-get -y install --reinstall ttf-mscorefonts-installer
+#+END_SRC
+
+*** Microsoft fonts
+#+BEGIN_SRC sh
+  sudo apt-get -y purge ttf-mscorefonts-installer
+  sudo apt-get autoremove && sudo apt-get autoclean
+  sudo apt-get -y install ttf-mscorefonts-installer
 #+END_SRC
 
 * Computer programming
@@ -303,11 +309,6 @@
   sudo apt-get -y install libarmadillo-dev
 #+END_SRC
 
-**** [[http://math-atlas.sourceforge.net/][ATLAS]]
-#+BEGIN_SRC sh
-  sudo apt-get -y install libatlas-base-dev
-#+END_SRC
-
 **** [[http://www.netlib.org/lapack/][LAPACK]]
 #+BEGIN_SRC sh
   sudo apt-get -y install liblapacke-dev
@@ -348,8 +349,6 @@
   sudo apt-get -y install org-mode
   # AUCTeX
   sudo apt-get -y install auctex
-  # ESS
-  sudo apt-get -y install ess
   # SLIME
   sudo apt-get -y install slime
   sudo apt-get -y install cl-swank
@@ -378,12 +377,6 @@
 #+BEGIN_SRC sh
   sudo apt-get -y install lcl
   sudo apt-get -y install lazarus
-#+END_SRC
-
-*** [[https://www.adacore.com/][GNAT Programming Studio]]
-#+BEGIN_SRC sh
-  sudo apt-get -y install gnat
-  sudo apt-get -y --install-recommends install gnat-gps
 #+END_SRC
 
 * Scientific packages
@@ -425,23 +418,6 @@
   sudo apt-get -y install octave-statistics
 #+END_SRC
 
-** [[https://pari.math.u-bordeaux.fr/][PARI/GP]]
-#+BEGIN_SRC sh
-  sudo apt-get -y --install-recommends install pari-gp
-  sudo apt-get -y install pari-gp2c
-  sudo apt-get -y install pari-galpol
-#+END_SRC
-
-** [[https://www.gap-system.org/][GAP]]
-#+BEGIN_SRC sh
-  sudo apt-get -y --install-suggests install gap
-#+END_SRC
-
-** [[https://www.singular.uni-kl.de/][Singular]]
-#+BEGIN_SRC sh
-  sudo apt-get -y --install-suggests install singular
-#+END_SRC
-
 ** [[https://www.hdfgroup.org/][Hierarchical Data Format]]
 #+BEGIN_SRC sh
   sudo apt-get -y install h5utils
@@ -465,12 +441,6 @@
   sudo apt-get -y install libhypre-dev
 #+END_SRC
 
-** [[https://www.r-project.org/][R]]
-#+BEGIN_SRC sh
-  sudo apt-get -y install r-base
-  sudo apt-get -y install r-cran-ggplot2
-#+END_SRC
-
 ** Requirements for [[http://geant4.cern.ch/][Geant4]] and [[https://root.cern.ch/][ROOT]]
 #+BEGIN_SRC sh
   sudo apt-get -y install libxft-dev
@@ -479,12 +449,6 @@
   sudo apt-get -y install libxext-dev
   sudo apt-get -y install libexpat1-dev
   sudo apt-get -y install libxerces-c-dev
-#+END_SRC
-
-** CAD
-*** [[http://www.freecadweb.org/][FreeCAD]]
-#+BEGIN_SRC sh
-  sudo apt-get -y install freecad
 #+END_SRC
 
 * Office

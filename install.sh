@@ -45,7 +45,10 @@ sudo apt-get -y install fonts-dejavu
 sudo apt-get -y install fonts-liberation
 sudo apt-get -y install ttf-ubuntu-font-family
 sudo apt-get -y install fonts-ubuntu-font-family-console
-sudo apt-get -y install --reinstall ttf-mscorefonts-installer
+
+sudo apt-get -y purge ttf-mscorefonts-installer
+sudo apt-get autoremove && sudo apt-get autoclean
+sudo apt-get -y install ttf-mscorefonts-installer
 
 sudo apt-get -y install git-core
 
@@ -145,8 +148,6 @@ sudo apt-get -y install libeigen3-dev
 
 sudo apt-get -y install libarmadillo-dev
 
-sudo apt-get -y install libatlas-base-dev
-
 sudo apt-get -y install liblapacke-dev
 
 sudo apt-get -y install libopenblas-dev
@@ -169,8 +170,6 @@ sudo apt-get -y install emacs-goodies-el
 sudo apt-get -y install org-mode
 # AUCTeX
 sudo apt-get -y install auctex
-# ESS
-sudo apt-get -y install ess
 # SLIME
 sudo apt-get -y install slime
 sudo apt-get -y install cl-swank
@@ -190,9 +189,6 @@ sudo apt-get -y install fpc-source
 
 sudo apt-get -y install lcl
 sudo apt-get -y install lazarus
-
-sudo apt-get -y install gnat
-sudo apt-get -y --install-recommends install gnat-gps
 
 sudo apt-get -y install gnuplot
 
@@ -220,14 +216,6 @@ sudo apt-get -y install octave-parallel
 sudo apt-get -y install octave-symbolic
 sudo apt-get -y install octave-statistics
 
-sudo apt-get -y --install-recommends install pari-gp
-sudo apt-get -y install pari-gp2c
-sudo apt-get -y install pari-galpol
-
-sudo apt-get -y --install-suggests install gap
-
-sudo apt-get -y --install-suggests install singular
-
 sudo apt-get -y install h5utils
 sudo apt-get -y install hdf5-tools
 sudo apt-get -y install libhdf5-dev
@@ -242,17 +230,12 @@ sudo apt-get -y install libnetcdf-cxx-legacy-dev
 
 sudo apt-get -y install libhypre-dev
 
-sudo apt-get -y install r-base
-sudo apt-get -y install r-cran-ggplot2
-
 sudo apt-get -y install libxft-dev
 sudo apt-get -y install libxmu-dev
 sudo apt-get -y install libxpm-dev
 sudo apt-get -y install libxext-dev
 sudo apt-get -y install libexpat1-dev
 sudo apt-get -y install libxerces-c-dev
-
-sudo apt-get -y install freecad
 
 sudo apt-get -y install libreoffice
 sudo apt-get -y install libreoffice-style-sifr
