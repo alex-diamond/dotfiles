@@ -45,7 +45,7 @@ sudo apt-get -y install fonts-dejavu
 sudo apt-get -y install fonts-liberation
 sudo apt-get -y install ttf-ubuntu-font-family
 sudo apt-get -y install fonts-ubuntu-font-family-console
-
+# Microsoft fonts
 sudo apt-get -y purge ttf-mscorefonts-installer
 sudo apt-get autoremove && sudo apt-get autoclean
 sudo apt-get -y install ttf-mscorefonts-installer
@@ -261,6 +261,13 @@ sudo apt-get -y install easytag
 sudo apt-get -y install soundconverter
 
 sudo apt-get -y install vlc
+
+sudo add-apt-repository -y ppa:rvm/smplayer
+sudo apt-get update
+sudo apt-get -y install smplayer
+sudo apt-get -y install smtube
+sudo apt-get -y install smplayer-skins
+sudo apt-get -y install smplayer-themes
 
 sudo apt-get -y install brasero
 
