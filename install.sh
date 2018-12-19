@@ -45,9 +45,9 @@ sudo apt-get -y install fonts-dejavu
 sudo apt-get -y install fonts-liberation
 sudo apt-get -y install ttf-ubuntu-font-family
 sudo apt-get -y install fonts-ubuntu-font-family-console
-# Microsoft fonts
+
 sudo apt-get -y purge ttf-mscorefonts-installer
-sudo apt-get autoremove && sudo apt-get autoclean
+sudo apt-get -y autoremove && sudo apt-get -y autoclean
 sudo apt-get -y install ttf-mscorefonts-installer
 
 sudo apt-get -y install git-core
@@ -55,14 +55,13 @@ sudo apt-get -y install git-core
 sudo apt-get -y install subversion
 sudo apt-get -y install subversion-tools
 
-# Python 2
 sudo apt-get -y install python
 sudo apt-get -y install python-tk
 sudo apt-get -y install python-dev
 sudo apt-get -y install python-doc
 sudo apt-get -y install python-pip
 sudo apt-get -y install python-setuptools
-# Python 3
+
 sudo apt-get -y install python3
 sudo apt-get -y install python3-tk
 sudo apt-get -y install python3-dev
@@ -166,14 +165,11 @@ sudo apt-get -y install tcl-dev
 sudo apt-get -y install emacs25
 sudo apt-get -y install emacs25-el
 sudo apt-get -y install emacs-goodies-el
-# Org-mode
-sudo apt-get -y install org-mode
-# AUCTeX
-sudo apt-get -y install auctex
-# SLIME
+
 sudo apt-get -y install slime
+sudo apt-get -y install auctex
 sudo apt-get -y install cl-swank
-# Racket
+sudo apt-get -y install org-mode
 sudo apt-get -y install elpa-racket-mode
 
 sudo apt-get -y install vim
