@@ -139,6 +139,7 @@
 #+BEGIN_SRC sh
   sudo apt-get -y install perl
   sudo apt-get -y install perl6
+  sudo apt-get -y install perl-tk
   sudo apt-get -y install perl-doc
 #+END_SRC
 
@@ -523,6 +524,11 @@
 ** [[https://www.blender.org/][Blender]]
 #+BEGIN_SRC sh
   sudo apt-get -y install blender
+#+END_SRC
+
+** [[https://www.freecadweb.org/][FreeCAD]]
+#+BEGIN_SRC sh
+  sudo apt-get -y install freecad
 #+END_SRC
 
 ** [[https://inkscape.org/en/][Inkscape]]

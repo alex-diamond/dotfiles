@@ -72,6 +72,7 @@ sudo apt-get -y install python3-setuptools
 
 sudo apt-get -y install perl
 sudo apt-get -y install perl6
+sudo apt-get -y install perl-tk
 sudo apt-get -y install perl-doc
 
 sudo apt-get -y install default-jdk
@@ -268,6 +269,8 @@ sudo apt-get -y install smplayer-themes
 sudo apt-get -y install brasero
 
 sudo apt-get -y install blender
+
+sudo apt-get -y install freecad
 
 sudo apt-get -y install inkscape
 
