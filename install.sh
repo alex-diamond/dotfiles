@@ -270,8 +270,6 @@ sudo apt-get -y install brasero
 
 sudo apt-get -y install blender
 
-sudo apt-get -y install freecad
-
 sudo apt-get -y install inkscape
 
 sudo apt-get -y install ghostscript

@@ -526,11 +526,6 @@
   sudo apt-get -y install blender
 #+END_SRC
 
-** [[https://www.freecadweb.org/][FreeCAD]]
-#+BEGIN_SRC sh
-  sudo apt-get -y install freecad
-#+END_SRC
-
 ** [[https://inkscape.org/en/][Inkscape]]
 #+BEGIN_SRC sh
   sudo apt-get -y install inkscape
