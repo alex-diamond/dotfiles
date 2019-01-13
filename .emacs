@@ -190,8 +190,8 @@
     (fringe-mode '(10 . 10))
     (setq-default cursor-type 'hollow)
     (setq-default linum-format "%5d ")
-    (add-to-list 'default-frame-alist '(top . 40))
-    (add-to-list 'default-frame-alist '(left . 40))
+    (add-to-list 'default-frame-alist '(top . 10))
+    (add-to-list 'default-frame-alist '(left . 10))
     (add-to-list 'default-frame-alist '(width . 120))
     (add-to-list 'default-frame-alist '(height . 40)))
 
