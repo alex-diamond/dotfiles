@@ -202,13 +202,18 @@
                    slime-fancy
                    slime-tramp
                    slime-indentation))
-    (setq-default inferior-lisp-program "sbcl"
-                  slime-net-coding-system 'utf-8-unix))
+    (if (executable-find "sbcl")
+        (setq-default inferior-lisp-program "sbcl"))
+    (setq-default slime-net-coding-system 'utf-8-unix))
 
 ;; Racket
 (when (require 'racket-mode nil :noerror)
     (add-hook 'racket-mode-hook      #'racket-unicode-input-method-enable)
     (add-hook 'racket-repl-mode-hook #'racket-unicode-input-method-enable))
+
+;; Scheme
+(if (executable-find "guile")
+    (setq-default scheme-program-name "guile"))
 
 (global-unset-key [up])
 (global-unset-key [down])
