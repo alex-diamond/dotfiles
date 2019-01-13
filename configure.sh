@@ -5,6 +5,7 @@ git config --global user.email "lispgod@gmail.com"
 # Put configuration files to the $HOME folder
 git clone https://github.com/karlkorp/dotfiles.git
 cp dotfiles/.emacs    "$HOME"/
+cp dotfiles/.guile    "$HOME"/
 cp dotfiles/.vimrc    "$HOME"/
 cp dotfiles/.bashrc   "$HOME"/
 cp dotfiles/.octaverc "$HOME"/
