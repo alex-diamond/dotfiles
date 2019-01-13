@@ -183,7 +183,6 @@
     (add-to-list 'default-frame-alist '(height . 40)))
 
 (defun format-buffer ()
-    "Buffer formatting: DTW, tabify/untabify, indent."
     (save-excursion
      (recenter)
      (delete-trailing-whitespace)
@@ -212,8 +211,9 @@
     (add-hook 'racket-repl-mode-hook #'racket-unicode-input-method-enable))
 
 ;; Scheme
-(if (executable-find "guile")
-    (setq-default scheme-program-name "guile"))
+(when (executable-find "guile")
+    (setq-default scheme-program-name "guile")
+    (autoload 'run-scheme "cmuscheme" "Run an inferior Scheme" t))
 
 (global-unset-key [up])
 (global-unset-key [down])
