@@ -7,6 +7,7 @@
 ;;; Code:
 (require 'bs)
 (require 'org)
+(require 'eldoc)
 (require 'cl-lib)
 (require 'package)
 (package-initialize)
@@ -27,6 +28,7 @@
 (global-subword-mode)
 (transient-mark-mode)
 (delete-selection-mode)
+(global-auto-revert-mode)
 (setq-default show-paren-delay 0
               show-paren-style 'parenthesis)
 
@@ -86,24 +88,34 @@
 (global-font-lock-mode)
 (setq-default font-lock-maximum-decoration t)
 
+(global-prettify-symbols-mode)
+(defun scheme-pretty-lambda ()
+    (setq-default prettify-symbols-alist '(("lambda" . 955))))
+
 (electric-indent-mode)
 (electric-pair-mode -1)
 
 (defalias 'perl-mode 'cperl-mode)
 (setq-default cperl-indent-level 4)
+
 (setq-default tab-width 4
               standard-indent 4
               indent-tabs-mode nil
               tab-always-indent 'complete)
+
 (setq-default c-basic-offset 4
               c-default-style "bsd")
+
 (add-hook 'c-mode-common-hook
           '(lambda () (c-toggle-auto-newline)))
+
 (setq-default python-indent 4
               python-indent-offset 4
               python-indent-guess-indent-offset nil)
+
 (add-hook 'makefile-mode-hook
           '(lambda () (setq-default indent-tabs-mode t)))
+
 (setq-default lisp-body-indent 4
               lisp-indent-function 'common-lisp-indent-function)
 
@@ -120,16 +132,15 @@
               recenter-position '(top middle bottom)
               mouse-wheel-scroll-amount '(1 ((shift) . 1)))
 
-(global-auto-revert-mode)
 (setq-default delete-trailing-lines t
               require-final-newline t
               next-line-add-newlines nil
               sentence-end-double-space nil)
 
 (require 'whitespace)
+(global-whitespace-mode)
 (setq-default whitespace-line-column 80
               whitespace-style '(face empty tabs lines-tail trailing))
-(global-whitespace-mode)
 
 (prefer-coding-system                   'utf-8)
 (set-language-environment               'UTF-8)
@@ -159,6 +170,8 @@
 (semantic-mode)
 (global-ede-mode)
 (ede-enable-generic-projects)
+(semanticdb-enable-gnu-global-databases 'c-mode)
+(semanticdb-enable-gnu-global-databases 'c++-mode)
 
 (setq-default abbrev-mode t
               save-abbrevs 'silent)
@@ -192,6 +205,7 @@
      (unless (or (equal major-mode 'python-mode)
                  (equal major-mode 'makefile-gmake-mode))
          (indent-region (point-min) (point-max) nil))))
+
 (add-hook 'before-save-hook 'format-buffer)
 
 ;; Common Lisp
@@ -213,6 +227,7 @@
 ;; Scheme
 (when (executable-find "guile")
     (setq-default scheme-program-name "guile")
+    (add-hook 'scheme-mode-hook 'scheme-pretty-lambda)
     (autoload 'run-scheme "cmuscheme" "Run an inferior Scheme" t))
 
 (global-unset-key [up])
