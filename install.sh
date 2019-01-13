@@ -79,6 +79,7 @@ sudo apt-get -y install default-jdk
 sudo apt-get -y install default-jre
 
 sudo apt-get -y install guile-2.2
+sudo apt-get -y install guile-2.2-dev
 sudo apt-get -y install guile-2.2-doc
 
 sudo apt-get -y install racket
@@ -237,6 +238,9 @@ sudo apt-get -y install libxerces-c-dev
 sudo apt-get -y install libreoffice
 sudo apt-get -y install libreoffice-style-sifr
 
+sudo apt-get -y install thunderbird
+sudo apt-get -y install thunderbird-locale-ru
+
 sudo apt-get -y install texlive
 sudo apt-get -y install texlive-lang-english
 sudo apt-get -y install texlive-lang-cyrillic
@@ -244,8 +248,6 @@ sudo apt-get -y install texlive-lang-cyrillic
 sudo apt-get -y install pdfgrep
 
 sudo apt-get -y install cherrytree
-
-sudo apt-get -y install evolution
 
 sudo apt-get -y install ffmpeg
 

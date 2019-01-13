@@ -152,6 +152,7 @@
 ** [[https://www.gnu.org/software/guile/][Guile]]
 #+BEGIN_SRC sh
   sudo apt-get -y install guile-2.2
+  sudo apt-get -y install guile-2.2-dev
   sudo apt-get -y install guile-2.2-doc
 #+END_SRC
 
@@ -452,6 +453,12 @@
   sudo apt-get -y install libreoffice-style-sifr
 #+END_SRC
 
+[[https://www.thunderbird.net/en-US/][Thunderbird]]
+#+BEGIN_SRC sh
+  sudo apt-get -y install thunderbird
+  sudo apt-get -y install thunderbird-locale-ru
+#+END_SRC
+
 ** [[https://www.tug.org/texlive/][TeX Live]]
 #+BEGIN_SRC sh
   sudo apt-get -y install texlive
@@ -467,11 +474,6 @@
 ** [[http://www.giuspen.com/cherrytree/][CherryTree]]
 #+BEGIN_SRC sh
   sudo apt-get -y install cherrytree
-#+END_SRC
-
-** [[https://wiki.gnome.org/Apps/Evolution][Evolution]]
-#+BEGIN_SRC sh
-  sudo apt-get -y install evolution
 #+END_SRC
 
 * Audio and Video
