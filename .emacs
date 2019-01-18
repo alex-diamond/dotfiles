@@ -105,7 +105,6 @@
 
 (setq-default c-basic-offset 4
               c-default-style "bsd")
-
 (add-hook 'c-mode-common-hook
           '(lambda () (c-toggle-auto-newline)))
 
@@ -119,9 +118,10 @@
 (setq-default lisp-body-indent 4
               lisp-indent-function 'common-lisp-indent-function)
 
-(when (executable-find "ipython")
-    (setq-default python-shell-interpreter "ipython"
-                  python-shell-interpreter-args "--simple-prompt -i"))
+(if (executable-find "ipython3")
+    (setq-default python-shell-interpreter "ipython3"
+                  python-shell-interpreter-args "--simple-prompt -i")
+    (setq-default python-shell-interpreter "python3"))
 
 (setq-default scroll-step 1
               scroll-margin 10
@@ -170,8 +170,9 @@
 (semantic-mode)
 (global-ede-mode)
 (ede-enable-generic-projects)
-(semanticdb-enable-gnu-global-databases 'c-mode)
-(semanticdb-enable-gnu-global-databases 'c++-mode)
+(when (executable-find "gtags")
+    (semanticdb-enable-gnu-global-databases 'c-mode)
+    (semanticdb-enable-gnu-global-databases 'c++-mode))
 
 (setq-default abbrev-mode t
               save-abbrevs 'silent)
@@ -205,7 +206,6 @@
      (unless (or (equal major-mode 'python-mode)
                  (equal major-mode 'makefile-gmake-mode))
          (indent-region (point-min) (point-max) nil))))
-
 (add-hook 'before-save-hook 'format-buffer)
 
 ;; Common Lisp
