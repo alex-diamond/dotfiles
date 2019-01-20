@@ -157,16 +157,21 @@
 (require 'ede/generic)
 (require 'semantic/ia)
 (require 'semantic/bovine/gcc)
-(defvar *semantic-modes*
+(defvar *semantic-submodes*
   (list 'global-semanticdb-minor-mode
         'global-semantic-decoration-mode
+        'global-semantic-stickyfunc-mode
+        'global-semantic-idle-summary-mode
         'global-semantic-mru-bookmark-mode
         'global-semantic-highlight-func-mode
         'global-semantic-idle-scheduler-mode
+        'global-semantic-highlight-edits-mode
         'global-semantic-idle-completions-mode
-        'global-semantic-show-parser-state-mode))
-(dolist (mode *semantic-modes*)
-    (add-to-list 'semantic-default-submodes mode))
+        'global-semantic-show-parser-state-mode
+        'global-semantic-show-unmatched-syntax-mode
+        'global-semantic-idle-local-symbol-highlight-mode))
+(dolist (submode *semantic-submodes*)
+    (add-to-list 'semantic-default-submodes submode))
 (semantic-mode)
 (global-ede-mode)
 (ede-enable-generic-projects)
