@@ -560,6 +560,13 @@
   sudo apt-get -y install rawtherapee
 #+END_SRC
 
+** libjpeg, libpng and libtiff
+#+BEGIN_SRC sh
+  sudo apt-get -y install libpng-dev
+  sudo apt-get -y install libjpeg-dev
+  sudo apt-get -y install libtiff-dev
+#+END_SRC
+
 * Internet
 ** [[http://www.openssh.com/][OpenSSH]]
 #+BEGIN_SRC sh
