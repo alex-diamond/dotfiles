@@ -24,6 +24,8 @@ alias rm="rm -Iv"
 alias h="history"
 alias v="gvim_alias"
 alias e="emacs_alias"
+alias root="~/CERN/root/install/bin/root"
+alias geant4="source ~/CERN/geant4/install/bin/geant4.sh"
 
 # A command name that is the name of a directory
 # is executed as if it were the argument to the "cd" command
