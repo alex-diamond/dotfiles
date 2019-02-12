@@ -291,6 +291,11 @@
   sudo apt-get -y install libopencv-dev
 #+END_SRC
 
+*** [[http://dlib.net/][Dlib]]
+#+BEGIN_SRC sh
+  sudo apt-get -y install libdlib-dev
+#+END_SRC
+
 *** [[http://www.swig.org/][SWIG]]
 #+BEGIN_SRC sh
   sudo apt-get -y install swig
