@@ -96,26 +96,26 @@
 (electric-pair-mode -1)
 
 (defalias 'perl-mode 'cperl-mode)
-(setq-default cperl-indent-level 4)
+(setq-default cperl-indent-level 2)
 
-(setq-default tab-width 4
-              standard-indent 4
+(setq-default tab-width 2
+              standard-indent 2
               indent-tabs-mode nil
               tab-always-indent 'complete)
 
-(setq-default c-basic-offset 4
+(setq-default c-basic-offset 2
               c-default-style "bsd")
 (add-hook 'c-mode-common-hook
           '(lambda () (c-toggle-auto-newline)))
 
-(setq-default python-indent 4
-              python-indent-offset 4
+(setq-default python-indent 2
+              python-indent-offset 2
               python-indent-guess-indent-offset nil)
 
 (add-hook 'makefile-mode-hook
           '(lambda () (setq-default indent-tabs-mode t)))
 
-(setq-default lisp-body-indent 4
+(setq-default lisp-body-indent 2
               lisp-indent-function 'common-lisp-indent-function)
 
 (if (executable-find "ipython3")
