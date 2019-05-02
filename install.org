@@ -565,6 +565,11 @@
   sudo apt-get -y install rawtherapee
 #+END_SRC
 
+** [[https://www.digikam.org/][digiKam]]
+#+BEGIN_SRC sh
+  sudo apt-get -y install digikam
+#+END_SRC
+
 ** libjpeg, libpng and libtiff
 #+BEGIN_SRC sh
   sudo apt-get -y install libpng-dev

@@ -288,6 +288,8 @@ sudo apt-get -y install imagemagick
 
 sudo apt-get -y install rawtherapee
 
+sudo apt-get -y install digikam
+
 sudo apt-get -y install libpng-dev
 sudo apt-get -y install libjpeg-dev
 sudo apt-get -y install libtiff-dev
