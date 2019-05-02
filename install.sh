@@ -163,8 +163,6 @@ sudo apt-get -y install libglew-dev
 sudo apt-get -y install freeglut3-dev
 sudo apt-get -y install mesa-common-dev
 
-sudo apt-get -y install libsfml-dev
-
 sudo apt-get -y install tk-dev
 sudo apt-get -y install tcl-dev
 

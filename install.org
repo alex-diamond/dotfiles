@@ -336,11 +336,6 @@
   sudo apt-get -y install mesa-common-dev
 #+END_SRC
 
-*** [[https://www.sfml-dev.org/][SFML]]
-#+BEGIN_SRC sh
-  sudo apt-get -y install libsfml-dev
-#+END_SRC
-
 *** [[https://www.tcl.tk/][Tcl/Tk]]
 #+BEGIN_SRC sh
   sudo apt-get -y install tk-dev
