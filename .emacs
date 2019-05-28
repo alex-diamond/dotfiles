@@ -90,7 +90,7 @@
 
 (global-prettify-symbols-mode)
 (defun scheme-pretty-lambda ()
-    (setq-default prettify-symbols-alist '(("lambda" . 955))))
+  (setq-default prettify-symbols-alist '(("lambda" . 955))))
 
 (electric-indent-mode)
 (electric-pair-mode -1)
@@ -107,17 +107,15 @@
               c-default-style "bsd")
 (add-hook 'c-mode-common-hook
           '(lambda () (c-toggle-auto-newline)))
-
-(setq-default python-indent 2
-              python-indent-offset 2
-              python-indent-guess-indent-offset nil)
-
 (add-hook 'makefile-mode-hook
           '(lambda () (setq-default indent-tabs-mode t)))
 
 (setq-default lisp-body-indent 2
               lisp-indent-function 'common-lisp-indent-function)
 
+(setq-default python-indent 2
+              python-indent-offset 2
+              python-indent-guess-indent-offset nil)
 (if (executable-find "ipython3")
     (setq-default python-shell-interpreter "ipython3"
                   python-shell-interpreter-args "--simple-prompt -i")
@@ -171,13 +169,13 @@
         'global-semantic-show-unmatched-syntax-mode
         'global-semantic-idle-local-symbol-highlight-mode))
 (dolist (submode *semantic-submodes*)
-    (add-to-list 'semantic-default-submodes submode))
+  (add-to-list 'semantic-default-submodes submode))
 (semantic-mode)
 (global-ede-mode)
 (ede-enable-generic-projects)
 (when (executable-find "gtags")
-    (semanticdb-enable-gnu-global-databases 'c-mode)
-    (semanticdb-enable-gnu-global-databases 'c++-mode))
+  (semanticdb-enable-gnu-global-databases 'c-mode)
+  (semanticdb-enable-gnu-global-databases 'c++-mode))
 
 (setq-default abbrev-mode t
               save-abbrevs 'silent)
@@ -188,52 +186,54 @@
     (bookmark-load bookmark-default-file t))
 
 (when (display-graphic-p)
-    (require 'linum)
-    (line-number-mode)
-    (blink-cursor-mode)
-    (global-linum-mode)
-    (load-theme 'wombat t)
-    (fringe-mode '(10 . 10))
-    (setq-default cursor-type 'hollow)
-    (setq-default linum-format "%5d ")
-    (add-to-list 'default-frame-alist '(top . 10))
-    (add-to-list 'default-frame-alist '(left . 10))
-    (add-to-list 'default-frame-alist '(width . 120))
-    (add-to-list 'default-frame-alist '(height . 40)))
+  (require 'linum)
+  (line-number-mode)
+  (blink-cursor-mode)
+  (global-linum-mode)
+  (load-theme 'wombat t)
+  (fringe-mode '(10 . 10))
+  (setq-default cursor-type 'hollow)
+  (setq-default linum-format "%5d ")
+  (setq-default split-width-threshold 0
+                split-height-threshold nil)
+  (add-to-list 'default-frame-alist '(top . 10))
+  (add-to-list 'default-frame-alist '(left . 10))
+  (add-to-list 'default-frame-alist '(width . 120))
+  (add-to-list 'default-frame-alist '(height . 40)))
 
 (defun format-buffer ()
-    (save-excursion
-     (recenter)
-     (delete-trailing-whitespace)
-     (if (equal major-mode 'makefile-gmake-mode)
-         (tabify (point-min) (point-max))
-         (untabify (point-min) (point-max)))
-     (unless (or (equal major-mode 'python-mode)
-                 (equal major-mode 'makefile-gmake-mode))
-         (indent-region (point-min) (point-max) nil))))
+  (save-excursion
+   (recenter)
+   (delete-trailing-whitespace)
+   (if (equal major-mode 'makefile-gmake-mode)
+       (tabify (point-min) (point-max))
+       (untabify (point-min) (point-max)))
+   (unless (or (equal major-mode 'python-mode)
+               (equal major-mode 'makefile-gmake-mode))
+     (indent-region (point-min) (point-max) nil))))
 (add-hook 'before-save-hook 'format-buffer)
 
 ;; Common Lisp
 (when (require 'slime nil :noerror)
-    (require 'slime-autoloads)
-    (slime-setup '(slime-asdf
-                   slime-fancy
-                   slime-tramp
-                   slime-indentation))
-    (if (executable-find "sbcl")
-        (setq-default inferior-lisp-program "sbcl"))
-    (setq-default slime-net-coding-system 'utf-8-unix))
+  (require 'slime-autoloads)
+  (slime-setup '(slime-asdf
+                 slime-fancy
+                 slime-tramp
+                 slime-indentation))
+  (if (executable-find "sbcl")
+      (setq-default inferior-lisp-program "sbcl"))
+  (setq-default slime-net-coding-system 'utf-8-unix))
 
 ;; Racket
 (when (require 'racket-mode nil :noerror)
-    (add-hook 'racket-mode-hook      #'racket-unicode-input-method-enable)
-    (add-hook 'racket-repl-mode-hook #'racket-unicode-input-method-enable))
+  (add-hook 'racket-mode-hook      #'racket-unicode-input-method-enable)
+  (add-hook 'racket-repl-mode-hook #'racket-unicode-input-method-enable))
 
 ;; Scheme
 (when (executable-find "guile")
-    (setq-default scheme-program-name "guile")
-    (add-hook 'scheme-mode-hook 'scheme-pretty-lambda)
-    (autoload 'run-scheme "cmuscheme" "Run an inferior Scheme" t))
+  (setq-default scheme-program-name "guile")
+  (add-hook 'scheme-mode-hook 'scheme-pretty-lambda)
+  (autoload 'run-scheme "cmuscheme" "Run an inferior Scheme" t))
 
 (global-unset-key [up])
 (global-unset-key [down])
