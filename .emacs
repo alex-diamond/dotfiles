@@ -233,7 +233,7 @@
     (setq-default scheme-program-name "guile")
     (setq-default scheme-program-name "scheme"))
 (add-hook 'scheme-mode-hook 'scheme-pretty-lambda)
-(autoload 'run-scheme "cmuscheme" "Run an inferior Scheme" t))
+(autoload 'run-scheme "cmuscheme" "Run an inferior Scheme" t)
 
 (global-unset-key [up])
 (global-unset-key [down])
