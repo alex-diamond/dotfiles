@@ -156,6 +156,11 @@
   sudo apt-get -y install guile-2.2-doc
 #+END_SRC
 
+** [[https://www.scheme.com/index.html][Chez Scheme]]
+#+BEGIN_SRC sh
+  sudo apt-get -y install chezscheme
+#+END_SRC
+
 ** [[https://racket-lang.org/][Racket]]
 #+BEGIN_SRC sh
   sudo apt-get -y install racket

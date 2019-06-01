@@ -203,7 +203,6 @@
 
 (defun format-buffer ()
   (save-excursion
-   (recenter)
    (delete-trailing-whitespace)
    (if (equal major-mode 'makefile-gmake-mode)
        (tabify (point-min) (point-max))
@@ -230,10 +229,11 @@
   (add-hook 'racket-repl-mode-hook #'racket-unicode-input-method-enable))
 
 ;; Scheme
-(when (executable-find "guile")
-  (setq-default scheme-program-name "guile")
-  (add-hook 'scheme-mode-hook 'scheme-pretty-lambda)
-  (autoload 'run-scheme "cmuscheme" "Run an inferior Scheme" t))
+(if (executable-find "guile")
+    (setq-default scheme-program-name "guile")
+    (setq-default scheme-program-name "scheme"))
+(add-hook 'scheme-mode-hook 'scheme-pretty-lambda)
+(autoload 'run-scheme "cmuscheme" "Run an inferior Scheme" t))
 
 (global-unset-key [up])
 (global-unset-key [down])
