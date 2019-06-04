@@ -86,14 +86,14 @@
 
 (require 'font-lock)
 (global-font-lock-mode)
+(global-prettify-symbols-mode)
 (setq-default font-lock-maximum-decoration t)
 
-(global-prettify-symbols-mode)
-(defun scheme-pretty-lambda ()
-  (setq-default prettify-symbols-alist '(("lambda" . 955))))
+(setq-default abbrev-mode t
+              save-abbrevs 'silent)
 
 (electric-indent-mode)
-(electric-pair-mode -1)
+(electric-pair-mode  -1)
 
 (defalias 'perl-mode 'cperl-mode)
 (setq-default cperl-indent-level 2)
@@ -110,12 +110,13 @@
 (add-hook 'makefile-mode-hook
           '(lambda () (setq-default indent-tabs-mode t)))
 
-(setq-default lisp-body-indent 2
-              lisp-indent-function 'common-lisp-indent-function)
-
 (setq-default python-indent 2
               python-indent-offset 2
               python-indent-guess-indent-offset nil)
+
+(setq-default lisp-body-indent 2
+              lisp-indent-function 'common-lisp-indent-function)
+
 (if (executable-find "ipython3")
     (setq-default python-shell-interpreter "ipython3"
                   python-shell-interpreter-args "--simple-prompt -i")
@@ -177,12 +178,10 @@
   (semanticdb-enable-gnu-global-databases 'c-mode)
   (semanticdb-enable-gnu-global-databases 'c++-mode))
 
-(setq-default abbrev-mode t
-              save-abbrevs 'silent)
-
 (require 'bookmark)
 (setq-default bookmark-save-flag t)
-(if (file-exists-p (concat user-emacs-directory "bookmarks"))
+(if (file-exists-p
+     (concat user-emacs-directory "bookmarks"))
     (bookmark-load bookmark-default-file t))
 
 (when (display-graphic-p)
@@ -212,7 +211,6 @@
      (indent-region (point-min) (point-max) nil))))
 (add-hook 'before-save-hook 'format-buffer)
 
-;; Common Lisp
 (when (require 'slime nil :noerror)
   (require 'slime-autoloads)
   (slime-setup '(slime-asdf
@@ -223,16 +221,13 @@
       (setq-default inferior-lisp-program "sbcl"))
   (setq-default slime-net-coding-system 'utf-8-unix))
 
-;; Racket
 (when (require 'racket-mode nil :noerror)
   (add-hook 'racket-mode-hook      #'racket-unicode-input-method-enable)
   (add-hook 'racket-repl-mode-hook #'racket-unicode-input-method-enable))
 
-;; Scheme
 (if (executable-find "guile")
     (setq-default scheme-program-name "guile")
     (setq-default scheme-program-name "scheme"))
-(add-hook 'scheme-mode-hook 'scheme-pretty-lambda)
 (autoload 'run-scheme "cmuscheme" "Run an inferior Scheme" t)
 
 (global-unset-key [up])
