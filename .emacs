@@ -93,7 +93,7 @@
               save-abbrevs 'silent)
 
 (electric-indent-mode)
-(electric-pair-mode  -1)
+(electric-pair-mode -1)
 
 (defalias 'perl-mode 'cperl-mode)
 (setq-default cperl-indent-level 2)
