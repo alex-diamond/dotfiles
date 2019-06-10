@@ -113,6 +113,9 @@ sudo apt-get -y install exuberant-ctags
 
 sudo apt-get -y install global
 
+sudo apt-get -y install valgrind
+sudo apt-get -y install valgrind-mpi
+
 sudo apt-get -y install gcc
 
 sudo apt-get -y install gdb

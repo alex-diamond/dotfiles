@@ -225,6 +225,12 @@
   sudo apt-get -y install global
 #+END_SRC
 
+*** [[http://www.valgrind.org/][Valgrind]]
+#+BEGIN_SRC sh
+  sudo apt-get -y install valgrind
+  sudo apt-get -y install valgrind-mpi
+#+END_SRC
+
 *** [[https://gcc.gnu.org/][GCC]]
 #+BEGIN_SRC sh
   sudo apt-get -y install gcc
