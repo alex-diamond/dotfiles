@@ -12,11 +12,11 @@
 (require 'package)
 (package-initialize)
 
-(setq-default major-mode 'text-mode
-              package-enable-at-startup nil)
-
 (require 'dired)
 (setq-default dired-recursive-deletes 'top)
+
+(setq-default major-mode 'text-mode
+              package-enable-at-startup nil)
 
 (tooltip-mode        -1)
 (menu-bar-mode       -1)
@@ -189,12 +189,17 @@
   (line-number-mode)
   (blink-cursor-mode)
   (global-linum-mode)
-  (load-theme 'wombat t)
   (fringe-mode '(10 . 10))
   (setq-default cursor-type 'hollow)
   (setq-default linum-format "%5d ")
+  (if (require 'color-theme nil :noerror)
+      (progn (color-theme-initialize)
+             (color-theme-charcoal-black))
+      (load-theme 'wombat t))
   (setq-default split-width-threshold 0
                 split-height-threshold nil)
+  (when (member "Consolas" (font-family-list))
+    (set-frame-font "Consolas-14" t t))
   (add-to-list 'default-frame-alist '(top . 10))
   (add-to-list 'default-frame-alist '(left . 10))
   (add-to-list 'default-frame-alist '(width . 120))
