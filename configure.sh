@@ -12,9 +12,9 @@ cp dotfiles/.bashrc   "$HOME"/
 cp dotfiles/.octaverc "$HOME"/
 
 # Install local fonts
-mkdir -p "$HOME"/.fonts
-tar -xvf dotfiles/msf.tar
-mv -v msf "$HOME"/.fonts
+mkdir -p   "$HOME"/.fonts
+tar   -xvf dotfiles/msf.tar
+cp    -rf  msf "$HOME"/.fonts
 
 # Clear
-rm -rf dotfiles
+rm -rf dotfiles msf
