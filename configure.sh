@@ -1,12 +1,20 @@
-# Set git configuration
+# Set git configuration and clone "dotfiles"
 git config --global user.name "karlkorp"
 git config --global user.email "lispgod@gmail.com"
 
-# Put configuration files to the $HOME folder
 git clone https://github.com/karlkorp/dotfiles.git
+
+# Put configuration files to the $HOME folder
 cp dotfiles/.emacs    "$HOME"/
 cp dotfiles/.guile    "$HOME"/
 cp dotfiles/.vimrc    "$HOME"/
 cp dotfiles/.bashrc   "$HOME"/
 cp dotfiles/.octaverc "$HOME"/
+
+# Install local fonts
+mkdir -p "$HOME"/.fonts
+tar -xvf dotfiles/msf.tar
+mv -v msf "$HOME"/.fonts
+
+# Clear
 rm -rf dotfiles
