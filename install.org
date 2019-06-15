@@ -7,12 +7,6 @@
 #+PROPERTY: header-args :exports code :tangle install.sh
 
 * System
-** Fortune
-#+BEGIN_SRC sh
-  sudo apt-get -y install fortune-mod
-  sudo apt-get -y install fortunes-ru
-#+END_SRC
-
 ** [[https://www.midnight-commander.org/][Midnight Commander]]
 #+BEGIN_SRC sh
   sudo apt-get -y install mc
@@ -49,11 +43,6 @@
 ** [[http://gparted.org/][GParted]]
 #+BEGIN_SRC sh
   sudo apt-get -y install gparted
-#+END_SRC
-
-** [[https://www.cgsecurity.org/wiki/TestDisk][TestDisk]]
-#+BEGIN_SRC sh
-  sudo apt-get -y install testdisk
 #+END_SRC
 
 ** [[https://www.gnupg.org/][GnuPG]]
@@ -101,7 +90,6 @@
 
   sudo apt-get -y purge ttf-mscorefonts-installer
   sudo apt-get -y autoremove && sudo apt-get -y autoclean
-  sudo apt-get -y install ttf-mscorefonts-installer
 #+END_SRC
 
 * Computer programming
@@ -215,20 +203,14 @@
   sudo apt-get -y install cmake-curses-gui
 #+END_SRC
 
-*** [[http://ctags.sourceforge.net/][Exuberant Ctags]]
-#+BEGIN_SRC sh
-  sudo apt-get -y install exuberant-ctags
-#+END_SRC
-
 *** [[https://www.gnu.org/software/global/][GNU GLOBAL]]
 #+BEGIN_SRC sh
   sudo apt-get -y install global
 #+END_SRC
 
-*** [[http://www.valgrind.org/][Valgrind]]
+*** [[http://ctags.sourceforge.net/][Exuberant Ctags]]
 #+BEGIN_SRC sh
-  sudo apt-get -y install valgrind
-  sudo apt-get -y install valgrind-mpi
+  sudo apt-get -y install exuberant-ctags
 #+END_SRC
 
 *** [[https://gcc.gnu.org/][GCC]]
@@ -251,6 +233,12 @@
   sudo apt-get -y install gfortran
 #+END_SRC
 
+*** [[http://www.valgrind.org/][Valgrind]]
+#+BEGIN_SRC sh
+  sudo apt-get -y install valgrind
+  sudo apt-get -y install valgrind-mpi
+#+END_SRC
+
 *** [[https://www.gnu.org/software/binutils/][GNU Binary Utilities]]
 #+BEGIN_SRC sh
   sudo apt-get -y install binutils
@@ -265,7 +253,6 @@
 **** [[http://clang.llvm.org/][Clang]]
 #+BEGIN_SRC sh
   sudo apt-get -y install clang
-  sudo apt-get -y install clang-format
   sudo apt-get -y install libclang-dev
 #+END_SRC
 
@@ -637,11 +624,6 @@
   sudo apt-get -y install transmission
   sudo apt-get -y install transmission-cli
   sudo apt-get -y install transmission-gtk
-#+END_SRC
-
-** [[https://telegram.org/][Telegram]]
-#+BEGIN_SRC sh
-  sudo apt-get -y install telegram-desktop
 #+END_SRC
 
 ** [[http://atterer.org/jigdo/][jigdo]]

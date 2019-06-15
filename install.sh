@@ -1,6 +1,3 @@
-sudo apt-get -y install fortune-mod
-sudo apt-get -y install fortunes-ru
-
 sudo apt-get -y install mc
 
 sudo apt-get -y install htop
@@ -17,8 +14,6 @@ sudo apt-get -y install coreutils
 sudo apt-get -y install lsb
 
 sudo apt-get -y install gparted
-
-sudo apt-get -y install testdisk
 
 sudo apt-get -y install gnupg
 
@@ -48,7 +43,6 @@ sudo apt-get -y install fonts-ubuntu-font-family-console
 
 sudo apt-get -y purge ttf-mscorefonts-installer
 sudo apt-get -y autoremove && sudo apt-get -y autoclean
-sudo apt-get -y install ttf-mscorefonts-installer
 
 sudo apt-get -y install git-core
 
@@ -109,12 +103,9 @@ sudo apt-get -y install scons
 sudo apt-get -y install cmake
 sudo apt-get -y install cmake-curses-gui
 
-sudo apt-get -y install exuberant-ctags
-
 sudo apt-get -y install global
 
-sudo apt-get -y install valgrind
-sudo apt-get -y install valgrind-mpi
+sudo apt-get -y install exuberant-ctags
 
 sudo apt-get -y install gcc
 
@@ -124,13 +115,15 @@ sudo apt-get -y install g++
 
 sudo apt-get -y install gfortran
 
+sudo apt-get -y install valgrind
+sudo apt-get -y install valgrind-mpi
+
 sudo apt-get -y install binutils
 
 sudo apt-get -y install llvm
 sudo apt-get -y install llvm-dev
 
 sudo apt-get -y install clang
-sudo apt-get -y install clang-format
 sudo apt-get -y install libclang-dev
 
 sudo apt-get -y install libgsl-dev
@@ -321,7 +314,5 @@ sudo apt-get -y install wget
 sudo apt-get -y install transmission
 sudo apt-get -y install transmission-cli
 sudo apt-get -y install transmission-gtk
-
-sudo apt-get -y install telegram-desktop
 
 sudo apt-get -y install jigdo-file
