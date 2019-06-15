@@ -54,8 +54,10 @@
 (setq-default display-time-24hr-format t)
 (setq-default ring-bell-function 'ignore)
 
-(setq-default indicate-empty-lines t
-              indicate-buffer-boundaries 'left)
+(when (not indicate-empty-lines)
+  (toggle-indicate-empty-lines)
+  (setq-default indicate-empty-lines t
+                indicate-buffer-boundaries 'left))
 
 (savehist-mode)
 (save-place-mode)
@@ -80,9 +82,10 @@
 (ido-everywhere)
 (icomplete-mode)
 (defalias 'list-buffers 'ibuffer)
-(setq-default imenu-auto-rescan t
-              imenu-use-popup-menu nil)
-(setq-default ido-enable-flex-matching t)
+(setq-default imenu-auto-rescan        t
+              imenu-use-popup-menu     nil
+              ido-use-virtual-buffers  t
+              ido-enable-flex-matching t)
 
 (require 'font-lock)
 (global-font-lock-mode)
@@ -114,13 +117,12 @@
               python-indent-offset 2
               python-indent-guess-indent-offset nil)
 
-(setq-default lisp-body-indent 2
-              lisp-indent-function 'common-lisp-indent-function)
-
 (if (executable-find "ipython3")
     (setq-default python-shell-interpreter "ipython3"
-                  python-shell-interpreter-args "--simple-prompt -i")
-    (setq-default python-shell-interpreter "python3"))
+                  python-shell-interpreter-args "--simple-prompt -i"))
+
+(setq-default lisp-body-indent 2
+              lisp-indent-function 'common-lisp-indent-function)
 
 (setq-default scroll-step 1
               scroll-margin 10
@@ -131,9 +133,9 @@
               recenter-position '(top middle bottom)
               mouse-wheel-scroll-amount '(1 ((shift) . 1)))
 
-(setq-default delete-trailing-lines t
-              require-final-newline t
-              next-line-add-newlines nil
+(setq-default delete-trailing-lines     t
+              require-final-newline     t
+              next-line-add-newlines    nil
               sentence-end-double-space nil)
 
 (require 'whitespace)
@@ -196,8 +198,6 @@
       (progn (color-theme-initialize)
              (color-theme-charcoal-black))
       (load-theme 'wombat t))
-  (setq-default split-width-threshold 0
-                split-height-threshold nil)
   (when (member "Consolas" (font-family-list))
     (set-frame-font "Consolas-14" t t))
   (add-to-list 'default-frame-alist '(top . 10))
