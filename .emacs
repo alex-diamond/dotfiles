@@ -109,10 +109,14 @@
               indent-tabs-mode nil
               tab-always-indent 'complete)
 
+(defun c-common-mode ()
+  (c-toggle-auto-newline      1)
+  (c-toggle-auto-hungry-state 1))
 (setq-default c-basic-offset 2
               c-default-style "bsd")
-(add-hook 'c-mode-common-hook
-          '(lambda () (c-toggle-auto-newline)))
+(when (require 'cc-mode nil :noerror)
+  (add-hook 'c-mode-common-hook 'c-common-mode))
+
 (add-hook 'makefile-mode-hook
           '(lambda () (setq-default indent-tabs-mode t)))
 
@@ -143,8 +147,7 @@
 (when (require 'whitespace nil :noerror)
   (global-whitespace-mode)
   (setq-default whitespace-line-column 80
-                whitespace-style '(face empty tabs
-                                   lines-tail trailing)))
+                whitespace-style '(face empty tabs lines-tail trailing)))
 
 (prefer-coding-system                   'utf-8)
 (set-language-environment               'UTF-8)
@@ -155,15 +158,11 @@
               file-name-coding-system   'utf-8
               buffer-file-coding-system 'utf-8)
 
-(require 'cedet   nil :noerror)
-(require 'cc-mode nil :noerror)
-
+(require 'cedet             nil :noerror)
 (when (require 'ede/generic nil :noerror)
   (global-ede-mode)
   (ede-enable-generic-projects))
-
-(when (require 'semantic nil :noerror)
-  (semantic-mode)
+(when (require 'semantic        nil :noerror)
   (require 'semantic/ia         nil :noerror)
   (require 'semantic/bovine/gcc nil :noerror)
   (when (executable-find "gtags")
@@ -183,7 +182,8 @@
           'global-semantic-show-unmatched-syntax-mode
           'global-semantic-idle-local-symbol-highlight-mode))
   (dolist (submode *semantic-submodes*)
-    (add-to-list 'semantic-default-submodes submode)))
+    (add-to-list 'semantic-default-submodes submode))
+  (semantic-mode))
 
 (when (require 'bookmark nil :noerror)
   (setq-default bookmark-save-flag t)
