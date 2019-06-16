@@ -5,19 +5,6 @@
 ;;;
 
 ;;; Code:
-(require 'bs)
-(require 'org)
-(require 'eldoc)
-(require 'cl-lib)
-(require 'package)
-(package-initialize)
-
-(require 'dired)
-(setq-default dired-recursive-deletes 'top)
-
-(setq-default major-mode 'text-mode
-              package-enable-at-startup nil)
-
 (tooltip-mode        -1)
 (menu-bar-mode       -1)
 (tool-bar-mode       -1)
@@ -25,6 +12,21 @@
 (scroll-bar-mode     -1)
 (global-hl-line-mode -1)
 
+(setq-default major-mode 'text-mode)
+
+(require 'bs     nil :noerror)
+(require 'org    nil :noerror)
+(require 'eldoc  nil :noerror)
+(require 'cl-lib nil :noerror)
+
+(when (require 'package nil :noerror)
+  (package-initialize)
+  (setq-default package-enable-at-startup nil))
+
+(when (require 'dired nil :noerror)
+  (setq-default dired-recursive-deletes 'top))
+
+(icomplete-mode)
 (global-subword-mode)
 (transient-mark-mode)
 (delete-selection-mode)
@@ -35,11 +37,11 @@
 (show-paren-mode)
 (column-number-mode)
 (size-indication-mode)
-(setq-default truncate-lines t
-              global-visual-line-mode nil
+(setq-default truncate-lines                 t
+              global-visual-line-mode        nil
               truncate-partial-width-windows nil)
 
-(setq-default search-highlight t
+(setq-default search-highlight        t
               query-replace-highlight t)
 
 (defalias 'yes-or-no-p 'y-or-n-p)
@@ -62,35 +64,36 @@
 (savehist-mode)
 (save-place-mode)
 (setq-default history-length 1000
-              history-delete-duplicates t
+              history-delete-duplicates        t
               savehist-save-minibuffer-history t)
 
-(setq-default version-control        t
-              auto-save-default      t
-              backup-by-copying      t
-              kept-new-versions      3
-              kept-old-versions      1
-              make-backup-files      t
-              delete-old-versions    t
-              vc-make-backup-files   t
+(setq-default version-control      t
+              auto-save-default    t
+              backup-by-copying    t
+              kept-new-versions    3
+              kept-old-versions    1
+              make-backup-files    t
+              delete-old-versions  t
+              vc-make-backup-files t
               backup-directory-alist '(("." . "~/.emacs.d/backups")))
 
-(require 'ido)
-(require 'imenu)
-(require 'ibuffer)
-(ido-mode t)
-(ido-everywhere)
-(icomplete-mode)
-(defalias 'list-buffers 'ibuffer)
-(setq-default imenu-auto-rescan        t
-              imenu-use-popup-menu     nil
-              ido-use-virtual-buffers  t
-              ido-enable-flex-matching t)
+(when (require 'ido nil :noerror)
+  (ido-mode t)
+  (ido-everywhere)
+  (setq-default ido-use-virtual-buffers  t
+                ido-enable-flex-matching t))
 
-(require 'font-lock)
-(global-font-lock-mode)
-(global-prettify-symbols-mode)
-(setq-default font-lock-maximum-decoration t)
+(when (require 'imenu nil :noerror)
+  (setq-default imenu-auto-rescan    t
+                imenu-use-popup-menu nil))
+
+(when (require 'ibuffer nil :noerror)
+  (defalias 'list-buffers 'ibuffer))
+
+(when (require 'font-lock nil :noerror)
+  (global-font-lock-mode)
+  (global-prettify-symbols-mode)
+  (setq-default font-lock-maximum-decoration t))
 
 (setq-default abbrev-mode t
               save-abbrevs 'silent)
@@ -116,7 +119,6 @@
 (setq-default python-indent 2
               python-indent-offset 2
               python-indent-guess-indent-offset nil)
-
 (if (executable-find "ipython3")
     (setq-default python-shell-interpreter "ipython3"
                   python-shell-interpreter-args "--simple-prompt -i"))
@@ -138,10 +140,11 @@
               next-line-add-newlines    nil
               sentence-end-double-space nil)
 
-(require 'whitespace)
-(global-whitespace-mode)
-(setq-default whitespace-line-column 80
-              whitespace-style '(face empty tabs lines-tail trailing))
+(when (require 'whitespace nil :noerror)
+  (global-whitespace-mode)
+  (setq-default whitespace-line-column 80
+                whitespace-style '(face empty tabs
+                                   lines-tail trailing)))
 
 (prefer-coding-system                   'utf-8)
 (set-language-environment               'UTF-8)
@@ -152,48 +155,49 @@
               file-name-coding-system   'utf-8
               buffer-file-coding-system 'utf-8)
 
-(require 'cedet)
-(require 'cc-mode)
-(require 'semantic)
-(require 'ede/generic)
-(require 'semantic/ia)
-(require 'semantic/bovine/gcc)
-(defvar *semantic-submodes*
-  (list 'global-semanticdb-minor-mode
-        'global-semantic-decoration-mode
-        'global-semantic-stickyfunc-mode
-        'global-semantic-idle-summary-mode
-        'global-semantic-mru-bookmark-mode
-        'global-semantic-highlight-func-mode
-        'global-semantic-idle-scheduler-mode
-        'global-semantic-highlight-edits-mode
-        'global-semantic-idle-completions-mode
-        'global-semantic-show-parser-state-mode
-        'global-semantic-show-unmatched-syntax-mode
-        'global-semantic-idle-local-symbol-highlight-mode))
-(dolist (submode *semantic-submodes*)
-  (add-to-list 'semantic-default-submodes submode))
-(semantic-mode)
-(global-ede-mode)
-(ede-enable-generic-projects)
-(when (executable-find "gtags")
-  (semanticdb-enable-gnu-global-databases 'c-mode)
-  (semanticdb-enable-gnu-global-databases 'c++-mode))
+(require 'cedet   nil :noerror)
+(require 'cc-mode nil :noerror)
 
-(require 'bookmark)
-(setq-default bookmark-save-flag t)
-(if (file-exists-p
-     (concat user-emacs-directory "bookmarks"))
-    (bookmark-load bookmark-default-file t))
+(when (require 'ede/generic nil :noerror)
+  (global-ede-mode)
+  (ede-enable-generic-projects))
+
+(when (require 'semantic nil :noerror)
+  (semantic-mode)
+  (require 'semantic/ia         nil :noerror)
+  (require 'semantic/bovine/gcc nil :noerror)
+  (when (executable-find "gtags")
+    (semanticdb-enable-gnu-global-databases 'c-mode)
+    (semanticdb-enable-gnu-global-databases 'c++-mode))
+  (defvar *semantic-submodes*
+    (list 'global-semanticdb-minor-mode
+          'global-semantic-decoration-mode
+          'global-semantic-stickyfunc-mode
+          'global-semantic-idle-summary-mode
+          'global-semantic-mru-bookmark-mode
+          'global-semantic-highlight-func-mode
+          'global-semantic-idle-scheduler-mode
+          'global-semantic-highlight-edits-mode
+          'global-semantic-idle-completions-mode
+          'global-semantic-show-parser-state-mode
+          'global-semantic-show-unmatched-syntax-mode
+          'global-semantic-idle-local-symbol-highlight-mode))
+  (dolist (submode *semantic-submodes*)
+    (add-to-list 'semantic-default-submodes submode)))
+
+(when (require 'bookmark nil :noerror)
+  (setq-default bookmark-save-flag t)
+  (if (file-exists-p (concat user-emacs-directory "bookmarks"))
+      (bookmark-load bookmark-default-file t)))
 
 (when (display-graphic-p)
-  (require 'linum)
+  (when (require 'linum nil :noerror)
+    (global-linum-mode)
+    (setq-default linum-format "%5d "))
   (line-number-mode)
   (blink-cursor-mode)
-  (global-linum-mode)
   (fringe-mode '(10 . 10))
   (setq-default cursor-type 'hollow)
-  (setq-default linum-format "%5d ")
   (if (require 'color-theme nil :noerror)
       (progn (color-theme-initialize)
              (color-theme-charcoal-black))
@@ -211,13 +215,14 @@
    (if (equal major-mode 'makefile-gmake-mode)
        (tabify (point-min) (point-max))
        (untabify (point-min) (point-max)))
-   (unless (or (equal major-mode 'python-mode)
+   (unless (or (equal major-mode 'text-mode)
+               (equal major-mode 'python-mode)
                (equal major-mode 'makefile-gmake-mode))
      (indent-region (point-min) (point-max) nil))))
 (add-hook 'before-save-hook 'format-buffer)
 
-(when (require 'slime nil :noerror)
-  (require 'slime-autoloads)
+(when (require 'slime       nil :noerror)
+  (require 'slime-autoloads nil :noerror)
   (slime-setup '(slime-asdf
                  slime-fancy
                  slime-tramp
