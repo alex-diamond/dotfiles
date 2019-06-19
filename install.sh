@@ -143,6 +143,10 @@ sudo apt-get -y install libopencv-dev
 
 sudo apt-get -y install libdlib-dev
 
+sudo apt-get -y install libcgal-dev
+
+sudo apt-get -y install libnlopt-dev
+
 sudo apt-get -y install swig
 
 sudo apt-get -y install libeigen3-dev

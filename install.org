@@ -294,6 +294,16 @@
   sudo apt-get -y install libdlib-dev
 #+END_SRC
 
+*** [[https://www.cgal.org/][CGAL]]
+#+BEGIN_SRC sh
+  sudo apt-get -y install libcgal-dev
+#+END_SRC
+
+*** [[https://nlopt.readthedocs.io/en/latest/][NLopt]]
+#+BEGIN_SRC sh
+  sudo apt-get -y install libnlopt-dev
+#+END_SRC
+
 *** [[http://www.swig.org/][SWIG]]
 #+BEGIN_SRC sh
   sudo apt-get -y install swig
