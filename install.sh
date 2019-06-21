@@ -242,6 +242,9 @@ sudo apt-get -y install libxext-dev
 sudo apt-get -y install libexpat1-dev
 sudo apt-get -y install libxerces-c-dev
 
+sudo apt-get -y install freefem++
+sudo apt-get -y install libfreefem++-dev
+
 sudo apt-get -y install libreoffice
 sudo apt-get -y install libreoffice-style-sifr
 

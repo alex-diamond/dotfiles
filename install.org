@@ -465,6 +465,12 @@
   sudo apt-get -y install libxerces-c-dev
 #+END_SRC
 
+** [[https://freefem.org/][FreeFEM]]
+#+BEGIN_SRC sh
+  sudo apt-get -y install freefem++
+  sudo apt-get -y install libfreefem++-dev
+#+END_SRC
+
 * Office
 ** [[https://www.libreoffice.org/][LibreOffice]]
 #+BEGIN_SRC sh
