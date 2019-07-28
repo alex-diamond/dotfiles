@@ -24,6 +24,7 @@
   (setq-default package-enable-at-startup nil))
 
 (when (require 'dired nil :noerror)
+  (setq-default delete-by-moving-to-trash t)
   (setq-default dired-recursive-deletes 'top))
 
 (icomplete-mode)
@@ -109,6 +110,17 @@
               indent-tabs-mode nil
               tab-always-indent 'complete)
 
+(setq-default f90-do-indent                2
+              f90-smart-end               'blink
+              f90-if-indent                2
+              f90-type-indent              2
+              fortran-do-indent            2
+              fortran-if-indent            2
+              f90-program-indent           2
+              fortran-structure-indent     2
+              f90-continuation-indent      4
+              fortran-continuation-string "&")
+
 (defun c-common-mode ()
   (c-toggle-auto-newline      1)
   (c-toggle-auto-hungry-state 1))
@@ -123,9 +135,13 @@
 (setq-default python-indent 2
               python-indent-offset 2
               python-indent-guess-indent-offset nil)
+
 (if (executable-find "ipython3")
     (setq-default python-shell-interpreter "ipython3"
-                  python-shell-interpreter-args "--simple-prompt -i"))
+                  python-shell-interpreter-args "--simple-prompt -i")
+    (if (executable-find "python3")
+        (setq-default python-shell-interpreter "python3"
+                      python-shell-interpreter-args "-i")))
 
 (setq-default lisp-body-indent 2
               lisp-indent-function 'common-lisp-indent-function)
@@ -139,7 +155,10 @@
               recenter-position '(top middle bottom)
               mouse-wheel-scroll-amount '(1 ((shift) . 1)))
 
-(setq-default delete-trailing-lines     t
+(setq-default track-eol                 t
+              kill-whole-line           t
+              line-move-visual          nil
+              delete-trailing-lines     t
               require-final-newline     t
               next-line-add-newlines    nil
               sentence-end-double-space nil)
@@ -198,10 +217,6 @@
   (blink-cursor-mode)
   (fringe-mode '(10 . 10))
   (setq-default cursor-type 'hollow)
-  ;; (if (require 'color-theme nil :noerror)
-  ;; (progn (color-theme-initialize)
-  ;; (color-theme-charcoal-black))
-  ;; (load-theme 'wombat t))
   (when (member "Consolas" (font-family-list))
     (set-frame-font "Consolas-14" t t))
   (add-to-list 'default-frame-alist '(top . 10))
