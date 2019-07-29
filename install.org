@@ -151,6 +151,8 @@
 
 ** [[https://racket-lang.org/][Racket]]
 #+BEGIN_SRC sh
+  sudo add-apt-repository -y ppa:plt/racket
+  sudo apt-get update
   sudo apt-get -y install racket
   sudo apt-get -y install racket-doc
 #+END_SRC

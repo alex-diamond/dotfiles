@@ -78,6 +78,8 @@ sudo apt-get -y install guile-2.2-doc
 
 sudo apt-get -y install chezscheme
 
+sudo add-apt-repository -y ppa:plt/racket
+sudo apt-get update
 sudo apt-get -y install racket
 sudo apt-get -y install racket-doc
 
