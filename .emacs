@@ -12,20 +12,27 @@
 (scroll-bar-mode     -1)
 (global-hl-line-mode -1)
 
-(setq-default major-mode 'text-mode)
-
 (require 'bs     nil :noerror)
 (require 'org    nil :noerror)
 (require 'eldoc  nil :noerror)
 (require 'cl-lib nil :noerror)
 
+(setq-default common-tab-width 2)
+
 (when (require 'package nil :noerror)
   (package-initialize)
   (setq-default package-enable-at-startup nil))
 
+(setq-default delete-by-moving-to-trash t)
+
+(setq-default backward-delete-char-untabify-method 'hungry)
+
 (when (require 'dired nil :noerror)
-  (setq-default delete-by-moving-to-trash t)
-  (setq-default dired-recursive-deletes 'top))
+  (setq-default dired-recursive-copies  'always)
+  (setq-default dired-recursive-deletes 'always))
+
+(setq-default major-mode         'text-mode
+              initial-major-mode 'fundamental-mode)
 
 (icomplete-mode)
 (global-subword-mode)
@@ -33,6 +40,7 @@
 (delete-selection-mode)
 (global-auto-revert-mode)
 (setq-default show-paren-delay 0
+              x-select-enable-clipboard t
               show-paren-style 'parenthesis)
 
 (show-paren-mode)
@@ -50,8 +58,8 @@
 
 (setq-default frame-title-format "%b")
 
-(setq-default inhibit-startup-screen t
-              initial-scratch-message "")
+(setq-default inhibit-startup-screen  t
+              initial-scratch-message nil)
 
 (display-time-mode)
 (setq-default display-time-24hr-format t)
@@ -78,6 +86,11 @@
               vc-make-backup-files t
               backup-directory-alist '(("." . "~/.emacs.d/backups")))
 
+(when (require 'recentf nil :noerror)
+  (setq-default recentf-max-menu-items  10
+                recentf-max-saved-items 100)
+  (recentf-mode))
+
 (when (require 'ido nil :noerror)
   (ido-mode t)
   (ido-everywhere)
@@ -96,44 +109,46 @@
   (global-prettify-symbols-mode)
   (setq-default font-lock-maximum-decoration t))
 
-(setq-default abbrev-mode t
+(setq-default abbrev-mode   t
               save-abbrevs 'silent)
 
 (electric-indent-mode)
 (electric-pair-mode -1)
 
 (defalias 'perl-mode 'cperl-mode)
-(setq-default cperl-indent-level 2)
+(setq-default cperl-indent-level common-tab-width)
 
-(setq-default tab-width 2
-              standard-indent 2
-              indent-tabs-mode nil
+(setq-default tab-width          common-tab-width
+              standard-indent    common-tab-width
+              indent-tabs-mode   nil
               tab-always-indent 'complete)
 
-(setq-default f90-do-indent                2
+(setq-default f90-do-indent                common-tab-width
               f90-smart-end               'blink
-              f90-if-indent                2
-              f90-type-indent              2
-              fortran-do-indent            2
-              fortran-if-indent            2
-              f90-program-indent           2
-              fortran-structure-indent     2
+              f90-if-indent                common-tab-width
+              f90-type-indent              common-tab-width
+              fortran-do-indent            common-tab-width
+              fortran-if-indent            common-tab-width
+              f90-program-indent           common-tab-width
               f90-continuation-indent      4
+              fortran-structure-indent     common-tab-width
               fortran-continuation-string "&")
 
 (defun c-common-mode ()
   (c-toggle-auto-newline      1)
   (c-toggle-auto-hungry-state 1))
-(setq-default c-basic-offset 2
+
+(setq-default c-basic-offset   common-tab-width
               c-default-style "bsd")
+
 (when (require 'cc-mode nil :noerror)
   (add-hook 'c-mode-common-hook 'c-common-mode))
 
 (add-hook 'makefile-mode-hook
           '(lambda () (setq-default indent-tabs-mode t)))
 
-(setq-default python-indent 2
-              python-indent-offset 2
+(setq-default python-indent        common-tab-width
+              python-indent-offset common-tab-width
               python-indent-guess-indent-offset nil)
 
 (if (executable-find "ipython3")
@@ -143,7 +158,7 @@
         (setq-default python-shell-interpreter "python3"
                       python-shell-interpreter-args "-i")))
 
-(setq-default lisp-body-indent 2
+(setq-default lisp-body-indent      common-tab-width
               lisp-indent-function 'common-lisp-indent-function)
 
 (setq-default scroll-step 1
@@ -161,6 +176,7 @@
               delete-trailing-lines     t
               require-final-newline     t
               next-line-add-newlines    nil
+              show-trailing-whitespace  t
               sentence-end-double-space nil)
 
 (when (require 'whitespace nil :noerror)
@@ -216,6 +232,7 @@
   (line-number-mode)
   (blink-cursor-mode)
   (fringe-mode '(10 . 10))
+  (load-theme 'wheatgrass t)
   (setq-default cursor-type 'hollow)
   (when (member "Consolas" (font-family-list))
     (set-frame-font "Consolas-14" t t))
@@ -271,5 +288,3 @@
 (global-set-key (kbd "<f9>")  'kmacro-call-macro)
 (global-set-key (kbd "<f10>") 'toggle-menu-bar-mode-from-frame)
 (global-set-key (kbd "<f11>") 'toggle-frame-fullscreen)
-
-;;; .emacs ends here
