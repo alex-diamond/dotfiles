@@ -503,6 +503,11 @@
   sudo apt-get -y install cherrytree
 #+END_SRC
 
+** [[https://keepassxc.org/][KeePassXC]]
+#+BEGIN_SRC sh
+  sudo apt-get -y install keepassxc
+#+END_SRC
+
 * Audio and Video
 ** [[https://ffmpeg.org/][FFmpeg]]
 #+BEGIN_SRC sh
