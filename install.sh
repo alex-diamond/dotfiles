@@ -41,9 +41,6 @@ sudo apt-get -y install fonts-liberation
 sudo apt-get -y install ttf-ubuntu-font-family
 sudo apt-get -y install fonts-ubuntu-font-family-console
 
-sudo apt-get -y purge ttf-mscorefonts-installer
-sudo apt-get -y autoremove && sudo apt-get -y autoclean
-
 sudo apt-get -y install git-core
 
 sudo apt-get -y install subversion
