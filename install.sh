@@ -231,9 +231,6 @@ sudo apt-get -y install libnetcdf-cxx-legacy-dev
 
 sudo apt-get -y install libhypre-dev
 
-sudo apt-get -y install qt4-default
-sudo apt-get -y install libqt4-opengl-dev
-
 sudo apt-get -y install libxft-dev
 sudo apt-get -y install libxmu-dev
 sudo apt-get -y install libxpm-dev
