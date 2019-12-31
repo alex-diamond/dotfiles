@@ -39,9 +39,10 @@
 (transient-mark-mode)
 (delete-selection-mode)
 (global-auto-revert-mode)
-(setq-default show-paren-delay 0
-              x-select-enable-clipboard t
-              show-paren-style 'parenthesis)
+(setq-default debug-on-error             t
+              show-paren-delay           0
+              show-paren-style          'parenthesis
+              x-select-enable-clipboard  t)
 
 (show-paren-mode)
 (column-number-mode)
@@ -193,10 +194,7 @@
               file-name-coding-system   'utf-8
               buffer-file-coding-system 'utf-8)
 
-(require 'cedet             nil :noerror)
-(when (require 'ede/generic nil :noerror)
-  (global-ede-mode)
-  (ede-enable-generic-projects))
+(require 'cedet                 nil :noerror)
 (when (require 'semantic        nil :noerror)
   (require 'semantic/ia         nil :noerror)
   (require 'semantic/bovine/gcc nil :noerror)
@@ -288,3 +286,5 @@
 (global-set-key (kbd "<f9>")  'kmacro-call-macro)
 (global-set-key (kbd "<f10>") 'toggle-menu-bar-mode-from-frame)
 (global-set-key (kbd "<f11>") 'toggle-frame-fullscreen)
+
+;;; .emacs ends here
