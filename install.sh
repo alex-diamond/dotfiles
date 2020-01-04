@@ -303,6 +303,10 @@ sudo apt-get -y install remmina
 sudo apt-get -y install remmina-plugin-rdp
 sudo apt-get -y install remmina-plugin-vnc
 
+sudo apt-get -y install filezilla
+
+sudo apt-get -y install uget
+
 sudo apt-get -y install curl
 sudo apt-get -y install curlftpfs
 

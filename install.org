@@ -605,6 +605,16 @@
   sudo apt-get -y install remmina-plugin-vnc
 #+END_SRC
 
+** [[https://filezilla-project.org/][FileZilla]]
+#+BEGIN_SRC sh
+  sudo apt-get -y install filezilla
+#+END_SRC
+
+** uGet
+#+BEGIN_SRC sh
+  sudo apt-get -y install uget
+#+END_SRC
+
 ** [[https://curl.haxx.se/][cURL]]
 #+BEGIN_SRC sh
   sudo apt-get -y install curl
