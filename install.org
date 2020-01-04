@@ -123,7 +123,6 @@
 ** [[https://www.perl.org/][Perl]]
 #+BEGIN_SRC sh
   sudo apt-get -y install perl
-  sudo apt-get -y install perl6
   sudo apt-get -y install perl-tk
   sudo apt-get -y install perl-doc
 #+END_SRC
@@ -458,12 +457,6 @@
   sudo apt-get -y install libxerces-c-dev
 #+END_SRC
 
-** [[https://freefem.org/][FreeFEM]]
-#+BEGIN_SRC sh
-  sudo apt-get -y install freefem++
-  sudo apt-get -y install libfreefem++-dev
-#+END_SRC
-
 * Office
 ** [[https://www.libreoffice.org/][LibreOffice]]
 #+BEGIN_SRC sh
@@ -487,11 +480,6 @@
 ** [[https://pdfgrep.org/][pdfgrep]]
 #+BEGIN_SRC sh
   sudo apt-get -y install pdfgrep
-#+END_SRC
-
-** [[http://www.giuspen.com/cherrytree/][CherryTree]]
-#+BEGIN_SRC sh
-  sudo apt-get -y install cherrytree
 #+END_SRC
 
 ** [[https://keepassxc.org/][KeePassXC]]
@@ -523,11 +511,6 @@
 ** [[http://soundconverter.org/][SoundConverter]]
 #+BEGIN_SRC sh
   sudo apt-get -y install soundconverter
-#+END_SRC
-
-** [[http://www.videolan.org/vlc/][VLC media player]]
-#+BEGIN_SRC sh
-  sudo apt-get -y install vlc
 #+END_SRC
 
 ** [[https://www.smplayer.info/en/info][SMPlayer]] and [[https://www.smtube.org/en/index][SMTube]]

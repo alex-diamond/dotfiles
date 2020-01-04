@@ -62,7 +62,6 @@ sudo apt-get -y install python3-venv
 sudo apt-get -y install python3-setuptools
 
 sudo apt-get -y install perl
-sudo apt-get -y install perl6
 sudo apt-get -y install perl-tk
 sudo apt-get -y install perl-doc
 
@@ -238,9 +237,6 @@ sudo apt-get -y install libxext-dev
 sudo apt-get -y install libexpat1-dev
 sudo apt-get -y install libxerces-c-dev
 
-sudo apt-get -y install freefem++
-sudo apt-get -y install libfreefem++-dev
-
 sudo apt-get -y install libreoffice
 sudo apt-get -y install libreoffice-style-sifr
 
@@ -253,8 +249,6 @@ sudo apt-get -y install texlive-lang-cyrillic
 
 sudo apt-get -y install pdfgrep
 
-sudo apt-get -y install cherrytree
-
 sudo apt-get -y install keepassxc
 
 sudo apt-get -y install ffmpeg
@@ -266,8 +260,6 @@ sudo apt-get -y install audacity
 sudo apt-get -y install easytag
 
 sudo apt-get -y install soundconverter
-
-sudo apt-get -y install vlc
 
 sudo add-apt-repository -y ppa:rvm/smplayer
 sudo apt-get update
