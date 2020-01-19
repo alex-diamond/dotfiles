@@ -461,6 +461,7 @@
 ** [[https://www.libreoffice.org/][LibreOffice]]
 #+BEGIN_SRC sh
   sudo apt-get -y install libreoffice
+  sudo apt-get -y install libreoffice-nlpsolver
   sudo apt-get -y install libreoffice-style-sifr
 #+END_SRC
 

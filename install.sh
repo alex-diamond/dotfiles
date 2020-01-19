@@ -238,6 +238,7 @@ sudo apt-get -y install libexpat1-dev
 sudo apt-get -y install libxerces-c-dev
 
 sudo apt-get -y install libreoffice
+sudo apt-get -y install libreoffice-nlpsolver
 sudo apt-get -y install libreoffice-style-sifr
 
 sudo apt-get -y install thunderbird
