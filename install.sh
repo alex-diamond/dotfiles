@@ -318,3 +318,5 @@ sudo apt-get -y install transmission-cli
 sudo apt-get -y install transmission-gtk
 
 sudo apt-get -y install jigdo-file
+
+sudo apt-get -y install openttd

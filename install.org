@@ -638,3 +638,9 @@
 #+BEGIN_SRC sh
   sudo apt-get -y install jigdo-file
 #+END_SRC
+
+* Games
+** [[https://www.openttd.org/][OpenTTD]]
+#+BEGIN_SRC sh
+  sudo apt-get -y install openttd
+#+END_SRC
