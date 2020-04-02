@@ -265,9 +265,10 @@
   (add-hook 'racket-mode-hook      #'racket-unicode-input-method-enable)
   (add-hook 'racket-repl-mode-hook #'racket-unicode-input-method-enable))
 
-(if (executable-find "guile")
-    (setq-default scheme-program-name "guile")
-    (setq-default scheme-program-name "scheme"))
+(if (executable-find "scheme")
+    (setq-default scheme-program-name "scheme")
+    (if (executable-find "guile")
+        (setq-default scheme-program-name "guile")))
 (autoload 'run-scheme "cmuscheme" "Run an inferior Scheme" t)
 
 (global-unset-key [up])
@@ -286,5 +287,4 @@
 (global-set-key (kbd "<f9>")  'kmacro-call-macro)
 (global-set-key (kbd "<f10>") 'toggle-menu-bar-mode-from-frame)
 (global-set-key (kbd "<f11>") 'toggle-frame-fullscreen)
-
 ;;; .emacs ends here
