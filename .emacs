@@ -1,8 +1,7 @@
 ;;; .emacs --- GNU Emacs configuration file
 
 ;;; Commentary:
-;;  GNU Emacs general configuration
-;;;
+;;; GNU Emacs general configuration
 
 ;;; Code:
 (tooltip-mode        -1)
@@ -287,4 +286,5 @@
 (global-set-key (kbd "<f9>")  'kmacro-call-macro)
 (global-set-key (kbd "<f10>") 'toggle-menu-bar-mode-from-frame)
 (global-set-key (kbd "<f11>") 'toggle-frame-fullscreen)
+
 ;;; .emacs ends here
