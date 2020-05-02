@@ -1,15 +1,12 @@
 (require 'package)
+(package-initialize)
+(setq-default package-check-signature nil)
 (add-to-list 'package-archives
              '("melpa" . "https://melpa.org/packages/") t)
-
-(package-initialize)
-
-(setq-default package-check-signature nil)
-
 (when (not package-archive-contents)
   (package-refresh-contents))
-
 (defvar package-list '(org
+                       helm
                        rtags
                        slime
                        pos-tip
@@ -18,7 +15,6 @@
                        company-rtags
                        dracula-theme
                        modern-cpp-font-lock))
-
 (dolist (package package-list)
   (unless (package-installed-p package)
     (package-install package)))
@@ -272,6 +268,9 @@
      (indent-region (point-min) (point-max) nil))))
 (add-hook 'before-save-hook 'format-buffer)
 
+(when (require 'helm nil :noerror)
+  (require 'helm-config))
+
 (when (require 'slime       nil :noerror)
   (require 'slime-autoloads nil :noerror)
   (slime-setup '(slime-asdf
@@ -297,7 +296,8 @@
 
 (when (require 'company nil :noerror)
   (add-hook 'after-init-hook 'global-company-mode)
-  (eval-after-load 'company '(add-to-list 'company-backends 'company-rtags)))
+  (eval-after-load 'company
+                   '(add-to-list 'company-backends 'company-rtags)))
 
 (when (require 'racket-mode nil :noerror)
   (add-hook 'racket-mode-hook      #'racket-unicode-input-method-enable)
