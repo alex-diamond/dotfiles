@@ -7,6 +7,7 @@
   (package-refresh-contents))
 (defvar package-list '(org
                        helm
+                       magit
                        rtags
                        slime
                        pos-tip
@@ -105,12 +106,6 @@
   (setq-default recentf-max-menu-items   10
                 recentf-max-saved-items 100)
   (recentf-mode))
-
-(when (require 'ido nil :noerror)
-  (ido-mode t)
-  (ido-everywhere)
-  (setq-default ido-use-virtual-buffers  t
-                ido-enable-flex-matching t))
 
 (when (require 'imenu nil :noerror)
   (setq-default imenu-auto-rescan    t
@@ -268,8 +263,18 @@
      (indent-region (point-min) (point-max) nil))))
 (add-hook 'before-save-hook 'format-buffer)
 
-(when (require 'helm nil :noerror)
-  (require 'helm-config))
+(if (require 'helm nil :noerror)
+    (progn
+      (require 'helm-config)
+      (helm-mode)
+      (global-set-key (kbd "M-x")     'helm-M-x)
+      (global-set-key (kbd "C-x C-f") 'helm-find-files)
+      (global-set-key (kbd "C-x r b") 'helm-filtered-bookmarks))
+    (when (require 'ido nil :noerror)
+      (ido-mode t)
+      (ido-everywhere)
+      (setq-default ido-use-virtual-buffers  t
+                    ido-enable-flex-matching t)))
 
 (when (require 'slime       nil :noerror)
   (require 'slime-autoloads nil :noerror)
@@ -284,7 +289,7 @@
 (when (require 'ggtags nil :noerror)
   (add-hook 'c-mode-common-hook
             '(lambda () (when (derived-mode-p 'c-mode 'c++-mode)
-                     (ggtags-mode)))))
+                          (ggtags-mode)))))
 
 (when (require 'rtags nil :noerror)
   (rtags-diagnostics)

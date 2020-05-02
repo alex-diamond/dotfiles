@@ -1,3 +1,0 @@
-(use-modules (ice-9 history))
-(use-modules (ice-9 readline))
-(activate-readline)
