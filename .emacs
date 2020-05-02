@@ -284,7 +284,7 @@
 (when (require 'ggtags nil :noerror)
   (add-hook 'c-mode-common-hook
             '(lambda () (when (derived-mode-p 'c-mode 'c++-mode)
-                          (ggtags-mode)))))
+                     (ggtags-mode)))))
 
 (when (require 'rtags nil :noerror)
   (rtags-diagnostics)
