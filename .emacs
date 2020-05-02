@@ -1,9 +1,28 @@
-;;; .emacs --- GNU Emacs configuration file
+(require 'package)
+(add-to-list 'package-archives
+             '("melpa" . "https://melpa.org/packages/") t)
 
-;;; Commentary:
-;;; GNU Emacs general configuration
+(package-initialize)
 
-;;; Code:
+(setq-default package-check-signature nil)
+
+(when (not package-archive-contents)
+  (package-refresh-contents))
+
+(defvar package-list '(org
+                       rtags
+                       slime
+                       pos-tip
+                       company
+                       racket-mode
+                       company-rtags
+                       dracula-theme
+                       modern-cpp-font-lock))
+
+(dolist (package package-list)
+  (unless (package-installed-p package)
+    (package-install package)))
+
 (tooltip-mode        -1)
 (menu-bar-mode       -1)
 (tool-bar-mode       -1)
@@ -79,7 +98,7 @@
 (setq-default version-control      t
               auto-save-default    t
               backup-by-copying    t
-              kept-new-versions    3
+              kept-new-versions    2
               kept-old-versions    1
               make-backup-files    t
               delete-old-versions  t
@@ -87,7 +106,7 @@
               backup-directory-alist '(("." . "~/.emacs.d/backups")))
 
 (when (require 'recentf nil :noerror)
-  (setq-default recentf-max-menu-items  10
+  (setq-default recentf-max-menu-items   10
                 recentf-max-saved-items 100)
   (recentf-mode))
 
@@ -108,6 +127,9 @@
   (global-font-lock-mode)
   (global-prettify-symbols-mode)
   (setq-default font-lock-maximum-decoration t))
+
+(when (require 'modern-cpp-font-lock nil :noerror)
+  (modern-c++-font-lock-global-mode))
 
 (setq-default abbrev-mode   t
               save-abbrevs 'silent)
@@ -130,7 +152,7 @@
               fortran-do-indent            common-tab-width
               fortran-if-indent            common-tab-width
               f90-program-indent           common-tab-width
-              f90-continuation-indent      4
+              f90-continuation-indent      8
               fortran-structure-indent     common-tab-width
               fortran-continuation-string "&")
 
@@ -229,14 +251,14 @@
   (line-number-mode)
   (blink-cursor-mode)
   (fringe-mode '(10 . 10))
-  (load-theme 'wheatgrass t)
+  (load-theme 'dracula t)
   (setq-default cursor-type 'hollow)
-  (when (member "Consolas" (font-family-list))
-    (set-frame-font "Consolas-14" t t))
-  (add-to-list 'default-frame-alist '(top . 10))
-  (add-to-list 'default-frame-alist '(left . 10))
-  (add-to-list 'default-frame-alist '(width . 120))
-  (add-to-list 'default-frame-alist '(height . 40)))
+  (if (member "JetBrains Mono" (font-family-list))
+      (set-frame-font "JetBrains Mono 13" t t))
+  (add-to-list 'default-frame-alist '(top    .  10))
+  (add-to-list 'default-frame-alist '(left   .  10))
+  (add-to-list 'default-frame-alist '(width  . 120))
+  (add-to-list 'default-frame-alist '(height .  40)))
 
 (defun format-buffer ()
   (save-excursion
@@ -260,14 +282,29 @@
       (setq-default inferior-lisp-program "sbcl"))
   (setq-default slime-net-coding-system 'utf-8-unix))
 
+(when (require 'ggtags nil :noerror)
+  (add-hook 'c-mode-common-hook
+            '(lambda () (when (derived-mode-p 'c-mode 'c++-mode)
+                          (ggtags-mode)))))
+
+(when (require 'rtags nil :noerror)
+  (rtags-diagnostics)
+  (rtags-enable-standard-keybindings)
+  (setq-default rtags-completions-enabled   t
+                rtags-autostart-diagnostics t)
+  (add-hook 'c-mode-hook   'rtags-start-process-unless-running)
+  (add-hook 'c++-mode-hook 'rtags-start-process-unless-running))
+
+(when (require 'company nil :noerror)
+  (add-hook 'after-init-hook 'global-company-mode)
+  (eval-after-load 'company '(add-to-list 'company-backends 'company-rtags)))
+
 (when (require 'racket-mode nil :noerror)
   (add-hook 'racket-mode-hook      #'racket-unicode-input-method-enable)
   (add-hook 'racket-repl-mode-hook #'racket-unicode-input-method-enable))
 
 (if (executable-find "scheme")
-    (setq-default scheme-program-name "scheme")
-    (if (executable-find "guile")
-        (setq-default scheme-program-name "guile")))
+    (setq-default scheme-program-name "scheme"))
 (autoload 'run-scheme "cmuscheme" "Run an inferior Scheme" t)
 
 (global-unset-key [up])
@@ -286,5 +323,3 @@
 (global-set-key (kbd "<f9>")  'kmacro-call-macro)
 (global-set-key (kbd "<f10>") 'toggle-menu-bar-mode-from-frame)
 (global-set-key (kbd "<f11>") 'toggle-frame-fullscreen)
-
-;;; .emacs ends here
