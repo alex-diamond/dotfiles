@@ -1,24 +1,27 @@
-(require 'package)
-(package-initialize)
-(setq-default package-check-signature nil)
-(add-to-list 'package-archives
-             '("melpa" . "https://melpa.org/packages/") t)
-(when (not package-archive-contents)
-  (package-refresh-contents))
-(defvar package-list '(org
-                       helm
-                       magit
-                       rtags
-                       slime
-                       pos-tip
-                       company
-                       racket-mode
-                       company-rtags
-                       dracula-theme
-                       modern-cpp-font-lock))
-(dolist (package package-list)
-  (unless (package-installed-p package)
-    (package-install package)))
+(setq-default debug-on-error t)
+(setq-default gc-cons-threshold       (* 10240 10240)
+              read-process-output-max (* 1024  1024))
+
+(when (require 'package nil :noerror)
+  (package-initialize)
+  (setq-default package-check-signature nil)
+  (add-to-list 'package-archives
+               '("melpa" . "https://melpa.org/packages/") t)
+  (unless package-archive-contents (package-refresh-contents))
+  (defvar package-list '(org
+                         helm
+                         magit
+                         rtags
+                         slime
+                         company
+                         pos-tip
+                         racket-mode
+                         company-rtags
+                         dracula-theme
+                         modern-cpp-font-lock))
+  (dolist (package package-list)
+    (unless (package-installed-p package)
+      (package-install package))))
 
 (tooltip-mode        -1)
 (menu-bar-mode       -1)
@@ -27,16 +30,13 @@
 (scroll-bar-mode     -1)
 (global-hl-line-mode -1)
 
-(require 'bs     nil :noerror)
-(require 'org    nil :noerror)
-(require 'eldoc  nil :noerror)
-(require 'cl-lib nil :noerror)
+(require 'bs           nil :noerror)
+(require 'org          nil :noerror)
+(require 'cl-lib       nil :noerror)
+(when (require 'eldoc  nil :noerror)
+  (setq-default apropos-do-all t))
 
 (setq-default common-tab-width 2)
-
-(when (require 'package nil :noerror)
-  (package-initialize)
-  (setq-default package-enable-at-startup nil))
 
 (setq-default delete-by-moving-to-trash t)
 
@@ -50,16 +50,20 @@
               initial-major-mode 'fundamental-mode)
 
 (icomplete-mode)
+(show-paren-mode)
 (global-subword-mode)
 (transient-mark-mode)
 (delete-selection-mode)
 (global-auto-revert-mode)
-(setq-default debug-on-error             t
-              show-paren-delay           0
-              show-paren-style          'parenthesis
-              x-select-enable-clipboard  t)
+(setq-default show-paren-delay                    0
+              show-paren-style                   'parenthesis
+              x-stretch-cursor                    t
+              shift-select-mode                   nil
+              x-select-enable-primary             t
+              x-select-enable-clipboard           t
+              cursor-in-non-selected-windows      nil
+              save-interprogram-paste-before-kill t)
 
-(show-paren-mode)
 (column-number-mode)
 (size-indication-mode)
 (setq-default truncate-lines                 t
@@ -70,7 +74,9 @@
               query-replace-highlight t)
 
 (defalias 'yes-or-no-p 'y-or-n-p)
-(setq-default use-dialog-box nil)
+(setq-default use-dialog-box               nil
+              resize-mini-windows          t
+              enable-recursive-minibuffers t)
 
 (setq-default frame-title-format "%b")
 
@@ -78,12 +84,15 @@
               initial-scratch-message nil)
 
 (display-time-mode)
-(setq-default display-time-24hr-format t)
-(setq-default ring-bell-function 'ignore)
+(setq-default ring-bell-function               'ignore
+              calendar-date-style              'european
+              calendar-week-start-day           1
+              display-time-24hr-format          t
+              display-time-default-load-average t)
 
 (when (not indicate-empty-lines)
   (toggle-indicate-empty-lines)
-  (setq-default indicate-empty-lines t
+  (setq-default indicate-empty-lines        t
                 indicate-buffer-boundaries 'left))
 
 (savehist-mode)
@@ -174,14 +183,15 @@
 (setq-default lisp-body-indent      common-tab-width
               lisp-indent-function 'common-lisp-indent-function)
 
-(setq-default scroll-step 1
-              scroll-margin 10
-              redisplay-dont-pause t
-              mouse-wheel-follow-mouse t
-              scroll-conservatively 10000
-              mouse-wheel-progressive-speed nil
-              recenter-position '(top middle bottom)
-              mouse-wheel-scroll-amount '(1 ((shift) . 1)))
+(setq-default scroll-step                   1
+              scroll-margin                 10
+              recenter-redisplay            t
+              recenter-positions           '(top middle bottom)
+              redisplay-dont-pause          t
+              scroll-conservatively         10000
+              mouse-wheel-follow-mouse      t
+              mouse-wheel-scroll-amount    '(1 ((shift) . 1))
+              mouse-wheel-progressive-speed nil)
 
 (setq-default track-eol                 t
               kill-whole-line           t
@@ -236,20 +246,25 @@
       (bookmark-load bookmark-default-file t)))
 
 (when (display-graphic-p)
-  (when (require 'linum nil :noerror)
-    (global-linum-mode)
-    (setq-default linum-format "%5d "))
-  (line-number-mode)
+  (if (version<= emacs-version "26.0.50")
+      (progn
+        (when (require 'linum nil :noerror)
+          (line-number-mode)
+          (global-linum-mode)
+          (setq-default linum-format "%5d ")))
+      (progn
+        (global-display-line-numbers-mode)
+        (setq-default display-line-numbers-type 'relative)))
   (blink-cursor-mode)
-  (fringe-mode '(10 . 10))
   (load-theme 'dracula t)
+  (fringe-mode '(10 . 10))
   (setq-default cursor-type 'hollow)
   (if (member "JetBrains Mono" (font-family-list))
       (set-frame-font "JetBrains Mono 13" t t))
-  (add-to-list 'default-frame-alist '(top    .  10))
-  (add-to-list 'default-frame-alist '(left   .  10))
-  (add-to-list 'default-frame-alist '(width  . 120))
-  (add-to-list 'default-frame-alist '(height .  40)))
+  (add-to-list 'default-frame-alist '(top    .  25))
+  (add-to-list 'default-frame-alist '(left   .  25))
+  (add-to-list 'default-frame-alist '(width  . 100))
+  (add-to-list 'default-frame-alist '(height .  25)))
 
 (defun format-buffer ()
   (save-excursion
@@ -260,7 +275,7 @@
    (unless (or (equal major-mode 'text-mode)
                (equal major-mode 'python-mode)
                (equal major-mode 'makefile-gmake-mode))
-     (indent-region (point-min) (point-max) nil))))
+     (indent-region (point-min) (point-max) nil))) nil)
 (add-hook 'before-save-hook 'format-buffer)
 
 (if (require 'helm nil :noerror)
@@ -299,7 +314,12 @@
   (add-hook 'c-mode-hook   'rtags-start-process-unless-running)
   (add-hook 'c++-mode-hook 'rtags-start-process-unless-running))
 
-(when (require 'company nil :noerror)
+(when (require 'company   nil :noerror)
+  (require 'company-rtags nil :noerror)
+  (setq-default company-idle-delay            0
+                company-show-numbers          t
+                company-selection-wrap-around t
+                company-minimum-prefix-length 2)
   (add-hook 'after-init-hook 'global-company-mode)
   (eval-after-load 'company
                    '(add-to-list 'company-backends 'company-rtags)))
