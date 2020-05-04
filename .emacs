@@ -11,14 +11,19 @@
   (defvar package-list '(org
                          elpy
                          helm
+                         irony
                          magit
                          slime
                          auctex
                          ggtags
                          pos-tip
+                         company
+                         yasnippet
                          racket-mode
-                         smartparens
-                         dracula-theme))
+                         company-irony
+                         dracula-theme
+                         yasnippet-snippets
+                         modern-cpp-font-lock))
   (dolist (package package-list)
     (unless (package-installed-p package)
       (package-install package))))
@@ -33,8 +38,7 @@
 (require 'bs           nil :noerror)
 (require 'org          nil :noerror)
 (require 'cl-lib       nil :noerror)
-(when (require 'eldoc  nil :noerror)
-  (setq-default apropos-do-all t))
+(when (require 'eldoc  nil :noerror) (setq-default apropos-do-all t))
 
 (setq-default common-tab-width 2)
 
@@ -179,8 +183,7 @@
               python-indent-offset              4
               python-indent-guess-indent-offset nil)
 
-(if (require 'elpy nil :noerror)
-    (elpy-enable))
+(if (require 'elpy nil :noerror) (elpy-enable))
 
 (if (executable-find "ipython3")
     (setq-default python-shell-interpreter "ipython3"
@@ -228,29 +231,41 @@
               file-name-coding-system   'utf-8
               buffer-file-coding-system 'utf-8)
 
-(require 'cedet                 nil :noerror)
-(when (require 'semantic        nil :noerror)
-  (require 'semantic/ia         nil :noerror)
-  (require 'semantic/bovine/gcc nil :noerror)
-  (when (executable-find "gtags")
-    (semanticdb-enable-gnu-global-databases 'c-mode)
-    (semanticdb-enable-gnu-global-databases 'c++-mode))
-  (defvar *semantic-submodes*
-    (list 'global-semanticdb-minor-mode
-          'global-semantic-decoration-mode
-          'global-semantic-stickyfunc-mode
-          'global-semantic-idle-summary-mode
-          'global-semantic-mru-bookmark-mode
-          'global-semantic-highlight-func-mode
-          'global-semantic-idle-scheduler-mode
-          'global-semantic-highlight-edits-mode
-          'global-semantic-idle-completions-mode
-          'global-semantic-show-parser-state-mode
-          'global-semantic-show-unmatched-syntax-mode
-          'global-semantic-idle-local-symbol-highlight-mode))
-  (dolist (submode *semantic-submodes*)
-    (add-to-list 'semantic-default-submodes submode))
-  (semantic-mode))
+(defun use-cedet-semantic ()
+  (interactive)
+  (require 'cedet                 nil :noerror)
+  (when (require 'semantic        nil :noerror)
+    (require 'semantic/ia         nil :noerror)
+    (require 'semantic/bovine/gcc nil :noerror)
+    (when (executable-find "gtags")
+      (semanticdb-enable-gnu-global-databases 'c-mode)
+      (semanticdb-enable-gnu-global-databases 'c++-mode))
+    (defvar *semantic-submodes*
+      (list 'global-semanticdb-minor-mode
+            'global-semantic-decoration-mode
+            'global-semantic-stickyfunc-mode
+            'global-semantic-idle-summary-mode
+            'global-semantic-mru-bookmark-mode
+            'global-semantic-highlight-func-mode
+            'global-semantic-idle-scheduler-mode
+            'global-semantic-highlight-edits-mode
+            'global-semantic-idle-completions-mode
+            'global-semantic-show-parser-state-mode
+            'global-semantic-show-unmatched-syntax-mode
+            'global-semantic-idle-local-symbol-highlight-mode))
+    (dolist (submode *semantic-submodes*)
+      (add-to-list 'semantic-default-submodes submode))
+    (semantic-mode)))
+
+(when (require 'modern-cpp-font-lock nil :noerror)
+  (modern-c++-font-lock-global-mode))
+
+(if (require 'irony nil :noerror)
+    (progn
+      (add-hook 'c-mode-hook     'irony-mode)
+      (add-hook 'c++-mode-hook   'irony-mode)
+      (add-hook 'irony-mode-hook 'irony-cdb-autosetup-compile-options))
+    (use-cedet-semantic))
 
 (when (require 'bookmark nil :noerror)
   (setq-default bookmark-save-flag t)
@@ -294,6 +309,10 @@
   (save-buffer) nil)
 (global-set-key (kbd "C-x C-s") 'format-save-buffer)
 
+(when (require 'yasnippet nil :noerror)
+  (yas-reload-all)
+  (add-hook 'prog-mode-hook 'yas-minor-mode))
+
 (if (require 'helm nil :noerror)
     (progn
       (require 'helm-config nil :noerror)
@@ -319,12 +338,10 @@
 
 (when (and (executable-find "gtags")
            (require 'ggtags nil :noerror))
+  (setq-default ggtags-update-on-save t)
   (add-hook 'c-mode-common-hook
             '(lambda () (when (derived-mode-p 'c-mode 'c++-mode)
                           (ggtags-mode)))))
-
-(when (require 'smartparens-config nil :noerror)
-  (add-hook 'prog-mode-hook 'smartparens-mode))
 
 (when (and (executable-find "racket")
            (require 'racket-mode nil :noerror))
@@ -335,6 +352,14 @@
     (setq-default scheme-program-name "scheme")
     (autoload 'run-scheme "cmuscheme" "Run an inferior Scheme" t)
     (autoload 'scheme-mode "cmuscheme" "Major mode for Scheme" t))
+
+(when (require 'company nil :noerror)
+  (setq-default company-idle-delay            0
+                company-show-numbers          t
+                company-selection-wrap-around t
+                company-minimum-prefix-length 2)
+  (add-hook 'prog-mode-hook 'global-company-mode)
+  (eval-after-load 'company '(add-to-list 'company-backends 'company-irony)))
 
 (defun kill-other-buffers ()
   (interactive)

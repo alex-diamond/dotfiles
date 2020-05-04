@@ -18,7 +18,7 @@ function create_python3_virtualenv_project ()
     pip install --upgrade pip
     pip install --upgrade jedi rope autopep8 yapf
     pip install --upgrade black flake8 ipython jupyter
-    cd "$project_name" && clear
+    cd "$project_name" && mkdir src && cd src && clear
   }
   if [ -d "$project_name" ]
   then
