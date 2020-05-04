@@ -1,16 +1,37 @@
 # Enable smart completion
 if [ -f /etc/bash_completion ]; then
-    . /etc/bash_completion
+  . /etc/bash_completion
 fi
 
 # Functions
-gvim_alias() { gvim "$@" & }
-emacs_alias() { emacs "$@" & }
+function emacs_alias            () { emacs "$@"          & }
+function edit_bash_config_file  () { emacs $HOME/.bashrc & }
+function edit_emacs_config_file () { emacs $HOME/.emacs  & }
+
+function create_python3_virtualenv_project ()
+{
+  local project_name="$1"
+  local project_activate_command="bin/activate"
+  function install_packages ()
+  {
+    source "${project_name}/$project_activate_command"
+    pip install --upgrade pip
+    pip install --upgrade jedi rope autopep8 yapf
+    pip install --upgrade black flake8 ipython jupyter
+    cd "$project_name" && clear
+  }
+  if [ -d "$project_name" ]
+  then
+    install_packages
+  else
+    virtualenv -p python3 "$project_name"
+    install_packages
+  fi
+}
 
 # Aliases
 alias .="pwd"
 alias x="exit"
-alias vi="vim"
 alias c="clear"
 alias ..="cd .."
 alias ll="ls -l"
@@ -19,8 +40,10 @@ alias mv="mv -v"
 alias la="ls -la"
 alias rm="rm -Iv"
 alias h="history"
-alias v="gvim_alias"
 alias e="emacs_alias"
+alias cb="edit_bash_config_file"
+alias ce="edit_emacs_config_file"
+alias pvp="create_python3_virtualenv_project"
 alias geant4="source ~/.CERN/geant4/install/bin/geant4.sh"
 alias root="source ~/.CERN/root/install/bin/thisroot.sh && root"
 
@@ -52,6 +75,6 @@ export TERM=xterm-256color
 export HISTSIZE=10240
 export HISTCONTROL=ignoreboth:erasedups
 export HISTIGNORE=".:..:c:h:x:cd:la:ll:ls"
-export PS1="\[\e[1m\][\u]_[\h]_[\w]\n\\$ \[\e[0m\]"
+export PS1="\[\e[1m\][\u] [\h] [\w]\n\\$ \[\e[0m\]"
 # Update history file after every command
 export PROMPT_COMMAND="history -a; $PROMPT_COMMAND"

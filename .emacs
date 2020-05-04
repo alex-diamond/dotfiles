@@ -9,16 +9,16 @@
                '("melpa" . "https://melpa.org/packages/") t)
   (unless package-archive-contents (package-refresh-contents))
   (defvar package-list '(org
+                         elpy
                          helm
                          magit
-                         rtags
                          slime
-                         company
+                         auctex
+                         ggtags
                          pos-tip
                          racket-mode
-                         company-rtags
-                         dracula-theme
-                         modern-cpp-font-lock))
+                         smartparens
+                         dracula-theme))
   (dolist (package package-list)
     (unless (package-installed-p package)
       (package-install package))))
@@ -48,6 +48,11 @@
 
 (setq-default major-mode         'text-mode
               initial-major-mode 'fundamental-mode)
+
+(setq-default TeX-master     t
+              TeX-PDF-mode   t
+              TeX-auto-save  t
+              TeX-parse-self t)
 
 (icomplete-mode)
 (show-paren-mode)
@@ -79,7 +84,6 @@
               enable-recursive-minibuffers t)
 
 (setq-default frame-title-format "%b")
-
 (setq-default inhibit-startup-screen  t
               initial-scratch-message nil)
 
@@ -88,7 +92,7 @@
               calendar-date-style              'european
               calendar-week-start-day           1
               display-time-24hr-format          t
-              display-time-default-load-average t)
+              display-time-default-load-average 0)
 
 (when (not indicate-empty-lines)
   (toggle-indicate-empty-lines)
@@ -101,14 +105,15 @@
               history-delete-duplicates        t
               savehist-save-minibuffer-history t)
 
-(setq-default version-control      t
-              auto-save-default    t
-              backup-by-copying    t
-              kept-new-versions    2
-              kept-old-versions    1
-              make-backup-files    t
-              delete-old-versions  t
-              vc-make-backup-files t
+(setq-default version-control         t
+              auto-save-default       t
+              auto-save-timeout       60
+              backup-by-copying       t
+              kept-new-versions       2
+              kept-old-versions       1
+              make-backup-files       t
+              delete-old-versions     t
+              vc-make-backup-files    t
               backup-directory-alist '(("." . "~/.emacs.d/backups")))
 
 (when (require 'recentf nil :noerror)
@@ -127,9 +132,6 @@
   (global-font-lock-mode)
   (global-prettify-symbols-mode)
   (setq-default font-lock-maximum-decoration t))
-
-(when (require 'modern-cpp-font-lock nil :noerror)
-  (modern-c++-font-lock-global-mode))
 
 (setq-default abbrev-mode   t
               save-abbrevs 'silent)
@@ -169,9 +171,16 @@
 (add-hook 'makefile-mode-hook
           '(lambda () (setq-default indent-tabs-mode t)))
 
-(setq-default python-indent        common-tab-width
-              python-indent-offset common-tab-width
+(setq-default sh-indentation    common-tab-width
+              sh-basic-offset   common-tab-width
+              smie-indent-basic common-tab-width)
+
+(setq-default python-indent                     4
+              python-indent-offset              4
               python-indent-guess-indent-offset nil)
+
+(if (require 'elpy nil :noerror)
+    (elpy-enable))
 
 (if (executable-find "ipython3")
     (setq-default python-shell-interpreter "ipython3"
@@ -184,11 +193,14 @@
               lisp-indent-function 'common-lisp-indent-function)
 
 (setq-default scroll-step                   1
-              scroll-margin                 10
+              scroll-margin                 1
               recenter-redisplay            t
               recenter-positions           '(top middle bottom)
+              auto-window-vscroll           nil
               redisplay-dont-pause          t
-              scroll-conservatively         10000
+              scroll-conservatively         1000
+              scroll-up-aggressively        0.01
+              scroll-down-aggressively      0.01
               mouse-wheel-follow-mouse      t
               mouse-wheel-scroll-amount    '(1 ((shift) . 1))
               mouse-wheel-progressive-speed nil)
@@ -208,8 +220,8 @@
                 whitespace-style '(face empty tabs lines-tail trailing)))
 
 (prefer-coding-system                   'utf-8)
-(set-language-environment               'UTF-8)
-(set-keyboard-coding-system             'utf-8-unix)
+(set-language-environment               'English)
+(set-keyboard-coding-system             'utf-8)
 (set-terminal-coding-system             'utf-8)
 (set-selection-coding-system            'utf-8)
 (setq-default coding-system-for-read    'utf-8
@@ -242,7 +254,8 @@
 
 (when (require 'bookmark nil :noerror)
   (setq-default bookmark-save-flag t)
-  (if (file-exists-p (concat user-emacs-directory "bookmarks"))
+  (if (file-exists-p
+       (concat user-emacs-directory "bookmarks"))
       (bookmark-load bookmark-default-file t)))
 
 (when (display-graphic-p)
@@ -266,8 +279,10 @@
   (add-to-list 'default-frame-alist '(width  . 100))
   (add-to-list 'default-frame-alist '(height .  25)))
 
-(defun format-buffer ()
+(defun format-save-buffer ()
+  (interactive)
   (save-excursion
+   (reposition-window)
    (delete-trailing-whitespace)
    (if (equal major-mode 'makefile-gmake-mode)
        (tabify (point-min) (point-max))
@@ -275,12 +290,13 @@
    (unless (or (equal major-mode 'text-mode)
                (equal major-mode 'python-mode)
                (equal major-mode 'makefile-gmake-mode))
-     (indent-region (point-min) (point-max) nil))) nil)
-(add-hook 'before-save-hook 'format-buffer)
+     (indent-region (point-min) (point-max))))
+  (save-buffer) nil)
+(global-set-key (kbd "C-x C-s") 'format-save-buffer)
 
 (if (require 'helm nil :noerror)
     (progn
-      (require 'helm-config)
+      (require 'helm-config nil :noerror)
       (helm-mode)
       (global-set-key (kbd "M-x")     'helm-M-x)
       (global-set-key (kbd "C-x C-f") 'helm-find-files)
@@ -291,46 +307,39 @@
       (setq-default ido-use-virtual-buffers  t
                     ido-enable-flex-matching t)))
 
-(when (require 'slime       nil :noerror)
+(when (and (executable-find "sbcl")
+           (require 'slime nil :noerror))
   (require 'slime-autoloads nil :noerror)
   (slime-setup '(slime-asdf
                  slime-fancy
                  slime-tramp
                  slime-indentation))
-  (if (executable-find "sbcl")
-      (setq-default inferior-lisp-program "sbcl"))
-  (setq-default slime-net-coding-system 'utf-8-unix))
+  (setq-default inferior-lisp-program   "sbcl"
+                slime-net-coding-system 'utf-8-unix))
 
-(when (require 'ggtags nil :noerror)
+(when (and (executable-find "gtags")
+           (require 'ggtags nil :noerror))
   (add-hook 'c-mode-common-hook
             '(lambda () (when (derived-mode-p 'c-mode 'c++-mode)
                           (ggtags-mode)))))
 
-(when (require 'rtags nil :noerror)
-  (rtags-diagnostics)
-  (rtags-enable-standard-keybindings)
-  (setq-default rtags-completions-enabled   t
-                rtags-autostart-diagnostics t)
-  (add-hook 'c-mode-hook   'rtags-start-process-unless-running)
-  (add-hook 'c++-mode-hook 'rtags-start-process-unless-running))
+(when (require 'smartparens-config nil :noerror)
+  (add-hook 'prog-mode-hook 'smartparens-mode))
 
-(when (require 'company   nil :noerror)
-  (require 'company-rtags nil :noerror)
-  (setq-default company-idle-delay            0
-                company-show-numbers          t
-                company-selection-wrap-around t
-                company-minimum-prefix-length 2)
-  (add-hook 'after-init-hook 'global-company-mode)
-  (eval-after-load 'company
-                   '(add-to-list 'company-backends 'company-rtags)))
-
-(when (require 'racket-mode nil :noerror)
-  (add-hook 'racket-mode-hook      #'racket-unicode-input-method-enable)
-  (add-hook 'racket-repl-mode-hook #'racket-unicode-input-method-enable))
+(when (and (executable-find "racket")
+           (require 'racket-mode nil :noerror))
+  (add-hook 'racket-mode-hook      'racket-unicode-input-method-enable)
+  (add-hook 'racket-repl-mode-hook 'racket-unicode-input-method-enable))
 
 (if (executable-find "scheme")
-    (setq-default scheme-program-name "scheme"))
-(autoload 'run-scheme "cmuscheme" "Run an inferior Scheme" t)
+    (setq-default scheme-program-name "scheme")
+    (autoload 'run-scheme "cmuscheme" "Run an inferior Scheme" t)
+    (autoload 'scheme-mode "cmuscheme" "Major mode for Scheme" t))
+
+(defun kill-other-buffers ()
+  (interactive)
+  (delete-other-windows)
+  (mapc 'kill-buffer (delq (current-buffer) (buffer-list))))
 
 (global-unset-key [up])
 (global-unset-key [down])
@@ -348,3 +357,4 @@
 (global-set-key (kbd "<f9>")  'kmacro-call-macro)
 (global-set-key (kbd "<f10>") 'toggle-menu-bar-mode-from-frame)
 (global-set-key (kbd "<f11>") 'toggle-frame-fullscreen)
+(global-set-key (kbd "<f12>") 'kill-other-buffers)
