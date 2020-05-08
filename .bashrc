@@ -1,6 +1,6 @@
 # Enable smart completion
 if [ -f /etc/bash_completion ]; then
-  . /etc/bash_completion
+    . /etc/bash_completion
 fi
 
 # Functions
@@ -10,23 +10,24 @@ function edit_emacs_config_file () { emacs $HOME/.emacs  & }
 
 function create_python3_virtualenv_project ()
 {
-  local project_name="$1"
-  local project_activate_command="bin/activate"
-  function install_packages ()
-  {
-    source "${project_name}/$project_activate_command"
-    pip install --upgrade pip
-    pip install --upgrade jedi rope autopep8 yapf
-    pip install --upgrade black flake8 ipython jupyter
-    cd "$project_name" && mkdir src && cd src && clear
-  }
-  if [ -d "$project_name" ]
-  then
-    install_packages
-  else
-    virtualenv -p python3 "$project_name"
-    install_packages
-  fi
+    local project_name="$1"
+    local project_activate_command="bin/activate"
+    function install_packages ()
+    {
+        source "${project_name}/$project_activate_command"
+        pip install --upgrade pip
+        pip install --upgrade jedi rope autopep8 yapf
+        pip install --upgrade black flake8 ipython jupyter
+        pip install --upgrade 'python-language-server[all]'
+        cd "$project_name" && mkdir -p src && cd src && clear
+    }
+    if [ -d "$project_name" ]
+    then
+        install_packages
+    else
+        virtualenv -p python3 "$project_name"
+        install_packages
+    fi
 }
 
 # Aliases

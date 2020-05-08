@@ -1,245 +1,190 @@
-(setq-default debug-on-error t)
-(setq-default gc-cons-threshold       (* 10240 10240)
-              read-process-output-max (* 1024  1024))
+;;; package --- .emacs
+;;; Commentary:
+;;; GNU Emacs configuration file
 
-(when (require 'package nil :noerror)
-  (package-initialize)
-  (setq-default package-check-signature nil)
-  (add-to-list 'package-archives
-               '("melpa" . "https://melpa.org/packages/") t)
-  (unless package-archive-contents (package-refresh-contents))
-  (defvar package-list '(org
-                         elpy
-                         helm
-                         irony
-                         magit
-                         slime
-                         auctex
-                         ggtags
-                         pos-tip
-                         company
-                         yasnippet
-                         racket-mode
-                         company-irony
-                         dracula-theme
-                         yasnippet-snippets
-                         modern-cpp-font-lock))
-  (dolist (package package-list)
-    (unless (package-installed-p package)
-      (package-install package))))
+;;; Code:
+(require 'bookmark   nil :noerror)
+(require 'bs         nil :noerror)
+(require 'cc-mode    nil :noerror)
+(require 'cl-lib     nil :noerror)
+(require 'dired      nil :noerror)
+(require 'eldoc      nil :noerror)
+(require 'flyspell   nil :noerror)
+(require 'font-lock  nil :noerror)
+(require 'ibuffer    nil :noerror)
+(require 'imenu      nil :noerror)
+(require 'recentf    nil :noerror)
+(require 'whitespace nil :noerror)
+(require 'zone       nil :noerror)
 
-(tooltip-mode        -1)
-(menu-bar-mode       -1)
-(tool-bar-mode       -1)
-(auto-fill-mode      -1)
-(scroll-bar-mode     -1)
-(global-hl-line-mode -1)
+(auto-fill-mode               -1 )
+(column-number-mode            1 )
+(delete-selection-mode         1 )
+(display-time-mode             1 )
+(electric-indent-mode          1 )
+(electric-pair-mode           -1 )
+(flyspell-mode                -1 )
+(global-auto-revert-mode       1 )
+(global-font-lock-mode         1 )
+(global-hl-line-mode          -1 )
+(global-prettify-symbols-mode  1 )
+(global-subword-mode           1 )
+(global-whitespace-mode        1 )
+(icomplete-mode                1 )
+(menu-bar-mode                -1 )
+(recentf-mode                  1 )
+(save-place-mode               1 )
+(savehist-mode                 1 )
+(scroll-bar-mode              -1 )
+(show-paren-mode               1 )
+(size-indication-mode          1 )
+(tool-bar-mode                -1 )
+(tooltip-mode                 -1 )
+(transient-mark-mode           1 )
 
-(require 'bs           nil :noerror)
-(require 'org          nil :noerror)
-(require 'cl-lib       nil :noerror)
-(when (require 'eldoc  nil :noerror) (setq-default apropos-do-all t))
+(defalias 'list-buffers 'ibuffer    )
+(defalias 'perl-mode    'cperl-mode )
+(defalias 'yes-or-no-p  'y-or-n-p   )
 
-(setq-default common-tab-width 2)
+(prefer-coding-system        'utf-8   )
+(set-keyboard-coding-system  'utf-8   )
+(set-language-environment    'English )
+(set-selection-coding-system 'utf-8   )
+(set-terminal-coding-system  'utf-8   )
 
-(setq-default delete-by-moving-to-trash t)
+(setq-default c-default-style    "bsd"           )
+(setq-default frame-title-format "GNU Emacs: %b" )
 
-(setq-default backward-delete-char-untabify-method 'hungry)
+(setq-default abbrev-mode                         t   )
+(setq-default apropos-do-all                      t   )
+(setq-default auto-revert-check-vc-info           t   )
+(setq-default auto-save-default                   t   )
+(setq-default auto-window-vscroll                 nil )
+(setq-default backup-by-copying                   t   )
+(setq-default backup-directory-alist              nil )
+(setq-default bookmark-save-flag                  t   )
+(setq-default cursor-in-non-selected-windows      nil )
+(setq-default debug-on-error                      t   )
+(setq-default delete-by-moving-to-trash           t   )
+(setq-default delete-old-versions                 t   )
+(setq-default delete-trailing-lines               t   )
+(setq-default display-time-24hr-format            t   )
+(setq-default enable-recursive-minibuffers        t   )
+(setq-default find-file-visit-truename            t   )
+(setq-default font-lock-maximum-decoration        t   )
+(setq-default global-visual-line-mode             nil )
+(setq-default history-delete-duplicates           t   )
+(setq-default ibuffer-expert                      t   )
+(setq-default ibuffer-show-empty-filter-groups    nil )
+(setq-default imenu-auto-rescan                   t   )
+(setq-default imenu-use-popup-menu                nil )
+(setq-default indent-tabs-mode                    nil )
+(setq-default inhibit-compacting-font-caches      t   )
+(setq-default inhibit-startup-screen              t   )
+(setq-default initial-scratch-message             nil )
+(setq-default kill-whole-line                     t   )
+(setq-default line-move-visual                    nil )
+(setq-default make-backup-files                   t   )
+(setq-default mouse-wheel-follow-mouse            t   )
+(setq-default mouse-wheel-progressive-speed       nil )
+(setq-default next-line-add-newlines              nil )
+(setq-default python-indent-guess-indent-offset   nil )
+(setq-default query-replace-highlight             t   )
+(setq-default recenter-redisplay                  nil )
+(setq-default redisplay-dont-pause                t   )
+(setq-default require-final-newline               t   )
+(setq-default resize-mini-windows                 t   )
+(setq-default save-interprogram-paste-before-kill t   )
+(setq-default savehist-save-minibuffer-history    t   )
+(setq-default scroll-preserve-screen-position     nil )
+(setq-default search-highlight                    t   )
+(setq-default sentence-end-double-space           nil )
+(setq-default shift-select-mode                   nil )
+(setq-default show-trailing-whitespace            t   )
+(setq-default track-eol                           t   )
+(setq-default truncate-lines                      t   )
+(setq-default truncate-partial-width-windows      nil )
+(setq-default use-dialog-box                      nil )
+(setq-default vc-make-backup-files                t   )
+(setq-default version-control                     t   )
+(setq-default x-select-enable-clipboard           t   )
+(setq-default x-select-enable-primary             t   )
+(setq-default x-stretch-cursor                    t   )
 
-(when (require 'dired nil :noerror)
-  (setq-default dired-recursive-copies  'always)
-  (setq-default dired-recursive-deletes 'always))
+(setq-default gc-cons-threshold       (* 10240 10240 ) )
+(setq-default read-process-output-max (*  1024  1024 ) )
 
-(setq-default major-mode         'text-mode
-              initial-major-mode 'fundamental-mode)
+(setq-default auto-save-timeout                  500    )
+(setq-default c-basic-offset                       2    )
+(setq-default calendar-week-start-day              1    )
+(setq-default display-time-default-load-average    0    )
+(setq-default history-length                    1000    )
+(setq-default kept-new-versions                    2    )
+(setq-default kept-old-versions                    1    )
+(setq-default lazy-highlight-initial-delay         0    )
+(setq-default lazy-highlight-interval              0    )
+(setq-default recentf-max-menu-items              10    )
+(setq-default recentf-max-saved-items            100    )
+(setq-default scroll-conservatively             1000    )
+(setq-default scroll-down-aggressively             0.01 )
+(setq-default scroll-margin                        1    )
+(setq-default scroll-step                          1    )
+(setq-default scroll-up-aggressively               0.01 )
+(setq-default show-paren-delay                     0    )
+(setq-default tab-width                            2    )
+(setq-default whitespace-line-column              80    )
 
-(setq-default TeX-master     t
-              TeX-PDF-mode   t
-              TeX-auto-save  t
-              TeX-parse-self t)
-
-(icomplete-mode)
-(show-paren-mode)
-(global-subword-mode)
-(transient-mark-mode)
-(delete-selection-mode)
-(global-auto-revert-mode)
-(setq-default show-paren-delay                    0
-              show-paren-style                   'parenthesis
-              x-stretch-cursor                    t
-              shift-select-mode                   nil
-              x-select-enable-primary             t
-              x-select-enable-clipboard           t
-              cursor-in-non-selected-windows      nil
-              save-interprogram-paste-before-kill t)
-
-(column-number-mode)
-(size-indication-mode)
-(setq-default truncate-lines                 t
-              global-visual-line-mode        nil
-              truncate-partial-width-windows nil)
-
-(setq-default search-highlight        t
-              query-replace-highlight t)
-
-(defalias 'yes-or-no-p 'y-or-n-p)
-(setq-default use-dialog-box               nil
-              resize-mini-windows          t
-              enable-recursive-minibuffers t)
-
-(setq-default frame-title-format "%b")
-(setq-default inhibit-startup-screen  t
-              initial-scratch-message nil)
-
-(display-time-mode)
-(setq-default ring-bell-function               'ignore
-              calendar-date-style              'european
-              calendar-week-start-day           1
-              display-time-24hr-format          t
-              display-time-default-load-average 0)
-
-(when (not indicate-empty-lines)
-  (toggle-indicate-empty-lines)
-  (setq-default indicate-empty-lines        t
-                indicate-buffer-boundaries 'left))
-
-(savehist-mode)
-(save-place-mode)
-(setq-default history-length 1000
-              history-delete-duplicates        t
-              savehist-save-minibuffer-history t)
-
-(setq-default version-control         t
-              auto-save-default       t
-              auto-save-timeout       60
-              backup-by-copying       t
-              kept-new-versions       2
-              kept-old-versions       1
-              make-backup-files       t
-              delete-old-versions     t
-              vc-make-backup-files    t
-              backup-directory-alist '(("." . "~/.emacs.d/backups")))
-
-(when (require 'recentf nil :noerror)
-  (setq-default recentf-max-menu-items   10
-                recentf-max-saved-items 100)
-  (recentf-mode))
-
-(when (require 'imenu nil :noerror)
-  (setq-default imenu-auto-rescan    t
-                imenu-use-popup-menu nil))
-
-(when (require 'ibuffer nil :noerror)
-  (defalias 'list-buffers 'ibuffer))
-
-(when (require 'font-lock nil :noerror)
-  (global-font-lock-mode)
-  (global-prettify-symbols-mode)
-  (setq-default font-lock-maximum-decoration t))
-
-(setq-default abbrev-mode   t
-              save-abbrevs 'silent)
-
-(electric-indent-mode)
-(electric-pair-mode -1)
-
-(defalias 'perl-mode 'cperl-mode)
-(setq-default cperl-indent-level common-tab-width)
-
-(setq-default tab-width          common-tab-width
-              standard-indent    common-tab-width
-              indent-tabs-mode   nil
-              tab-always-indent 'complete)
-
-(setq-default f90-do-indent                common-tab-width
-              f90-smart-end               'blink
-              f90-if-indent                common-tab-width
-              f90-type-indent              common-tab-width
-              fortran-do-indent            common-tab-width
-              fortran-if-indent            common-tab-width
-              f90-program-indent           common-tab-width
-              f90-continuation-indent      8
-              fortran-structure-indent     common-tab-width
-              fortran-continuation-string "&")
+(setq-default backward-delete-char-untabify-method 'hungry                )
+(setq-default buffer-file-coding-system            'utf-8                 )
+(setq-default calendar-date-style                  'european              )
+(setq-default coding-system-for-read               'utf-8                 )
+(setq-default dired-recursive-copies               'always                )
+(setq-default dired-recursive-deletes              'always                )
+(setq-default f90-smart-end                        'blink                 )
+(setq-default file-name-coding-system              'utf-8                 )
+(setq-default initial-major-mode                   'fundamental-mode      )
+(setq-default major-mode                           'text-mode             )
+(setq-default mouse-wheel-scroll-amount            '(1 ((shift) . 1))     )
+(setq-default recenter-positions                   '(top middle bottom)   )
+(setq-default ring-bell-function                   'ignore                )
+(setq-default save-abbrevs                         'silent                )
+(setq-default show-paren-style                     'parenthesis           )
+(setq-default tab-always-indent                    'complete              )
+(setq-default whitespace-style                     '(face lines trailing) )
 
 (defun c-common-mode ()
-  (c-toggle-auto-newline      1)
-  (c-toggle-auto-hungry-state 1))
+  "C/C++ common customization."
+  (interactive)
+  (c-toggle-auto-newline      1 )
+  (c-toggle-auto-hungry-state 1 ))
 
-(setq-default c-basic-offset   common-tab-width
-              c-default-style "bsd")
-
-(when (require 'cc-mode nil :noerror)
-  (add-hook 'c-mode-common-hook 'c-common-mode))
-
-(add-hook 'makefile-mode-hook
-          '(lambda () (setq-default indent-tabs-mode t)))
-
-(setq-default sh-indentation    common-tab-width
-              sh-basic-offset   common-tab-width
-              smie-indent-basic common-tab-width)
-
-(setq-default python-indent                     4
-              python-indent-offset              4
-              python-indent-guess-indent-offset nil)
-
-(if (require 'elpy nil :noerror) (elpy-enable))
-
-(if (executable-find "ipython3")
-    (setq-default python-shell-interpreter "ipython3"
-                  python-shell-interpreter-args "--simple-prompt -i")
-    (if (executable-find "python3")
-        (setq-default python-shell-interpreter "python3"
-                      python-shell-interpreter-args "-i")))
-
-(setq-default lisp-body-indent      common-tab-width
-              lisp-indent-function 'common-lisp-indent-function)
-
-(setq-default scroll-step                   1
-              scroll-margin                 1
-              recenter-redisplay            t
-              recenter-positions           '(top middle bottom)
-              auto-window-vscroll           nil
-              redisplay-dont-pause          t
-              scroll-conservatively         1000
-              scroll-up-aggressively        0.01
-              scroll-down-aggressively      0.01
-              mouse-wheel-follow-mouse      t
-              mouse-wheel-scroll-amount    '(1 ((shift) . 1))
-              mouse-wheel-progressive-speed nil)
-
-(setq-default track-eol                 t
-              kill-whole-line           t
-              line-move-visual          nil
-              delete-trailing-lines     t
-              require-final-newline     t
-              next-line-add-newlines    nil
-              show-trailing-whitespace  t
-              sentence-end-double-space nil)
-
-(when (require 'whitespace nil :noerror)
-  (global-whitespace-mode)
-  (setq-default whitespace-line-column 80
-                whitespace-style '(face empty tabs lines-tail trailing)))
-
-(prefer-coding-system                   'utf-8)
-(set-language-environment               'English)
-(set-keyboard-coding-system             'utf-8)
-(set-terminal-coding-system             'utf-8)
-(set-selection-coding-system            'utf-8)
-(setq-default coding-system-for-read    'utf-8
-              file-name-coding-system   'utf-8
-              buffer-file-coding-system 'utf-8)
+(defun format-save-buffer ()
+  "Format buffer before saving."
+  (interactive)
+  (save-excursion
+   (recenter)
+   (delete-trailing-whitespace)
+   (if (equal major-mode 'makefile-gmake-mode)
+       (tabify   (point-min) (point-max) )
+       (untabify (point-min) (point-max) ))
+   (unless (or (equal major-mode 'text-mode           )
+               (equal major-mode 'python-mode         )
+               (equal major-mode 'makefile-gmake-mode ))
+     (indent-region (point-min) (point-max))))
+  (save-buffer) nil)
 
 (defun use-cedet-semantic ()
+  "GNU Emacs CEDET & Semantic customization.
+Provide functionality for work with source code
+ written in different programming languages."
   (interactive)
-  (require 'cedet                 nil :noerror)
-  (when (require 'semantic        nil :noerror)
-    (require 'semantic/ia         nil :noerror)
-    (require 'semantic/bovine/gcc nil :noerror)
+  (require       'cedet               nil :noerror )
+  (when (require 'semantic            nil :noerror )
+    (require     'semantic/ia         nil :noerror )
+    (require     'semantic/bovine/gcc nil :noerror )
     (when (executable-find "gtags")
-      (semanticdb-enable-gnu-global-databases 'c-mode)
-      (semanticdb-enable-gnu-global-databases 'c++-mode))
+      (semanticdb-enable-gnu-global-databases 'c-mode   )
+      (semanticdb-enable-gnu-global-databases 'c++-mode ))
     (defvar *semantic-submodes*
       (list 'global-semanticdb-minor-mode
             'global-semantic-decoration-mode
@@ -257,75 +202,146 @@
       (add-to-list 'semantic-default-submodes submode))
     (semantic-mode)))
 
-(when (require 'modern-cpp-font-lock nil :noerror)
-  (modern-c++-font-lock-global-mode))
+(defun kill-other-buffers ()
+  "Kill all invispble buffers."
+  (interactive)
+  (delete-other-windows)
+  (mapc 'kill-buffer (delq (current-buffer) (buffer-list))))
 
-(if (require 'irony nil :noerror)
+(if (file-exists-p bookmark-default-file)
+    (bookmark-load bookmark-default-file t))
+
+(add-hook 'c-mode-common-hook 'c-common-mode                            )
+(add-hook 'makefile-mode-hook '(lambda () (setq-default indent-tabs-mode t)) )
+
+(if (executable-find "ipython3")
     (progn
-      (add-hook 'c-mode-hook     'irony-mode)
-      (add-hook 'c++-mode-hook   'irony-mode)
-      (add-hook 'irony-mode-hook 'irony-cdb-autosetup-compile-options))
-    (use-cedet-semantic))
-
-(when (require 'bookmark nil :noerror)
-  (setq-default bookmark-save-flag t)
-  (if (file-exists-p
-       (concat user-emacs-directory "bookmarks"))
-      (bookmark-load bookmark-default-file t)))
+      (setq-default python-shell-interpreter      "ipython3"           )
+      (setq-default python-shell-interpreter-args "--simple-prompt -i" ))
+    (if (executable-find "python3")
+        (progn
+          (setq-default python-shell-interpreter      "python3" )
+          (setq-default python-shell-interpreter-args "-i"      )) ))
 
 (when (display-graphic-p)
+  (blink-cursor-mode)
+  (zone-when-idle 300)
   (if (version<= emacs-version "26.0.50")
       (progn
         (when (require 'linum nil :noerror)
-          (line-number-mode)
-          (global-linum-mode)
-          (setq-default linum-format "%5d ")))
+          (line-number-mode                 )
+          (global-linum-mode                )
+          (setq-default linum-format "%5d " ) ))
       (progn
-        (global-display-line-numbers-mode)
-        (setq-default display-line-numbers-type 'relative)))
-  (blink-cursor-mode)
-  (load-theme 'dracula t)
-  (fringe-mode '(10 . 10))
+        (global-display-line-numbers-mode                )
+        (setq-default display-line-numbers-type 'relative) ))
+  ;; (load-theme 'wheatgrass t)
   (setq-default cursor-type 'hollow)
-  (if (member "JetBrains Mono" (font-family-list))
+  (if (member         "JetBrains Mono"    (font-family-list))
       (set-frame-font "JetBrains Mono 13" t t))
-  (add-to-list 'default-frame-alist '(top    .  25))
-  (add-to-list 'default-frame-alist '(left   .  25))
-  (add-to-list 'default-frame-alist '(width  . 100))
-  (add-to-list 'default-frame-alist '(height .  25)))
+  (add-to-list 'default-frame-alist '(top    .  30) )
+  (add-to-list 'default-frame-alist '(left   .  30) )
+  (add-to-list 'default-frame-alist '(width  . 120) )
+  (add-to-list 'default-frame-alist '(height .  30) )
+  (when (not indicate-empty-lines)
+    (toggle-indicate-empty-lines)
+    (setq-default indicate-empty-lines t))
+  (setq-default zone-programs [zone-pgm-five-oclock-swan-dive])
+  (fringe-mode                              '( 10     . 10    ))
+  (setq-default indicate-buffer-boundaries '(( bottom . right )
+                                             ( down   . right )
+                                             ( top    . left  )
+                                             ( up     . left  )
+                                             ( t      . left  )) ))
 
-(defun format-save-buffer ()
+(if (executable-find "scheme")
+    (setq-default scheme-program-name "scheme")
+    (autoload 'run-scheme  "cmuscheme" "Run an inferior Scheme" t )
+    (autoload 'scheme-mode "cmuscheme" "Major mode for Scheme"  t ))
+
+(global-unset-key [down]  )
+(global-unset-key [left]  )
+(global-unset-key [right] )
+(global-unset-key [up]    )
+
+(windmove-default-keybindings)
+
+(global-set-key (kbd "<f1>"    ) 'speedbar                        )
+(global-set-key (kbd "<f2>"    ) 'ibuffer                         )
+(global-set-key (kbd "<f3>"    ) 'comment-line                    )
+(global-set-key (kbd "<f4>"    ) 'bookmark-set                    )
+(global-set-key (kbd "<f5>"    ) 'bookmark-jump                   )
+(global-set-key (kbd "<f6>"    ) 'bookmark-bmenu-list             )
+(global-set-key (kbd "<f7>"    ) 'kmacro-start-macro              )
+(global-set-key (kbd "<f8>"    ) 'kmacro-end-macro                )
+(global-set-key (kbd "<f9>"    ) 'kmacro-call-macro               )
+(global-set-key (kbd "<f10>"   ) 'toggle-menu-bar-mode-from-frame )
+(global-set-key (kbd "<f11>"   ) 'toggle-frame-fullscreen         )
+(global-set-key (kbd "<f12>"   ) 'kill-other-buffers              )
+(global-set-key (kbd "C-x C-s" ) 'format-save-buffer              )
+
+(when (require 'package nil :noerror)
+  (package-initialize)
+  (setq-default package-check-signature nil)
+  (add-to-list 'package-archives '("org"   . "https://orgmode.org/elpa/"   ) t )
+  (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/" ) t )
+  (unless package-archive-contents (package-refresh-contents)))
+
+(defun install-package (package-name)
+  "Try installing an external package: 'PACKAGE-NAME'."
   (interactive)
-  (save-excursion
-   (reposition-window)
-   (delete-trailing-whitespace)
-   (if (equal major-mode 'makefile-gmake-mode)
-       (tabify (point-min) (point-max))
-       (untabify (point-min) (point-max)))
-   (unless (or (equal major-mode 'text-mode)
-               (equal major-mode 'python-mode)
-               (equal major-mode 'makefile-gmake-mode))
-     (indent-region (point-min) (point-max))))
-  (save-buffer) nil)
-(global-set-key (kbd "C-x C-s") 'format-save-buffer)
+  (condition-case
+   err
+   (unless (package-installed-p package-name)
+     (package-initialize)
+     (package-install package-name) nil)
+   (error (princ (format "THE ERROR WAS: %s" err)))))
 
+(install-package 'doom-themes)
+(if (and (display-graphic-p)
+         (package-installed-p 'doom-themes))
+    (load-theme 'doom-dracula t))
+
+(unless (version<= emacs-version "26.1")
+  (install-package 'modus-vivendi-theme)
+  (install-package 'modus-operandi-theme))
+(if (and (display-graphic-p)
+         (package-installed-p 'modus-vivendi-theme)
+         (package-installed-p 'modus-operandi-theme))
+    (load-theme 'modus-vivendi t))
+
+(install-package 'org)
+(require 'org nil :noerror)
+
+(install-package 'avy)
+(when (package-installed-p 'avy)
+  (avy-setup-default)
+  (setq-default avy-background  t   )
+  (setq-default avy-all-windows nil )
+  (global-set-key (kbd "C-:"   ) 'avy-goto-char   )
+  (global-set-key (kbd "C-'"   ) 'avy-goto-char-2 )
+  (global-set-key (kbd "M-g w" ) 'avy-goto-word-1 ))
+
+(install-package 'modern-cpp-font-lock)
+(when (require 'modern-cpp-font-lock nil :noerror)
+  (modern-c++-font-lock-global-mode))
+
+(install-package 'zoom)
+(when (package-installed-p 'zoom)
+  (custom-set-variables '(zoom-mode               t ))
+  (custom-set-variables '(temp-buffer-resize-mode t ))
+  (custom-set-variables '(zoom-size '(0.618 . 0.618 )) ))
+
+(install-package 'flycheck)
+(when (require 'flycheck nil :noerror)
+  (global-flycheck-mode))
+
+(install-package 'yasnippet)
 (when (require 'yasnippet nil :noerror)
   (yas-reload-all)
   (add-hook 'prog-mode-hook 'yas-minor-mode))
 
-(if (require 'helm nil :noerror)
-    (progn
-      (require 'helm-config nil :noerror)
-      (helm-mode)
-      (global-set-key (kbd "M-x")     'helm-M-x)
-      (global-set-key (kbd "C-x C-f") 'helm-find-files)
-      (global-set-key (kbd "C-x r b") 'helm-filtered-bookmarks))
-    (when (require 'ido nil :noerror)
-      (ido-mode t)
-      (ido-everywhere)
-      (setq-default ido-use-virtual-buffers  t
-                    ido-enable-flex-matching t)))
-
+(install-package 'slime)
 (when (and (executable-find "sbcl")
            (require 'slime nil :noerror))
   (require 'slime-autoloads nil :noerror)
@@ -333,53 +349,84 @@
                  slime-fancy
                  slime-tramp
                  slime-indentation))
-  (setq-default inferior-lisp-program   "sbcl"
-                slime-net-coding-system 'utf-8-unix))
+  (setq-default inferior-lisp-program   "sbcl"                       )
+  (setq-default lisp-indent-function    'common-lisp-indent-function )
+  (setq-default slime-net-coding-system 'utf-8-unix                  ))
 
-(when (and (executable-find "gtags")
-           (require 'ggtags nil :noerror))
-  (setq-default ggtags-update-on-save t)
-  (add-hook 'c-mode-common-hook
-            '(lambda () (when (derived-mode-p 'c-mode 'c++-mode)
-                          (ggtags-mode)))))
+(install-package 'helm)
+(if (require 'helm nil :noerror)
+    (progn
+      (require 'helm-config nil :noerror) (helm-mode)
+      (global-set-key (kbd "M-x"     ) 'helm-M-x                )
+      (global-set-key (kbd "C-x C-f" ) 'helm-find-files         )
+      (global-set-key (kbd "C-x r b" ) 'helm-filtered-bookmarks ) )
+    (when (require 'ido nil :noerror)
+      (ido-mode       1 )
+      (ido-everywhere 1 )
+      (setq-default ido-use-virtual-buffers  t )
+      (setq-default ido-enable-flex-matching t ) ))
 
+(install-package 'irony)
+(if (require 'irony nil :noerror)
+    (progn
+      (add-hook 'c-mode-hook     'irony-mode                          )
+      (add-hook 'c++-mode-hook   'irony-mode                          )
+      (add-hook 'irony-mode-hook 'irony-cdb-autosetup-compile-options ))
+    (use-cedet-semantic))
+
+(install-package 'rtags)
+(when (require 'rtags nil :noerror)
+  (rtags-diagnostics                 )
+  (rtags-enable-standard-keybindings )
+  (setq-default rtags-completions-enabled   t )
+  (setq-default rtags-autostart-diagnostics t )
+  (add-hook 'c-mode-hook   'rtags-start-process-unless-running )
+  (add-hook 'c++-mode-hook 'rtags-start-process-unless-running ))
+
+(if (executable-find "git")
+    (install-package 'magit))
+
+(install-package 'pos-tip     )
+(install-package 'racket-mode )
 (when (and (executable-find "racket")
            (require 'racket-mode nil :noerror))
-  (add-hook 'racket-mode-hook      'racket-unicode-input-method-enable)
-  (add-hook 'racket-repl-mode-hook 'racket-unicode-input-method-enable))
+  (add-hook 'racket-mode-hook      'racket-unicode-input-method-enable )
+  (add-hook 'racket-repl-mode-hook 'racket-unicode-input-method-enable ))
 
-(if (executable-find "scheme")
-    (setq-default scheme-program-name "scheme")
-    (autoload 'run-scheme "cmuscheme" "Run an inferior Scheme" t)
-    (autoload 'scheme-mode "cmuscheme" "Major mode for Scheme" t))
-
+(install-package 'company)
+(if (package-installed-p 'irony)
+    (install-package 'company-irony))
+(if (package-installed-p 'rtags)
+    (install-package 'company-rtags))
 (when (require 'company nil :noerror)
-  (setq-default company-idle-delay            0
-                company-show-numbers          t
-                company-selection-wrap-around t
-                company-minimum-prefix-length 2)
+  (setq-default company-idle-delay            0 )
+  (setq-default company-show-numbers          t )
+  (setq-default company-selection-wrap-around t )
+  (setq-default company-minimum-prefix-length 2 )
   (add-hook 'prog-mode-hook 'global-company-mode)
-  (eval-after-load 'company '(add-to-list 'company-backends 'company-irony)))
+  (if (package-installed-p 'company-irony)
+      (eval-after-load
+       'company '(add-to-list 'company-backends 'company-irony)))
+  (if (package-installed-p 'company-rtags)
+      (eval-after-load
+       'company '(add-to-list 'company-backends 'company-rtags))))
 
-(defun kill-other-buffers ()
-  (interactive)
-  (delete-other-windows)
-  (mapc 'kill-buffer (delq (current-buffer) (buffer-list))))
+(install-package 'elpy)
+(when (require 'elpy nil :noerror)
+  (elpy-enable)
+  (setq-default elpy-rpc-backend "jedi"))
 
-(global-unset-key [up])
-(global-unset-key [down])
-(global-unset-key [left])
-(global-unset-key [right])
-(windmove-default-keybindings)
-(global-set-key (kbd "<f1>")  'speedbar)
-(global-set-key (kbd "<f2>")  'ibuffer)
-(global-set-key (kbd "<f3>")  'comment-line)
-(global-set-key (kbd "<f4>")  'bookmark-set)
-(global-set-key (kbd "<f5>")  'bookmark-jump)
-(global-set-key (kbd "<f6>")  'bookmark-bmenu-list)
-(global-set-key (kbd "<f7>")  'kmacro-start-macro)
-(global-set-key (kbd "<f8>")  'kmacro-end-macro)
-(global-set-key (kbd "<f9>")  'kmacro-call-macro)
-(global-set-key (kbd "<f10>") 'toggle-menu-bar-mode-from-frame)
-(global-set-key (kbd "<f11>") 'toggle-frame-fullscreen)
-(global-set-key (kbd "<f12>") 'kill-other-buffers)
+(install-package 'multiple-cursors)
+(when (require 'multiple-cursors nil :noerror)
+  (global-set-key (kbd "C->"         ) 'mc/mark-next-like-this     )
+  (global-set-key (kbd "C-<"         ) 'mc/mark-previous-like-this )
+  (global-set-key (kbd "C-c C-<"     ) 'mc/mark-all-like-this      )
+  (global-set-key (kbd "C-S-c C-S-c" ) 'mc/edit-lines              ))
+
+(install-package 'expand-region)
+(when (require 'expand-region nil :noerror)
+  (global-set-key (kbd "C-=") 'er/expand-region))
+
+(provide '.emacs)
+
+;;; .emacs ends here
