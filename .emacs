@@ -84,7 +84,7 @@
 (setq-default initial-scratch-message             nil )
 (setq-default kill-whole-line                     t   )
 (setq-default line-move-visual                    nil )
-(setq-default make-backup-files                   t   )
+(setq-default make-backup-files                   nil )
 (setq-default mouse-wheel-follow-mouse            t   )
 (setq-default mouse-wheel-progressive-speed       nil )
 (setq-default next-line-add-newlines              nil )
@@ -138,6 +138,7 @@
 (setq-default buffer-file-coding-system            'utf-8                 )
 (setq-default calendar-date-style                  'european              )
 (setq-default coding-system-for-read               'utf-8                 )
+(setq-default default-process-coding-system        '(utf-8 . utf-8)       )
 (setq-default dired-recursive-copies               'always                )
 (setq-default dired-recursive-deletes              'always                )
 (setq-default f90-smart-end                        'blink                 )
@@ -224,28 +225,28 @@ Provide functionality for work with source code
           (setq-default python-shell-interpreter-args "-i"      )) ))
 
 (when (display-graphic-p)
-  (blink-cursor-mode)
-  (zone-when-idle 300)
-  (if (version<= emacs-version "26.0.50")
-      (progn
-        (when (require 'linum nil :noerror)
-          (line-number-mode                 )
-          (global-linum-mode                )
-          (setq-default linum-format "%5d " ) ))
-      (progn
-        (global-display-line-numbers-mode                )
-        (setq-default display-line-numbers-type 'relative) ))
+  (blink-cursor-mode  )
+  (zone-when-idle 300 )
   ;; (load-theme 'wheatgrass t)
+  ;; (if (version<= emacs-version "26.0.50")
+  ;; (progn
+  ;; (when (require 'linum nil :noerror)
+  ;; (line-number-mode                 )
+  ;; (global-linum-mode                )
+  ;; (setq-default linum-format "%5d " ) ))
+  ;; (progn
+  ;; (global-display-line-numbers-mode                 )
+  ;; (setq-default display-line-numbers-type 'relative ) ))
   (setq-default cursor-type 'hollow)
-  (if (member         "JetBrains Mono"    (font-family-list))
-      (set-frame-font "JetBrains Mono 13" t t))
+  (when (not indicate-empty-lines)
+    (toggle-indicate-empty-lines)
+    (setq-default indicate-empty-lines t))
   (add-to-list 'default-frame-alist '(top    .  30) )
   (add-to-list 'default-frame-alist '(left   .  30) )
   (add-to-list 'default-frame-alist '(width  . 120) )
   (add-to-list 'default-frame-alist '(height .  30) )
-  (when (not indicate-empty-lines)
-    (toggle-indicate-empty-lines)
-    (setq-default indicate-empty-lines t))
+  (if (member         "JetBrains Mono"    (font-family-list) )
+      (set-frame-font "JetBrains Mono 13"  t              t) )
   (setq-default zone-programs [zone-pgm-five-oclock-swan-dive])
   (fringe-mode                              '( 10     . 10    ))
   (setq-default indicate-buffer-boundaries '(( bottom . right )
@@ -283,9 +284,14 @@ Provide functionality for work with source code
 (when (require 'package nil :noerror)
   (package-initialize)
   (setq-default package-check-signature nil)
-  (add-to-list 'package-archives '("org"   . "https://orgmode.org/elpa/"   ) t )
-  (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/" ) t )
-  (unless package-archive-contents (package-refresh-contents)))
+  (add-to-list 'package-archives
+               '("org"   . "https://orgmode.org/elpa/"      ) t )
+  (add-to-list 'package-archives
+               '("melpa" . "https://melpa.org/packages/"    ) t )
+  (add-to-list 'package-archives
+               '("gnu"   . "https://elpa.gnu.org/packages/" ) t )
+  (unless package-archive-contents
+    (package-refresh-contents)))
 
 (defun install-package (package-name)
   "Try installing an external package: 'PACKAGE-NAME'."
@@ -297,18 +303,31 @@ Provide functionality for work with source code
      (package-install package-name) nil)
    (error (princ (format "THE ERROR WAS: %s" err)))))
 
-(install-package 'doom-themes)
-(if (and (display-graphic-p)
-         (package-installed-p 'doom-themes))
-    (load-theme 'doom-dracula t))
-
-(unless (version<= emacs-version "26.1")
-  (install-package 'modus-vivendi-theme)
-  (install-package 'modus-operandi-theme))
-(if (and (display-graphic-p)
-         (package-installed-p 'modus-vivendi-theme)
-         (package-installed-p 'modus-operandi-theme))
-    (load-theme 'modus-vivendi t))
+(cond ((and (display-graphic-p)
+            (not (version<= emacs-version "26.1")))
+       (progn
+         (install-package 'modus-operandi-theme )
+         (install-package 'modus-vivendi-theme  )
+         (setq-default modus-vivendi-theme-scale-1 1.05 )
+         (setq-default modus-vivendi-theme-scale-2 1.10 )
+         (setq-default modus-vivendi-theme-scale-3 1.15 )
+         (setq-default modus-vivendi-theme-scale-4 1.20 )
+         (setq-default modus-vivendi-theme-3d-modeline         t )
+         (setq-default modus-vivendi-theme-bold-constructs     t )
+         (setq-default modus-vivendi-theme-distinct-org-blocks t )
+         (setq-default modus-vivendi-theme-proportional-fonts  t )
+         (setq-default modus-vivendi-theme-rainbow-headings    t )
+         (setq-default modus-vivendi-theme-scale-headings      t )
+         (setq-default modus-vivendi-theme-section-headings    t )
+         (setq-default modus-vivendi-theme-slanted-constructs  t )
+         (setq-default modus-vivendi-theme-subtle-diffs        t )
+         (setq-default modus-vivendi-theme-visible-fringes     t )
+         (load-theme 'modus-vivendi t) ))
+      ((and (display-graphic-p)
+            (version<= emacs-version "26.1"))
+       (progn
+         (install-package 'doom-themes    )
+         (load-theme      'doom-dracula t ))))
 
 (install-package 'org)
 (require 'org nil :noerror)
@@ -406,15 +425,19 @@ Provide functionality for work with source code
   (add-hook 'prog-mode-hook 'global-company-mode)
   (if (package-installed-p 'company-irony)
       (eval-after-load
-       'company '(add-to-list 'company-backends 'company-irony)))
+       'company '(add-to-list 'company-backends 'company-irony)) )
   (if (package-installed-p 'company-rtags)
       (eval-after-load
-       'company '(add-to-list 'company-backends 'company-rtags))))
+       'company '(add-to-list 'company-backends 'company-rtags)) ))
 
 (install-package 'elpy)
 (when (require 'elpy nil :noerror)
   (elpy-enable)
   (setq-default elpy-rpc-backend "jedi"))
+
+(install-package 'expand-region)
+(when (require 'expand-region nil :noerror)
+  (global-set-key (kbd "C-=") 'er/expand-region))
 
 (install-package 'multiple-cursors)
 (when (require 'multiple-cursors nil :noerror)
@@ -423,10 +446,5 @@ Provide functionality for work with source code
   (global-set-key (kbd "C-c C-<"     ) 'mc/mark-all-like-this      )
   (global-set-key (kbd "C-S-c C-S-c" ) 'mc/edit-lines              ))
 
-(install-package 'expand-region)
-(when (require 'expand-region nil :noerror)
-  (global-set-key (kbd "C-=") 'er/expand-region))
-
 (provide '.emacs)
-
 ;;; .emacs ends here
