@@ -46,9 +46,6 @@
 (defalias 'perl-mode    'cperl-mode )
 (defalias 'yes-or-no-p  'y-or-n-p   )
 
-(setq-default c-default-style    "bsd"               )
-(setq-default frame-title-format "GNU Emacs: %b: %P" )
-
 (setq-default abbrev-mode                         t   )
 (setq-default apropos-do-all                      t   )
 (setq-default auto-revert-check-vc-info           t   )
@@ -127,7 +124,11 @@
 (setq-default scroll-up-aggressively               0.01 )
 (setq-default show-paren-delay                     0    )
 (setq-default tab-width                            2    )
-(setq-default whitespace-line-column              80    )
+(setq-default whitespace-line-column              81    )
+
+(setq-default c-default-style    "bsd"                  )
+(setq-default custom-file        "~/.emacs.d/custom.el" )
+(setq-default frame-title-format "GNU Emacs: %b: %P"    )
 
 (setq-default backward-delete-char-untabify-method 'hungry                )
 (setq-default calendar-date-style                  'european              )
@@ -270,21 +271,20 @@ Provide functionality for work with source code
 (global-unset-key [right] )
 (global-unset-key [up]    )
 
-(windmove-default-keybindings)
-
-(global-set-key (kbd "<f1>"    ) 'speedbar                        )
-(global-set-key (kbd "<f2>"    ) 'ibuffer                         )
-(global-set-key (kbd "<f3>"    ) 'comment-line                    )
-(global-set-key (kbd "<f4>"    ) 'bookmark-set                    )
-(global-set-key (kbd "<f5>"    ) 'bookmark-jump                   )
-(global-set-key (kbd "<f6>"    ) 'bookmark-bmenu-list             )
-(global-set-key (kbd "<f7>"    ) 'kmacro-start-macro              )
-(global-set-key (kbd "<f8>"    ) 'kmacro-end-macro                )
-(global-set-key (kbd "<f9>"    ) 'kmacro-call-macro               )
-(global-set-key (kbd "<f10>"   ) 'toggle-menu-bar-mode-from-frame )
-(global-set-key (kbd "<f11>"   ) 'toggle-frame-fullscreen         )
-(global-set-key (kbd "<f12>"   ) 'kill-other-buffers              )
-(global-set-key (kbd "C-x C-s" ) 'format-save-buffer              )
+(windmove-default-keybindings                  'shift                           )
+(global-set-key               (kbd "<f1>"    ) 'speedbar                        )
+(global-set-key               (kbd "<f2>"    ) 'ibuffer                         )
+(global-set-key               (kbd "<f3>"    ) 'comment-line                    )
+(global-set-key               (kbd "<f4>"    ) 'bookmark-set                    )
+(global-set-key               (kbd "<f5>"    ) 'bookmark-jump                   )
+(global-set-key               (kbd "<f6>"    ) 'bookmark-bmenu-list             )
+(global-set-key               (kbd "<f7>"    ) 'kmacro-start-macro              )
+(global-set-key               (kbd "<f8>"    ) 'kmacro-end-macro                )
+(global-set-key               (kbd "<f9>"    ) 'kmacro-call-macro               )
+(global-set-key               (kbd "<f10>"   ) 'toggle-menu-bar-mode-from-frame )
+(global-set-key               (kbd "<f11>"   ) 'toggle-frame-fullscreen         )
+(global-set-key               (kbd "<f12>"   ) 'kill-other-buffers              )
+(global-set-key               (kbd "C-x C-s" ) 'format-save-buffer              )
 
 (when (require 'package nil :noerror)
   (package-initialize)
@@ -427,8 +427,7 @@ Provide functionality for work with source code
 
 (install-package 'elpy)
 (when (require 'elpy nil :noerror)
-  (elpy-enable)
-  (setq-default elpy-rpc-backend "jedi"))
+  (elpy-enable))
 
 (install-package 'expand-region)
 (when (require 'expand-region nil :noerror)
@@ -442,4 +441,5 @@ Provide functionality for work with source code
   (global-set-key (kbd "C-S-c C-S-c" ) 'mc/edit-lines              ))
 
 (provide '.emacs)
+
 ;;; .emacs ends here
