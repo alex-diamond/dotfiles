@@ -46,8 +46,8 @@
 (defalias 'perl-mode    'cperl-mode )
 (defalias 'yes-or-no-p  'y-or-n-p   )
 
-(setq-default c-default-style    "bsd"           )
-(setq-default frame-title-format "GNU Emacs: %b" )
+(setq-default c-default-style    "bsd"               )
+(setq-default frame-title-format "GNU Emacs: %b: %P" )
 
 (setq-default abbrev-mode                         t   )
 (setq-default apropos-do-all                      t   )
@@ -79,6 +79,7 @@
 (setq-default kill-whole-line                     t   )
 (setq-default line-move-visual                    nil )
 (setq-default make-backup-files                   nil )
+(setq-default mouse-drag-copy-region              nil )
 (setq-default mouse-wheel-follow-mouse            t   )
 (setq-default mouse-wheel-progressive-speed       nil )
 (setq-default next-line-add-newlines              nil )
@@ -92,6 +93,8 @@
 (setq-default savehist-save-minibuffer-history    t   )
 (setq-default scroll-preserve-screen-position     nil )
 (setq-default search-highlight                    t   )
+(setq-default select-enable-clipboard             t   )
+(setq-default select-enable-primary               nil )
 (setq-default sentence-end-double-space           nil )
 (setq-default shift-select-mode                   nil )
 (setq-default show-trailing-whitespace            t   )
@@ -101,8 +104,6 @@
 (setq-default use-dialog-box                      nil )
 (setq-default vc-make-backup-files                t   )
 (setq-default version-control                     t   )
-(setq-default x-select-enable-clipboard           t   )
-(setq-default x-select-enable-primary             t   )
 (setq-default x-stretch-cursor                    t   )
 
 (setq-default gc-cons-threshold       (* 10240 10240 ) )
@@ -132,7 +133,6 @@
 (setq-default calendar-date-style                  'european              )
 (setq-default dired-recursive-copies               'always                )
 (setq-default dired-recursive-deletes              'always                )
-(setq-default f90-smart-end                        'blink                 )
 (setq-default initial-major-mode                   'fundamental-mode      )
 (setq-default major-mode                           'text-mode             )
 (setq-default mouse-wheel-scroll-amount            '(1 ((shift) . 1))     )
@@ -223,6 +223,10 @@ Provide functionality for work with source code
           (global-display-line-numbers-mode                 )
           (setq-default display-line-numbers-type 'relative )) )) )
 
+(when (not indicate-empty-lines)
+  (toggle-indicate-empty-lines)
+  (setq-default indicate-empty-lines t))
+
 (if (file-exists-p bookmark-default-file)
     (bookmark-load bookmark-default-file t))
 
@@ -242,9 +246,6 @@ Provide functionality for work with source code
   (blink-cursor-mode  )
   (zone-when-idle 300 )
   (setq-default cursor-type 'hollow)
-  (when (not indicate-empty-lines)
-    (toggle-indicate-empty-lines)
-    (setq-default indicate-empty-lines t))
   (add-to-list 'default-frame-alist '(top    .  30) )
   (add-to-list 'default-frame-alist '(left   .  30) )
   (add-to-list 'default-frame-alist '(width  . 120) )
@@ -413,9 +414,9 @@ Provide functionality for work with source code
 (if (package-installed-p 'rtags) (install-package 'company-rtags))
 (when (require 'company nil :noerror)
   (setq-default company-idle-delay            0 )
-  (setq-default company-show-numbers          t )
-  (setq-default company-selection-wrap-around t )
   (setq-default company-minimum-prefix-length 2 )
+  (setq-default company-selection-wrap-around t )
+  (setq-default company-show-numbers          t )
   (add-hook 'prog-mode-hook 'global-company-mode)
   (if (package-installed-p 'company-irony)
       (eval-after-load 'company
@@ -441,5 +442,4 @@ Provide functionality for work with source code
   (global-set-key (kbd "C-S-c C-S-c" ) 'mc/edit-lines              ))
 
 (provide '.emacs)
-
 ;;; .emacs ends here

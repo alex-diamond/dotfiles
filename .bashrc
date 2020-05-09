@@ -14,8 +14,7 @@ function create_python3_virtualenv_project ()
     if [ -d "$project_name" ]
     then
         source "${project_name}/$project_activate_command"
-        cd "${project_name}/src" || return
-        pip install -r requirements.txt --upgrade && clear
+        mkdir -p "${project_name}/src" && cd "${project_name}/src" && clear
     else
         virtualenv -p python3 "$project_name"
         source "${project_name}/$project_activate_command"
@@ -23,7 +22,7 @@ function create_python3_virtualenv_project ()
         pip install --upgrade jedi rope autopep8 yapf
         pip install --upgrade black flake8 ipython jupyter
         pip install --upgrade 'python-language-server[all]'
-        cd "$project_name" && mkdir src &&  cd src || return
+        mkdir "${project_name}/src" &&  cd "${project_name}/src"
         pip freeze > requirements.txt && clear
     fi
 }
