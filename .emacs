@@ -149,19 +149,29 @@
   (c-toggle-auto-newline      1 )
   (c-toggle-auto-hungry-state 1 ))
 
+(defun install-package (package-name)
+  "Try installing an external package: 'PACKAGE-NAME'."
+  (interactive)
+  (condition-case
+   err
+   (unless (package-installed-p package-name)
+     (package-initialize)
+     (package-install package-name) nil)
+   (error (princ (format "THE ERROR WAS: %s" err))) ))
+
 (defun format-save-buffer ()
   "Format buffer before saving."
   (interactive)
   (save-excursion
-    (recenter)
-    (delete-trailing-whitespace)
-    (if (equal major-mode 'makefile-gmake-mode)
-        (tabify   (point-min) (point-max) )
-      (untabify (point-min) (point-max) ))
-    (unless (or (equal major-mode 'text-mode           )
-                (equal major-mode 'python-mode         )
-                (equal major-mode 'makefile-gmake-mode ))
-      (indent-region (point-min) (point-max))))
+   (recenter)
+   (delete-trailing-whitespace)
+   (if (equal major-mode 'makefile-gmake-mode)
+       (tabify   (point-min) (point-max) )
+       (untabify (point-min) (point-max) ))
+   (unless (or (equal major-mode 'text-mode           )
+               (equal major-mode 'python-mode         )
+               (equal major-mode 'makefile-gmake-mode ))
+     (indent-region (point-min) (point-max))))
   (save-buffer) nil)
 
 (defun use-cedet-semantic ()
@@ -197,7 +207,7 @@ Provide functionality for work with source code
   "Kill all invispble buffers."
   (interactive)
   (delete-other-windows)
-  (mapc 'kill-buffer (delq (current-buffer) (buffer-list))))
+  (mapc 'kill-buffer (delq (current-buffer) (buffer-list))) )
 
 (defun legacy-theme ()
   "Use a legacy theme while everything else is broken."
@@ -209,9 +219,9 @@ Provide functionality for work with source code
           (when (require 'linum nil :noerror)
             (line-number-mode  )
             (global-linum-mode ) ))
-      (progn
-        (global-display-line-numbers-mode                 )
-        (setq-default display-line-numbers-type 'relative )) )) )
+        (progn
+          (global-display-line-numbers-mode                 )
+          (setq-default display-line-numbers-type 'relative )) )) )
 
 (if (file-exists-p bookmark-default-file)
     (bookmark-load bookmark-default-file t))
@@ -223,10 +233,10 @@ Provide functionality for work with source code
     (progn
       (setq-default python-shell-interpreter      "ipython3"           )
       (setq-default python-shell-interpreter-args "--simple-prompt -i" ))
-  (if (executable-find "python3")
-      (progn
-        (setq-default python-shell-interpreter      "python3" )
-        (setq-default python-shell-interpreter-args "-i"      )) ))
+    (if (executable-find "python3")
+        (progn
+          (setq-default python-shell-interpreter      "python3" )
+          (setq-default python-shell-interpreter-args "-i"      )) ))
 
 (when (display-graphic-p)
   (blink-cursor-mode  )
@@ -251,8 +261,8 @@ Provide functionality for work with source code
 
 (if (executable-find "scheme")
     (setq-default scheme-program-name "scheme")
-  (autoload 'run-scheme  "cmuscheme" "Run an inferior Scheme" t )
-  (autoload 'scheme-mode "cmuscheme" "Major mode for Scheme"  t ))
+    (autoload 'run-scheme  "cmuscheme" "Run an inferior Scheme" t )
+    (autoload 'scheme-mode "cmuscheme" "Major mode for Scheme"  t ))
 
 (global-unset-key [down]  )
 (global-unset-key [left]  )
@@ -286,18 +296,7 @@ Provide functionality for work with source code
                '("gnu"          . "https://elpa.gnu.org/packages/"     ) t )
   (add-to-list 'package-archives
                '("melpa-stable" . "https://stable.melpa.org/packages/" ) t )
-  (unless package-archive-contents
-    (package-refresh-contents)))
-
-(defun install-package (package-name)
-  "Try installing an external package: 'PACKAGE-NAME'."
-  (interactive)
-  (condition-case
-      err
-      (unless (package-installed-p package-name)
-        (package-initialize)
-        (package-install package-name) nil)
-    (error (princ (format "THE ERROR WAS: %s" err)))))
+  (unless package-archive-contents (package-refresh-contents)))
 
 (install-package 'doom-themes         )
 (install-package 'modus-vivendi-theme )
@@ -365,7 +364,9 @@ Provide functionality for work with source code
                  slime-fancy
                  slime-tramp
                  slime-indentation))
-  (setq-default inferior-lisp-program "sbcl"))
+  (setq-default inferior-lisp-program     "sbcl" )
+  (setq-default common-lisp-style-default "sbcl" )
+  (setq-default lisp-indent-function 'common-lisp-indent-function))
 
 (install-package 'helm)
 (if (require 'helm nil :noerror)
@@ -374,11 +375,11 @@ Provide functionality for work with source code
       (global-set-key (kbd "M-x"     ) 'helm-M-x                )
       (global-set-key (kbd "C-x C-f" ) 'helm-find-files         )
       (global-set-key (kbd "C-x r b" ) 'helm-filtered-bookmarks ) )
-  (when (require 'ido nil :noerror)
-    (ido-mode       1 )
-    (ido-everywhere 1 )
-    (setq-default ido-use-virtual-buffers  t )
-    (setq-default ido-enable-flex-matching t ) ))
+    (when (require 'ido nil :noerror)
+      (ido-mode       1 )
+      (ido-everywhere 1 )
+      (setq-default ido-use-virtual-buffers  t )
+      (setq-default ido-enable-flex-matching t ) ))
 
 (when (and (executable-find "clang")
            (executable-find "cmake"))
@@ -396,7 +397,7 @@ Provide functionality for work with source code
       (add-hook 'c-mode-hook     'irony-mode                          )
       (add-hook 'c++-mode-hook   'irony-mode                          )
       (add-hook 'irony-mode-hook 'irony-cdb-autosetup-compile-options ))
-  (use-cedet-semantic))
+    (use-cedet-semantic))
 
 (if (executable-find "git") (install-package 'magit))
 
@@ -408,10 +409,8 @@ Provide functionality for work with source code
   (add-hook 'racket-repl-mode-hook 'racket-unicode-input-method-enable ))
 
 (install-package 'company)
-(if (package-installed-p 'irony)
-    (install-package 'company-irony))
-(if (package-installed-p 'rtags)
-    (install-package 'company-rtags))
+(if (package-installed-p 'irony) (install-package 'company-irony))
+(if (package-installed-p 'rtags) (install-package 'company-rtags))
 (when (require 'company nil :noerror)
   (setq-default company-idle-delay            0 )
   (setq-default company-show-numbers          t )
@@ -420,10 +419,10 @@ Provide functionality for work with source code
   (add-hook 'prog-mode-hook 'global-company-mode)
   (if (package-installed-p 'company-irony)
       (eval-after-load 'company
-        '(add-to-list 'company-backends 'company-irony)) )
+                       '(add-to-list 'company-backends 'company-irony)) )
   (if (package-installed-p 'company-rtags)
       (eval-after-load 'company
-        '(add-to-list 'company-backends 'company-rtags)) ))
+                       '(add-to-list 'company-backends 'company-rtags)) ))
 
 (install-package 'elpy)
 (when (require 'elpy nil :noerror)
@@ -442,4 +441,5 @@ Provide functionality for work with source code
   (global-set-key (kbd "C-S-c C-S-c" ) 'mc/edit-lines              ))
 
 (provide '.emacs)
+
 ;;; .emacs ends here
