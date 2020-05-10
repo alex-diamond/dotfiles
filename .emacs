@@ -63,6 +63,12 @@
 (setq-default enable-recursive-minibuffers        t   )
 (setq-default find-file-visit-truename            t   )
 (setq-default font-lock-maximum-decoration        t   )
+(setq-default gdb-enable-debug                    t   )
+(setq-default gdb-many-windows                    t   )
+(setq-default gdb-show-changed-values             t   )
+(setq-default gdb-show-main                       t   )
+(setq-default gdb-show-threads-by-default         t   )
+(setq-default gdb-speedbar-auto-raise             t   )
 (setq-default global-visual-line-mode             nil )
 (setq-default history-delete-duplicates           t   )
 (setq-default ibuffer-expert                      t   )
@@ -417,7 +423,7 @@ Provide functionality for work with source code
   (setq-default company-minimum-prefix-length 2 )
   (setq-default company-selection-wrap-around t )
   (setq-default company-show-numbers          t )
-  (add-hook 'prog-mode-hook 'global-company-mode)
+  (add-hook 'prog-mode-hook 'company-mode)
   (if (package-installed-p 'company-irony)
       (eval-after-load 'company
                        '(add-to-list 'company-backends 'company-irony)) )
@@ -441,5 +447,4 @@ Provide functionality for work with source code
   (global-set-key (kbd "C-S-c C-S-c" ) 'mc/edit-lines              ))
 
 (provide '.emacs)
-
 ;;; .emacs ends here
