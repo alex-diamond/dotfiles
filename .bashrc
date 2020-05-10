@@ -11,8 +11,7 @@ function create_python3_virtualenv_project ()
 {
     local project_name="$1"
     local project_activate_command="bin/activate"
-    if [ -d "$project_name" ]
-    then
+    if [ -d "$project_name" ]; then
         source "${project_name}/$project_activate_command"
         mkdir -p "${project_name}/src" && cd "${project_name}/src" && clear
     else
@@ -67,12 +66,12 @@ shopt -s histappend
 # updates the values of LINES and COLUMNS
 shopt -s checkwinsize
 
-# 256 colors on the Linux terminal
-export TERM=xterm-256color
+# Turn off color in Linux terminal/bash session
+export TERM=xterm-mono
 # Bash history and prompt
 export HISTSIZE=10240
 export HISTCONTROL=ignoreboth:erasedups
-export HISTIGNORE=".:..:c:h:x:cd:la:ll:ls"
-export PS1="\[\e[1m\][\u] [\h] [\w]\n\\$ \[\e[0m\]"
+export HISTIGNORE='.:..:c:h:x:cd:la:ll:ls'
+export PS1='\[\e[1m\][\u] [\h] [\w]\n\\$ \[\e[0m\]'
 # Update history file after every command
 export PROMPT_COMMAND="history -a; $PROMPT_COMMAND"

@@ -8,6 +8,7 @@
 (require 'cc-mode    nil :noerror)
 (require 'cl-lib     nil :noerror)
 (require 'dired      nil :noerror)
+(require 'dirtrack   nil :noerror)
 (require 'eldoc      nil :noerror)
 (require 'flyspell   nil :noerror)
 (require 'font-lock  nil :noerror)
@@ -182,9 +183,7 @@
   (save-buffer) nil)
 
 (defun use-cedet-semantic ()
-  "GNU Emacs CEDET & Semantic customization.
-Provide functionality for work with source code
- written in different programming languages."
+  "GNU Emacs CEDET & Semantic customization."
   (interactive)
   (require       'cedet               nil :noerror )
   (when (require 'semantic            nil :noerror )
@@ -315,16 +314,16 @@ Provide functionality for work with source code
          (setq-default modus-vivendi-theme-scale-2 1.10 )
          (setq-default modus-vivendi-theme-scale-3 1.15 )
          (setq-default modus-vivendi-theme-scale-4 1.20 )
-         (setq-default modus-vivendi-theme-3d-modeline         t )
-         (setq-default modus-vivendi-theme-bold-constructs     t )
-         (setq-default modus-vivendi-theme-distinct-org-blocks t )
-         (setq-default modus-vivendi-theme-proportional-fonts  t )
-         (setq-default modus-vivendi-theme-rainbow-headings    t )
-         (setq-default modus-vivendi-theme-scale-headings      t )
-         (setq-default modus-vivendi-theme-section-headings    t )
-         (setq-default modus-vivendi-theme-slanted-constructs  t )
-         (setq-default modus-vivendi-theme-subtle-diffs        t )
-         (setq-default modus-vivendi-theme-visible-fringes     t )
+         (setq-default modus-vivendi-theme-3d-modeline         t   )
+         (setq-default modus-vivendi-theme-bold-constructs     t   )
+         (setq-default modus-vivendi-theme-distinct-org-blocks t   )
+         (setq-default modus-vivendi-theme-proportional-fonts  t   )
+         (setq-default modus-vivendi-theme-rainbow-headings    t   )
+         (setq-default modus-vivendi-theme-scale-headings      t   )
+         (setq-default modus-vivendi-theme-section-headings    t   )
+         (setq-default modus-vivendi-theme-slanted-constructs  t   )
+         (setq-default modus-vivendi-theme-subtle-diffs        t   )
+         (setq-default modus-vivendi-theme-visible-fringes     nil )
          (load-theme 'modus-vivendi t) ))
       ((and (display-graphic-p)
             (version< emacs-version "26.1")
@@ -425,15 +424,21 @@ Provide functionality for work with source code
   (setq-default company-show-numbers          t )
   (add-hook 'prog-mode-hook 'company-mode)
   (if (package-installed-p 'company-irony)
-      (eval-after-load 'company
-                       '(add-to-list 'company-backends 'company-irony)) )
+      (eval-after-load
+       'company '(add-to-list 'company-backends 'company-irony)) )
   (if (package-installed-p 'company-rtags)
-      (eval-after-load 'company
-                       '(add-to-list 'company-backends 'company-rtags)) ))
+      (eval-after-load
+       'company '(add-to-list 'company-backends 'company-rtags)) ))
 
 (install-package 'elpy)
 (when (require 'elpy nil :noerror)
-  (elpy-enable))
+  (elpy-enable)
+  (add-hook
+   'elpy-mode-hook
+   (lambda () (add-hook 'before-save-hook 'elpy-format-code    nil t)) )
+  (add-hook
+   'elpy-mode-hook
+   (lambda () (add-hook 'before-save-hook 'elpy-black-fix-code nil t)) ))
 
 (install-package 'expand-region)
 (when (require 'expand-region nil :noerror)
