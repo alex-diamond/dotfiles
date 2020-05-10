@@ -35,6 +35,7 @@
 **** [[https://virtualenv.pypa.io/][Virtualenv]]
 *** [[https://www.perl.org][Perl]]
 *** [[https://openjdk.java.net/][OpenJDK]]
+**** [[https://visualvm.github.io/][VisualVM]]
 *** LISP
 **** [[http://aur.archlinux.org/packages/chez-scheme][chez-scheme]] [AUR]
 **** [[https://racket-lang.org/][DrRacket]]
