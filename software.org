@@ -22,7 +22,7 @@
 *** [[http://www.asty.org/cmatrix/][CMatrix]]
 *** [[https://xorg.freedesktop.org/][xcursor-themes]]
 *** [[https://docs.xfce.org/panel-plugins/xfce4-clipman-plugin][Clipman]]
-*** ant-dracula-gtk-theme
+*** ant-dracula-gtk-theme [AUR]
 ** DB
 *** [[https://www.postgresql.org/][PostgreSQL]]
 **** [[https://www.pgadmin.org/][pgAdmin]]
