@@ -17,6 +17,8 @@
   sudo apt-get -y install htop
 #+END_SRC
 
+#+RESULTS:
+
 ** gdebi, tasksel, aptitude and synaptic
 #+BEGIN_SRC sh
   sudo apt-get -y install gdebi
