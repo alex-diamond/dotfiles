@@ -103,6 +103,7 @@
 *** [[https://www.smplayer.info/][SMPlayer]]
 **** skins
 **** themes
+*** [[https://mpv.io/][mpv]]
 *** [[https://docs.xfce.org/apps/xfburn][Xfburn]]
 *** [[http://www.blender.org][Blender]]
 *** [[https://inkscape.org/][Inkscape]]
