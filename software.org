@@ -21,8 +21,8 @@
 *** [[https://github.com/Jguer/yay][Yay]]
 *** [[http://www.asty.org/cmatrix/][CMatrix]]
 *** [[https://xorg.freedesktop.org/][xcursor-themes]]
-*** [[https://docs.xfce.org/panel-plugins/xfce4-clipman-plugin][Clipman]]
-*** ant-dracula-gtk-theme [AUR]
+*** [[https://github.com/xfce-mirror/catfish][Catfish]]
+*** [[https://github.com/horst3180/arc-theme][Arc Theme]]
 ** DB
 *** [[https://www.postgresql.org/][PostgreSQL]]
 **** [[https://www.pgadmin.org/][pgAdmin]]
@@ -81,7 +81,7 @@
 **** [[https://www.gnu.org/software/emacs/emacs.html][GNU Emacs]]
 ***** [[http://ecb.sourceforge.net/][ECB]]
 **** [[http://www.lazarus.freepascal.org/][Lazarus]]
-**** [[https://eclipse.org][Eclipse]] [AUR]
+**** [[https://eclipse.org][Eclipse]] (official)
 ** Science
 *** [[http://maxima.sourceforge.net][xmaxima]]
 **** [[https://wxmaxima-developers.github.io/wxmaxima/][wxMaxima]]
@@ -93,6 +93,7 @@
 *** [[http://pdfgrep.sourceforge.net/][pdfgrep]]
 *** [[https://www.ghostscript.com/][Ghostscript]]
 *** Xfce4-screenshooter
+*** [[https://keepassxc.org/][KeePassXC]]
 ** Multimedia
 *** [[https://ffmpeg.org/][FFmpeg]]
 *** [[https://obsproject.com][OBS Studio]]

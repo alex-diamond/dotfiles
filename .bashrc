@@ -72,6 +72,6 @@ export TERM=xterm-mono
 export HISTSIZE=10240
 export HISTCONTROL=ignoreboth:erasedups
 export HISTIGNORE='.:..:c:h:x:cd:la:ll:ls'
-export PS1='\[\e[1m\][\u] [\h] [\w]\n\\$ \[\e[0m\]'
+export PS1='\n[\u] [\H] [\W : $(ls | wc -l)]\n\$ '
 # Update history file after every command
-export PROMPT_COMMAND="history -a; $PROMPT_COMMAND"
+export PROMPT_COMMAND="history -a"
