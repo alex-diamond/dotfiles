@@ -102,6 +102,7 @@
 (setq-default sentence-end-double-space           nil )
 (setq-default shift-select-mode                   nil )
 (setq-default show-trailing-whitespace            t   )
+(setq-default tags-revert-without-query           t   )
 (setq-default track-eol                           t   )
 (setq-default truncate-lines                      t   )
 (setq-default truncate-partial-width-windows      nil )
@@ -189,7 +190,7 @@
   (when (require 'semantic            nil :noerror )
     (require     'semantic/ia         nil :noerror )
     (require     'semantic/bovine/gcc nil :noerror )
-    (when (executable-find "gtags")
+    (when (executable-find "global")
       (semanticdb-enable-gnu-global-databases 'c-mode   )
       (semanticdb-enable-gnu-global-databases 'c++-mode ))
     (defvar *semantic-submodes*
@@ -299,28 +300,21 @@
   (add-to-list 'package-archives '("org"   . "https://orgmode.org/elpa/"      ) t )
   (unless package-archive-contents (package-refresh-contents)))
 
-(install-package 'doom-themes         )
-(install-package 'modus-vivendi-theme )
-(cond ((and (display-graphic-p)
-            (not (version<= emacs-version "26.1"))
-            (package-installed-p 'modus-vivendi-theme))
-       (progn
-         (setq-default modus-vivendi-theme-3d-modeline         t   )
-         (setq-default modus-vivendi-theme-bold-constructs     t   )
-         (setq-default modus-vivendi-theme-distinct-org-blocks t   )
-         (setq-default modus-vivendi-theme-proportional-fonts  t   )
-         (setq-default modus-vivendi-theme-rainbow-headings    t   )
-         (setq-default modus-vivendi-theme-scale-headings      t   )
-         (setq-default modus-vivendi-theme-section-headings    t   )
-         (setq-default modus-vivendi-theme-slanted-constructs  t   )
-         (setq-default modus-vivendi-theme-subtle-diffs        t   )
-         (setq-default modus-vivendi-theme-visible-fringes     nil )
-         (load-theme 'modus-vivendi t) ))
-      ((and (display-graphic-p)
-            (version< emacs-version "26.1")
-            (package-installed-p 'doom-themes))
-       (load-theme 'doom-dracula t))
-      (t (legacy-theme)) )
+(install-package 'doom-themes)
+(if (and (display-graphic-p)
+         (package-installed-p 'doom-themes))
+    (progn
+      (setq-default doom-themes-enable-bold        t   )
+      (setq-default doom-themes-enable-italic      t   )
+      (setq-default doom-themes-padded-modeline    nil )
+      (setq-default doom-vibrant-brighter-comments t   )
+      (setq-default doom-vibrant-brighter-modeline t   )
+      (setq-default doom-vibrant-comment-bg        t   )
+      (setq-default doom-vibrant-padded-modeline   nil )
+      (load-theme 'doom-vibrant                    t   )
+      (doom-themes-org-config         )
+      (doom-themes-visual-bell-config ) )
+    (legacy-theme))
 
 (install-package 'org)
 (when (require 'org nil :noerror)
@@ -379,8 +373,7 @@
   (custom-set-variables '(zoom-size '(0.618 . 0.618 )) ))
 
 (install-package 'flycheck)
-(when (require 'flycheck nil :noerror)
-  (global-flycheck-mode))
+(when (require 'flycheck nil :noerror) (global-flycheck-mode))
 
 (install-package 'yasnippet)
 (when (require 'yasnippet nil :noerror)
@@ -399,42 +392,28 @@
   (setq-default common-lisp-style-default "sbcl" )
   (setq-default lisp-indent-function 'common-lisp-indent-function))
 
-(when (and (executable-find "clang")
-           (executable-find "cmake"))
-  (install-package 'irony)
-  (install-package 'rtags))
-(when (require 'rtags nil :noerror)
-  (rtags-diagnostics                 )
-  (rtags-enable-standard-keybindings )
-  (setq-default rtags-completions-enabled   t )
-  (setq-default rtags-autostart-diagnostics t )
-  (add-hook 'c-mode-hook   'rtags-start-process-unless-running )
-  (add-hook 'c++-mode-hook 'rtags-start-process-unless-running ))
-(if (require 'irony nil :noerror)
+(if (executable-find "global") (install-package 'ggtags))
+(if (package-installed-p 'ggtags)
     (progn
-      (add-hook 'c-mode-hook     'irony-mode                          )
-      (add-hook 'c++-mode-hook   'irony-mode                          )
-      (add-hook 'irony-mode-hook 'irony-cdb-autosetup-compile-options ))
+      (setq-default ggtags-auto-jump-to-match 'first )
+      (setq-default ggtags-update-on-save     t      )
+      (setq-default ggtags-use-sqlite3        t      )
+      (add-hook 'c-mode-common-hook
+                (lambda ()
+                  (when (derived-mode-p 'asm-mode 'c-mode 'c++-mode 'java-mode)
+                    (ggtags-mode) (use-cedet-semantic)) )) )
     (use-cedet-semantic))
 
-(when (executable-find "git")
-  (install-package              'magit        )
-  (global-set-key (kbd "C-x g") 'magit-status ))
-
-(install-package 'pos-tip     )
-(install-package 'racket-mode )
+(install-package 'racket-mode)
 (when (and (executable-find "racket")
            (require 'racket-mode nil :noerror))
   (add-hook 'racket-mode-hook      'racket-unicode-input-method-enable )
   (add-hook 'racket-repl-mode-hook 'racket-unicode-input-method-enable ))
 
 (install-package 'helm)
-(if (package-installed-p 'rtags)
-    (install-package 'helm-rtags))
 (if (require 'helm nil :noerror)
-    (progn
-      (require 'helm-config nil :noerror) (helm-mode)
-      (setq-default rtags-display-result-backend 'helm)
+    (when (require 'helm-config nil :noerror)
+      (helm-mode)
       (global-set-key (kbd "M-x"     ) 'helm-M-x                )
       (global-set-key (kbd "C-x C-f" ) 'helm-find-files         )
       (global-set-key (kbd "C-x r b" ) 'helm-filtered-bookmarks ) )
@@ -443,32 +422,52 @@
       (ido-everywhere 1 )
       (setq-default ido-use-virtual-buffers  t )
       (setq-default ido-enable-flex-matching t ) ))
+(if (and (package-installed-p 'helm   )
+         (package-installed-p 'ggtags ))
+    (install-package 'helm-gtags))
+(when (require 'helm-gtags nil :noerror)
+  (setq-default helm-gtags-auto-update t)
+  (add-hook 'asm-mode-hook  'helm-gtags-mode )
+  (add-hook 'c-mode-hook    'helm-gtags-mode )
+  (add-hook 'c++-mode-hook  'helm-gtags-mode )
+  (add-hook 'java-mode-hook 'helm-gtags-mode ) )
 
 (install-package 'company)
-(if (package-installed-p 'irony)
-    (install-package 'company-irony))
-(if (package-installed-p 'rtags)
-    (install-package 'company-rtags))
 (when (require 'company nil :noerror)
+  (add-hook 'prog-mode-hook 'company-mode)
   (setq-default company-idle-delay            0 )
   (setq-default company-minimum-prefix-length 2 )
   (setq-default company-selection-wrap-around t )
   (setq-default company-show-numbers          t )
-  (add-hook 'prog-mode-hook 'company-mode)
-  (if (package-installed-p 'company-irony)
-      (eval-after-load 'company '(add-to-list 'company-backends 'company-irony )))
-  (if (package-installed-p 'company-rtags)
-      (eval-after-load 'company '(add-to-list 'company-backends 'company-rtags ))) )
+  (setq-default company-backends '((company-abbrev
+                                    company-bbdb
+                                    company-clang
+                                    company-cmake
+                                    company-dabbrev
+                                    company-dabbrev-code
+                                    company-elisp
+                                    company-etags
+                                    company-files
+                                    company-gtags
+                                    company-ispell
+                                    company-keywords
+                                    company-semantic
+                                    company-yasnippet)) ))
+(if (executable-find "ctags") (install-package 'company-ctags))
+(when (require 'company-ctags nil :noerror)
+  (with-eval-after-load 'company (company-ctags-auto-setup)))
+
+(when (executable-find "git")
+  (install-package              'magit        )
+  (global-set-key (kbd "C-x g") 'magit-status ))
 
 (install-package 'elpy)
 (when (require 'elpy nil :noerror)
   (elpy-enable)
   (add-hook
-   'elpy-mode-hook
-   (lambda () (add-hook 'before-save-hook 'elpy-format-code    nil t)) )
+   'elpy-mode-hook (lambda () (add-hook 'before-save-hook 'elpy-format-code    nil t )) )
   (add-hook
-   'elpy-mode-hook
-   (lambda () (add-hook 'before-save-hook 'elpy-black-fix-code nil t)) ))
+   'elpy-mode-hook (lambda () (add-hook 'before-save-hook 'elpy-black-fix-code nil t )) ))
 
 (install-package 'expand-region)
 (when (require 'expand-region nil :noerror)
@@ -482,4 +481,5 @@
   (global-set-key (kbd "C-S-c C-S-c" ) 'mc/edit-lines              ))
 
 (provide '.emacs)
+
 ;;; .emacs ends here
