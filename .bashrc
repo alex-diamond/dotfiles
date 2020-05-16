@@ -1,6 +1,6 @@
 # Enable smart completion
 if [ -f /etc/bash_completion ]; then
-    . /etc/bash_completion
+    . /etc/bash_completion.d/hwloc-completion.bash
 fi
 
 # Functions
@@ -11,18 +11,26 @@ function create_python3_virtualenv_project ()
 {
     local project_name="$1"
     local project_activate_command="bin/activate"
-    if [ -d "$project_name" ]; then
-        source "${project_name}/$project_activate_command"
-        mkdir -p "${project_name}/src" && cd "${project_name}/src" && clear
-    else
+    function install_packages ()
+    {
         virtualenv -p python3 "$project_name"
-        source "${project_name}/$project_activate_command"
+        source "$project_name/$project_activate_command"
         pip install --upgrade pip
         pip install --upgrade jedi rope autopep8 yapf
         pip install --upgrade black flake8 ipython jupyter
         pip install --upgrade 'python-language-server[all]'
-        mkdir "${project_name}/src" &&  cd "${project_name}/src"
+        mkdir "$project_name/src" &&  cd "$project_name/src" || exit
         pip freeze > requirements.txt && clear
+    }
+    if [ -d "$project_name" ]; then
+        if [ -f "$project_name/$project_activate_command" ]; then
+            source "$project_name/$project_activate_command"
+            mkdir -p "$project_name/src" && cd "$project_name/src" && clear
+        else
+            install_packages
+        fi
+    else
+        install_packages
     fi
 }
 

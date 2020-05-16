@@ -131,7 +131,7 @@
 (setq-default scroll-up-aggressively               0.01 )
 (setq-default show-paren-delay                     0    )
 (setq-default tab-width                            2    )
-(setq-default whitespace-line-column              81    )
+(setq-default whitespace-line-column              90    )
 
 (setq-default c-default-style    "bsd"                  )
 (setq-default custom-file        "~/.emacs.d/custom.el" )
@@ -277,7 +277,7 @@
 (global-unset-key [up]    )
 
 (windmove-default-keybindings                  'shift                           )
-(global-set-key               (kbd "<f1>"    ) 'speedbar                        )
+(global-set-key               (kbd "<f1>"    ) 'shell                           )
 (global-set-key               (kbd "<f2>"    ) 'ibuffer                         )
 (global-set-key               (kbd "<f3>"    ) 'comment-line                    )
 (global-set-key               (kbd "<f4>"    ) 'bookmark-set                    )
@@ -294,14 +294,9 @@
 (when (require 'package nil :noerror)
   (package-initialize)
   (setq-default package-check-signature nil)
-  (add-to-list 'package-archives
-               '("org"          . "https://orgmode.org/elpa/"          ) t )
-  (add-to-list 'package-archives
-               '("melpa"        . "https://melpa.org/packages/"        ) t )
-  (add-to-list 'package-archives
-               '("gnu"          . "https://elpa.gnu.org/packages/"     ) t )
-  (add-to-list 'package-archives
-               '("melpa-stable" . "https://stable.melpa.org/packages/" ) t )
+  (add-to-list 'package-archives '("gnu"   . "https://elpa.gnu.org/packages/" ) t )
+  (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"    ) t )
+  (add-to-list 'package-archives '("org"   . "https://orgmode.org/elpa/"      ) t )
   (unless package-archive-contents (package-refresh-contents)))
 
 (install-package 'doom-themes         )
@@ -404,19 +399,6 @@
   (setq-default common-lisp-style-default "sbcl" )
   (setq-default lisp-indent-function 'common-lisp-indent-function))
 
-(install-package 'helm)
-(if (require 'helm nil :noerror)
-    (progn
-      (require 'helm-config nil :noerror) (helm-mode)
-      (global-set-key (kbd "M-x"     ) 'helm-M-x                )
-      (global-set-key (kbd "C-x C-f" ) 'helm-find-files         )
-      (global-set-key (kbd "C-x r b" ) 'helm-filtered-bookmarks ) )
-    (when (require 'ido nil :noerror)
-      (ido-mode       1 )
-      (ido-everywhere 1 )
-      (setq-default ido-use-virtual-buffers  t )
-      (setq-default ido-enable-flex-matching t ) ))
-
 (when (and (executable-find "clang")
            (executable-find "cmake"))
   (install-package 'irony)
@@ -435,7 +417,9 @@
       (add-hook 'irony-mode-hook 'irony-cdb-autosetup-compile-options ))
     (use-cedet-semantic))
 
-(if (executable-find "git") (install-package 'magit))
+(when (executable-find "git")
+  (install-package              'magit        )
+  (global-set-key (kbd "C-x g") 'magit-status ))
 
 (install-package 'pos-tip     )
 (install-package 'racket-mode )
@@ -444,9 +428,27 @@
   (add-hook 'racket-mode-hook      'racket-unicode-input-method-enable )
   (add-hook 'racket-repl-mode-hook 'racket-unicode-input-method-enable ))
 
+(install-package 'helm)
+(if (package-installed-p 'rtags)
+    (install-package 'helm-rtags))
+(if (require 'helm nil :noerror)
+    (progn
+      (require 'helm-config nil :noerror) (helm-mode)
+      (setq-default rtags-display-result-backend 'helm)
+      (global-set-key (kbd "M-x"     ) 'helm-M-x                )
+      (global-set-key (kbd "C-x C-f" ) 'helm-find-files         )
+      (global-set-key (kbd "C-x r b" ) 'helm-filtered-bookmarks ) )
+    (when (require 'ido nil :noerror)
+      (ido-mode       1 )
+      (ido-everywhere 1 )
+      (setq-default ido-use-virtual-buffers  t )
+      (setq-default ido-enable-flex-matching t ) ))
+
 (install-package 'company)
-(if (package-installed-p 'irony) (install-package 'company-irony))
-(if (package-installed-p 'rtags) (install-package 'company-rtags))
+(if (package-installed-p 'irony)
+    (install-package 'company-irony))
+(if (package-installed-p 'rtags)
+    (install-package 'company-rtags))
 (when (require 'company nil :noerror)
   (setq-default company-idle-delay            0 )
   (setq-default company-minimum-prefix-length 2 )
@@ -454,11 +456,9 @@
   (setq-default company-show-numbers          t )
   (add-hook 'prog-mode-hook 'company-mode)
   (if (package-installed-p 'company-irony)
-      (eval-after-load
-       'company '(add-to-list 'company-backends 'company-irony)) )
+      (eval-after-load 'company '(add-to-list 'company-backends 'company-irony )))
   (if (package-installed-p 'company-rtags)
-      (eval-after-load
-       'company '(add-to-list 'company-backends 'company-rtags)) ))
+      (eval-after-load 'company '(add-to-list 'company-backends 'company-rtags ))) )
 
 (install-package 'elpy)
 (when (require 'elpy nil :noerror)
