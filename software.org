@@ -64,6 +64,7 @@
 *** [[http://valgrind.org/][Valgrind]]
 *** [[http://cppcheck.sourceforge.net/][Cppcheck]]
 *** [[https://opencv.org/][OpenCV]]
+*** [[http://www.pocoproject.org/][POCO C++ Libraries]]
 *** [[https://nlopt.readthedocs.io/en/latest/][NLopt]]
 *** [[http://www.swig.org/][SWIG]]
 *** [[https://eigen.tuxfamily.org][Eigen]]
@@ -79,6 +80,7 @@
 **** [[https://xorg.freedesktop.org/][libxmu]]
 **** [[https://xorg.freedesktop.org/][libxpm]]
 **** [[https://xorg.freedesktop.org/][libxext]]
+**** [[http://www.ogre3d.org][Ogre]]
 *** XML
 **** [[https://libexpat.github.io/][Expat]]
 **** [[https://xerces.apache.org/xerces-c/][Xerces-C++]]
