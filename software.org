@@ -6,6 +6,10 @@
 *** [[https://www.gnu.org/software/coreutils/][GNU core utilities]]
 *** [[http://www.linuxbase.org/][Linux Standard Base]]
 *** [[http://gparted.sourceforge.net][GParted]]
+**** [[https://github.com/dosfstools/dosfstools][dosfstools]]
+**** [[https://www.gnu.org/software/mtools/][Mtools]]
+**** [[https://www.tuxera.com/community/open-source-ntfs-3g/][NTFS-3G]]
+**** [[https://github.com/relan/exfat][exFAT-utils]]
 *** [[https://www.gnupg.org/][GnuPG]]
 *** [[https://www.bleachbit.org/][BleachBit]]
 *** [[https://github.com/ib/xarchiver][Xarchiver]]
@@ -26,6 +30,7 @@
 **** [[http://aspell.net/][GNU Aspell]] [+ ENG/RUS]
 **** [[https://www.gnu.org/software/ispell/][Ispell]]
 **** [[https://hunspell.github.io/][Hunspell]] [+ ENG/RUS [AUR]]
+*** [[https://github.com/dylanaraps/neofetch][Neofetch]]
 ** DB
 *** [[https://www.postgresql.org/][PostgreSQL]]
 **** [[https://www.pgadmin.org/][pgAdmin]]
