@@ -373,7 +373,13 @@
   (custom-set-variables '(zoom-size '(0.618 . 0.618 )) ))
 
 (install-package 'flycheck)
+(if (and (executable-find "clang")
+         (package-installed-p 'flycheck))
+    (install-package 'flycheck-clang-analyzer))
 (when (require 'flycheck nil :noerror) (global-flycheck-mode))
+(with-eval-after-load 'flycheck
+  (require 'flycheck-clang-analyzer nil :noerror)
+  (flycheck-clang-analyzer-setup))
 
 (install-package 'yasnippet)
 (when (require 'yasnippet nil :noerror)
@@ -481,5 +487,4 @@
   (global-set-key (kbd "C-S-c C-S-c" ) 'mc/edit-lines              ))
 
 (provide '.emacs)
-
 ;;; .emacs ends here
