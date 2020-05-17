@@ -9,7 +9,7 @@ cp dotfiles/.emacs  "$HOME"/
 cp dotfiles/.bashrc "$HOME"/
 
 # SOFTWARE
-mkdir -p "$HOME"/.SOFTWARE/ECLIPSE
+mkdir -p "$HOME"/.SOFTWARE
 mkdir -p "$HOME"/.SOFTWARE/CERN
 mkdir -p "$HOME"/.SOFTWARE/CERN/ROOT
 mkdir -p "$HOME"/.SOFTWARE/CERN/ROOT/BUILD
