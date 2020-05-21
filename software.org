@@ -62,12 +62,20 @@
 **** [[https://clang.llvm.org/][Clang]]
 *** [[https://www.cmake.org/][CMake]]
 *** [[https://www.boost.org/][Boost]]
+*** [[https://www.libsdl.org/][SDL2]]
+**** sdl2_gfx
+**** sdl2_image
+**** sdl2_mixer
+**** sdl2_net
+**** sdl2_ttf
+*** [[https://www.sfml-dev.org/index.php][SFML]]
 *** [[https://www.open-mpi.org][OpenMPI]]
 *** [[https://www.mpich.org/][MPICH]] [AUR]
 *** [[http://valgrind.org/][Valgrind]]
 *** [[http://cppcheck.sourceforge.net/][Cppcheck]]
 *** [[https://opencv.org/][OpenCV]]
 *** [[http://www.pocoproject.org/][POCO C++ Libraries]]
+*** [[http://pqxx.org/development/libpqxx/][libpqxx]]
 *** [[https://nlopt.readthedocs.io/en/latest/][NLopt]]
 *** [[http://www.swig.org/][SWIG]]
 *** [[https://eigen.tuxfamily.org][Eigen]]
