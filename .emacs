@@ -204,7 +204,6 @@
             'global-semantic-highlight-edits-mode
             'global-semantic-idle-completions-mode
             'global-semantic-show-parser-state-mode
-            'global-semantic-show-unmatched-syntax-mode
             'global-semantic-idle-local-symbol-highlight-mode))
     (dolist (submode *semantic-submodes*)
       (add-to-list 'semantic-default-submodes submode))
@@ -487,4 +486,5 @@
   (global-set-key (kbd "C-S-c C-S-c" ) 'mc/edit-lines              ))
 
 (provide '.emacs)
+
 ;;; .emacs ends here
