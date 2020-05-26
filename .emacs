@@ -226,8 +226,8 @@
             (line-number-mode  )
             (global-linum-mode ) ))
         (progn
-          (global-display-line-numbers-mode                 )
-          (setq-default display-line-numbers-type 'relative )) )) )
+          (global-display-line-numbers-mode)
+          (setq-default display-line-numbers-type 'relative)) )) )
 
 (when (not indicate-empty-lines)
   (toggle-indicate-empty-lines)
@@ -236,7 +236,7 @@
 (if (file-exists-p bookmark-default-file)
     (bookmark-load bookmark-default-file t))
 
-(add-hook 'c-mode-common-hook 'c-common-mode                            )
+(add-hook 'c-mode-common-hook 'c-common-mode)
 (add-hook 'makefile-mode-hook '(lambda () (setq-default indent-tabs-mode t)) )
 
 (if (executable-find "ipython3")
@@ -291,13 +291,12 @@
 (global-set-key               (kbd "<f12>"   ) 'kill-other-buffers              )
 (global-set-key               (kbd "C-x C-s" ) 'format-save-buffer              )
 
-(when (require 'package nil :noerror)
-  (package-initialize)
-  (setq-default package-check-signature nil)
-  (add-to-list 'package-archives '("gnu"   . "https://elpa.gnu.org/packages/" ) t )
-  (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"    ) t )
-  (add-to-list 'package-archives '("org"   . "https://orgmode.org/elpa/"      ) t )
-  (unless package-archive-contents (package-refresh-contents)))
+(when (require 'package nil :noerror) (package-initialize)
+      (setq-default package-check-signature nil)
+      (add-to-list 'package-archives '("gnu"   . "https://elpa.gnu.org/packages/" ) t )
+      (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"    ) t )
+      (add-to-list 'package-archives '("org"   . "https://orgmode.org/elpa/"      ) t )
+      (unless package-archive-contents (package-refresh-contents)))
 
 (install-package 'doom-themes)
 (if (and (display-graphic-p)
@@ -392,7 +391,8 @@
   (global-set-key (kbd "C-=") 'er/expand-region))
 
 (install-package 'flycheck)
-(when (require 'flycheck nil :noerror) (global-flycheck-mode))
+(when (require 'flycheck nil :noerror)
+  (global-flycheck-mode))
 
 (install-package 'yasnippet)
 (install-package 'yasnippet-snippets)
@@ -412,7 +412,8 @@
   (setq-default common-lisp-style-default "sbcl" )
   (setq-default lisp-indent-function 'common-lisp-indent-function))
 
-(if (executable-find "global") (install-package 'ggtags))
+(if (executable-find "global")
+    (install-package 'ggtags))
 (if (package-installed-p 'ggtags)
     (progn
       (require 'ggtags nil :noerror)
@@ -420,9 +421,8 @@
       (setq-default ggtags-update-on-save      t     )
       (setq-default ggtags-use-sqlite3         t     )
       (add-hook 'c-mode-common-hook
-                (lambda ()
-                  (when (derived-mode-p 'asm-mode 'c-mode 'c++-mode 'java-mode)
-                    (ggtags-mode) (use-cedet-semantic)) )) )
+                (lambda () (when (derived-mode-p 'asm-mode 'c-mode 'c++-mode 'java-mode)
+                        (ggtags-mode) (use-cedet-semantic)) )) )
     (use-cedet-semantic))
 
 (install-package 'multiple-cursors)
@@ -455,7 +455,7 @@
       (ido-everywhere 1 )
       (setq-default ido-use-virtual-buffers  t )
       (setq-default ido-enable-flex-matching t ) ))
-(if (and (package-installed-p 'helm   )
+(if (and (package-installed-p 'helm  )
          (package-installed-p 'rtags ))
     (install-package 'helm-rtags))
 (if (package-installed-p 'helm-rtags)
@@ -474,7 +474,8 @@
   (setq-default helm-gtags-use-input-at-cursor t ) )
 
 (install-package 'company)
-(if (executable-find "ctags") (install-package 'company-ctags))
+(if (executable-find "ctags")
+    (install-package 'company-ctags))
 (when (require 'company nil :noerror)
   (add-hook 'prog-mode-hook 'company-mode)
   (setq-default company-idle-delay            0 )
@@ -496,5 +497,4 @@
    'elpy-mode-hook (lambda () (add-hook 'before-save-hook 'elpy-black-fix-code nil t )) ))
 
 (provide '.emacs)
-
 ;;; .emacs ends here
