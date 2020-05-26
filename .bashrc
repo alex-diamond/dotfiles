@@ -37,6 +37,7 @@ function create_python3_virtualenv_project ()
 # Aliases
 alias .="pwd"
 alias x="exit"
+alias t="tree"
 alias c="clear"
 alias ..="cd .."
 alias ll="ls -l"
@@ -81,6 +82,7 @@ export TERM=xterm-mono
 export HISTSIZE=10240
 export HISTCONTROL=ignoreboth:erasedups
 export HISTIGNORE='.:..:c:h:x:cd:la:ll:ls'
-export PS1='\n[\u] [\H] [\W : $(ls | wc -l)]\n\$ '
+PROMPT_DIRTRIM=2
+export PS1='\n[\u] [\H] [\w]: [J: \j]\n\$ '
 # Update history file after every command
 export PROMPT_COMMAND="history -a"

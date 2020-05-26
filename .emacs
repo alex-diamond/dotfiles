@@ -194,17 +194,17 @@
       (semanticdb-enable-gnu-global-databases 'c-mode   )
       (semanticdb-enable-gnu-global-databases 'c++-mode ))
     (defvar *semantic-submodes*
-      (list 'global-semanticdb-minor-mode
-            'global-semantic-decoration-mode
-            'global-semantic-stickyfunc-mode
+      (list 'global-semantic-decoration-mode
+            'global-semantic-highlight-edits-mode
+            'global-semantic-highlight-func-mode
+            'global-semantic-idle-completions-mode
+            'global-semantic-idle-local-symbol-highlight-mode
+            'global-semantic-idle-scheduler-mode
             'global-semantic-idle-summary-mode
             'global-semantic-mru-bookmark-mode
-            'global-semantic-highlight-func-mode
-            'global-semantic-idle-scheduler-mode
-            'global-semantic-highlight-edits-mode
-            'global-semantic-idle-completions-mode
             'global-semantic-show-parser-state-mode
-            'global-semantic-idle-local-symbol-highlight-mode))
+            'global-semantic-stickyfunc-mode
+            'global-semanticdb-minor-mode))
     (dolist (submode *semantic-submodes*)
       (add-to-list 'semantic-default-submodes submode))
     (semantic-mode)))
@@ -361,6 +361,13 @@
   (global-set-key (kbd "C-'"   ) 'avy-goto-char-2 )
   (global-set-key (kbd "M-g w" ) 'avy-goto-word-1 ))
 
+(install-package 'cmake-mode)
+(require 'cmake-mode nil :noerror)
+
+(when (executable-find "git")
+  (install-package              'magit        )
+  (global-set-key (kbd "C-x g") 'magit-status ))
+
 (install-package 'modern-cpp-font-lock)
 (when (require 'modern-cpp-font-lock nil :noerror)
   (modern-c++-font-lock-global-mode))
@@ -371,16 +378,24 @@
   (custom-set-variables '(temp-buffer-resize-mode t ))
   (custom-set-variables '(zoom-size '(0.618 . 0.618 )) ))
 
-(install-package 'flycheck)
 (if (and (executable-find "clang")
-         (package-installed-p 'flycheck))
-    (install-package 'flycheck-clang-analyzer))
+         (executable-find "cmake"))
+    (install-package 'rtags))
+(when (require 'rtags nil :noerror)
+  (setq-default rtags-completions-enabled   t )
+  (setq-default rtags-autostart-diagnostics t )
+  (add-hook 'c-mode-hook   'rtags-start-process-unless-running )
+  (add-hook 'c++-mode-hook 'rtags-start-process-unless-running ))
+
+(install-package 'expand-region)
+(when (require 'expand-region nil :noerror)
+  (global-set-key (kbd "C-=") 'er/expand-region))
+
+(install-package 'flycheck)
 (when (require 'flycheck nil :noerror) (global-flycheck-mode))
-(with-eval-after-load 'flycheck
-  (require 'flycheck-clang-analyzer nil :noerror)
-  (flycheck-clang-analyzer-setup))
 
 (install-package 'yasnippet)
+(install-package 'yasnippet-snippets)
 (when (require 'yasnippet nil :noerror)
   (yas-reload-all)
   (add-hook 'prog-mode-hook 'yas-minor-mode))
@@ -400,14 +415,27 @@
 (if (executable-find "global") (install-package 'ggtags))
 (if (package-installed-p 'ggtags)
     (progn
+      (require 'ggtags nil :noerror)
       (setq-default ggtags-auto-jump-to-match 'first )
-      (setq-default ggtags-update-on-save     t      )
-      (setq-default ggtags-use-sqlite3        t      )
+      (setq-default ggtags-update-on-save      t     )
+      (setq-default ggtags-use-sqlite3         t     )
       (add-hook 'c-mode-common-hook
                 (lambda ()
                   (when (derived-mode-p 'asm-mode 'c-mode 'c++-mode 'java-mode)
                     (ggtags-mode) (use-cedet-semantic)) )) )
     (use-cedet-semantic))
+
+(install-package 'multiple-cursors)
+(when (require 'multiple-cursors nil :noerror)
+  (global-set-key (kbd "C->"         ) 'mc/mark-next-like-this     )
+  (global-set-key (kbd "C-<"         ) 'mc/mark-previous-like-this )
+  (global-set-key (kbd "C-c C-<"     ) 'mc/mark-all-like-this      )
+  (global-set-key (kbd "C-S-c C-S-c" ) 'mc/edit-lines              ))
+
+(install-package 'cmake-font-lock)
+(when (package-installed-p 'cmake-font-lock)
+  (add-hook 'cmake-mode-hook 'cmake-font-lock-activate)
+  (autoload 'cmake-font-lock-activate "cmake-font-lock" nil t))
 
 (install-package 'racket-mode)
 (when (and (executable-find "racket")
@@ -428,43 +456,36 @@
       (setq-default ido-use-virtual-buffers  t )
       (setq-default ido-enable-flex-matching t ) ))
 (if (and (package-installed-p 'helm   )
+         (package-installed-p 'rtags ))
+    (install-package 'helm-rtags))
+(if (package-installed-p 'helm-rtags)
+    (setq-default rtags-display-result-backend 'helm))
+(if (and (package-installed-p 'helm   )
          (package-installed-p 'ggtags ))
     (install-package 'helm-gtags))
 (when (require 'helm-gtags nil :noerror)
-  (setq-default helm-gtags-auto-update t)
   (add-hook 'asm-mode-hook  'helm-gtags-mode )
   (add-hook 'c-mode-hook    'helm-gtags-mode )
   (add-hook 'c++-mode-hook  'helm-gtags-mode )
-  (add-hook 'java-mode-hook 'helm-gtags-mode ) )
+  (add-hook 'java-mode-hook 'helm-gtags-mode )
+  (setq-default helm-gtags-auto-update         t )
+  (setq-default helm-gtags-ignore-case         t )
+  (setq-default helm-gtags-pulse-at-cursor     t )
+  (setq-default helm-gtags-use-input-at-cursor t ) )
 
 (install-package 'company)
+(if (executable-find "ctags") (install-package 'company-ctags))
 (when (require 'company nil :noerror)
   (add-hook 'prog-mode-hook 'company-mode)
   (setq-default company-idle-delay            0 )
   (setq-default company-minimum-prefix-length 2 )
   (setq-default company-selection-wrap-around t )
   (setq-default company-show-numbers          t )
-  (setq-default company-backends '((company-abbrev
-                                    company-bbdb
-                                    company-clang
-                                    company-cmake
-                                    company-dabbrev
-                                    company-dabbrev-code
-                                    company-elisp
-                                    company-etags
-                                    company-files
-                                    company-gtags
-                                    company-ispell
-                                    company-keywords
-                                    company-semantic
-                                    company-yasnippet)) ))
-(if (executable-find "ctags") (install-package 'company-ctags))
-(when (require 'company-ctags nil :noerror)
-  (with-eval-after-load 'company (company-ctags-auto-setup)))
-
-(when (executable-find "git")
-  (install-package              'magit        )
-  (global-set-key (kbd "C-x g") 'magit-status ))
+  (setq-default company-backends
+                '((company-yasnippet
+                   company-elisp company-files company-keywords
+                   company-clang company-cmake company-semantic
+                   company-ctags company-etags company-gtags company-rtags)) ))
 
 (install-package 'elpy)
 (when (require 'elpy nil :noerror)
@@ -473,17 +494,6 @@
    'elpy-mode-hook (lambda () (add-hook 'before-save-hook 'elpy-format-code    nil t )) )
   (add-hook
    'elpy-mode-hook (lambda () (add-hook 'before-save-hook 'elpy-black-fix-code nil t )) ))
-
-(install-package 'expand-region)
-(when (require 'expand-region nil :noerror)
-  (global-set-key (kbd "C-=") 'er/expand-region))
-
-(install-package 'multiple-cursors)
-(when (require 'multiple-cursors nil :noerror)
-  (global-set-key (kbd "C->"         ) 'mc/mark-next-like-this     )
-  (global-set-key (kbd "C-<"         ) 'mc/mark-previous-like-this )
-  (global-set-key (kbd "C-c C-<"     ) 'mc/mark-all-like-this      )
-  (global-set-key (kbd "C-S-c C-S-c" ) 'mc/edit-lines              ))
 
 (provide '.emacs)
 

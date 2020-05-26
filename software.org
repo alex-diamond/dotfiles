@@ -2,6 +2,7 @@
 ** System
 *** [[https://www.gnu.org/software/bc/][bc]]
 *** [[https://hisham.hm/htop/][htop]]
+*** tree
 *** [[https://midnight-commander.org/][Midnight Commander]]
 *** [[https://www.gnu.org/software/coreutils/][GNU core utilities]]
 *** [[http://www.linuxbase.org/][Linux Standard Base]]
@@ -81,6 +82,7 @@
 *** [[https://eigen.tuxfamily.org][Eigen]]
 *** [[https://www.hdfgroup.org/hdf5][HDF5]]
 *** [[https://www.netlib.org/lapack][LAPACK]]
+*** [[https://developer.nvidia.com/cuda-zone][CUDA]]
 *** OpenGL
 **** [[http://glm.g-truc.net][GLM]]
 **** [[https://xorg.freedesktop.org/][libx11]]
