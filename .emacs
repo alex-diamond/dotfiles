@@ -55,6 +55,7 @@
 (setq-default backup-by-copying                   t   )
 (setq-default backup-directory-alist              nil )
 (setq-default bookmark-save-flag                  t   )
+(setq-default column-number-indicator-zero-based  nil )
 (setq-default cursor-in-non-selected-windows      nil )
 (setq-default debug-on-error                      t   )
 (setq-default delete-by-moving-to-trash           t   )
@@ -391,8 +392,7 @@
   (global-set-key (kbd "C-=") 'er/expand-region))
 
 (install-package 'flycheck)
-(when (require 'flycheck nil :noerror)
-  (global-flycheck-mode))
+(when (require 'flycheck nil :noerror) (global-flycheck-mode))
 
 (install-package 'yasnippet)
 (install-package 'yasnippet-snippets)
