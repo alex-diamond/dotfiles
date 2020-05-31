@@ -66,7 +66,7 @@
 (setq-default find-file-visit-truename            t   )
 (setq-default font-lock-maximum-decoration        t   )
 (setq-default gdb-enable-debug                    t   )
-(setq-default gdb-many-windows                    nil )
+(setq-default gdb-many-windows                    t   )
 (setq-default gdb-show-changed-values             t   )
 (setq-default gdb-show-main                       t   )
 (setq-default gdb-show-threads-by-default         t   )
@@ -203,7 +203,6 @@
             'global-semantic-idle-scheduler-mode
             'global-semantic-idle-summary-mode
             'global-semantic-mru-bookmark-mode
-            'global-semantic-show-parser-state-mode
             'global-semantic-stickyfunc-mode
             'global-semanticdb-minor-mode))
     (dolist (submode *semantic-submodes*)
@@ -406,19 +405,18 @@
       (setq-default ggtags-use-sqlite3         t     )
       (add-hook 'c-mode-common-hook
                 (lambda () (when (derived-mode-p 'asm-mode 'c-mode 'c++-mode 'java-mode)
-                        (ggtags-mode) (use-cedet-semantic)) )) )
+                             (ggtags-mode) (use-cedet-semantic)) )) )
     (use-cedet-semantic))
 
 (when (and (executable-find "clang")
            (executable-find "cmake"))
   (install-package 'rtags     )
   (install-package 'cmake-ide ))
-(when (require 'rtags nil :noerror)
-  (cmake-ide-setup)
-  (setq-default rtags-completions-enabled   t )
-  (setq-default rtags-autostart-diagnostics t )
-  (add-hook 'c-mode-hook   'rtags-start-process-unless-running )
-  (add-hook 'c++-mode-hook 'rtags-start-process-unless-running ))
+(when (require 'rtags nil :noerror) (cmake-ide-setup)
+      (setq-default rtags-completions-enabled   t )
+      (setq-default rtags-autostart-diagnostics t )
+      (add-hook 'c-mode-hook   'rtags-start-process-unless-running )
+      (add-hook 'c++-mode-hook 'rtags-start-process-unless-running ))
 
 (install-package 'multiple-cursors)
 (when (require 'multiple-cursors nil :noerror)
@@ -469,8 +467,10 @@
   (setq-default helm-gtags-use-input-at-cursor t ) )
 
 (install-package 'company)
-(if (executable-find "ctags")
-    (install-package 'company-ctags))
+(when (and (executable-find "ctags")
+           (package-installed-p 'rtags))
+  (install-package 'company-ctags )
+  (install-package 'company-rtags ))
 (when (require 'company nil :noerror)
   (add-hook 'prog-mode-hook 'company-mode)
   (setq-default company-idle-delay            0 )
