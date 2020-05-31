@@ -405,7 +405,7 @@
       (setq-default ggtags-use-sqlite3         t     )
       (add-hook 'c-mode-common-hook
                 (lambda () (when (derived-mode-p 'asm-mode 'c-mode 'c++-mode 'java-mode)
-                             (ggtags-mode) (use-cedet-semantic)) )) )
+                        (ggtags-mode) (use-cedet-semantic)) )) )
     (use-cedet-semantic))
 
 (when (and (executable-find "clang")
