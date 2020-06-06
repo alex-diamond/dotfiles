@@ -47,6 +47,7 @@ alias la="ls -la"
 alias rm="rm -Iv"
 alias h="history"
 alias e="emacs_alias"
+alias cmc="cmatrix && clear"
 alias cb="edit_bash_config_file"
 alias ce="edit_emacs_config_file"
 alias pvp="create_python3_virtualenv_project"
@@ -82,6 +83,7 @@ export TERM=xterm-mono
 export HISTSIZE=10240
 export HISTCONTROL=ignoreboth:erasedups
 export HISTIGNORE='.:..:c:h:x:cd:la:ll:ls'
+
 PROMPT_DIRTRIM=2
 export PS1='\n[\u] [\H] [\w]: [J: \j]\n\$ '
 # Update history file after every command
