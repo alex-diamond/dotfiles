@@ -27,6 +27,8 @@
 *** [[http://jonls.dk/redshift/][Redshift]]
 *** [[https://github.com/Jguer/yay][Yay]]
 *** [[http://www.asty.org/cmatrix/][CMatrix]]
+*** asciiquarium
+*** sl
 *** [[https://xorg.freedesktop.org/][xcursor-themes]]
 *** [[https://github.com/xfce-mirror/catfish][Catfish]]
 *** [[https://github.com/horst3180/arc-theme][Arc Theme]]
