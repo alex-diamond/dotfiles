@@ -18,8 +18,6 @@
 *** [[https://www.bleachbit.org/][BleachBit]]
 *** [[https://github.com/ib/xarchiver][Xarchiver]]
 *** [[https://github.com/adrianlopezroche/fdupes][fdupes]]
-*** [[https://virtualbox.org/][VirtualBox]]
-**** [[https://www.virtualbox.org/][virtualbox-guest-iso]]
 *** Fonts
 **** [[http://aur.archlinux.org/packages/ttf-ms-fonts][ttf-ms-fonts]] [AUR]
 **** [[https://www.jetbrains.com/lp/mono][ttf-jetbrains-mono]]
