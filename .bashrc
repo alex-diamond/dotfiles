@@ -47,8 +47,10 @@ alias la="ls -la"
 alias rm="rm -Iv"
 alias h="history"
 alias e="emacs_alias"
+alias sl="sl && clear"
 alias cmc="cmatrix && clear"
 alias cb="edit_bash_config_file"
+alias aac="asciiquarium && clear"
 alias ce="edit_emacs_config_file"
 alias pvp="create_python3_virtualenv_project"
 alias eclipse="$HOME/.SOFTWARE/eclipse/eclipse &"
@@ -77,13 +79,11 @@ shopt -s histappend
 # updates the values of LINES and COLUMNS
 shopt -s checkwinsize
 
-# Turn off color in Linux terminal/bash session
-export TERM=xterm-mono
+export TERM=xterm-256color
 # Bash history and prompt
 export HISTSIZE=10240
 export HISTCONTROL=ignoreboth:erasedups
 export HISTIGNORE='.:..:c:h:x:cd:la:ll:ls'
-
 PROMPT_DIRTRIM=2
 export PS1='\n[\u] [\H] [\w]: [J: \j]\n\$ '
 # Update history file after every command
