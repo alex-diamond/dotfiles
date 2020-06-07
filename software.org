@@ -29,7 +29,6 @@
 *** sl
 *** [[https://xorg.freedesktop.org/][xcursor-themes]]
 *** [[https://github.com/xfce-mirror/catfish][Catfish]]
-*** [[https://github.com/horst3180/arc-theme][Arc Theme]]
 *** Language checking
 **** [[http://aspell.net/][GNU Aspell]] [+ ENG/RUS]
 **** [[https://www.gnu.org/software/ispell/][Ispell]]
