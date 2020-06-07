@@ -53,9 +53,9 @@ alias cb="edit_bash_config_file"
 alias aac="asciiquarium && clear"
 alias ce="edit_emacs_config_file"
 alias pvp="create_python3_virtualenv_project"
-alias eclipse="$HOME/.SOFTWARE/eclipse/eclipse &"
-alias g4="source $HOME/.SOFTWARE/CERN/GEANT4/INSTALL/bin/geant4.sh"
-alias root="source $HOME/.SOFTWARE/CERN/ROOT/INSTALL/bin/thisroot.sh && root"
+alias eclipse="/mnt/DATA/SOFTWARE/eclipse/eclipse &"
+alias g4="source /mnt/DATA/SOFTWARE/CERN/GEANT4/INSTALL/bin/geant4.sh"
+alias root="source /mnt/DATA/SOFTWARE/CERN/ROOT/INSTALL/bin/thisroot.sh && root"
 
 # A command name that is the name of a directory
 # is executed as if it were the argument to the "cd" command
