@@ -48,7 +48,6 @@
 **** [[https://virtualenv.pypa.io/][Virtualenv]]
 *** [[https://www.perl.org][Perl]]
 *** [[https://openjdk.java.net/][OpenJDK]]
-**** [[https://visualvm.github.io/][VisualVM]]
 *** LISP
 **** [[http://aur.archlinux.org/packages/chez-scheme][chez-scheme]] [AUR]
 **** [[https://racket-lang.org/][DrRacket]]
@@ -81,7 +80,6 @@
 *** [[https://eigen.tuxfamily.org][Eigen]]
 *** [[https://www.hdfgroup.org/hdf5][HDF5]]
 *** [[https://www.netlib.org/lapack][LAPACK]]
-*** [[https://developer.nvidia.com/cuda-zone][CUDA]]
 *** OpenGL
 **** [[http://glm.g-truc.net][GLM]]
 **** [[https://xorg.freedesktop.org/][libx11]]
