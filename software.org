@@ -61,6 +61,7 @@
 **** [[https://www.gnu.org/software/binutils/][GNU Binutils]]
 *** [[https://llvm.org/][LLVM]]
 **** [[https://clang.llvm.org/][Clang]]
+**** [[https://lldb.llvm.org/][LLDB]]
 *** [[https://ccache.dev/][ccache]]
 *** [[https://www.cmake.org/][CMake]]
 *** [[https://www.boost.org/][Boost]]

@@ -1,156 +1,156 @@
 
 # Table of Contents
 
-1.  [List of GNU/Linux software](#orgc90f5b0)
-    1.  [System](#org396e334)
-        1.  [bc](#orge79fa6b)
-        2.  [htop](#org363d94d)
-        3.  [tree](#orgf5bc46e)
-        4.  [Midnight Commander](#orge082dfe)
-        5.  [GNU core utilities](#org2e27088)
-        6.  [Linux Standard Base](#orgb6bb483)
-        7.  [GParted](#org0c27bd5)
-        8.  [smartmontools](#orgfd40367)
-        9.  [GnuPG](#orgba278cd)
-        10. [BleachBit](#org5eb20c5)
-        11. [Xarchiver](#orgd68da40)
-        12. [fdupes](#org625102e)
-        13. [Fonts](#org1a8bd72)
-        14. [Timeshift](#orgeae6f7a)
-        15. [Redshift](#org4284551)
-        16. [Yay](#org5c6c265)
-        17. [CMatrix](#org6b178a7)
-        18. [asciiquarium](#org29ea1d5)
-        19. [sl](#org186204d)
-        20. [xcursor-themes](#org53079a4)
-        21. [Catfish](#org039253d)
-        22. [Language checking](#orgb07184b)
-        23. [Neofetch](#orgd58a06d)
-    2.  [DB](#org09e2b4b)
-        1.  [PostgreSQL](#orgee39a59)
-        2.  [SQLite](#org71e93b0)
-    3.  [Programming](#org76711bf)
-        1.  [Ctags](#org661e37b)
-        2.  [strace](#orgac523a4)
-        3.  [perf](#orgddc180d)
-        4.  [GNU GLOBAL](#org814897c)
-        5.  [Version Control System](#org3efb07d)
-        6.  [Python](#org51a4589)
-        7.  [Perl](#orga568c7f)
-        8.  [OpenJDK](#orgcea1cd0)
-        9.  [LISP](#org8f8b5ad)
-        10. [GCC](#orgd5f4b1d)
-        11. [LLVM](#org57eec2b)
-        12. [ccache](#orge2a6b1f)
-        13. [CMake](#orgecb460c)
-        14. [Boost](#org8325a32)
-        15. [SDL2](#orgd58dc44)
-        16. [SFML](#org7855556)
-        17. [OpenMPI](#org8b2bebe)
-        18. [MPICH [AUR]](#orgcfa25e1)
-        19. [Valgrind](#org77df2cb)
-        20. [Cppcheck](#org43738df)
-        21. [OpenCV](#orgb501e5d)
-        22. [POCO C++ Libraries](#orgd78325a)
-        23. [libpqxx](#org5f48120)
-        24. [NLopt](#orgdbd08e1)
-        25. [SWIG](#org367b9bc)
-        26. [Eigen](#orgfa43e07)
-        27. [HDF5](#org45b2ab1)
-        28. [LAPACK](#orgaff4531)
-        29. [OpenGL](#org8ddf266)
-        30. [XML](#org243ed18)
-        31. [Tcl](#orgbd8b2b2)
-        32. [Tk](#org00dbd4e)
-        33. [ShellCheck](#org81c2c07)
-        34. [FPC](#orgf6b5248)
-        35. [IDE](#org35da2f5)
-    4.  [Science](#org97727b9)
-        1.  [xmaxima](#org7fedcef)
-        2.  [Gnuplot](#org7a96731)
-    5.  [Office](#org38387a5)
-        1.  [LibreOffice](#org0ecaef3)
-        2.  [Thunderbird](#orgc62aaf9)
-        3.  [Evince](#org2c6ba8f)
-        4.  [pdfgrep](#org71259e8)
-        5.  [Ghostscript](#org788edc3)
-        6.  [Xfce4-screenshooter](#org572c9bf)
-        7.  [KeePassXC](#org04d30d0)
-    6.  [Multimedia](#org1d8fa79)
-        1.  [FFmpeg](#orge710c66)
-        2.  [OBS Studio](#orgcaafc46)
-        3.  [Audacity](#org6ad2dbf)
-        4.  [Audacious](#org55db917)
-        5.  [EasyTAG](#orgebee9cd)
-        6.  [SoundConverter](#org5ff0ac5)
-        7.  [SMPlayer](#orge148157)
-        8.  [mpv](#orgc261c48)
-        9.  [Xfburn](#orgb5162c5)
-        10. [Blender](#org5d0d956)
-        11. [Inkscape](#org86af58f)
-        12. [GIMP](#orgfe8b2ea)
-        13. [ImageMagick](#orgb9e4d5d)
-        14. [RawTherapee](#orgf68d713)
-        15. [Ristretto](#org8edd3da)
-        16. [Adobe Flash Player](#orgb0bc846)
-    7.  [Web](#org4cf0da1)
-        1.  [OpenSSH](#org661995d)
-        2.  [OpenSSL](#org700329c)
-        3.  [OpenVPN](#org433d6ba)
-        4.  [GnuTLS](#orga32b782)
-        5.  [Telegram](#org2d4fdc9)
-        6.  [Nmap](#orge2d20b3)
-        7.  [Remmina + plugins](#orge2ac0b0)
-        8.  [uGet](#orgd1b6971)
-        9.  [curl](#org101a64c)
-        10. [GNU Wget](#org674b82d)
-        11. [Transmission](#org5566ac0)
-    8.  [Games](#org564da5a)
-        1.  [OpenTTD](#orgd27e134)
-        2.  [The Battle for Wesnoth](#org7044399)
+1.  [List of GNU/Linux software](#orga9c9e49)
+    1.  [System](#orgee344e7)
+        1.  [bc](#org69e81c3)
+        2.  [htop](#org543c071)
+        3.  [tree](#org9cdf15d)
+        4.  [Midnight Commander](#org7c6ffe2)
+        5.  [GNU core utilities](#org9ffea87)
+        6.  [Linux Standard Base](#org0ad7c48)
+        7.  [GParted](#org42c64de)
+        8.  [smartmontools](#org40790e1)
+        9.  [GnuPG](#org4413e00)
+        10. [BleachBit](#orgad9d9c3)
+        11. [Xarchiver](#org2680ac1)
+        12. [fdupes](#orgd1f31dc)
+        13. [Fonts](#org8af9e2d)
+        14. [Timeshift](#org4026e79)
+        15. [Redshift](#orga32f535)
+        16. [Yay](#org73cc808)
+        17. [CMatrix](#org1fb26bb)
+        18. [asciiquarium](#org7e5b61d)
+        19. [sl](#orgbec9f1d)
+        20. [xcursor-themes](#org7603fd0)
+        21. [Catfish](#org878193c)
+        22. [Language checking](#orgd68a9d2)
+        23. [Neofetch](#org726a493)
+    2.  [DB](#org9aebd88)
+        1.  [PostgreSQL](#org56eefbe)
+        2.  [SQLite](#orgae0153e)
+    3.  [Programming](#orgf75160e)
+        1.  [Ctags](#org1b2b8d8)
+        2.  [strace](#org24fdbe5)
+        3.  [perf](#orgbac5a20)
+        4.  [GNU GLOBAL](#org0959b13)
+        5.  [Version Control System](#org5b48dca)
+        6.  [Python](#org65c3e02)
+        7.  [Perl](#org96cbdf0)
+        8.  [OpenJDK](#org808c2e1)
+        9.  [LISP](#org309e671)
+        10. [GCC](#org2f8bf4f)
+        11. [LLVM](#orgc4d71c4)
+        12. [ccache](#orgcb48393)
+        13. [CMake](#org852ca24)
+        14. [Boost](#org22171c0)
+        15. [SDL2](#org849502b)
+        16. [SFML](#org162fc75)
+        17. [OpenMPI](#orgf23efca)
+        18. [MPICH [AUR]](#orgb768d65)
+        19. [Valgrind](#org1652a35)
+        20. [Cppcheck](#orgf15ce83)
+        21. [OpenCV](#orgd3a507c)
+        22. [POCO C++ Libraries](#org12a817b)
+        23. [libpqxx](#org7af2eff)
+        24. [NLopt](#org8468ba5)
+        25. [SWIG](#org9e50373)
+        26. [Eigen](#orgc67f7bb)
+        27. [HDF5](#org5114f82)
+        28. [LAPACK](#orgc516b9b)
+        29. [OpenGL](#orga67cf29)
+        30. [XML](#org5b37bdc)
+        31. [Tcl](#orgb1ceeb1)
+        32. [Tk](#org6e2a6ed)
+        33. [ShellCheck](#org2ca4eee)
+        34. [FPC](#org1a26b2c)
+        35. [IDE](#orgd3470ea)
+    4.  [Science](#orgf797748)
+        1.  [xmaxima](#org3c3607a)
+        2.  [Gnuplot](#orgea40de3)
+    5.  [Office](#org675449c)
+        1.  [LibreOffice](#org7180dfd)
+        2.  [Thunderbird](#org879b9b9)
+        3.  [Evince](#orgca4e437)
+        4.  [pdfgrep](#org66f7990)
+        5.  [Ghostscript](#orgaa94c89)
+        6.  [Xfce4-screenshooter](#org325ae66)
+        7.  [KeePassXC](#org1ee01c6)
+    6.  [Multimedia](#orgd412f3c)
+        1.  [FFmpeg](#orgc4b8380)
+        2.  [OBS Studio](#orgc40ba2a)
+        3.  [Audacity](#orgc9aaef5)
+        4.  [Audacious](#org9f8724e)
+        5.  [EasyTAG](#orga43cb2a)
+        6.  [SoundConverter](#orgd8e4622)
+        7.  [SMPlayer](#org983705a)
+        8.  [mpv](#orge455bba)
+        9.  [Xfburn](#org2623e06)
+        10. [Blender](#orge534b9a)
+        11. [Inkscape](#orgb8f6768)
+        12. [GIMP](#org1143554)
+        13. [ImageMagick](#org5cda482)
+        14. [RawTherapee](#org061d34e)
+        15. [Ristretto](#org24cdc33)
+        16. [Adobe Flash Player](#org0defbfc)
+    7.  [Web](#org1b284a7)
+        1.  [OpenSSH](#orgd4c8c15)
+        2.  [OpenSSL](#orgc3e9946)
+        3.  [OpenVPN](#org1e75604)
+        4.  [GnuTLS](#org55d88f0)
+        5.  [Telegram](#orgaf560d3)
+        6.  [Nmap](#org1091881)
+        7.  [Remmina + plugins](#org542d5b8)
+        8.  [uGet](#orgaab6cf1)
+        9.  [curl](#org0a9d9d8)
+        10. [GNU Wget](#orgd8b266c)
+        11. [Transmission](#org858d2b8)
+    8.  [Games](#org834d905)
+        1.  [OpenTTD](#org7c86bad)
+        2.  [The Battle for Wesnoth](#org909dcb9)
 
 
-<a id="orgc90f5b0"></a>
+<a id="orga9c9e49"></a>
 
 # List of GNU/Linux software
 
 
-<a id="org396e334"></a>
+<a id="orgee344e7"></a>
 
 ## System
 
 
-<a id="orge79fa6b"></a>
+<a id="org69e81c3"></a>
 
 ### [bc](https://www.gnu.org/software/bc/)
 
 
-<a id="org363d94d"></a>
+<a id="org543c071"></a>
 
 ### [htop](https://hisham.hm/htop/)
 
 
-<a id="orgf5bc46e"></a>
+<a id="org9cdf15d"></a>
 
 ### tree
 
 
-<a id="orge082dfe"></a>
+<a id="org7c6ffe2"></a>
 
 ### [Midnight Commander](https://midnight-commander.org/)
 
 
-<a id="org2e27088"></a>
+<a id="org9ffea87"></a>
 
 ### [GNU core utilities](https://www.gnu.org/software/coreutils/)
 
 
-<a id="orgb6bb483"></a>
+<a id="org0ad7c48"></a>
 
 ### [Linux Standard Base](http://www.linuxbase.org/)
 
 
-<a id="org0c27bd5"></a>
+<a id="org42c64de"></a>
 
 ### [GParted](http://gparted.sourceforge.net)
 
@@ -165,34 +165,34 @@
 5.  [exFAT-utils](https://github.com/relan/exfat)
 
 
-<a id="orgfd40367"></a>
+<a id="org40790e1"></a>
 
 ### [smartmontools](https://www.smartmontools.org/)
 
 1.  [GSmartControl](https://gsmartcontrol.sourceforge.io/home/)
 
 
-<a id="orgba278cd"></a>
+<a id="org4413e00"></a>
 
 ### [GnuPG](https://www.gnupg.org/)
 
 
-<a id="org5eb20c5"></a>
+<a id="orgad9d9c3"></a>
 
 ### [BleachBit](https://www.bleachbit.org/)
 
 
-<a id="orgd68da40"></a>
+<a id="org2680ac1"></a>
 
 ### [Xarchiver](https://github.com/ib/xarchiver)
 
 
-<a id="org625102e"></a>
+<a id="orgd1f31dc"></a>
 
 ### [fdupes](https://github.com/adrianlopezroche/fdupes)
 
 
-<a id="org1a8bd72"></a>
+<a id="org8af9e2d"></a>
 
 ### Fonts
 
@@ -201,47 +201,47 @@
 2.  [ttf-jetbrains-mono](https://www.jetbrains.com/lp/mono)
 
 
-<a id="orgeae6f7a"></a>
+<a id="org4026e79"></a>
 
 ### [Timeshift](https://github.com/teejee2008/timeshift)
 
 
-<a id="org4284551"></a>
+<a id="orga32f535"></a>
 
 ### [Redshift](http://jonls.dk/redshift/)
 
 
-<a id="org5c6c265"></a>
+<a id="org73cc808"></a>
 
 ### [Yay](https://github.com/Jguer/yay)
 
 
-<a id="org6b178a7"></a>
+<a id="org1fb26bb"></a>
 
 ### [CMatrix](http://www.asty.org/cmatrix/)
 
 
-<a id="org29ea1d5"></a>
+<a id="org7e5b61d"></a>
 
 ### asciiquarium
 
 
-<a id="org186204d"></a>
+<a id="orgbec9f1d"></a>
 
 ### sl
 
 
-<a id="org53079a4"></a>
+<a id="org7603fd0"></a>
 
 ### [xcursor-themes](https://xorg.freedesktop.org/)
 
 
-<a id="org039253d"></a>
+<a id="org878193c"></a>
 
 ### [Catfish](https://github.com/xfce-mirror/catfish)
 
 
-<a id="orgb07184b"></a>
+<a id="orgd68a9d2"></a>
 
 ### Language checking
 
@@ -252,54 +252,54 @@
 3.  [Hunspell](https://hunspell.github.io/) [+ ENG/RUS [AUR]]
 
 
-<a id="orgd58a06d"></a>
+<a id="org726a493"></a>
 
 ### [Neofetch](https://github.com/dylanaraps/neofetch)
 
 
-<a id="org09e2b4b"></a>
+<a id="org9aebd88"></a>
 
 ## DB
 
 
-<a id="orgee39a59"></a>
+<a id="org56eefbe"></a>
 
 ### [PostgreSQL](https://www.postgresql.org/)
 
 1.  [pgAdmin](https://www.pgadmin.org/)
 
 
-<a id="org71e93b0"></a>
+<a id="orgae0153e"></a>
 
 ### [SQLite](https://www.sqlite.org/)
 
 
-<a id="org76711bf"></a>
+<a id="orgf75160e"></a>
 
 ## Programming
 
 
-<a id="org661e37b"></a>
+<a id="org1b2b8d8"></a>
 
 ### [Ctags](https://ctags.io/)
 
 
-<a id="orgac523a4"></a>
+<a id="org24fdbe5"></a>
 
 ### [strace](https://strace.io/)
 
 
-<a id="orgddc180d"></a>
+<a id="orgbac5a20"></a>
 
 ### [perf](https://www.kernel.org/)
 
 
-<a id="org814897c"></a>
+<a id="org0959b13"></a>
 
 ### [GNU GLOBAL](https://www.gnu.org/software/global/)
 
 
-<a id="org3efb07d"></a>
+<a id="org5b48dca"></a>
 
 ### Version Control System
 
@@ -308,24 +308,24 @@
 2.  [Apache Subversion](https://subversion.apache.org/)
 
 
-<a id="org51a4589"></a>
+<a id="org65c3e02"></a>
 
 ### [Python](https://www.python.org/)
 
 1.  [Virtualenv](https://virtualenv.pypa.io/)
 
 
-<a id="orga568c7f"></a>
+<a id="org96cbdf0"></a>
 
 ### [Perl](https://www.perl.org)
 
 
-<a id="orgcea1cd0"></a>
+<a id="org808c2e1"></a>
 
 ### [OpenJDK](https://openjdk.java.net/)
 
 
-<a id="org8f8b5ad"></a>
+<a id="org309e671"></a>
 
 ### LISP
 
@@ -336,7 +336,7 @@
 3.  [SBCL](http://www.sbcl.org/)
 
 
-<a id="orgd5f4b1d"></a>
+<a id="org2f8bf4f"></a>
 
 ### [GCC](https://gcc.gnu.org)
 
@@ -349,29 +349,31 @@
 4.  [GNU Binutils](https://www.gnu.org/software/binutils/)
 
 
-<a id="org57eec2b"></a>
+<a id="orgc4d71c4"></a>
 
 ### [LLVM](https://llvm.org/)
 
 1.  [Clang](https://clang.llvm.org/)
 
+2.  [LLDB](https://lldb.llvm.org/)
 
-<a id="orge2a6b1f"></a>
+
+<a id="orgcb48393"></a>
 
 ### [ccache](https://ccache.dev/)
 
 
-<a id="orgecb460c"></a>
+<a id="org852ca24"></a>
 
 ### [CMake](https://www.cmake.org/)
 
 
-<a id="org8325a32"></a>
+<a id="org22171c0"></a>
 
 ### [Boost](https://www.boost.org/)
 
 
-<a id="orgd58dc44"></a>
+<a id="org849502b"></a>
 
 ### [SDL2](https://www.libsdl.org/)
 
@@ -386,72 +388,72 @@
 5.  sdl2<sub>ttf</sub>
 
 
-<a id="org7855556"></a>
+<a id="org162fc75"></a>
 
 ### [SFML](https://www.sfml-dev.org/index.php)
 
 
-<a id="org8b2bebe"></a>
+<a id="orgf23efca"></a>
 
 ### [OpenMPI](https://www.open-mpi.org)
 
 
-<a id="orgcfa25e1"></a>
+<a id="orgb768d65"></a>
 
 ### [MPICH](https://www.mpich.org/) [AUR]
 
 
-<a id="org77df2cb"></a>
+<a id="org1652a35"></a>
 
 ### [Valgrind](http://valgrind.org/)
 
 
-<a id="org43738df"></a>
+<a id="orgf15ce83"></a>
 
 ### [Cppcheck](http://cppcheck.sourceforge.net/)
 
 
-<a id="orgb501e5d"></a>
+<a id="orgd3a507c"></a>
 
 ### [OpenCV](https://opencv.org/)
 
 
-<a id="orgd78325a"></a>
+<a id="org12a817b"></a>
 
 ### [POCO C++ Libraries](http://www.pocoproject.org/)
 
 
-<a id="org5f48120"></a>
+<a id="org7af2eff"></a>
 
 ### [libpqxx](http://pqxx.org/development/libpqxx/)
 
 
-<a id="orgdbd08e1"></a>
+<a id="org8468ba5"></a>
 
 ### [NLopt](https://nlopt.readthedocs.io/en/latest/)
 
 
-<a id="org367b9bc"></a>
+<a id="org9e50373"></a>
 
 ### [SWIG](http://www.swig.org/)
 
 
-<a id="orgfa43e07"></a>
+<a id="orgc67f7bb"></a>
 
 ### [Eigen](https://eigen.tuxfamily.org)
 
 
-<a id="org45b2ab1"></a>
+<a id="org5114f82"></a>
 
 ### [HDF5](https://www.hdfgroup.org/hdf5)
 
 
-<a id="orgaff4531"></a>
+<a id="orgc516b9b"></a>
 
 ### [LAPACK](https://www.netlib.org/lapack)
 
 
-<a id="org8ddf266"></a>
+<a id="orga67cf29"></a>
 
 ### OpenGL
 
@@ -476,7 +478,7 @@
 10. [Ogre](http://www.ogre3d.org)
 
 
-<a id="org243ed18"></a>
+<a id="org5b37bdc"></a>
 
 ### XML
 
@@ -485,29 +487,29 @@
 2.  [Xerces-C++](https://xerces.apache.org/xerces-c/)
 
 
-<a id="orgbd8b2b2"></a>
+<a id="orgb1ceeb1"></a>
 
 ### [Tcl](http://tcl.sourceforge.net/)
 
 
-<a id="org00dbd4e"></a>
+<a id="org6e2a6ed"></a>
 
 ### [Tk](http://tcl.sourceforge.net/)
 
 
-<a id="org81c2c07"></a>
+<a id="org2ca4eee"></a>
 
 ### [ShellCheck](https://www.shellcheck.net)
 
 
-<a id="orgf6b5248"></a>
+<a id="org1a26b2c"></a>
 
 ### [FPC](http://www.freepascal.org/)
 
 1.  [fpc-src](https://www.freepascal.org/)
 
 
-<a id="org35da2f5"></a>
+<a id="orgd3470ea"></a>
 
 ### IDE
 
@@ -520,99 +522,99 @@
 3.  [Eclipse](https://eclipse.org) (official)
 
 
-<a id="org97727b9"></a>
+<a id="orgf797748"></a>
 
 ## Science
 
 
-<a id="org7fedcef"></a>
+<a id="org3c3607a"></a>
 
 ### [xmaxima](http://maxima.sourceforge.net)
 
 1.  [wxMaxima](https://wxmaxima-developers.github.io/wxmaxima/)
 
 
-<a id="org7a96731"></a>
+<a id="orgea40de3"></a>
 
 ### [Gnuplot](http://www.gnuplot.info)
 
 
-<a id="org38387a5"></a>
+<a id="org675449c"></a>
 
 ## Office
 
 
-<a id="org0ecaef3"></a>
+<a id="org7180dfd"></a>
 
 ### [LibreOffice](https://www.libreoffice.org/)
 
 
-<a id="orgc62aaf9"></a>
+<a id="org879b9b9"></a>
 
 ### [Thunderbird](https://www.mozilla.org/thunderbird/)
 
 
-<a id="org2c6ba8f"></a>
+<a id="orgca4e437"></a>
 
 ### [Evince](https://wiki.gnome.org/Apps/Evince)
 
 
-<a id="org71259e8"></a>
+<a id="org66f7990"></a>
 
 ### [pdfgrep](http://pdfgrep.sourceforge.net/)
 
 
-<a id="org788edc3"></a>
+<a id="orgaa94c89"></a>
 
 ### [Ghostscript](https://www.ghostscript.com/)
 
 
-<a id="org572c9bf"></a>
+<a id="org325ae66"></a>
 
 ### Xfce4-screenshooter
 
 
-<a id="org04d30d0"></a>
+<a id="org1ee01c6"></a>
 
 ### [KeePassXC](https://keepassxc.org/)
 
 
-<a id="org1d8fa79"></a>
+<a id="orgd412f3c"></a>
 
 ## Multimedia
 
 
-<a id="orge710c66"></a>
+<a id="orgc4b8380"></a>
 
 ### [FFmpeg](https://ffmpeg.org/)
 
 
-<a id="orgcaafc46"></a>
+<a id="orgc40ba2a"></a>
 
 ### [OBS Studio](https://obsproject.com)
 
 
-<a id="org6ad2dbf"></a>
+<a id="orgc9aaef5"></a>
 
 ### [Audacity](https://audacityteam.org)
 
 
-<a id="org55db917"></a>
+<a id="org9f8724e"></a>
 
 ### [Audacious](https://audacious-media-player.org/)
 
 
-<a id="orgebee9cd"></a>
+<a id="orga43cb2a"></a>
 
 ### [EasyTAG](https://wiki.gnome.org/Apps/EasyTAG)
 
 
-<a id="org5ff0ac5"></a>
+<a id="orgd8e4622"></a>
 
 ### [SoundConverter](https://soundconverter.org/)
 
 
-<a id="orge148157"></a>
+<a id="org983705a"></a>
 
 ### [SMPlayer](https://www.smplayer.info/)
 
@@ -621,122 +623,122 @@
 2.  themes
 
 
-<a id="orgc261c48"></a>
+<a id="orge455bba"></a>
 
 ### [mpv](https://mpv.io/)
 
 
-<a id="orgb5162c5"></a>
+<a id="org2623e06"></a>
 
 ### [Xfburn](https://docs.xfce.org/apps/xfburn)
 
 
-<a id="org5d0d956"></a>
+<a id="orge534b9a"></a>
 
 ### [Blender](http://www.blender.org)
 
 
-<a id="org86af58f"></a>
+<a id="orgb8f6768"></a>
 
 ### [Inkscape](https://inkscape.org/)
 
 
-<a id="orgfe8b2ea"></a>
+<a id="org1143554"></a>
 
 ### [GIMP](https://www.gimp.org/)
 
 
-<a id="orgb9e4d5d"></a>
+<a id="org5cda482"></a>
 
 ### [ImageMagick](https://www.imagemagick.org/)
 
 
-<a id="orgf68d713"></a>
+<a id="org061d34e"></a>
 
 ### [RawTherapee](https://www.rawtherapee.com/)
 
 
-<a id="org8edd3da"></a>
+<a id="org24cdc33"></a>
 
 ### Ristretto
 
 
-<a id="orgb0bc846"></a>
+<a id="org0defbfc"></a>
 
 ### [Adobe Flash Player](https://get.adobe.com/flashplayer/)
 
 
-<a id="org4cf0da1"></a>
+<a id="org1b284a7"></a>
 
 ## Web
 
 
-<a id="org661995d"></a>
+<a id="orgd4c8c15"></a>
 
 ### [OpenSSH](https://www.openssh.com/portable.html)
 
 
-<a id="org700329c"></a>
+<a id="orgc3e9946"></a>
 
 ### [OpenSSL](https://www.openssl.org)
 
 
-<a id="org433d6ba"></a>
+<a id="org1e75604"></a>
 
 ### [OpenVPN](https://openvpn.net/index.php/open-source.html)
 
 
-<a id="orga32b782"></a>
+<a id="org55d88f0"></a>
 
 ### [GnuTLS](https://www.gnutls.org/)
 
 
-<a id="org2d4fdc9"></a>
+<a id="orgaf560d3"></a>
 
 ### [Telegram](https://desktop.telegram.org/)
 
 
-<a id="orge2d20b3"></a>
+<a id="org1091881"></a>
 
 ### [Nmap](https://nmap.org/)
 
 
-<a id="orge2ac0b0"></a>
+<a id="org542d5b8"></a>
 
 ### [Remmina](https://www.remmina.org/) + plugins
 
 
-<a id="orgd1b6971"></a>
+<a id="orgaab6cf1"></a>
 
 ### [uGet](https://ugetdm.com/)
 
 
-<a id="org101a64c"></a>
+<a id="org0a9d9d8"></a>
 
 ### [curl](https://curl.haxx.se)
 
 
-<a id="org674b82d"></a>
+<a id="orgd8b266c"></a>
 
 ### [GNU Wget](https://www.gnu.org/software/wget/wget.html)
 
 
-<a id="org5566ac0"></a>
+<a id="org858d2b8"></a>
 
 ### [Transmission](http://www.transmissionbt.com/)
 
 
-<a id="org564da5a"></a>
+<a id="org834d905"></a>
 
 ## Games
 
 
-<a id="orgd27e134"></a>
+<a id="org7c86bad"></a>
 
 ### [OpenTTD](https://www.openttd.org)
 
 
-<a id="org7044399"></a>
+<a id="org909dcb9"></a>
 
 ### [The Battle for Wesnoth](http://www.wesnoth.org/)
 
