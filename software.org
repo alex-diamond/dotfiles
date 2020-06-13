@@ -62,6 +62,7 @@
 *** [[https://llvm.org/][LLVM]]
 **** [[https://clang.llvm.org/][Clang]]
 **** [[https://lldb.llvm.org/][LLDB]]
+**** [[https://openmp.llvm.org/][OpenMP]]
 *** [[https://ccache.dev/][ccache]]
 *** [[https://www.cmake.org/][CMake]]
 *** [[https://www.boost.org/][Boost]]
@@ -83,6 +84,9 @@
 *** [[http://www.swig.org/][SWIG]]
 *** [[https://eigen.tuxfamily.org][Eigen]]
 *** [[https://www.hdfgroup.org/hdf5][HDF5]]
+*** [[https://www.unidata.ucar.edu/software/netcdf/][NetCDF]]
+**** netcdf-cxx
+**** netcdf-fortran
 *** [[https://www.netlib.org/lapack][LAPACK]]
 *** OpenGL
 **** [[http://glm.g-truc.net][GLM]]
