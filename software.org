@@ -40,6 +40,8 @@
 *** [[https://www.sqlite.org/][SQLite]]
 ** Programming
 *** [[https://ctags.io/][Ctags]]
+*** [[https://strace.io/][strace]]
+*** [[https://www.kernel.org/][perf]]
 *** [[https://www.gnu.org/software/global/][GNU GLOBAL]]
 *** Version Control System
 **** [[https://git-scm.com/][Git]]
@@ -59,6 +61,7 @@
 **** [[https://www.gnu.org/software/binutils/][GNU Binutils]]
 *** [[https://llvm.org/][LLVM]]
 **** [[https://clang.llvm.org/][Clang]]
+*** [[https://ccache.dev/][ccache]]
 *** [[https://www.cmake.org/][CMake]]
 *** [[https://www.boost.org/][Boost]]
 *** [[https://www.libsdl.org/][SDL2]]
