@@ -1,6 +1,5 @@
 * List of GNU/Linux software
 ** System
-*** [[https://www.gnu.org/software/bc/][bc]]
 *** [[https://hisham.hm/htop/][htop]]
 *** tree
 *** [[https://midnight-commander.org/][Midnight Commander]]
@@ -79,6 +78,7 @@
 *** [[https://opencv.org/][OpenCV]]
 *** [[http://www.pocoproject.org/][POCO C++ Libraries]]
 *** [[http://pqxx.org/development/libpqxx/][libpqxx]]
+*** [[https://rr-project.org/][rr]] [AUR]
 *** [[https://nlopt.readthedocs.io/en/latest/][NLopt]]
 *** [[http://www.swig.org/][SWIG]]
 *** [[https://eigen.tuxfamily.org][Eigen]]
