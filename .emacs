@@ -346,7 +346,7 @@
   (setq-default org-src-fontify-natively             t   )
   (setq-default org-src-preserve-indentation         t   )
   (setq-default org-src-tab-acts-natively            t   )
-  (setq-default org-startup-folded                   t   )
+  (setq-default org-startup-folded                   nil )
   (setq-default org-startup-indented                 t   )
   (setq-default org-startup-truncated                t   ))
 
@@ -405,7 +405,7 @@
       (setq-default ggtags-use-sqlite3         t     )
       (add-hook 'c-mode-common-hook
                 (lambda () (when (derived-mode-p 'asm-mode 'c-mode 'c++-mode 'java-mode)
-                        (ggtags-mode) (use-cedet-semantic)) )) )
+                             (ggtags-mode) (use-cedet-semantic)) )) )
     (use-cedet-semantic))
 
 (when (and (executable-find "clang")

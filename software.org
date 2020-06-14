@@ -40,6 +40,7 @@
 *** [[https://www.ltrace.org/][ltrace]]
 *** [[https://strace.io/][strace]]
 *** [[https://www.kernel.org/][perf]]
+*** [[https://www.gnu.org/software/time/][GNU Time]]
 *** [[https://www.gnu.org/software/global/][GNU GLOBAL]]
 *** Version Control System
 **** [[https://git-scm.com/][Git]]
@@ -110,7 +111,6 @@
 **** [[https://www.gnu.org/software/emacs/emacs.html][GNU Emacs]]
 ***** [[http://ecb.sourceforge.net/][ECB]]
 **** [[http://www.lazarus.freepascal.org/][Lazarus]]
-**** [[https://eclipse.org][Eclipse]] (official)
 ** Science
 *** [[http://maxima.sourceforge.net][xmaxima]]
 **** [[https://wxmaxima-developers.github.io/wxmaxima/][wxMaxima]]
