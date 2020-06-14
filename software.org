@@ -12,8 +12,6 @@
 **** [[https://www.gnu.org/software/mtools/][Mtools]]
 **** [[https://www.tuxera.com/community/open-source-ntfs-3g/][NTFS-3G]]
 **** [[https://github.com/relan/exfat][exFAT-utils]]
-*** [[https://www.smartmontools.org/][smartmontools]]
-**** [[https://gsmartcontrol.sourceforge.io/home/][GSmartControl]]
 *** [[https://www.gnupg.org/][GnuPG]]
 *** [[https://www.bleachbit.org/][BleachBit]]
 *** [[https://github.com/ib/xarchiver][Xarchiver]]
@@ -40,6 +38,7 @@
 *** [[https://www.sqlite.org/][SQLite]]
 ** Programming
 *** [[https://ctags.io/][Ctags]]
+*** [[https://www.ltrace.org/][ltrace]]
 *** [[https://strace.io/][strace]]
 *** [[https://www.kernel.org/][perf]]
 *** [[https://www.gnu.org/software/global/][GNU GLOBAL]]
@@ -135,6 +134,7 @@
 **** skins
 **** themes
 *** [[https://mpv.io/][mpv]]
+*** [[http://www.mplayerhq.hu/design7/news.html][MPlayer]]
 *** [[https://docs.xfce.org/apps/xfburn][Xfburn]]
 *** [[http://www.blender.org][Blender]]
 *** [[https://inkscape.org/][Inkscape]]
