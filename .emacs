@@ -135,9 +135,9 @@
 (setq-default tab-width                            2    )
 (setq-default whitespace-line-column              90    )
 
-(setq-default c-default-style    "bsd"                  )
-(setq-default custom-file        "~/.emacs.d/custom.el" )
-(setq-default frame-title-format "GNU Emacs: %b: %P"    )
+(setq-default c-default-style    "bsd"                    )
+(setq-default custom-file        "~/.emacs.d/custom.el"   )
+(setq-default frame-title-format "CYBERDYNE Inc.: %b: %P" )
 
 (setq-default backward-delete-char-untabify-method 'hungry                )
 (setq-default calendar-date-style                  'european              )
@@ -195,7 +195,8 @@
       (semanticdb-enable-gnu-global-databases 'c-mode   )
       (semanticdb-enable-gnu-global-databases 'c++-mode ))
     (defvar *semantic-submodes*
-      (list 'global-semantic-decoration-mode
+      (list 'global-cedet-m3-minor-mode
+            'global-semantic-decoration-mode
             'global-semantic-highlight-edits-mode
             'global-semantic-highlight-func-mode
             'global-semantic-idle-completions-mode
@@ -203,6 +204,7 @@
             'global-semantic-idle-scheduler-mode
             'global-semantic-idle-summary-mode
             'global-semantic-mru-bookmark-mode
+            'global-semantic-show-parser-state-mode
             'global-semantic-stickyfunc-mode
             'global-semanticdb-minor-mode))
     (dolist (submode *semantic-submodes*)
@@ -323,17 +325,17 @@
     (org-crypt-use-before-save-magic))
   (setq-default org-tags-exclude-from-inheritance '("crypt"))
   (org-babel-do-load-languages 'org-babel-load-languages
-                               '((awk        . t)
-                                 (emacs-lisp . t)
-                                 (gnuplot    . t)
-                                 (lisp       . t)
-                                 (makefile   . t)
-                                 (org        . t)
-                                 (perl       . t)
-                                 (python     . t)
-                                 (scheme     . t)
-                                 (sed        . t)
-                                 (shell      . t)) )
+                               '(( awk        . t )
+                                 ( emacs-lisp . t )
+                                 ( gnuplot    . t )
+                                 ( lisp       . t )
+                                 ( makefile   . t )
+                                 ( org        . t )
+                                 ( perl       . t )
+                                 ( python     . t )
+                                 ( scheme     . t )
+                                 ( sed        . t )
+                                 ( shell      . t )) )
   (setq-default org-auto-align-tags                  t   )
   (setq-default org-checkbox-hierarchical-statistics nil )
   (setq-default org-confirm-babel-evaluate           nil )
@@ -404,8 +406,10 @@
       (setq-default ggtags-update-on-save      t     )
       (setq-default ggtags-use-sqlite3         t     )
       (add-hook 'c-mode-common-hook
-                (lambda () (when (derived-mode-p 'asm-mode 'c-mode 'c++-mode 'java-mode)
-                             (ggtags-mode) (use-cedet-semantic)) )) )
+                (lambda ()
+                  (when (derived-mode-p 'asm-mode 'c-mode 'c++-mode 'java-mode)
+                    (ggtags-mode)
+                    (use-cedet-semantic)) )) )
     (use-cedet-semantic))
 
 (when (and (executable-find "clang")
@@ -492,4 +496,5 @@
    'elpy-mode-hook (lambda () (add-hook 'before-save-hook 'elpy-black-fix-code nil t )) ))
 
 (provide '.emacs)
+
 ;;; .emacs ends here
