@@ -259,7 +259,7 @@
   (add-to-list 'default-frame-alist '(width  . 120) )
   (add-to-list 'default-frame-alist '(height .  30) )
   (if (member         "JetBrains Mono"    (font-family-list) )
-      (set-frame-font "JetBrains Mono 13"  t              t) )
+      (set-frame-font "JetBrains Mono 14"  t              t) )
   (setq-default zone-programs [zone-pgm-five-oclock-swan-dive])
   (fringe-mode                              '( 10     . 10    ))
   (setq-default indicate-buffer-boundaries '(( bottom . right )
