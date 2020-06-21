@@ -8,6 +8,11 @@ git clone https://github.com/karlkorp/dotfiles.git
 cp dotfiles/.emacs  "$HOME"
 cp dotfiles/.bashrc "$HOME"
 
+# XFCE-look
+mkdir -p ~/.icons
+mkdir -p ~/.themes
+
+# Configure for current Manjaro desktop
 sudo chown skynet:skynet /mnt/DATA
 mkdir -p /mnt/DATA/TORRENTS
 
