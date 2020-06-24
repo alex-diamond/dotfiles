@@ -18,10 +18,9 @@ mkdir -p /mnt/DATA/TORRENTS
 
 # SOFTWARE
 mkdir -p /mnt/DATA/SOFTWARE
-mkdir -p /mnt/DATA/SOFTWARE/CERN
-mkdir -p /mnt/DATA/SOFTWARE/CERN/GEANT4
-mkdir -p /mnt/DATA/SOFTWARE/CERN/GEANT4/BUILD
-mkdir -p /mnt/DATA/SOFTWARE/CERN/GEANT4/INSTALL
+mkdir -p /mnt/DATA/SOFTWARE/GEANT4
+mkdir -p /mnt/DATA/SOFTWARE/GEANT4/BUILD
+mkdir -p /mnt/DATA/SOFTWARE/GEANT4/INSTALL
 
 # Clear
 rm -rf dotfiles
