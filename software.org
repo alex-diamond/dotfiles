@@ -36,6 +36,7 @@
 **** [[https://www.pgadmin.org/][pgAdmin]]
 *** [[https://www.sqlite.org/][SQLite]]
 ** Programming
+*** [[https://www.doxygen.nl/index.html][Doxygen]]
 *** [[https://ctags.io/][Ctags]]
 *** [[https://www.ltrace.org/][ltrace]]
 *** [[https://strace.io/][strace]]
