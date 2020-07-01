@@ -1,0 +1,33 @@
+# SOFTWARE PATH
+SOFTWARE_PATH=/mnt/DATA
+
+# CERN SOFTWARE
+CERN_PATH=$SOFTWARE_PATH/CERN
+
+# FLUKA
+export FLUFOR=gfortran
+if [ -d $CERN_PATH/FLUKA ]; then
+    export FLUPRO=$CERN_PATH/FLUKA
+fi
+
+# FLAIR
+if [ -f $CERN_PATH/FLAIR/flair ]; then
+    alias flair=. $CERN_PATH/FLAIR/flair
+fi
+
+# ROOT
+ROOT_PATH=$CERN_PATH/ROOT/install/bin
+if [ -f $ROOT_PATH/thisroot.sh ]; then
+    alias root=source $ROOT_PATH/thisroot.sh && root
+fi
+
+# Geant4
+GEANT4_PATH=$CERN_PATH/Geant4/install/bin
+if [ -f $GEANT4_PATH/geant4.sh ]; then
+    alias g4=source $GEANT4_PATH/geant4.sh
+fi
+
+# Eclipse IDE
+if [ -f $SOFTWARE_PATH/eclipse/eclipse ]; then
+    alias eclipse=. $SOFTWARE_PATH/eclipse/eclipse
+fi

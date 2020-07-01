@@ -82,6 +82,7 @@
 *** [[http://pqxx.org/development/libpqxx/][libpqxx]]
 *** [[https://rr-project.org/][rr]] [AUR]
 *** [[https://nlopt.readthedocs.io/en/latest/][NLopt]]
+*** [[https://github.com/VcDevel/Vc][vc]]
 *** [[http://www.swig.org/][SWIG]]
 *** [[https://eigen.tuxfamily.org][Eigen]]
 *** [[https://www.hdfgroup.org/hdf5][HDF5]]
@@ -89,6 +90,7 @@
 **** netcdf-cxx
 **** netcdf-fortran
 *** [[https://www.netlib.org/lapack][LAPACK]]
+*** [[http://www.fftw.org/][FFTW]]
 *** OpenGL
 **** [[http://glm.g-truc.net][GLM]]
 **** [[https://xorg.freedesktop.org/][libx11]]
@@ -103,6 +105,7 @@
 *** XML
 **** [[https://libexpat.github.io/][Expat]]
 **** [[https://xerces.apache.org/xerces-c/][Xerces-C++]]
+*** [[https://heasarc.gsfc.nasa.gov/fitsio/][CFITSIO]]
 *** [[http://tcl.sourceforge.net/][Tcl]]
 *** [[http://tcl.sourceforge.net/][Tk]]
 *** [[https://www.shellcheck.net][ShellCheck]]
@@ -116,6 +119,7 @@
 *** [[http://maxima.sourceforge.net][xmaxima]]
 **** [[https://wxmaxima-developers.github.io/wxmaxima/][wxMaxima]]
 *** [[http://www.gnuplot.info][Gnuplot]]
+*** [[https://www.gnu.org/software/gsl/gsl.html][GSL]]
 ** Office
 *** [[https://www.libreoffice.org/][LibreOffice]]
 *** [[https://www.mozilla.org/thunderbird/][Thunderbird]]

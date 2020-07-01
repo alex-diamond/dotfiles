@@ -1,0 +1,60 @@
+* ROOT build options
+** Components
+*** asimage
+*** ccache
+*** dataframe
+*** fftw3
+*** fitsio
+*** fortran
+*** gdml
+*** gsl_shared
+*** http
+*** mathmore (GSL)
+*** mpi
+*** opengl
+*** pgsql
+*** roofit
+*** runtime_cxxmodules
+*** shared
+*** soversion
+*** spectrum
+*** sqlite
+*** unuran
+*** vc
+*** vdt
+*** veccore
+*** webgui
+*** x11
+*** xml
+** CMAKE
+*** CMAKE_BUILD_TYPE:     Release
+*** CMAKE_CXX_EXTENSIONS: ON
+*** CMAKE_CXX_STANDARD    17
+*** CMAKE_INSTALL_PREFIX: DIR
+** USE
+*** USE_LIBMVEC: ON
+** builtin
+*** afterimage
+*** clang
+*** ftgl
+*** gl2ps
+*** llvm
+*** unuran
+*** vdt
+*** veccore
+
+* Geant4 build options
+** BUILD
+*** BUILD_SHARED_LIBS: ON
+*** BUILD_STATIC_LIBS: ON
+** CMAKE
+*** CMAKE_BUILD_TYPE:     Release
+*** CMAKE_INSTALL_PREFIX: DIR
+** GEANT4
+*** GEANT4_BUILD_CXXSTD:        17
+*** GEANT4_BUILD_MULTITHREADED: ON
+*** GEANT4_INSTALL_DATA:        ON
+*** GEANT4_USE_GDML:            ON
+*** GEANT4_USE_OPENGL_X11:      ON
+*** GEANT4_USE_RAYTRACER:       ON
+*** GEANT4_USE_SYSTEM_EXPAT:    ON

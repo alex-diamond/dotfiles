@@ -5,8 +5,9 @@ git config --global user.email "lispgod@gmail.com"
 git clone https://github.com/karlkorp/dotfiles.git
 
 # Put configuration files to the $HOME folder
-cp dotfiles/.emacs  "$HOME"
-cp dotfiles/.bashrc "$HOME"
+cp dotfiles/.emacs   $HOME
+cp dotfiles/.bashrc  $HOME
+cp dotfiles/.aliases $HOME
 
 # XFCE-look
 mkdir -p ~/.icons
@@ -16,10 +17,20 @@ mkdir -p ~/.themes
 sudo chown skynet:skynet /mnt/DATA
 mkdir -p /mnt/DATA/torrents
 
-# SOFTWARE
-mkdir -p /mnt/DATA/geant4
-mkdir -p /mnt/DATA/geant4/build
-mkdir -p /mnt/DATA/geant4/install
+# CERN SOFTWARE
+CERN_PATH=/mnt/DATA/CERN
+# ROOT
+mkdir -p $CERN_PATH/ROOT
+mkdir -p $CERN_PATH/ROOT/build
+mkdir -p $CERN_PATH/ROOT/install
+# Geant4
+mkdir -p $CERN_PATH/Geant4
+mkdir -p $CERN_PATH/Geant4/build
+mkdir -p $CERN_PATH/Geant4/install
+# FLUKA
+mkdir -p $CERN_PATH/FLUKA
+# FLAIR
+mkdir -p $CERN_PATH/FLAIR
 
 # Clear
 rm -rf dotfiles

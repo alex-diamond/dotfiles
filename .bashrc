@@ -9,23 +9,23 @@ function edit_bash_config_file  () { emacs "$HOME"/.bashrc & }
 function edit_emacs_config_file () { emacs "$HOME"/.emacs  & }
 function create_python3_virtualenv_project ()
 {
-    local project_name="$1"
-    local project_activate_command="bin/activate"
+    local project_name=$1
+    local project_activate_command=bin/activate
     function install_packages ()
     {
-        virtualenv -p python3 "$project_name"
-        source "$project_name/$project_activate_command"
+        virtualenv -p python3 $project_name
+        source $project_name/$project_activate_command
         pip install --upgrade pip
         pip install --upgrade jedi rope autopep8 yapf
         pip install --upgrade black flake8 ipython jupyter
         pip install --upgrade 'python-language-server[all]'
-        mkdir "$project_name/src" &&  cd "$project_name/src" || exit
+        mkdir $project_name/src && cd $project_name/src || exit
         pip freeze > requirements.txt && clear
     }
-    if [ -d "$project_name" ]; then
-        if [ -f "$project_name/$project_activate_command" ]; then
-            source "$project_name/$project_activate_command"
-            mkdir -p "$project_name/src" && cd "$project_name/src" && clear
+    if [ -d $project_name ]; then
+        if [ -f $project_name/$project_activate_command ]; then
+            source $project_name/$project_activate_command
+            mkdir -p $project_name/src && cd $project_name/src && clear
         else
             install_packages
         fi
@@ -35,26 +35,24 @@ function create_python3_virtualenv_project ()
 }
 
 # Aliases
-alias .="pwd"
-alias x="exit"
-alias t="tree"
-alias c="clear"
-alias ..="cd .."
-alias ll="ls -l"
-alias cp="cp -v"
-alias mv="mv -v"
-alias la="ls -la"
-alias rm="rm -Iv"
-alias h="history"
-alias e="emacs_alias"
-alias sl="sl && clear"
-alias cmc="cmatrix && clear"
-alias cb="edit_bash_config_file"
-alias aac="asciiquarium && clear"
-alias ce="edit_emacs_config_file"
-alias pvp="create_python3_virtualenv_project"
-alias eclipse="/mnt/DATA/eclipse/eclipse &"
-alias g4="source /mnt/DATA/geant4/install/bin/geant4.sh"
+alias .=pwd
+alias x=exit
+alias t=tree
+alias c=clear
+alias ..=cd ..
+alias ll=ls -l
+alias cp=cp -v
+alias mv=mv -v
+alias la=ls -la
+alias rm=rm -Iv
+alias h=history
+alias e=emacs_alias
+alias sl=sl && clear
+alias cmc=cmatrix && clear
+alias cb=edit_bash_config_file
+alias aac=asciiquarium && clear
+alias ce=edit_emacs_config_file
+alias pvp=create_python3_virtualenv_project
 
 # A command name that is the name of a directory
 # is executed as if it were the argument to the "cd" command
@@ -79,7 +77,6 @@ shopt -s histappend
 shopt -s checkwinsize
 
 export TERM=xterm-256color
-
 # Bash history and prompt
 export HISTSIZE=10240
 export HISTCONTROL=ignoreboth:erasedups
@@ -88,3 +85,8 @@ PROMPT_DIRTRIM=2
 export PS1='\n[\u] [\H] [\w]: [J: \j]\n\$ '
 # Update history file after every command
 export PROMPT_COMMAND="history -a"
+
+ALIASES_PATH=$HOME/.aliases
+if [ -f $ALIASES_PATH ]; then
+    source $ALIASES_PATH
+fi
