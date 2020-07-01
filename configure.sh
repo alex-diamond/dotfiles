@@ -1,24 +1,25 @@
 # Set git configuration and clone "dotfiles"
-git config --global user.name "karlkorp"
+git config --global user.name  "karlkorp"
 git config --global user.email "lispgod@gmail.com"
 
 git clone https://github.com/karlkorp/dotfiles.git
 
 # Put configuration files to the $HOME folder
-cp dotfiles/.emacs   $HOME
-cp dotfiles/.bashrc  $HOME
-cp dotfiles/.aliases $HOME
+cp dotfiles/.emacs  "$HOME"
+cp dotfiles/.bashrc "$HOME"
 
 # XFCE-look
 mkdir -p ~/.icons
 mkdir -p ~/.themes
 
 # Configure for current Manjaro desktop
-sudo chown skynet:skynet /mnt/DATA
-mkdir -p /mnt/DATA/torrents
+DATA_PATH=/mnt/DATA
+sudo chown skynet:skynet $DATA_PATH
+mkdir -p $DATA_PATH/torrents
 
 # CERN SOFTWARE
-CERN_PATH=/mnt/DATA/CERN
+CERN_PATH=$DATA_PATH/CERN
+mkdir -p $CERN_PATH
 # ROOT
 mkdir -p $CERN_PATH/ROOT
 mkdir -p $CERN_PATH/ROOT/build

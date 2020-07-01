@@ -47,8 +47,8 @@
 **** [[https://git-scm.com/][Git]]
 **** [[https://subversion.apache.org/][Apache Subversion]]
 *** [[https://www.python.org/][Python]]
+**** [[https://python-pillow.org/][Pillow]]
 **** [[https://virtualenv.pypa.io/][Virtualenv]]
-*** [[https://www.perl.org][Perl]]
 *** [[https://openjdk.java.net/][OpenJDK]]
 *** LISP
 **** [[http://aur.archlinux.org/packages/chez-scheme][chez-scheme]] [AUR]
