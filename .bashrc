@@ -94,11 +94,11 @@ if [ -f $CERN_PATH/FLAIR/flair ]; then
 fi
 ROOT_PATH=$CERN_PATH/ROOT/install/bin
 if [ -f $ROOT_PATH/thisroot.sh ]; then
-    alias root="source \$ROOT_PATH/thisroot.sh && root"
+    source "$ROOT_PATH/thisroot.sh"
 fi
 GEANT4_PATH=$CERN_PATH/Geant4/install/bin
 if [ -f $GEANT4_PATH/geant4.sh ]; then
-    alias g4="source \$GEANT4_PATH/geant4.sh"
+    source "$GEANT4_PATH/geant4.sh"
 fi
 if [ -f $SOFTWARE_PATH/eclipse/eclipse ]; then
     alias eclipse="\$SOFTWARE_PATH/eclipse/eclipse &"
