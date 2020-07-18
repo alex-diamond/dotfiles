@@ -461,8 +461,8 @@
       (setq-default ido-enable-flex-matching t ) ))
 (when (and (package-installed-p 'ivy-rtags     )
            (package-installed-p 'counsel-gtags ))
-  (add-hook 'c-mode-hook                     'counsel-gtags-mode )
-  (add-hook 'c++-mode-hook                   'counsel-gtags-mode )
+  (add-hook     'c-mode-hook                 'counsel-gtags-mode )
+  (add-hook     'c++-mode-hook               'counsel-gtags-mode )
   (setq-default rtags-display-result-backend 'ivy                ))
 
 (install-package 'company)
