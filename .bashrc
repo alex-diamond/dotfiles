@@ -85,21 +85,11 @@ export PROMPT_COMMAND="history -a"
 
 SOFTWARE_PATH=/mnt/DATA
 CERN_PATH=$SOFTWARE_PATH/CERN
-export FLUFOR=gfortran
-if [ -d $CERN_PATH/FLUKA ]; then
-    export FLUPRO=$CERN_PATH/FLUKA
-fi
-if [ -f $CERN_PATH/FLAIR/flair ]; then
-    alias flair="\$CERN_PATH/FLAIR/flair &"
-fi
 ROOT_PATH=$CERN_PATH/ROOT/install/bin
+GEANT4_PATH=$CERN_PATH/Geant4/install/bin
 if [ -f $ROOT_PATH/thisroot.sh ]; then
     source "$ROOT_PATH/thisroot.sh"
 fi
-GEANT4_PATH=$CERN_PATH/Geant4/install/bin
 if [ -f $GEANT4_PATH/geant4.sh ]; then
     source "$GEANT4_PATH/geant4.sh"
-fi
-if [ -f $SOFTWARE_PATH/eclipse/eclipse ]; then
-    alias eclipse="\$SOFTWARE_PATH/eclipse/eclipse &"
 fi

@@ -28,10 +28,6 @@ mkdir -p $CERN_PATH/ROOT/install
 mkdir -p $CERN_PATH/Geant4
 mkdir -p $CERN_PATH/Geant4/build
 mkdir -p $CERN_PATH/Geant4/install
-# FLUKA
-mkdir -p $CERN_PATH/FLUKA
-# FLAIR
-mkdir -p $CERN_PATH/FLAIR
 
 # Clear
 rm -rf dotfiles
