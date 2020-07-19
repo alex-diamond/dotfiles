@@ -451,9 +451,11 @@
     (progn
       (ivy-mode     )
       (counsel-mode )
-      (global-set-key (kbd "C-s") 'swiper)
       (setq-default ivy-use-virtual-buffers      t )
-      (setq-default enable-recursive-minibuffers t ))
+      (setq-default enable-recursive-minibuffers t )
+      (global-set-key (kbd "C-s"     ) 'swiper            )
+      (global-set-key (kbd "M-x"     ) 'counsel-M-x       )
+      (global-set-key (kbd "C-x C-f" ) 'counsel-find-file ))
     (when (require 'ido nil :noerror)
       (ido-mode       1 )
       (ido-everywhere 1 )
@@ -485,10 +487,8 @@
 (install-package 'elpy)
 (when (require 'elpy nil :noerror)
   (elpy-enable)
-  (add-hook
-   'elpy-mode-hook (lambda () (add-hook 'before-save-hook 'elpy-format-code    nil t )) )
-  (add-hook
-   'elpy-mode-hook (lambda () (add-hook 'before-save-hook 'elpy-black-fix-code nil t )) ))
+  (add-hook 'elpy-mode-hook (lambda () (add-hook 'before-save-hook 'elpy-format-code    nil t )) )
+  (add-hook 'elpy-mode-hook (lambda () (add-hook 'before-save-hook 'elpy-black-fix-code nil t )) ))
 
 (provide '.emacs)
 
