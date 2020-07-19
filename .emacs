@@ -27,7 +27,7 @@
 (flyspell-mode                -1 )
 (global-auto-revert-mode       1 )
 (global-font-lock-mode         1 )
-(global-hl-line-mode          -1 )
+(global-hl-line-mode           1 )
 (global-prettify-symbols-mode  1 )
 (global-subword-mode           1 )
 (global-whitespace-mode        1 )
