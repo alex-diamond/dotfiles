@@ -51,6 +51,8 @@ function CP3VP ()
     fi
 }; alias pvp="CP3VP"
 
+# Emacs mode
+set -o emacs
 # A command name that is the name of a directory
 # is executed as if it were the argument to the "cd" command
 shopt -s autocd
