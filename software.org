@@ -31,7 +31,7 @@
 **** [[https://www.gnu.org/software/ispell/][Ispell]]
 **** [[https://hunspell.github.io/][Hunspell]] [+ ENG/RUS [AUR]]
 *** [[https://github.com/dylanaraps/neofetch][Neofetch]]
-*** [[https://github.com/raylee/tldr-sh-client][tldr]] [AUR]
+*** [[https://github.com/raylee/tldr-sh-client][tldr-sh]] [AUR]
 ** DB
 *** [[https://www.postgresql.org/][PostgreSQL]]
 **** [[https://www.pgadmin.org/][pgAdmin]]
