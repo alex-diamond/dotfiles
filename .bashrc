@@ -77,16 +77,15 @@ shopt -s checkwinsize
 
 # Exports
 export TERM=xterm-256color
-# Bash history and prompt
 export HISTSIZE=10240
 export HISTCONTROL=ignoreboth:erasedups
 export HISTIGNORE='.:..:c:h:x:cd:la:ll:ls'
-# Bash prompt
 PROMPT_DIRTRIM=2
-# Display git branch in bash prompt
 show_git_branch ()
 {
-    git branch 2> /dev/null | grep '^*' | colrm 1 2
+    if [ -f /usr/bin/git ]; then
+        git branch 2> /dev/null | grep '^*' | colrm 1 2
+    fi
 }
 export PS1='\n[\u] [\H] [\w]: [J: \j] $(show_git_branch)\n\$ '
 # Update history file after every command
@@ -100,7 +99,6 @@ SOFTWARE_PATH=/mnt/DATA
 CERN_PATH=$SOFTWARE_PATH/CERN
 ROOT_PATH=$CERN_PATH/ROOT/install/bin
 GEANT4_PATH=$CERN_PATH/Geant4/install/bin
-# ROOT & GEANT4
 if [ -f $ROOT_PATH/thisroot.sh ]; then
     source "$ROOT_PATH/thisroot.sh"
 fi
@@ -109,12 +107,14 @@ if [ -f $GEANT4_PATH/geant4.sh ]; then
 fi
 
 # TL;DR
-export TLDR_CACHE_ENABLED=1
-export TLDR_CACHE_MAX_AGE=720
-export TLDR_COLOR_COMMAND="red"
-export TLDR_COLOR_DESCRIPTION="white"
-export TLDR_COLOR_EXAMPLE="green"
-export TLDR_COLOR_NAME="cyan"
-export TLDR_COLOR_PARAMETER="white"
-export TLDR_DOWNLOAD_CACHE_LOCATION="https://tldr-pages.github.io/assets/tldr.zip"
-export TLDR_PAGES_SOURCE_LOCATION="https://raw.githubusercontent.com/tldr-pages/tldr/master/pages"
+if [ -f /usr/bin/tldr ]; then
+    export TLDR_CACHE_ENABLED=1
+    export TLDR_CACHE_MAX_AGE=720
+    export TLDR_COLOR_COMMAND="red"
+    export TLDR_COLOR_DESCRIPTION="white"
+    export TLDR_COLOR_EXAMPLE="green"
+    export TLDR_COLOR_NAME="cyan"
+    export TLDR_COLOR_PARAMETER="white"
+    export TLDR_DOWNLOAD_CACHE_LOCATION="https://tldr-pages.github.io/assets/tldr.zip"
+    export TLDR_PAGES_SOURCE_LOCATION="https://raw.githubusercontent.com/tldr-pages/tldr/master/pages"
+fi
