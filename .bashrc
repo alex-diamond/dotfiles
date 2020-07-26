@@ -80,6 +80,9 @@ export TERM=xterm-256color
 export HISTCONTROL=ignoreboth:erasedups
 export HISTIGNORE='.:..:c:h:x:cd:la:ll:ls'
 export HISTSIZE=10240
+export EDITOR=emacs
+export VISUAL="$EDITOR"
+# Bash prompt
 PROMPT_DIRTRIM=2
 show_git_branch ()
 {
@@ -87,10 +90,8 @@ show_git_branch ()
         git branch 2> /dev/null | grep '^*' | colrm 1 2
     fi
 }
-export PS1='\n[\u] [\H] [\w]: [J: \j] $(show_git_branch)\n\$ '
 export PROMPT_COMMAND="history -a"
-export EDITOR=emacs
-export VISUAL="$EDITOR"
+export PS1='\n[\u] [\H] [\w]: [J: \j] $(show_git_branch)\n\$ '
 
 # CERN SOFTWARE
 SOFTWARE_PATH=/mnt/DATA
@@ -106,5 +107,9 @@ fi
 
 # TL;DR
 if [ -f /usr/bin/tldr ]; then
-    export TLDR_CACHE_ENABLED=0
+    export TLDR_CODE="red"
+    export TLDR_DESCRIPTION="green"
+    export TLDR_HEADER="magenta bold underline"
+    export TLDR_PARAM="blue"
+    export TLDR_QUOTE="italic"
 fi
