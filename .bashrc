@@ -9,10 +9,10 @@ alias x="exit"
 alias t="tree"
 alias c="clear"
 alias ..="cd .."
-alias ll="ls -l"
+alias ll="ls -lh"
 alias cp="cp -v"
 alias mv="mv -v"
-alias la="ls -la"
+alias la="ls -lah"
 alias rm="rm -Iv"
 alias h="history"
 alias sl="sl && clear"
@@ -20,9 +20,9 @@ alias cmc="cmatrix && clear"
 alias aac="asciiquarium && clear"
 
 # Functions
-function EASF  () { emacs "$@"            & }; alias ec="EASF"
-function EBCF  () { emacs "$HOME"/.bashrc & }; alias cb="EBCF"
-function EECF  () { emacs "$HOME"/.emacs  & }; alias ce="EECF"
+function EASF () { emacs "$@"            & }; alias ec="EASF"
+function EBCF () { emacs "$HOME"/.bashrc & }; alias cb="EBCF"
+function EECF () { emacs "$HOME"/.emacs  & }; alias ce="EECF"
 
 function CP3VP ()
 {
@@ -37,7 +37,7 @@ function CP3VP ()
         pip install --upgrade black flake8 ipython jupyter
         pip install --upgrade 'python-language-server[all]'
         mkdir "$project_name/src" && cd "$project_name/src" || exit
-        pip freeze > requirements.txt && clear
+        pip freeze > requirements.txt && clear && git init
     }
     if [ -d "$project_name" ]; then
         if [ -f "$project_name/$project_activate_command" ]; then
@@ -81,9 +81,17 @@ export HISTSIZE=10240
 export HISTCONTROL=ignoreboth:erasedups
 export HISTIGNORE='.:..:c:h:x:cd:la:ll:ls'
 PROMPT_DIRTRIM=2
-export PS1='\n[\u] [\H] [\w]: [J: \j]\n\$ '
+show_git_branch ()
+{
+    git branch 2> /dev/null | \
+        sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1)/'
+}
+export PS1='\n[\u] [\H] [\w]: [J: \j] $(show_git_branch)\n\$ '
 # Update history file after every command
 export PROMPT_COMMAND="history -a"
+# Set default EDITOR
+export EDITOR=emacs
+export VISUAL="$EDITOR"
 
 SOFTWARE_PATH=/mnt/DATA
 CERN_PATH=$SOFTWARE_PATH/CERN
