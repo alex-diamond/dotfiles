@@ -135,9 +135,9 @@
 (setq-default tab-width                            2    )
 (setq-default whitespace-line-column             100    )
 
-(setq-default c-default-style    "bsd"                    )
-(setq-default custom-file        "~/.emacs.d/custom.el"   )
-(setq-default frame-title-format "CYBERDYNE Inc.: %b: %P" )
+(setq-default c-default-style    "bsd"                       )
+(setq-default custom-file        "~/.emacs.d/custom.el"      )
+(setq-default frame-title-format "Cyberdyne Systems: %b: %P" )
 
 (setq-default backward-delete-char-untabify-method 'hungry                )
 (setq-default calendar-date-style                  'european              )
