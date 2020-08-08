@@ -17,6 +17,7 @@ alias rm="rm -Iv"
 alias h="history"
 alias sl="sl && clear"
 alias cmc="cmatrix && clear"
+alias reload="source ~/.bashrc"
 alias aac="asciiquarium && clear"
 
 # Functions
@@ -96,22 +97,16 @@ shopt -s histappend
 # updates the values of LINES and COLUMNS
 shopt -s checkwinsize
 
+PROMPT_DIRTRIM=2
 # Exports
 export TERM=xterm-256color
 export HISTCONTROL=ignoreboth:erasedups
-export HISTIGNORE='.:..:c:h:x:cd:la:ll:ls'
+export HISTIGNORE=".:..:c:h:x:cd:la:ll:ls"
 export HISTSIZE=10240
 export EDITOR=emacs
 export VISUAL="$EDITOR"
-PROMPT_DIRTRIM=2
-show_git_branch ()
-{
-    if [ -f /usr/bin/git ]; then
-        git branch 2> /dev/null | grep '^*' | colrm 1 2
-    fi
-}
+export PS1=$'\n\w \U25B6 '
 export PROMPT_COMMAND="history -a"
-export PS1='\n[\u] [\H] [\w]: [J: \j] $(show_git_branch)\n\$ '
 
 # CERN SOFTWARE
 SOFTWARE_PATH=/mnt/DATA
@@ -132,4 +127,14 @@ if [ -f /usr/bin/tldr ]; then
     export TLDR_HEADER="magenta bold underline"
     export TLDR_PARAM="blue"
     export TLDR_QUOTE="italic"
+fi
+
+if [ -f /usr/share/fzf/completion.bash ] && \
+       [ -f /usr/share/fzf/key-bindings.bash ]; then
+    source /usr/share/fzf/completion.bash
+    source /usr/share/fzf/key-bindings.bash
+    if [ -f /usr/bin/fd ]; then
+        export FZF_DEFAULT_COMMAND="fd --type f --hidden"
+    fi
+    export FZF_DEFAULT_OPTS="-m --preview='head {}' --preview-window=right"
 fi

@@ -24,6 +24,8 @@
 *** [[http://www.asty.org/cmatrix/][CMatrix]]
 *** asciiquarium
 *** sl
+*** [[https://github.com/sharkdp/fd][fd]]
+*** [[https://github.com/junegunn/fzf][fzf]]
 *** [[https://xorg.freedesktop.org/][xcursor-themes]]
 *** [[https://github.com/xfce-mirror/catfish][Catfish]]
 *** Language checking
