@@ -78,8 +78,7 @@
 *** [[https://www.mpich.org/][MPICH]] [AUR]
 *** [[http://valgrind.org/][Valgrind]]
 *** [[http://cppcheck.sourceforge.net/][Cppcheck]]
-*** [[https://opencv.org/][OpenCV]]
-*** [[http://www.pocoproject.org/][POCO C++ Libraries]]
+*** [[https://opencv.org/][OpenCV]] [+ OpenCV-samples]
 *** [[http://pqxx.org/development/libpqxx/][libpqxx]]
 *** [[https://rr-project.org/][rr]] [AUR]
 *** [[https://nlopt.readthedocs.io/en/latest/][NLopt]]
@@ -121,6 +120,7 @@
 **** [[https://wxmaxima-developers.github.io/wxmaxima/][wxMaxima]]
 *** [[http://www.gnuplot.info][Gnuplot]]
 *** [[https://www.gnu.org/software/gsl/gsl.html][GSL]]
+*** [[https://directory.fsf.org/wiki/Plotutils][Plotutils]]
 ** Office
 *** [[https://www.libreoffice.org/][LibreOffice]]
 *** [[https://www.mozilla.org/thunderbird/][Thunderbird]]

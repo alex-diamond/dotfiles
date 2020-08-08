@@ -66,7 +66,7 @@
 (setq-default find-file-visit-truename            t   )
 (setq-default font-lock-maximum-decoration        t   )
 (setq-default gdb-enable-debug                    t   )
-(setq-default gdb-many-windows                    t   )
+(setq-default gdb-many-windows                    nil )
 (setq-default gdb-show-changed-values             t   )
 (setq-default gdb-show-main                       t   )
 (setq-default gdb-show-threads-by-default         t   )
@@ -415,6 +415,7 @@
 (when (and (executable-find "clang")
            (executable-find "cmake"))
   (install-package 'rtags     )
+  (install-package 'rmsbolt   )
   (install-package 'cmake-ide ))
 (when (require 'rtags nil :noerror) (cmake-ide-setup)
       (setq-default rtags-completions-enabled   t )
@@ -491,5 +492,4 @@
   (add-hook 'elpy-mode-hook (lambda () (add-hook 'before-save-hook 'elpy-black-fix-code nil t )) ))
 
 (provide '.emacs)
-
 ;;; .emacs ends here
