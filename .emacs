@@ -315,6 +315,10 @@
       (doom-themes-visual-bell-config ) )
     (legacy-theme))
 
+(install-package 'powerline)
+(if (require 'powerline)
+    (powerline-default-theme))
+
 (install-package 'org)
 (when (require 'org nil :noerror)
   (require 'ob nil :noerror)
@@ -492,4 +496,5 @@
   (add-hook 'elpy-mode-hook (lambda () (add-hook 'before-save-hook 'elpy-black-fix-code nil t )) ))
 
 (provide '.emacs)
+
 ;;; .emacs ends here

@@ -117,7 +117,7 @@ if [ -f $ROOT_PATH/thisroot.sh ]; then
     source "$ROOT_PATH/thisroot.sh"
 fi
 if [ -f $GEANT4_PATH/geant4.sh ]; then
-    source "$GEANT4_PATH/geant4.sh"
+    source "$(GEANT4_PATH)/geant4.sh"
 fi
 
 # TL;DR
@@ -133,6 +133,7 @@ if [ -f /usr/share/fzf/completion.bash ] && \
        [ -f /usr/share/fzf/key-bindings.bash ]; then
     source /usr/share/fzf/completion.bash
     source /usr/share/fzf/key-bindings.bash
+    bind -m emacs-standard -x '"\C-f": fzf-file-widget'
     if [ -f /usr/bin/fd ]; then
         export FZF_DEFAULT_COMMAND="fd --type f --hidden"
     fi
