@@ -117,7 +117,7 @@ if [ -f $ROOT_PATH/thisroot.sh ]; then
     source "$ROOT_PATH/thisroot.sh"
 fi
 if [ -f $GEANT4_PATH/geant4.sh ]; then
-    source "$(GEANT4_PATH)/geant4.sh"
+    source "$GEANT4_PATH/geant4.sh"
 fi
 
 # TL;DR
