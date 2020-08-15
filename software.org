@@ -66,6 +66,7 @@
 **** [[https://clang.llvm.org/][Clang]]
 **** [[https://lldb.llvm.org/][LLDB]]
 **** [[https://openmp.llvm.org/][OpenMP]]
+*** [[https://radare.org][radare2]]
 *** [[https://ccache.dev/][ccache]]
 *** [[https://www.cmake.org/][CMake]]
 *** [[https://www.boost.org/][Boost]]
