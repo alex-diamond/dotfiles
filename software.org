@@ -69,6 +69,8 @@
 *** [[https://ccache.dev/][ccache]]
 *** [[https://www.cmake.org/][CMake]]
 *** [[https://www.boost.org/][Boost]]
+*** [[https://github.com/google/googletest][gtest]]
+*** [[https://github.com/google/googletest][gmock]]
 *** [[https://www.libsdl.org/][SDL2]]
 **** sdl2_gfx
 **** sdl2_image
