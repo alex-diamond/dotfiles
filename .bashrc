@@ -4,29 +4,40 @@ if [ -f /etc/bash_completion.d ]; then
 fi
 
 # Aliases
-alias .="pwd"
-alias x="exit"
-alias t="tree"
-alias c="clear"
 alias ..="cd .."
-alias ll="ls -lh"
-alias cp="cp -v"
-alias mv="mv -v"
-alias la="ls -lah"
-alias rm="rm -Iv"
-alias h="history"
-alias sl="sl && clear"
-alias cmc="cmatrix && clear"
-alias reload="source ~/.bashrc"
+alias .2="cd ../.."
+alias .3="cd ../../.."
+alias .4="cd ../../../.."
+alias .5="cd ../../../../.."
+alias .="pwd"
 alias aac="asciiquarium && clear"
+alias addall="git add ."
+alias c="clear"
+alias cmc="cmatrix && clear"
+alias commit="git commit -m"
+alias cp="cp -v"
+alias df="df -Tha --total"
+alias du="du -ach | sort -h"
+alias free="free -mt"
+alias h="history"
+alias la="ls -lah"
+alias ll="ls -lh"
+alias mkdir="mkdir -p"
+alias mv="mv -v"
+alias ps="ps auxf"
+alias push="git push origin master"
+alias reload="source ~/.bashrc"
+alias rm="rm -Iv"
+alias sl="sl && clear"
+alias t="tree"
+alias x="exit"
 
-# Functions
-function EASF () { emacs "$@"            & }; alias ec="EASF"
+function EASF () { emacs "$@"            & }; alias e="EASF"
 function EBCF () { emacs "$HOME"/.bashrc & }; alias cb="EBCF"
 function EECF () { emacs "$HOME"/.emacs  & }; alias ce="EECF"
 
 function extract () {
-    if [ -f "$1" ] ; then
+    if [ -f "$1" ]; then
         case $1 in
             *.tar.bz2) tar        xjvf "$1" ;;
             *.tar.gz)  tar        xzvf "$1" ;;
