@@ -144,10 +144,10 @@
 (setq-default tab-width                            2    )
 (setq-default whitespace-line-column             100    )
 
-(setq-default c-default-style    "bsd"                                )
-(setq-default custom-file        "~/.emacs.d/custom.el"               )
-(setq-default frame-title-format "%b"                                 )
-(setq-default mode-line-format   " %Z%+ %b %I ( %l : %C ) ( %m ) %M " )
+(setq-default c-default-style    "bsd"                                    )
+(setq-default custom-file        "~/.emacs.d/custom.el"                   )
+(setq-default frame-title-format "GNU Emacs"                              )
+(setq-default mode-line-format   " %Z%+ %b \t\t %p (%l,%C) \t\t (%m) %M " )
 
 (setq-default backward-delete-char-untabify-method 'hungry                )
 (setq-default calendar-date-style                  'european              )
