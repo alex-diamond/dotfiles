@@ -113,6 +113,7 @@
 (setq-default truncate-lines                      t   )
 (setq-default truncate-partial-width-windows      nil )
 (setq-default use-dialog-box                      nil )
+(setq-default use-file-dialog                     nil )
 (setq-default vc-make-backup-files                t   )
 (setq-default version-control                     t   )
 (setq-default window-divider-default-places       t   )
@@ -143,11 +144,10 @@
 (setq-default tab-width                            2    )
 (setq-default whitespace-line-column             100    )
 
-(setq-default c-default-style    "bsd"                    )
-(setq-default custom-file        "~/.emacs.d/custom.el"   )
-(setq-default frame-title-format "%b"                     )
-(setq-default mode-line-format
-              "%Z%+ \t %b \t %l:%C \t %I \t ( %m ) \t %M" )
+(setq-default c-default-style    "bsd"                                )
+(setq-default custom-file        "~/.emacs.d/custom.el"               )
+(setq-default frame-title-format "%b"                                 )
+(setq-default mode-line-format   " %Z%+ %b %I ( %l : %C ) ( %m ) %M " )
 
 (setq-default backward-delete-char-untabify-method 'hungry                )
 (setq-default calendar-date-style                  'european              )
@@ -384,8 +384,8 @@
   (global-set-key (kbd "C-=") 'er/expand-region))
 
 (install-package 'flycheck)
-(when (require 'flycheck nil :noerror)
-  (global-flycheck-mode))
+(if (require 'flycheck nil :noerror)
+    (global-flycheck-mode))
 
 (install-package 'yasnippet)
 (install-package 'yasnippet-snippets)
