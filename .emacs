@@ -178,7 +178,6 @@
   (condition-case
    err
    (unless (package-installed-p package-name)
-     (package-initialize)
      (package-install package-name) nil)
    (error (princ (format "THE ERROR WAS: %s" err))) ))
 
@@ -507,9 +506,10 @@
 (install-package 'elpy)
 (when (require 'elpy nil :noerror)
   (elpy-enable)
-  (add-hook 'elpy-mode-hook (lambda () (add-hook 'before-save-hook 'elpy-format-code    nil t )) )
-  (add-hook 'elpy-mode-hook (lambda () (add-hook 'before-save-hook 'elpy-black-fix-code nil t )) ))
+  (add-hook 'elpy-mode-hook
+            (lambda () (add-hook 'before-save-hook 'elpy-format-code    nil t )) )
+  (add-hook 'elpy-mode-hook
+            (lambda () (add-hook 'before-save-hook 'elpy-black-fix-code nil t )) ))
 
 (provide '.emacs)
-
 ;;; .emacs ends here
