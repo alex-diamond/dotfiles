@@ -47,6 +47,8 @@
 (scroll-bar-mode                  -1 )
 (show-paren-mode                   1 )
 (size-indication-mode              1 )
+(tab-bar-mode                     -1 )
+(tab-line-mode                    -1 )
 (tool-bar-mode                    -1 )
 (tooltip-mode                     -1 )
 (transient-mark-mode               1 )
@@ -192,14 +194,14 @@
    (unless (or (equal major-mode 'text-mode           )
                (equal major-mode 'python-mode         )
                (equal major-mode 'makefile-gmake-mode ))
-     (indent-region (point-min) (point-max))))
+     (indent-region (point-min) (point-max)) ))
   (save-buffer) nil)
 
 (defun format-region ()
   "Format region: delete duplicate lines and sort lines."
   (interactive)
-  (delete-duplicate-lines (region-beginning) (region-end))
-  (sort-lines nil (region-beginning) (region-end)))
+  (delete-duplicate-lines     (region-beginning) (region-end))
+  (sort-lines             nil (region-beginning) (region-end)) )
 
 (defun use-cedet-semantic ()
   "GNU Emacs CEDET & Semantic customization."
@@ -232,12 +234,13 @@
   "Kill all invispble buffers."
   (interactive)
   (delete-other-windows)
-  (mapc 'kill-buffer (delq (current-buffer) (buffer-list))) )
+  (mapc 'kill-buffer (delq (current-buffer) (buffer-list)) ))
 
 (defun legacy-theme ()
   "Use a legacy theme while everything else is broken."
   (interactive)
-  (if (display-graphic-p) (load-theme 'wheatgrass t) ))
+  (if (display-graphic-p)
+      (load-theme 'wheatgrass t) ))
 
 (when (not indicate-empty-lines)
   (toggle-indicate-empty-lines)
@@ -247,7 +250,8 @@
     (bookmark-load bookmark-default-file t))
 
 (add-hook 'c-mode-common-hook 'c-common-mode)
-(add-hook 'makefile-mode-hook '(lambda () (setq-default indent-tabs-mode t)) )
+(add-hook 'makefile-mode-hook
+          '(lambda () (setq-default indent-tabs-mode t)) )
 
 (if (executable-find "ipython3")
     (progn
@@ -261,7 +265,7 @@
 (when (display-graphic-p)
   (blink-cursor-mode  )
   (zone-when-idle 300 )
-  (setq-default cursor-type 'hollow)
+  (setq-default cursor-type         'hollow         )
   (add-to-list 'default-frame-alist '(top    .  50) )
   (add-to-list 'default-frame-alist '(left   .  50) )
   (add-to-list 'default-frame-alist '(width  . 120) )
@@ -300,17 +304,18 @@
 (global-set-key               (kbd "C-x C-s" ) 'format-save-buffer              )
 (windmove-default-keybindings                  'shift                           )
 
-(when (require 'package nil :noerror) (package-initialize)
-      (setq-default package-check-signature nil)
-      (add-to-list 'package-archives '("gnu"   . "https://elpa.gnu.org/packages/" ) t )
-      (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"    ) t )
-      (add-to-list 'package-archives '("org"   . "https://orgmode.org/elpa/"      ) t )
-      (unless package-archive-contents
-        (package-refresh-contents)))
+(when (require 'package nil :noerror)
+  (package-initialize)
+  (setq-default package-check-signature nil)
+  (add-to-list 'package-archives '("gnu"   . "https://elpa.gnu.org/packages/" ) t )
+  (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"    ) t )
+  (add-to-list 'package-archives '("org"   . "https://orgmode.org/elpa/"      ) t )
+  (unless package-archive-contents
+    (package-refresh-contents)) )
 
 (install-package 'doom-themes)
-(if (and (display-graphic-p)
-         (package-installed-p 'doom-themes))
+(if (and (display-graphic-p                )
+         (package-installed-p 'doom-themes ))
     (progn
       (setq-default doom-themes-enable-bold        t   )
       (setq-default doom-themes-enable-italic      t   )
@@ -397,8 +402,8 @@
 
 (if (executable-find "sbcl")
     (install-package 'slime))
-(when (and (require 'slime           nil :noerror)
-           (require 'slime-autoloads nil :noerror))
+(when (and (require 'slime           nil :noerror )
+           (require 'slime-autoloads nil :noerror ))
   (slime-setup '(slime-asdf
                  slime-fancy
                  slime-tramp
@@ -416,14 +421,13 @@
       (add-hook 'c-mode-common-hook
                 (lambda ()
                   (when (derived-mode-p 'asm-mode 'c-mode 'c++-mode)
-                    (ggtags-mode)
-                    (use-cedet-semantic)) )) )
+                    (ggtags-mode        )
+                    (use-cedet-semantic )) )) )
     (use-cedet-semantic))
 
 (when (and (executable-find "clang")
            (executable-find "cmake"))
   (install-package 'rtags     )
-  (install-package 'rmsbolt   )
   (install-package 'cmake-ide ))
 (when (require 'rtags nil :noerror)
   (cmake-ide-setup)
@@ -470,6 +474,7 @@
       (ido-everywhere 1 )
       (setq-default ido-use-virtual-buffers  t )
       (setq-default ido-enable-flex-matching t ) ))
+
 (if (and (package-installed-p 'ivy   )
          (package-installed-p 'rtags ))
     (install-package 'ivy-rtags))
