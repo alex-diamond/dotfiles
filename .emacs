@@ -1,6 +1,7 @@
 ;;; package --- .emacs
 ;;; Commentary:
 ;;; GNU Emacs configuration file
+;;; -*- no-byte-compile: t; -*-
 
 ;;; Code:
 (require 'bookmark   nil :noerror)
@@ -16,7 +17,6 @@
 (require 'imenu      nil :noerror)
 (require 'recentf    nil :noerror)
 (require 'whitespace nil :noerror)
-(require 'zone       nil :noerror)
 
 (defalias 'list-buffers 'ibuffer    )
 (defalias 'perl-mode    'cperl-mode )
@@ -90,6 +90,7 @@
 (setq-default initial-scratch-message             nil )
 (setq-default kill-whole-line                     t   )
 (setq-default line-move-visual                    nil )
+(setq-default load-prefer-newer                   t   )
 (setq-default make-backup-files                   nil )
 (setq-default mouse-drag-copy-region              nil )
 (setq-default mouse-wheel-follow-mouse            t   )
@@ -103,6 +104,7 @@
 (setq-default resize-mini-windows                 t   )
 (setq-default save-interprogram-paste-before-kill t   )
 (setq-default savehist-save-minibuffer-history    t   )
+(setq-default scroll-error-top-bottom             t   )
 (setq-default scroll-preserve-screen-position     nil )
 (setq-default search-highlight                    t   )
 (setq-default select-enable-clipboard             t   )
@@ -118,11 +120,9 @@
 (setq-default use-file-dialog                     nil )
 (setq-default vc-make-backup-files                t   )
 (setq-default version-control                     t   )
+(setq-default window-combination-resize           t   )
 (setq-default window-divider-default-places       t   )
 (setq-default x-stretch-cursor                    t   )
-
-(setq-default gc-cons-threshold       (* 10240 10240 ) )
-(setq-default read-process-output-max (*  1024  1024 ) )
 
 (setq-default auto-save-timeout                  500    )
 (setq-default c-basic-offset                       2    )
@@ -146,6 +146,10 @@
 (setq-default tab-width                            2    )
 (setq-default whitespace-line-column             100    )
 
+(setq-default gc-cons-threshold            (* 10240 10240 ) )
+(setq-default large-file-warning-threshold (* 10240 10240 ) )
+(setq-default read-process-output-max      (*  1024  1024 ) )
+
 (setq-default c-default-style    "bsd"                                    )
 (setq-default custom-file        "~/.emacs.d/custom.el"                   )
 (setq-default frame-title-format "GNU Emacs"                              )
@@ -161,9 +165,11 @@
 (setq-default mouse-wheel-scroll-amount            '(1 ((shift) . 1))           )
 (setq-default recenter-positions                   '(top middle bottom)         )
 (setq-default ring-bell-function                   'ignore                      )
-(setq-default save-abbrevs                         'silent                      )
-(setq-default show-paren-style                     'parenthesis                 )
+(setq-default save-abbrevs                         'silently                    )
+(setq-default select-active-regions                'only                        )
+(setq-default show-paren-style                     'expression                  )
 (setq-default tab-always-indent                    'complete                    )
+(setq-default uniquify-buffer-name-style           'forward                     )
 (setq-default whitespace-style                     '(face lines trailing)       )
 
 (defun c-common-mode ()
@@ -209,9 +215,6 @@
   (when (require 'semantic            nil :noerror )
     (require     'semantic/ia         nil :noerror )
     (require     'semantic/bovine/gcc nil :noerror )
-    (when (executable-find "global")
-      (semanticdb-enable-gnu-global-databases 'c-mode   )
-      (semanticdb-enable-gnu-global-databases 'c++-mode ))
     (defvar *semantic-submodes*
       (list 'global-cedet-m3-minor-mode
             'global-semantic-decoration-mode
@@ -238,8 +241,7 @@
 (defun legacy-theme ()
   "Use a legacy theme while everything else is broken."
   (interactive)
-  (if (display-graphic-p)
-      (load-theme 'wheatgrass t) ))
+  (if (display-graphic-p) (load-theme 'wheatgrass t) ))
 
 (when (not indicate-empty-lines)
   (toggle-indicate-empty-lines)
@@ -262,8 +264,7 @@
           (setq-default python-shell-interpreter-args "-i"      )) ))
 
 (when (display-graphic-p)
-  (blink-cursor-mode  )
-  (zone-when-idle 300 )
+  (blink-cursor-mode)
   (setq-default cursor-type         'hollow         )
   (add-to-list 'default-frame-alist '(top    .  50) )
   (add-to-list 'default-frame-alist '(left   .  50) )
@@ -271,7 +272,6 @@
   (add-to-list 'default-frame-alist '(height .  30) )
   (if (member         "JetBrains Mono"    (font-family-list) )
       (set-frame-font "JetBrains Mono 14"  t              t) )
-  (setq-default zone-programs [zone-pgm-five-oclock-swan-dive])
   (fringe-mode                              '( 10     . 10    ))
   (setq-default indicate-buffer-boundaries '(( bottom . right )
                                              ( down   . right )
@@ -308,9 +308,7 @@
   (setq-default package-check-signature nil)
   (add-to-list 'package-archives '("gnu"   . "https://elpa.gnu.org/packages/" ) t )
   (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"    ) t )
-  (add-to-list 'package-archives '("org"   . "https://orgmode.org/elpa/"      ) t )
-  (unless package-archive-contents
-    (package-refresh-contents)) )
+  (unless package-archive-contents (package-refresh-contents)) )
 
 (install-package 'doom-themes)
 (if (and (display-graphic-p                )
@@ -329,14 +327,8 @@
     (legacy-theme))
 
 (install-package 'org)
-(when (require 'org nil :noerror)
-  (require 'ob nil :noerror)
-  (when (executable-find "gpg2")
-    (require 'org-crypt nil :noerror )
-    (require 'epa-file  nil :noerror )
-    (epa-file-enable                 )
-    (org-crypt-use-before-save-magic ))
-  (setq-default org-tags-exclude-from-inheritance '("crypt"))
+(when (and (require 'org nil :noerror )
+           (require 'ob  nil :noerror ))
   (org-babel-do-load-languages 'org-babel-load-languages
                                '(( awk        . t )
                                  ( emacs-lisp . t )
@@ -352,7 +344,6 @@
   (setq-default org-auto-align-tags                  t   )
   (setq-default org-checkbox-hierarchical-statistics nil )
   (setq-default org-confirm-babel-evaluate           nil )
-  (setq-default org-crypt-key                        nil )
   (setq-default org-export-with-smart-quotes         t   )
   (setq-default org-fontify-done-headline            t   )
   (setq-default org-fontify-quote-and-verse-blocks   t   )
@@ -392,12 +383,6 @@
 (install-package 'flycheck)
 (if (require 'flycheck nil :noerror)
     (global-flycheck-mode))
-
-(install-package 'yasnippet)
-(install-package 'yasnippet-snippets)
-(when (require 'yasnippet nil :noerror)
-  (yas-reload-all)
-  (add-hook 'prog-mode-hook 'yas-minor-mode))
 
 (if (executable-find "sbcl")
     (install-package 'slime))
@@ -469,8 +454,8 @@
       (global-set-key (kbd "M-x"     ) 'counsel-M-x       )
       (global-set-key (kbd "C-x C-f" ) 'counsel-find-file ))
     (when (require 'ido nil :noerror)
-      (ido-mode       1 )
-      (ido-everywhere 1 )
+      (ido-mode 1)
+      (setq-default ido-everywhere           t )
       (setq-default ido-use-virtual-buffers  t )
       (setq-default ido-enable-flex-matching t ) ))
 
@@ -493,13 +478,12 @@
   (install-package 'company-rtags ))
 (when (require 'company nil :noerror)
   (add-hook 'prog-mode-hook 'company-mode)
-  (setq-default company-idle-delay            0 )
-  (setq-default company-minimum-prefix-length 2 )
-  (setq-default company-selection-wrap-around t )
-  (setq-default company-show-numbers          t )
+  (setq-default company-idle-delay            0   )
+  (setq-default company-minimum-prefix-length 2   )
+  (setq-default company-selection-wrap-around t   )
+  (setq-default company-show-numbers          nil )
   (setq-default company-backends
-                '((company-yasnippet
-                   company-elisp company-files company-keywords
+                '((company-elisp company-files company-keywords
                    company-clang company-cmake company-semantic
                    company-ctags company-etags company-gtags company-rtags)) ))
 
@@ -512,4 +496,5 @@
             (lambda () (add-hook 'before-save-hook 'elpy-black-fix-code nil t )) ))
 
 (provide '.emacs)
+
 ;;; .emacs ends here
