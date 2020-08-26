@@ -1,9 +1,10 @@
-# Enable smart completion
-if [ -f /etc/bash_completion.d ]; then
-    . /etc/bash_completion.d/hwloc-completion.bash
+set -o emacs
+PROMPT_DIRTRIM=2
+
+if [ -d /usr/share/bash-completion ]; then
+    . /usr/share/bash-completion/bash_completion
 fi
 
-# Aliases
 alias ..="cd .."
 alias .2="cd ../.."
 alias .3="cd ../../.."
@@ -32,9 +33,60 @@ alias sl="sl && clear"
 alias t="tree"
 alias x="exit"
 
+shopt -s autocd
+shopt -s cdable_vars
+shopt -s cdspell
+shopt -s checkjobs
+shopt -s checkwinsize
+shopt -s cmdhist
+shopt -s direxpand
+shopt -s dirspell
+shopt -s globstar
+shopt -s histappend
+shopt -s histreedit
+
+export EDITOR=emacs
+export HISTCONTROL=ignoreboth:erasedups
+export HISTIGNORE=".:..:c:h:x:cd:la:ll:ls"
+export HISTSIZE=10240
+export PROMPT_COMMAND="history -a"
+export PS1=$'\n\w \U25B6 '
+export TERM=xterm-256color
+export VISUAL="$EDITOR"
+
+SOFTWARE_PATH=/mnt/DATA
+CERN_PATH=$SOFTWARE_PATH/CERN
+ROOT_PATH=$CERN_PATH/ROOT/install/bin
+GEANT4_PATH=$CERN_PATH/Geant4/install/bin
+if [ -f "$ROOT_PATH/thisroot.sh" ]; then
+    source "$ROOT_PATH/thisroot.sh"
+fi
+if [ -f "$GEANT4_PATH/geant4.sh" ]; then
+    source "$GEANT4_PATH/geant4.sh"
+fi
+
+if [ -f /usr/bin/tldr ]; then
+    export TLDR_CODE="red"
+    export TLDR_DESCRIPTION="green"
+    export TLDR_HEADER="magenta bold underline"
+    export TLDR_PARAM="blue"
+    export TLDR_QUOTE="italic"
+fi
+
+if [ -f /usr/share/fzf/completion.bash ] && \
+       [ -f /usr/share/fzf/key-bindings.bash ]; then
+    source /usr/share/fzf/completion.bash
+    source /usr/share/fzf/key-bindings.bash
+    bind -m emacs-standard -x '"\C-f": fzf-file-widget'
+    if [ -f /usr/bin/fd ]; then
+        export FZF_DEFAULT_COMMAND="fd --type f --hidden"
+    fi
+    export FZF_DEFAULT_OPTS="-m --preview='head {}' --preview-window=right"
+fi
+
 function EASF () { emacs "$@"            & }; alias e="EASF"
-function EBCF () { emacs "$HOME"/.bashrc & }; alias cb="EBCF"
-function EECF () { emacs "$HOME"/.emacs  & }; alias ce="EECF"
+function EBCF () { emacs "$HOME/.bashrc" & }; alias cb="EBCF"
+function EECF () { emacs "$HOME/.emacs"  & }; alias ce="EECF"
 
 function extract () {
     if [ -f "$1" ]; then
@@ -83,70 +135,3 @@ function CP3VP ()
         install_packages
     fi
 }; alias pvp="CP3VP"
-
-# Emacs mode
-set -o emacs
-# A command name that is the name of a directory
-# is executed as if it were the argument to the "cd" command
-shopt -s autocd
-# Minor errors in the spelling of a directory component
-# in a "cd" command will be corrected
-shopt -s cdspell
-# Bash attempts spelling correction on directory names
-# during word completion if the directory name
-# initially supplied does not exist
-shopt -s dirspell
-# The pattern "**" used in a filename expansion context will
-# match all files and zero or more directories and subdirectories
-shopt -s globstar
-# Bash lists the status of any stopped and running jobs
-# before exiting an interactive shell
-shopt -s checkjobs
-# The history list is appended to the history file
-shopt -s histappend
-# Bash checks the window size after each command and
-# updates the values of LINES and COLUMNS
-shopt -s checkwinsize
-
-PROMPT_DIRTRIM=2
-# Exports
-export TERM=xterm-256color
-export HISTCONTROL=ignoreboth:erasedups
-export HISTIGNORE=".:..:c:h:x:cd:la:ll:ls"
-export HISTSIZE=10240
-export EDITOR=emacs
-export VISUAL="$EDITOR"
-export PS1=$'\n\w \U25B6 '
-export PROMPT_COMMAND="history -a"
-
-# CERN SOFTWARE
-SOFTWARE_PATH=/mnt/DATA
-CERN_PATH=$SOFTWARE_PATH/CERN
-ROOT_PATH=$CERN_PATH/ROOT/install/bin
-GEANT4_PATH=$CERN_PATH/Geant4/install/bin
-if [ -f $ROOT_PATH/thisroot.sh ]; then
-    source "$ROOT_PATH/thisroot.sh"
-fi
-if [ -f $GEANT4_PATH/geant4.sh ]; then
-    source "$GEANT4_PATH/geant4.sh"
-fi
-
-# TL;DR
-if [ -f /usr/bin/tldr ]; then
-    export TLDR_CODE="red"
-    export TLDR_DESCRIPTION="green"
-    export TLDR_HEADER="magenta bold underline"
-    export TLDR_PARAM="blue"
-    export TLDR_QUOTE="italic"
-fi
-
-if [ -f /usr/share/fzf/completion.bash ] && \
-       [ -f /usr/share/fzf/key-bindings.bash ]; then
-    source /usr/share/fzf/completion.bash
-    source /usr/share/fzf/key-bindings.bash
-    bind -m emacs-standard -x '"\C-f": fzf-file-widget'
-    if [ -f /usr/bin/fd ]; then
-        export FZF_DEFAULT_COMMAND="fd --type f --hidden"
-    fi
-    export FZF_DEFAULT_OPTS="-m --preview='head {}' --preview-window=right"
-fi
