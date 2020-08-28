@@ -14,11 +14,14 @@ alias .="pwd"
 alias aac="asciiquarium && clear"
 alias addall="git add ."
 alias c="clear"
+alias cb="emacs ~/.bashrc"
+alias ce="emacs ~/.emacs"
 alias cmc="cmatrix && clear"
 alias commit="git commit -m"
 alias cp="cp -v"
 alias df="df -Tha --total"
 alias du="du -ach | sort -h"
+alias e="emacs"
 alias free="free -mt"
 alias h="history"
 alias la="ls -lah"
@@ -83,10 +86,6 @@ if [ -f /usr/share/fzf/completion.bash ] && \
     fi
     export FZF_DEFAULT_OPTS="-m --preview='head {}' --preview-window=right"
 fi
-
-function EASF () { emacs "$@"            & }; alias e="EASF"
-function EBCF () { emacs "$HOME/.bashrc" & }; alias cb="EBCF"
-function EECF () { emacs "$HOME/.emacs"  & }; alias ce="EECF"
 
 function extract () {
     if [ -f "$1" ]; then
